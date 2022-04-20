@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script th:inline="javascript">
+	/*<![CDATA[*/
+	const status = /*[[ ${status} ]]*/ null;
+	/*]]*/
+	
+	if(status == 403) {
+		const url = location.href;
+		if(url.indexOf('/mngr/') == -1) {
+			location.href = '/user/login';
+		} else {
+			location.href = '/mngr/login';
+		}
+	}
+</script>
+</head>
+<body>
+<h4 th:text="${status}"></h4>
+이용중 오류가 발생했습니다.
+<a href="javascript:history.go(-1);">뒤로가기</a>
+<!--
+<h3>Common Error Page</h3>
+<div th:text="${path }"></div>
+<div th:text="${status }"></div>
+<div th:text="${timestamp }"></div>
+<div th:text="${error }"></div>
+<div th:text="${errors }"></div>
+<div th:text="${exception }"></div>
+<div th:text="${message }"></div>
+<div th:text="${trace }"></div>
+-->
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<!-- meta -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=1280,user-scalable=no">
+<meta name="description" content="" />
+<meta name="author" content="" />
+<meta th:if="${_csrf}" name="_csrf" th:content="${_csrf.token}"/>
+<meta th:unless="${_csrf}" name="_csrf" content=""/>
+<meta th:if="${_csrf}" name="_csrf_header" th:content="${_csrf.headerName}"/>
+<meta th:unless="${_csrf}" name="_csrf_header" content=""/>
+
+<!-- title -->
+<title th:text="|국가뿌리산업진흥센터 :: ${p_documentTitle}|">국가뿌리산업진흥센터</title>
+
+<!-- css -->
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/sub.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/datepicker.css}" />
+
+<!-- js -->
+<script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/res/site/lib/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js}"></script>
+<script type="text/javascript" th:src="@{/res/site/js/nav.js}"></script>
+<script type="text/javascript" th:src="@{/res/site/js/site-ajax-util.js}"></script>
+<script type="text/javascript" th:src="@{/res/site/js/common-util.js}"></script>
+<script type="text/javascript" th:src="@{/res/site/js/moment.min.js}"></script>
+<script type="text/javascript" th:src="@{/res/site/js/bootstrap-datepicker.js}"></script>
+<script type="text/javascript" th:src="@{/res/site/js/bootstrap-datepicker.kr.js}"></script>
+<script type="text/javascript" th:src="@{/res/site/js/bootstrap-datetimepicker.min.js}"></script>
+
+
+<th:block th:replace="site/common/fragment/basic_script :: common-util"></th:block>
+</head>
+<body>
+	<div class="wrap">
+		<th:block th:replace="site/common/fragment/basic_header :: header"></th:block>
+		<div class="container">
+			<th:block th:replace="site/common/fragment/basic_location :: location"></th:block>
+			<div class="contentsbox">
+				<th:block th:replace="site/common/fragment/basic_aside :: aside"></th:block>
+				<th:block layout:fragment="content">내용</th:block>
+			</div>
+		</div>
+		<th:block th:replace="site/common/fragment/basic_footer :: footer"></th:block>
+	</div>
+</body>
+</html>

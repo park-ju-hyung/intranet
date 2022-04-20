@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{mngr/common/layout/login_layout}">
+<head>
+<script th:inline="javascript">
+	$(document).ready(function() {
+		initPage();
+		registEvent();
+		setDefault();
+	});
+
+	const initPage = function() {
+		
+	};
+	
+	const registEvent = function() {
+
+	};
+	
+	const setDefault = function() {
+		/*<![CDATA[*/
+		const errorCode = /*[[ ${mngrDTO.errorCode} ]]*/ null;
+		/*]]*/
+		
+		/*<![CDATA[*/
+		const userId = /*[[ ${mngrDTO.mngrId} ]]*/ null;
+		/*]]*/
+		
+		if(userId !== null) {
+			$('input[name="userId"]').val(userId);
+		}
+		
+		if(errorCode !== null) {
+			alert('아이디와 패스워드가 일치하지 않습니다.');
+			$(location).attr('href', '/mngr/login');
+		}
+	};
+	
+	const checkSubmit = function() {
+		const $userId = $('#userId').val();
+		const $password = $('#password').val();
+
+		if($userId.trim().length == 0) {
+			alert('아이디를 입력해 주세요.');
+			return false;
+		}
+
+		if($password.trim().length == 0) {
+			alert('비밀번호를 입력해 주세요.');
+			return false;
+		}
+		
+		return true;
+	};
+</script>
+</head>
+<th:block layout:fragment="content">
+
+	<div class="row justify-content-center" style="width:1200px; margin:0 auto; margin-top:100px">
+
+	   <div class="col-xl-10 col-lg-12 col-md-9" >
+
+	       <div class="card o-hidden border-0 shadow-lg my-5" >
+	           <div class="card-body p-0">
+	              
+	               <div class="row">
+	                   <div class="col-lg-6 d-none d-lg-block bg-login-image">
+	                   		<div class="">
+	                   			<img src="/res/mngr/img/ad_login.jpg">
+	                   		</div>
+	                   	
+	                   </div>
+	                    <div class="col-lg-6">
+	                       <div class="p-5">
+	                           <div class="text-center">
+	                               <h1 class="h4 text-gray-900 mb-4" style="font-weight: 600;">뿌리사업관리 | 관리자시스템</h1>
+	                            </div>
+	                            <form class="user" name="" th:action="@{/mngr/auth}" method="post" onsubmit="return checkSubmit()">
+	                                <div class="form-group pd-l0 f12">
+	                                    <input type="text" class="form-control form-control-user f12i"
+	                                        id="userId" name="userId" aria-describedby="emailHelp"
+	                                        placeholder="아이디">
+	                                </div>
+	                                <div class="form-group pd-l0 ">
+	                                    <input type="password" class="form-control form-control-user f12i"
+	                                        id="password" name="password" placeholder="비밀번호">
+	                                </div>
+	                                <div class="form-group pd-l0 f12">
+	                                    <!-- <div class="custom-control custom-checkbox">
+	                                        <input type="checkbox" class="custom-control-input" id="customCheck">
+	                                        <label class="custom-control-label" for="customCheck">아이디저장</label>
+	                                    </div> -->
+	                                </div>
+	                                <button type="submit" class="btn btn-primary btn-user btn-block f16i">
+	                                    Login
+	                                </button>
+
+	                            </form>
+	                            <hr>
+	                            <div class="text-center">
+	                                ID와 Password를 입력하신 후 로그인 해주십시오.
+	                            </div>
+	                            <div class="text-center">
+	                                <br/><br/><br/><br/><br/><br/>
+	                            </div>
+	                        </div>
+	                    </div> 
+	                </div>
+	            </div>
+	        </div>
+
+	    </div>
+
+	</div>
+	
+</th:block>
+</html>

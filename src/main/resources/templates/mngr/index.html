@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{mngr/common/layout/basic_layout}">
+<head>
+<script th:inline="javascript">
+$(document).ready(function() {
+	initPage();
+	registEvent();
+	setDefault();
+});
+
+//페이지 초기화
+const initPage = function() {
+	/*<![CDATA[*/
+	const specialJijeongCnt = /*[[ ${specialJijeongCnt} ]]*/0;
+	const specialIlbanCnt = /*[[ ${specialIlbanCnt} ]]*/0;
+	const specialSeondoCnt = /*[[ ${specialSeondoCnt} ]]*/0;
+	
+	const specialPaperJijeongCnt = /*[[ ${specialPaperJijeongCnt} ]]*/0;
+	const specialPaperIlbanCnt = /*[[ ${specialPaperIlbanCnt} ]]*/0;
+	const specialPaperSeondoCnt = /*[[ ${specialPaperSeondoCnt} ]]*/0;
+	
+	const specialFinalJijeongCnt = /*[[ ${specialFinalJijeongCnt} ]]*/0;
+	const specialFinalIlbanCnt = /*[[ ${specialFinalIlbanCnt} ]]*/0;
+	const specialFinalSeondoCnt = /*[[ ${specialFinalSeondoCnt} ]]*/0;
+	
+	const intelliChumdanCnt = /*[[ ${intelliChumdanCnt} ]]*/0;
+	const intelliJijeongCnt = /*[[ ${intelliJijeongCnt} ]]*/0;
+	const intelliJayuCnt = /*[[ ${intelliJayuCnt} ]]*/0;
+	
+	const intelliPaperChumdanCnt = /*[[ ${intelliPaperChumdanCnt} ]]*/0;
+	const intelliPaperJijeongCnt = /*[[ ${intelliPaperJijeongCnt} ]]*/0;
+	const intelliPaperJayuCnt = /*[[ ${intelliPaperJayuCnt} ]]*/0;
+	
+	const intelliFinalChumdanCnt = /*[[ ${intelliFinalChumdanCnt} ]]*/0;
+	const intelliFinalJijeongCnt = /*[[ ${intelliFinalJijeongCnt} ]]*/0;
+	const intelliFinalJayuCnt = /*[[ ${intelliFinalJayuCnt} ]]*/0;
+	
+	const automatYear1 = /*[[ ${automatYear1} ]]*/0;
+	const automatYear1Cnt = /*[[ ${automatYear1Cnt} ]]*/0;
+	const automatYear2 = /*[[ ${automatYear2} ]]*/0;
+	const automatYear2Cnt = /*[[ ${automatYear2Cnt} ]]*/0;
+	const automatYear3 = /*[[ ${automatYear3} ]]*/0;
+	const automatYear3Cnt = /*[[ ${automatYear3Cnt} ]]*/0;
+	const automatYear4 = /*[[ ${automatYear4} ]]*/0;
+	const automatYear4Cnt = /*[[ ${automatYear4Cnt} ]]*/0;
+	const automatYear2PaperCnt = /*[[ ${automatYear2PaperCnt} ]]*/0;
+	const automatYear2FinalCnt = /*[[ ${automatYear2FinalCnt} ]]*/0;
+	const automatYear3PaperCnt = /*[[ ${automatYear3PaperCnt} ]]*/0;
+	const automatYear3FinalCnt = /*[[ ${automatYear3FinalCnt} ]]*/0;
+	/*]]*/
+	
+	var ctx = document.getElementById("myChart");
+	var myChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: ["지정", "일반단지", "선도단지"],
+	        datasets: [{
+	            label: '',
+	            data: [specialJijeongCnt, specialIlbanCnt, specialSeondoCnt],
+	            backgroundColor: [
+	                'rgba(13, 90, 243, 1)',
+	                'rgba(10, 69, 187, 1 )',								                
+	                'rgba(6, 44, 121, 1)'
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,0.2)',
+	                'rgba(54, 162, 235, 0.2)',								                								               
+	                'rgba(255, 159, 64, 0.2)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	  plugins: {
+	    	    datalabels: {
+	    	      display: false
+	    	    }
+	    	  },
+	    	  scales: {
+					xAxes: [{
+						ticks:{
+							fontColor : '#fff',
+							fontSize : 12
+						},
+						gridLines:{
+							color: '#687ef8',
+							lineWidth: 1
+						}
+					}]
+	    	  		,yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							stepSize : 2,
+							fontColor : '#fff',
+							fontSize : 12,
+						},
+						gridLines:{
+							color: '#687ef8',
+							lineWidth:1
+						}
+					}]
+				}
+	    	}
+	});
+	
+	var ctx = document.getElementById("myChart1");
+	var myChart1 = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: ["지정", "일반단지", "선도단지"],
+	        datasets: [{
+	            label: '',
+	            data: [specialPaperJijeongCnt, specialPaperIlbanCnt, specialPaperSeondoCnt],
+	            backgroundColor: [
+	                'rgba(222, 123, 26, 1)',
+	                'rgba(167, 92, 18, 1 )',								                
+	                'rgba(115, 63, 12, 1)'
+	            ],
+	            borderColor: [
+	                'rgba(222, 123, 26, 1)',
+	                'rgba(167, 92, 18, 1)',								                								               
+	                'rgba(115, 63, 12, 1)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	  plugins: {
+	    	    datalabels: {
+	    	      display: false
+	    	    }
+	    	  },
+	    	  scales: {
+					xAxes: [{
+						ticks:{
+							fontColor : '#fff',
+							fontSize : 12
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth: 1
+						}
+					}]
+	    	  		,yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							stepSize : 2,
+							fontColor : '#fff',
+							fontSize : 12,
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth:1
+						}
+					}]
+				}
+	    	  }
+	});
+	
+	var ctx = document.getElementById("myChart2");
+	var myChart2 = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: ["지정", "일반단지", "선도단지"],
+	        datasets: [{
+	            label: '',
+	            data: [specialFinalJijeongCnt, specialFinalIlbanCnt, specialFinalSeondoCnt],
+	            backgroundColor: [
+	                'rgba(150, 245, 208, 1)',
+	                'rgba(107, 206, 168, 1 )',								                
+	                'rgba(75, 166, 130, 1)'
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,0.2)',
+	                'rgba(54, 162, 235, 0.2)',								                								               
+	                'rgba(255, 159, 64, 0.2)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	  plugins: {
+	    	    datalabels: {
+	    	      display: false
+	    	    }
+	    	  },
+	    	  scales: {
+					xAxes: [{
+						ticks:{
+							fontColor : '#fff',
+							fontSize : 12
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth: 1
+						}
+					}]
+	    	  		,yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							stepSize : 2,
+							fontColor : '#fff',
+							fontSize : 12,
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth:1
+						}
+					}]
+				}
+	    	}
+	});
+	
+	var ctx = document.getElementById("myChart3");
+	var myChart3 = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: ["첨단지능형", "지정공모", "자유공모"],								        
+	        datasets: [{
+	            label: '',
+	            
+	            data: [intelliChumdanCnt, intelliJijeongCnt, intelliJayuCnt],
+	            backgroundColor: [
+	                'rgba(13, 90, 243, 1)',
+	                'rgba(10, 69, 187, 1 )',								                
+	                'rgba(6, 44, 121, 1)'
+	            ],
+	            borderColor: [
+	                'rgba(13, 90, 243, 1)',
+	                'rgba(10, 69, 187, 1)',								                								               
+	                'rgba(6, 44, 121, 1)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	  plugins: {
+	    	    datalabels: {
+	    	      display: false
+	    	    }
+	    	  },
+	    	  legend: {
+					labels: {
+						fontColor: "#fff",
+						fontSize: 12
+					}
+				},
+				scales: {
+					xAxes: [{
+						ticks:{
+							fontColor : '#fff',
+							fontSize : 12
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth: 1
+						}
+					}]
+	    	  		,yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							stepSize : 2,
+							fontColor : '#fff',
+							fontSize : 12,
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth:1
+						}
+					}]
+				}
+	    	}
+	});
+	
+	var ctx = document.getElementById("myChart4");
+	var myChart4 = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	    	labels: ["첨단지능형", "지정공모", "자유공모"],		
+	        datasets: [{
+	            label: '',
+	            data: [intelliPaperChumdanCnt, intelliPaperJijeongCnt, intelliPaperJayuCnt],
+	            backgroundColor: [
+	                'rgba(222, 123, 26, 1)',
+	                'rgba(167, 92, 18, 1 )',								                
+	                'rgba(115, 63, 12, 1)'
+	            ],
+	            borderColor: [
+	            	'rgba(222, 123, 26, 1)',
+	                'rgba(167, 92, 18, 1 )',								                
+	                'rgba(115, 63, 12, 1)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	  plugins: {
+	    	    datalabels: {
+	    	      display: false
+	    	    }
+	    	  },
+	    	  scales: {
+					xAxes: [{
+						ticks:{
+							fontColor : '#fff',
+							fontSize : 12
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth: 1
+						}
+					}]
+	    	  		,yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							stepSize : 2,
+							fontColor : '#fff',
+							fontSize : 12,
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth:1
+						}
+					}]
+				}
+	    	}
+	});
+	
+	var ctx = document.getElementById("myChart5");
+	var myChart5 = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	    	labels: ["첨단지능형", "지정공모", "자유공모"],		
+	        datasets: [{
+	            label: '',
+	            data: [intelliFinalChumdanCnt, intelliFinalJijeongCnt, intelliFinalJayuCnt],
+	            backgroundColor: [
+	                'rgba(150, 245, 208, 1)',
+	                'rgba(107, 206, 168, 1 )',								                
+	                'rgba(75, 166, 130, 1)'
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,0.2)',
+	                'rgba(54, 162, 235, 0.2)',								                								               
+	                'rgba(255, 159, 64, 0.2)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	  plugins: {
+	    	    datalabels: {
+	    	      display: false
+	    	    }
+	    	  },
+	    	  scales: {
+					xAxes: [{
+						ticks:{
+							fontColor : '#fff',
+							fontSize : 12
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth: 1
+						}
+					}]
+	    	  		,yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							stepSize : 2,
+							fontColor : '#fff',
+							fontSize : 12,
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth:1
+						}
+					}]
+				}
+	    	}
+	});
+	
+	var ctx = document.getElementById("myChart6");
+	var myChart6 = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: [automatYear1, automatYear2, automatYear3, automatYear4],								        
+	        datasets: [{
+	            label: '',								            
+	            data: [automatYear1Cnt, automatYear2Cnt, automatYear3Cnt, automatYear4Cnt],
+	            backgroundColor: [
+	                'rgba(13, 90, 243, 1)',
+	                'rgba(10, 69, 187, 1 )',								                
+	                'rgba(6, 44, 121, 1)',
+	                'rgba(29, 55, 107, 1)'
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,0.2)',
+	                'rgba(54, 162, 235, 0.2)',								                								               
+	                'rgba(255, 159, 64, 0.2)',
+	                'rgba(255, 159, 64, 0.2)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	  plugins: {
+	    	    datalabels: {
+	    	      display: false
+	    	    }
+	    	  },
+	    	  legend: {
+					labels: {
+						fontColor: "#fff",
+						fontSize: 12
+					}
+				},
+				scales: {
+					xAxes: [{
+						ticks:{
+							fontColor : '#fff',
+							fontSize : 12
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth: 1
+						}
+					}]
+	    	  		,yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							stepSize : 2,
+							fontColor : '#fff',
+							fontSize : 12,
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth:1
+						}
+					}]
+				}
+	    	}
+	});
+	
+	var ctx = document.getElementById("myChart7");
+	var myChart7 = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	    	labels: ["전제지원수", "서면평가", "최종선정"],		
+	        datasets: [{
+	            label: '',
+	            data: [automatYear2Cnt, automatYear2PaperCnt, automatYear2FinalCnt],
+	            backgroundColor: [
+	                'rgba(222, 123, 26, 1)',
+	                'rgba(167, 92, 18, 1 )',								                
+	                'rgba(115, 63, 12, 1)'
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,1)',
+	                'rgba(54, 162, 235, 1)',								                								               
+	                'rgba(255, 159, 64, 0.2)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	  plugins: {
+	    	    datalabels: {
+	    	      display: false
+	    	    }
+	    	  },
+	    	  scales: {
+					xAxes: [{
+						ticks:{
+							fontColor : '#fff',
+							fontSize : 12
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth: 1
+						}
+					}]
+	    	  		,yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							stepSize : 2,
+							fontColor : '#fff',
+							fontSize : 12,
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth:1
+						}
+					}]
+				}
+	    	}
+	});
+	
+	var ctx = document.getElementById("myChart8");
+	var myChart8 = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	    	labels: ["전제지원수", "서면평가", "최종선정"],		
+	        datasets: [{
+	            label: '',
+	            data: [automatYear3Cnt, automatYear3PaperCnt, automatYear3FinalCnt],
+	            backgroundColor: [
+	                'rgba(150, 245, 208, 1)',
+	                'rgba(107, 206, 168, 1 )',								                
+	                'rgba(75, 166, 130, 1)'
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,0.2)',
+	                'rgba(54, 162, 235, 0.2)',								                								               
+	                'rgba(255, 159, 64, 0.2)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	  plugins: {
+	    	    datalabels: {
+	    	      display: false
+	    	    }
+	    	  },
+	    	  scales: {
+					xAxes: [{
+						ticks:{
+							fontColor : '#fff',
+							fontSize : 12
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth: 1
+						}
+					}]
+	    	  		,yAxes: [{
+						ticks: {
+							beginAtZero: true,
+							stepSize : 2,
+							fontColor : '#fff',
+							fontSize : 12,
+						},
+						gridLines:{
+							color: '#66f',
+							lineWidth:1
+						}
+					}]
+				}
+	    	}
+	});
+};
+
+// 기본값 세팅
+const setDefault = function() {
+	
+};
+
+// 이벤트 등록
+const registEvent = function() {
+
+};
+</script>
+</head>
+<th:block layout:fragment="content">
+
+	<!-- Container area-->
+	<div class="container-fluid" id="container-wrapper">
+		<!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+			
+
+		</div> -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="col-lg-4 bg1">
+					<h3 class="m-txt">특화단지</h3>
+					<div class="dash_area1">					
+						<div class="dash_lf">
+							<span class="dash_t1">사업현황</span>
+						</div>
+						<div class="dash_rf">
+							<ul>
+								<li class="dash_b">전체 지원자 수 : <span th:text="${specialCnt}">0</span> 건</li>
+								<li>서면평가  : <span th:text="${specialPaperCnt}">0</span> 건</li>
+								<li>대면평가 : <span th:text="${specialFaceCnt}">0</span> 건</li>
+								<li class="dash_b">최종선정 : <span th:text="${specialFinalCnt}">0</span> 건</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="dash_area1">
+						<div class="chart_1">
+							<h4 class="">전체 지원자 수</h4>
+							<canvas id="myChart" width="100" height="100"></canvas>
+						</div>
+						<div class="chart_1">
+							<h4>서면평가</h4>
+							<canvas id="myChart1" width="100" height="100"></canvas>
+						</div>
+						<div class="chart_1">
+							<h4>최종선정</h4>
+							<canvas id="myChart2" width="100" height="100"></canvas>
+						</div>
+					</div>
+				
+				</div>
+				<div class="col-lg-4 bg2">
+					<h3 class="m-txt">지능형</h3>
+					<div class="dash_area1">					
+						<div class="dash_lf">
+							<span class="dash_t1">사업현황</span>
+						</div>
+						<div class="dash_rf">
+							<ul>
+								<li class="dash_b">전체 지원자 수 : <span th:text="${intelliCnt}">0</span> 건</li>
+								<li>서면평가  : <span th:text="${intelliPaperCnt}">0</span> 건</li>
+								<li>대면평가 : <span th:text="${intelliFaceCnt}">0</span> 건</li>
+								<li class="dash_b">최종선정 : <span th:text="${intelliFinalCnt}">0</span> 건</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="dash_area1">
+						<div class="chart_1">
+							<h4 class="">전체 지원자 수</h4>
+							<canvas id="myChart3" width="100" height="100"></canvas>
+						</div>
+						<div class="chart_1">
+							<h4>서면평가</h4>
+							<canvas id="myChart4" width="100" height="100"></canvas>
+						</div>
+						<div class="chart_1">
+							<h4>최종선정</h4>
+							<canvas id="myChart5" width="100" height="100"></canvas>
+						</div>
+					</div>
+				
+				</div>
+				<div class="col-lg-4 bg3">
+					<h3 class="m-txt">자동화/첨단화</h3>
+					<div class="dash_area1">					
+						<div class="dash_lf">
+							<span class="dash_t1">사업현황</span>
+						</div>
+						<div class="dash_rf">
+							<ul>
+								<li class="dash_b">전체 지원자 수 : <span th:text="${automatCnt}">0</span> 건</li>
+								<li>서면평가  : <span th:text="${automatPaperCnt}">0</span> 건</li>
+								<li>대면평가 : <span th:text="${automatFaceCnt}">0</span> 건</li>
+								<li class="dash_b">최종선정 : <span th:text="${automatFinalCnt}">0</span> 건</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="dash_area1">
+						<div class="chart_1">
+							<h4 class="">전체 사업기간</h4>
+							<canvas id="myChart6" width="100" height="100"></canvas>
+						</div>
+						<div class="chart_1">
+							<h4 th:text="|${automatYear2}년도|"></h4>
+							<canvas id="myChart7" width="100" height="100"></canvas>
+						</div>
+						<div class="chart_1">
+							<h4 th:text="|${automatYear3}년도|"></h4>
+							<canvas id="myChart8" width="100" height="100"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="col-lg-4 bg4">
+					<section class="board board_01">
+							<h3 class="tit_01">사업관리</h3>
+							<a href="" class="board__more txt_01">더보기</a>
+							<ul class="board__list dot_01 dot_gr">
+								<li class="board__item">
+									<a class="tit elps_01" href="agreement/view2">협약</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="monthly/view2">월간점검</a>
+									<span class="dat">0건</span></li>
+								<li class="board__item">
+									<a class="tit elps_01" href="">중간점검</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="finalReport/view2">최종보고서 제출</a>
+									<span class="dat">0건</span></li>
+								<li class="" style="padding-bottom:52px">
+								
+								</li>		
+							</ul>
+							
+							<h3 class="tit_01">문의/지원</h3>
+							
+							<ul class="board__list dot_01 dot_gr">
+								<li class="board__item">
+									<a class="tit elps_01" href="">질문 및 요청사항</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="objection/view1">이의신청</a>
+									<span class="dat">0건</span>
+								</li>							
+							</ul>
+					</section>
+				
+				</div>
+				
+				<div class="col-lg-4 bg5">
+					<section class="board board_02">
+							<h3 class="tit_01">사업관리</h3>
+							<a href="" class="board__more txt_01">더보기</a>
+							<ul class="board__list dot_02 dot_gr">
+								<li class="board__item">
+									<a class="tit elps_01" href="agreement/view">협약</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="monthly/view">월간점검</a>
+									<span class="dat">0건</span></li>
+								<li class="board__item">
+									<a class="tit elps_01" href="">중간점검</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="finalEvaluation/view">최종점검</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="finalReport/view">최종보고서 제출</a>
+									<span class="dat">0건</span></li>								
+							</ul>
+							
+							<h3 class="tit_01">문의/지원</h3>
+							
+							<ul class="board__list dot_02 dot_gr">
+								<li class="board__item">
+									<a class="tit elps_01" href="">질문 및 요청사항</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="objection/view">이의신청</a>
+									<span class="dat">0건</span>
+								</li>							
+							</ul>
+					</section>
+				
+				
+				
+				
+				</div>
+				
+				<div class="col-lg-4 bg6">
+				
+					<section class="board board_03">
+							<h3 class="tit_01">성과등록</h3>
+							<a href="" class="board__more txt_01">더보기</a>
+							<ul class="board__list dot_03 dot_gr">
+								<li class="board__item">
+									<a class="tit elps_01" href="agreement/view1">협약</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="mentoring/view">Tech-Mentoring 1차</a>
+									<span class="dat">0건</span></li>
+								<li class="board__item">
+									<a class="tit elps_01" href="mentoring/view">Tech-Mentoring 2차</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="mentoring/view">Tech-Mentoring 3차</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="finalReport/view1">최종보고서 제출</a>
+									<span class="dat">0건</span></li>								
+							</ul>
+							
+							<h3 class="tit_01">문의/지원</h3>
+							
+							<ul class="board__list dot_03 dot_gr">
+								<li class="board__item">
+									<a class="tit elps_01" href="">질문 및 요청사항</a>
+									<span class="dat">0건</span>
+								</li>
+								<li class="board__item">
+									<a class="tit elps_01" href="objection/view2">이의신청</a>
+									<span class="dat">0건</span>
+								</li>							
+							</ul>
+					</section>
+				
+				
+				</div>
+			</div>
+		</div>
+		
+				
+		
+		<!--Row end-->
+	</div>
+	<!---Container Fluid-->
+
+</th:block>
+</html>

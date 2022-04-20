@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="initech.mvc.mapper.UserMapper">
+
+    <!-- 수요자 정보 조회 -->
+	<select id="selectUserInfo"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+		SELECT	u.*
+		FROM	user u
+		WHERE 	u.user_id = #{userId}
+			<if test="useYn != null and useYn !=''">
+			and u.use_yn = #{useYn}
+			</if>
+	</select>
+
+	<!-- 수요자 로그인 세션 저장 정보 조회 -->
+	<select id="selectUserInfoForLoginSession"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+		SELECT
+			  u.user_id
+			, u.user_name
+			, u.user_phone
+			, u.user_email
+			, u.user_div
+			, u.reg_date
+		FROM	user u
+		WHERE 	u.user_id = #{userId}
+				and u.use_yn = 'Y'
+	</select>
+
+	<!-- 아이디 중복체크를 위한 아이디 갯수 조회 -->
+	<select id="selectUserListCntByUserId"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="Integer">
+		SELECT
+			 count(*)
+		FROM	user u
+		WHERE 	u.user_id = #{userId}
+	</select>
+
+	<!-- 이메일 중복체크를 위한 이메일 갯수 조회 -->
+	<select id="selectUserListCntByUserEmail"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="Integer">
+		SELECT
+			 count(*)
+		FROM	user u
+		WHERE 	u.user_email = #{userEmail}
+			<if test="userId != null and userId !=''">
+			and u.user_id != #{userId}
+			</if>
+	</select>
+
+	<!-- 수요자 아이디 찾기 -->
+	<select id="selectUserInfoByUserNameEmail"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+		SELECT
+			  a.user_id
+			, a.user_name
+			, a.user_email
+		FROM user a
+		WHERE a.user_name = #{userName}
+			and a.user_email = #{userEmail}
+			and a.use_yn = 'Y'
+	</select>
+
+	<select id="selectUserInfoByUserNameEmailCmpNo"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+		SELECT
+			  a.user_id
+			, a.user_name
+			, a.user_email
+			, uc.cmp_no
+		FROM user a
+		INNER JOIN user_company uc
+		ON a.user_id = uc.user_id
+		WHERE a.user_name = #{userName}
+			and a.user_email = #{userEmail}
+			and REPLACE(uc.cmp_no, '-', '') = REPLACE(#{cmpNo}, '-', '')
+			and a.use_yn = 'Y'
+	</select>
+
+	<!-- 수요자 비밀번호 재설정을 위한 계정정보 찾기 -->
+	<select id="selectUserInfoByIdEmail"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+		SELECT
+			  a.user_id
+			, a.user_name
+			, a.user_email
+		FROM user a
+		WHERE a.user_id = #{userId}
+			and a.user_email = #{userEmail}
+			and a.use_yn = 'Y'
+	</select>
+
+	<select id="selectUserInfoByIdEmailCmpNo"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+		SELECT
+			  a.user_id
+			, a.user_name
+			, a.user_email
+			, uc.cmp_no
+		FROM user a
+		INNER JOIN user_company uc
+		ON a.user_id = uc.user_id
+		WHERE a.user_id = #{userId}
+			and a.user_email = #{userEmail}
+			and REPLACE(uc.cmp_no, '-', '') = REPLACE(#{cmpNo}, '-', '')
+			and a.use_yn = 'Y'
+	</select>
+
+	<!-- 수요자 비밀번호 재설정 -->
+    <update id="updateUserPassword"
+			parameterType="initech.mvc.dto.UserDTO">
+        UPDATE user set
+			  user_passwd = #{userPasswd}
+		WHERE user_id = #{userId}
+			AND user_email = #{userEmail}
+    </update>
+
+	<!-- 수요자 계정 생성 -->
+	<insert id="insertUser"
+			parameterType="initech.mvc.dto.UserDTO">
+		INSERT INTO user (
+			  user_id
+			, user_passwd
+			, user_name
+			, user_phone
+			, user_email
+			, user_div
+			, use_yn
+			, reg_date
+        ) VALUES (
+			  #{userId}
+			, #{userPasswd}
+			, #{userName}
+			, #{userPhone}
+			, #{userEmail}
+			, #{userDiv}
+			, 'Y'
+			, NOW()
+        )
+    </insert>
+
+    <!-- 수요자 기업회원 정보 조회 -->
+	<select id="selectUserInfoCompany"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+		SELECT
+			  u.user_id
+			, u.user_name
+			, u.user_phone
+			, u.user_email
+			, u.user_div
+			, u.reg_date
+			, uc.cmp_div
+			, (
+				SELECT
+					cd_name
+				FROM cmm_code
+				WHERE cd_col = 'cmp_div'
+				AND cd_key = uc.cmp_div
+			) cmp_div_name
+			, uc.cmp_no
+			, uc.corp_reg_no
+			, uc.cmp_name
+			, uc.cmp_post_no
+			, uc.cmp_addr1
+			, uc.cmp_addr2
+			, uc.cmp_area_cd
+			, uc.cmp_open_ymd
+			, uc.bburi_yn
+			, uc.bburi_reg_no
+			, uc.bburi_tech_appoint_no
+			, uc.bburi_good_appoint_no
+			, uc.bburi_family_appoint_no
+			, uc.bburi_cmp_cert_issue_ymd
+			, uc.bburi_tech_appoint_ymd
+			, uc.bburi_good_appoint_ymd
+			, uc.bburi_family_appoint_ymd
+			, uc.homepage_url
+			, uc.phone_no
+			, uc.fax_no
+			, uc.emp_cnt_total
+			, uc.emp_cnt_manage
+			, uc.emp_cnt_product
+			, uc.emp_cnt_research
+			, uc.emp_cnt_foreign
+			, uc.lab_yn
+			, uc.lab_open_ymd
+			, uc.lab_site_area
+			, uc.fac_yn
+			, uc.fac_reg_no
+			, uc.fac_site_area
+			, uc.profit_yn
+			, uc.kps_cm_no
+			, uc.product_main
+			, uc.cmplx_idx
+			, (
+				SELECT
+					cc.cmplx_nm
+				FROM cmm_complex cc
+				WHERE cc.cmplx_idx = uc.cmplx_idx
+			) cmplx_nm
+			, (
+				SELECT
+					cc.cmplx_area_cd
+				FROM cmm_complex cc
+				WHERE cc.cmplx_idx = uc.cmplx_idx
+			) cmplx_area_cd
+		FROM	user u
+		INNER JOIN user_company uc
+		ON u.user_id = uc.user_id
+		WHERE 	u.user_id = #{userId}
+				and u.use_yn = 'Y'
+	</select>
+
+	<!-- 수요자 지자체 회원 정보 조회 -->
+	<select id="selectUserInfoGovernment"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+		SELECT
+			  u.user_id
+			, u.user_name
+			, u.user_phone
+			, u.user_email
+			, u.user_div
+			, u.reg_date
+			, ug.post_no
+			, ug.addr1
+			, ug.addr2
+			, ug.gov_area_cd
+			, (
+				SELECT
+					cd_name
+				FROM cmm_code
+				WHERE cd_col = 'national__basic_area_cd'
+				AND cd_key = ug.gov_area_cd
+			) gov_area_cd_nm
+			, ug.gov_city_cd
+			, (
+				SELECT
+					city_nm
+				FROM cmm_city cc
+				WHERE cc.area_cd = ug.gov_area_cd
+				AND city_cd = ug.gov_city_cd
+			) gov_city_cd_nm
+			, ug.phone_no
+			, ug.dept
+			, ug.position
+			, ug.gov_div
+			, (
+				SELECT
+					cd_name
+				FROM cmm_code
+				WHERE cd_col = 'gov_div'
+				AND cd_key = ug.gov_div
+			) gov_div_cd_nm
+		FROM	user u
+		INNER JOIN user_government ug
+		ON u.user_id = ug.user_id
+		WHERE 	u.user_id = #{userId}
+				and u.use_yn = 'Y'
+	</select>
+
+    <!-- 수요자 계정 정보 수정 -->
+    <update id="updateUser"
+			parameterType="initech.mvc.dto.UserDTO">
+        UPDATE user SET
+			  user_passwd = #{userPasswd}
+			, user_name = #{userName}
+			, user_phone = #{userPhone}
+			, user_email = #{userEmail}
+		WHERE user_id = #{userId}
+    </update>
+
+    <!-- 기업회원 리스트 페이징 -->
+    <select id="selectUserListCompanyPaging"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+        SELECT SQL_CALC_FOUND_ROWS
+        	  ROW_NUMBER() OVER(ORDER BY u.reg_date) AS rnum
+            , u.user_id
+			, u.user_name
+			, u.user_phone
+			, u.user_email
+			, u.user_div
+			, u.reg_date
+			, uc.cmp_div
+			, (
+				SELECT
+					cd_name
+				FROM cmm_code
+				WHERE cd_col = 'cmp_div'
+				AND cd_key = uc.cmp_div
+			) cmp_div_name
+			, uc.cmp_no
+			, uc.corp_reg_no
+			, uc.cmp_name
+			, uc.cmp_post_no
+			, uc.cmp_addr1
+			, uc.cmp_addr2
+			, uc.cmp_area_cd
+			, uc.cmp_open_ymd
+			, uc.bburi_yn
+			, uc.bburi_reg_no
+			, uc.bburi_tech_appoint_no
+			, uc.bburi_good_appoint_no
+			, uc.bburi_family_appoint_no
+			, uc.bburi_cmp_cert_issue_ymd
+			, uc.bburi_tech_appoint_ymd
+			, uc.bburi_good_appoint_ymd
+			, uc.bburi_family_appoint_ymd
+			, uc.homepage_url
+			, uc.phone_no
+			, uc.fax_no
+			, uc.emp_cnt_total
+			, uc.emp_cnt_manage
+			, uc.emp_cnt_product
+			, uc.emp_cnt_research
+			, uc.emp_cnt_foreign
+			, uc.lab_yn
+			, uc.lab_open_ymd
+			, uc.lab_site_area
+			, uc.fac_yn
+			, uc.fac_reg_no
+			, uc.fac_site_area
+			, uc.profit_yn
+			, uc.product_main
+			, uc.cmplx_idx
+			, (
+				SELECT
+					cc.cmplx_nm
+				FROM cmm_complex cc
+				WHERE cc.cmplx_idx = uc.cmplx_idx
+			) cmplx_nm
+			, (
+				SELECT
+					cc.cmplx_area_cd
+				FROM cmm_complex cc
+				WHERE cc.cmplx_idx = uc.cmplx_idx
+			) cmplx_area_cd
+			, (
+				SELECT
+					cceo.ceo_name
+				FROM company_ceo cceo
+				WHERE cceo.cmp_no = uc.cmp_no
+				LIMIT 1
+			) ceo_name
+		FROM	user u
+		INNER JOIN user_company uc
+		ON u.user_id = uc.user_id
+		<trim prefix="WHERE" prefixOverrides="AND | OR ">
+			AND u.user_div = 'COMPANY'
+			AND u.use_yn = 'Y'
+			<if test="searchUserId != null and searchUserId != ''">
+				AND UPPER(u.user_id) LIKE CONCAT('%', UPPER(#{searchUserId}), '%')
+			</if>
+			<if test="searchUserName != null and searchUserName != ''">
+				AND UPPER(u.user_name) LIKE CONCAT('%', UPPER(#{searchUserName}), '%')
+			</if>
+			<if test="searchCeoName != null and searchCeoName != ''">
+				AND UPPER(ceo_name) LIKE CONCAT('%', UPPER(#{searchCeoName}), '%')
+			</if>
+			<if test="searchCmpName != null and searchCmpName != ''">
+				AND UPPER(uc.cmp_name) LIKE CONCAT('%', UPPER(#{searchCmpName}), '%')
+			</if>
+			<if test="searchCmpNo != null and searchCmpNo != ''">
+				AND UPPER(uc.cmp_no) LIKE CONCAT('%', UPPER(#{searchCmpNo}), '%')
+			</if>
+			<if test="searchBburiRegNo != null and searchBburiRegNo != ''">
+				AND UPPER(uc.bburi_reg_no) LIKE CONCAT('%', UPPER(#{searchBburiRegNo}), '%')
+			</if>
+			<if test="searchRegDateStart != null and searchRegDateStart != ''">
+				AND u.reg_date <![CDATA[>=]]> #{searchRegDateStart}
+			</if>
+			<if test="searchRegDateEnd != null and searchRegDateEnd != ''">
+				AND u.reg_date <![CDATA[<=]]> #{searchRegDateEnd}
+			</if>
+			<if test="searchCmpAreaCd != null and searchCmpAreaCd != ''">
+				AND uc.cmp_area_cd = #{searchCmpAreaCd}
+			</if>
+			<if test="searchCmplxIdx != null and searchCmplxIdx != ''">
+				AND uc.cmplx_idx = #{searchCmplxIdx}
+			</if>
+        </trim>
+        ORDER BY u.reg_date DESC
+        LIMIT #{pageSize} OFFSET #{pageOffset}
+
+    </select>
+
+
+	<!-- 기업회원 리스트 엑셀다운 -->
+    <select id="selectUserListCompanyExcelDown"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+        SELECT SQL_CALC_FOUND_ROWS
+        	  ROW_NUMBER() OVER(ORDER BY u.reg_date) AS rnum
+            , u.user_id
+			, u.user_name
+			, u.user_phone
+			, u.user_email
+			, u.user_div
+			, u.reg_date
+			, uc.cmp_div
+			, (
+				SELECT
+					cd_name
+				FROM cmm_code
+				WHERE cd_col = 'cmp_div'
+				AND cd_key = uc.cmp_div
+			) cmp_div_name
+			, uc.cmp_no
+			, uc.corp_reg_no
+			, uc.cmp_name
+			, uc.cmp_post_no
+			, uc.cmp_addr1
+			, uc.cmp_addr2
+			, uc.cmp_area_cd
+			, uc.cmp_open_ymd
+			, uc.bburi_yn
+			, uc.bburi_reg_no
+			, uc.bburi_tech_appoint_no
+			, uc.bburi_good_appoint_no
+			, uc.bburi_family_appoint_no
+			, uc.bburi_cmp_cert_issue_ymd
+			, uc.bburi_tech_appoint_ymd
+			, uc.bburi_good_appoint_ymd
+			, uc.bburi_family_appoint_ymd
+			, uc.homepage_url
+			, uc.phone_no
+			, uc.fax_no
+			, uc.emp_cnt_total
+			, uc.emp_cnt_manage
+			, uc.emp_cnt_product
+			, uc.emp_cnt_research
+			, uc.emp_cnt_foreign
+			, uc.lab_yn
+			, uc.lab_open_ymd
+			, uc.lab_site_area
+			, uc.fac_yn
+			, uc.fac_reg_no
+			, uc.fac_site_area
+			, uc.profit_yn
+			, uc.product_main
+			, uc.cmplx_idx
+			, (
+				SELECT
+					cc.cmplx_nm
+				FROM cmm_complex cc
+				WHERE cc.cmplx_idx = uc.cmplx_idx
+			) cmplx_nm
+			, (
+				SELECT
+					cc.cmplx_area_cd
+				FROM cmm_complex cc
+				WHERE cc.cmplx_idx = uc.cmplx_idx
+			) cmplx_area_cd
+			, (
+				SELECT
+					cceo.ceo_name
+				FROM company_ceo cceo
+				WHERE cceo.cmp_no = uc.cmp_no
+				LIMIT 1
+			) ceo_name
+		FROM	user u
+		INNER JOIN user_company uc
+		ON u.user_id = uc.user_id
+		<trim prefix="WHERE" prefixOverrides="AND | OR ">
+			AND u.user_div = 'COMPANY'
+			AND u.use_yn = 'Y'
+			<if test="searchUserId != null and searchUserId != ''">
+				AND UPPER(u.user_id) LIKE CONCAT('%', UPPER(#{searchUserId}), '%')
+			</if>
+			<if test="searchUserName != null and searchUserName != ''">
+				AND UPPER(u.user_name) LIKE CONCAT('%', UPPER(#{searchUserName}), '%')
+			</if>
+			<if test="searchCeoName != null and searchCeoName != ''">
+				AND UPPER(ceo_name) LIKE CONCAT('%', UPPER(#{searchCeoName}), '%')
+			</if>
+			<if test="searchCmpName != null and searchCmpName != ''">
+				AND UPPER(uc.cmp_name) LIKE CONCAT('%', UPPER(#{searchCmpName}), '%')
+			</if>
+			<if test="searchCmpNo != null and searchCmpNo != ''">
+				AND UPPER(uc.cmp_no) LIKE CONCAT('%', UPPER(#{searchCmpNo}), '%')
+			</if>
+			<if test="searchBburiRegNo != null and searchBburiRegNo != ''">
+				AND UPPER(uc.bburi_reg_no) LIKE CONCAT('%', UPPER(#{searchBburiRegNo}), '%')
+			</if>
+			<if test="searchRegDateStart != null and searchRegDateStart != ''">
+				AND u.reg_date <![CDATA[>=]]> #{searchRegDateStart}
+			</if>
+			<if test="searchRegDateEnd != null and searchRegDateEnd != ''">
+				AND u.reg_date <![CDATA[<=]]> #{searchRegDateEnd}
+			</if>
+			<if test="searchCmpAreaCd != null and searchCmpAreaCd != ''">
+				AND uc.cmp_area_cd = #{searchCmpAreaCd}
+			</if>
+        </trim>
+        ORDER BY u.reg_date DESC
+    </select>
+
+    <!-- 지자체회원 리스트 페이징 -->
+    <select id="selectUserListGovernmentPaging"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+        SELECT SQL_CALC_FOUND_ROWS
+        	  ROW_NUMBER() OVER(ORDER BY u.reg_date) AS rnum
+			, u.user_id
+			, u.user_name
+			, u.user_phone
+			, u.user_email
+			, u.user_div
+			, u.reg_date
+			, ug.post_no
+			, ug.addr1
+			, ug.addr2
+			, ug.gov_area_cd
+			, ug.gov_city_cd
+			, (
+				SELECT
+					cd_name
+				FROM cmm_code
+				WHERE cd_col = 'national__basic_area_cd'
+				AND cd_key = ug.gov_area_cd
+			) gov_area_cd_nm
+			, (
+				SELECT
+					city_nm
+				FROM cmm_city cc
+				WHERE cc.area_cd = ug.gov_area_cd
+				AND city_cd = ug.gov_city_cd
+			) gov_city_cd_nm
+			, ug.phone_no
+			, ug.dept
+			, ug.position
+			, ug.gov_div
+			, (
+				SELECT
+					cd_name
+				FROM cmm_code
+				WHERE cd_col = 'gov_div'
+				AND cd_key = ug.gov_div
+			) gov_div_cd_nm
+		FROM	user u
+		INNER JOIN user_government ug
+		ON u.user_id = ug.user_id
+		<trim prefix="WHERE" prefixOverrides="AND | OR ">
+			AND u.user_div = 'GOVERNMENT'
+			AND u.use_yn = 'Y'
+			<if test="searchUserId != null and searchUserId != ''">
+				AND UPPER(u.user_id) LIKE CONCAT('%', UPPER(#{searchUserId}), '%')
+			</if>
+			<if test="searchUserName != null and searchUserName != ''">
+				AND UPPER(u.user_name) LIKE CONCAT('%', UPPER(#{searchUserName}), '%')
+			</if>
+			<if test="searchBasicAreaCd != null and searchBasicAreaCd != ''">
+				AND ug.gov_area_cd = #{searchBasicAreaCd}
+			</if>
+        </trim>
+        ORDER BY u.reg_date DESC
+        LIMIT #{pageSize} OFFSET #{pageOffset}
+    </select>
+
+     <!-- 지자체회원 리스트 페이징 -->
+    <select id="selectUserListGovernmentExcelDown"
+			parameterType="initech.mvc.dto.UserDTO"
+			resultType="initech.mvc.vo.UserVO">
+        SELECT SQL_CALC_FOUND_ROWS
+        	  ROW_NUMBER() OVER(ORDER BY u.reg_date) AS rnum
+			, u.user_id
+			, u.user_name
+			, u.user_phone
+			, u.user_email
+			, u.user_div
+			, u.reg_date
+			, ug.post_no
+			, ug.addr1
+			, ug.addr2
+			, ug.gov_area_cd
+			, ug.gov_city_cd
+			, (
+				SELECT
+					cd_name
+				FROM cmm_code
+				WHERE cd_col = 'national__basic_area_cd'
+				AND cd_key = ug.gov_area_cd
+			) gov_area_cd_nm
+			, (
+				SELECT
+					city_nm
+				FROM cmm_city cc
+				WHERE cc.area_cd = ug.gov_area_cd
+				AND city_cd = ug.gov_city_cd
+			) gov_city_cd_nm
+			, ug.phone_no
+			, ug.dept
+			, ug.position
+			, (
+				SELECT
+					cd_name
+				FROM cmm_code
+				WHERE cd_col = 'gov_div'
+				AND cd_key = ug.gov_div
+			) gov_div_cd_nm
+		FROM	user u
+		INNER JOIN user_government ug
+		ON u.user_id = ug.user_id
+		<trim prefix="WHERE" prefixOverrides="AND | OR ">
+			AND u.user_div = 'GOVERNMENT'
+			AND u.use_yn = 'Y'
+			<if test="searchUserId != null and searchUserId != ''">
+				AND UPPER(u.user_id) LIKE CONCAT('%', UPPER(#{searchUserId}), '%')
+			</if>
+			<if test="searchUserName != null and searchUserName != ''">
+				AND UPPER(u.user_name) LIKE CONCAT('%', UPPER(#{searchUserName}), '%')
+			</if>
+			<if test="searchBasicAreaCd != null and searchBasicAreaCd != ''">
+				AND ug.gov_area_cd = #{searchBasicAreaCd}
+			</if>
+        </trim>
+        ORDER BY u.reg_date DESC
+    </select>
+
+    <!-- 건수 조회 -->
+    <select id="selectTotalCount" resultType="long">
+        SELECT FOUND_ROWS()
+    </select>
+</mapper>

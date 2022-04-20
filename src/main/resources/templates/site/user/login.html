@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{site/common/layout/basic_layout}">
+<head>
+<script th:inline="javascript">
+$(document).ready(function() {
+	initPage();
+	registEvent();
+	setDefault();
+});
+
+const initPage = function() {
+	if (getCookie('userId')) {
+		$('#userId').val(getCookie('userId'));
+		$('#checkSaveId').prop('checked', true);
+	}
+
+	$('#userId').focus();
+};
+
+const registEvent = function() {
+
+};
+
+const setDefault = function() {
+	/*<![CDATA[*/
+	const errorCode = /*[[ ${userDTO.errorCode} ]]*/ null;
+	/*]]*/
+	
+	if(errorCode !== null) {
+		alert('아이디와 패스워드가 일치하지 않습니다.');
+		$(location).attr('href', '/user/login');
+	}
+};
+
+const checkSubmit = function() {
+	const $userId = $('#userId').val();
+	const $password = $('#password').val();
+
+	if($userId.trim().length == 0) {
+		alert('아이디를 입력해 주세요.');
+		return false;
+	}
+
+	if($password.trim().length == 0) {
+		alert('비밀번호를 입력해 주세요.');
+		return false;
+	}
+	
+	saveId();
+	return true;
+};
+
+const setCookie = function(cookieName, value, expiredays) {
+	document.cookie = cookieName + '=' + escape(value) + '; path=/; expires='
+			+ expiredays.toGMTString() + ';';
+};
+
+const getCookie = function(Name) {
+	const search = Name + '=';
+	if (document.cookie.length > 0) {
+		offset = document.cookie.indexOf(search);
+		if (offset != -1) {
+			offset += search.length;
+			end = document.cookie.indexOf(';', offset);
+			if (end == -1)
+				end = document.cookie.length;
+			return unescape(document.cookie.substring(offset, end));
+		}
+	}
+};
+
+const saveId = function() {
+	let expDate = new Date();
+	
+	if ($('#checkSaveId').is(':checked')) {
+		expDate.setDate(expDate.getDate() + 30);
+	} else {
+		expDate.setDate(expDate.getDate() - 1);
+	}
+	
+	setCookie('userId', $('#userId').val(), expDate);
+};
+</script>
+</head>
+<th:block layout:fragment="content">
+
+	<form name="" th:action="@{/user/auth}" method="post" onsubmit="return checkSubmit()">
+	<div class="content">
+		<h3>로그인</h3>
+		<div class="mem-box">
+			<div class="mbox-keyimg">
+				<img src="/res/site/img/login.jpg">
+			
+			</div>
+			<div class="membox-cont">
+				<h5>아이디 로그인</h5>
+				<div>
+					<input type="text" id="userId" name="userId" class="w-full mgb10" placeholder="ID 입력">
+					<input type="password" id="password" name="password" class="w-full" placeholder="비밀번호입력">
+				</div>
+				<div class="membox-check">
+					<input type="checkbox" id="checkSaveId"> 아이디저장
+				</div>
+				<div class="membox-btn">
+					<button type="submit" class="btn-confirm">로그인</button>
+				</div>
+				<div class="mem-search">
+					<span><a th:href="@{/member/memberSearchId}">아이디찾기</a></span>
+					<span><a th:href="@{/member/memberSearchPw}">비밀번호찾기</a></span>
+					<span><a th:href="@{/member/memberJoinAgree}">회원가입</a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+
+</th:block>
+</html>

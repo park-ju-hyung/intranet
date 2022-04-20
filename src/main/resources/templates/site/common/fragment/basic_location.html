@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="location">
+	<div class="root">
+		<div class="inner">
+			<span><img src="/res/site/img/icon-home.png" 
+				th:src="@{/res/site/img/icon-home.png}"></span> <span th:text="${p_locationDepth1}"></span>
+			<span th:text="${p_locationDepth2}"></span>
+		</div>
+	</div>
+</th:block>
+</html>

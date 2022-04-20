@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="initech.mvc.mapper.MngrMapper">
+
+    <!-- 관리자 정보 조회 -->
+	<select id="selectMngrInfo"
+			parameterType="initech.mvc.dto.MngrDTO"
+			resultType="initech.mvc.vo.MngrVO">
+		SELECT	a.*
+		FROM	mngr a
+		WHERE 	a.mngr_id = #{mngrId}
+			<if test="useYn != null and useYn !=''">
+			and a.use_yn = #{useYn}
+			</if>
+	</select>
+
+	 <!-- 관리자 로그인 세션 저장 정보 조회 -->
+	<select id="selectMngrInfoForLoginSession"
+			parameterType="initech.mvc.dto.MngrDTO"
+			resultType="initech.mvc.vo.MngrVO">
+		SELECT
+			  a.mngr_id
+			, a.mngr_name
+			, a.mngr_phone
+			, a.mngr_email
+			, a.role_div
+			, a.reg_date
+		FROM	mngr a
+		WHERE 	a.mngr_id = #{mngrId}
+				and a.use_yn = 'Y'
+	</select>
+
+	<!-- 관리자 아이디 찾기 -->
+	<select id="selectMngrInfoByMngrNameEmail"
+			parameterType="initech.mvc.dto.MngrDTO"
+			resultType="initech.mvc.vo.MngrVO">
+		SELECT
+			  mngr_id
+			, mngr_name
+			, mngr_email
+		FROM
+			mngr a
+		WHERE a.mngr_name = #{mngrName}
+			and a.mngr_email = #{mngrEmail}
+			<if test="useYn != null and useYn !=''">
+			and a.use_yn = #{useYn}
+			</if>
+	</select>
+
+	<!-- 관리자 비밀번호 재설정을 위한 계정정보 찾기 -->
+	<select id="selectMngrInfoByIdEmailPhone"
+			parameterType="initech.mvc.dto.MngrDTO"
+			resultType="initech.mvc.vo.MngrVO">
+		SELECT
+			  mngr_id
+			, mngr_name
+			, mngr_email
+			, mngr_phone
+		FROM
+			mngr a
+		WHERE a.mngr_id = #{mngrId}
+			and a.mngr_email = #{mngrEmail}
+			and REPLACE(a.mngr_phone, '-', '') = #{mngrPhone}
+			<if test="useYn != null and useYn !=''">
+			and a.use_yn = #{useYn}
+			</if>
+	</select>
+
+	<!-- 관리자 비밀번호 재설정 -->
+    <update id="updateMngrPassword"
+			parameterType="initech.mvc.dto.MngrDTO">
+        UPDATE mngr set
+			  passwd = #{passwd}
+		WHERE mngr_id = #{mngrId}
+			AND mngr_email = #{mngrEmail}
+            AND REPLACE(mngr_phone, '-', '') = #{mngrPhone}
+    </update>
+
+	<!-- 관리자 계정 생성 -->
+	<insert id="insertMngr"
+			parameterType="initech.mvc.dto.MngrDTO">
+
+    </insert>
+
+    <!-- 관리자 계정 정보 수정 -->
+    <update id="updateMngr"
+			parameterType="initech.mvc.dto.MngrDTO">
+
+    </update>
+
+    <!-- 리스트 페이징 -->
+    <select id="selectMngrListPaging"
+			parameterType="initech.mvc.dto.MngrDTO"
+			resultType="initech.mvc.vo.MngrVO">
+        SELECT SQL_CALC_FOUND_ROWS
+            *
+		FROM
+			mngr AS a
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="searchKwd != null and searchKwd != ''">
+                <if test="searchField == ''">
+                    AND (
+                        a.mngr_name LIKE CONCAT('%', #{searchKwd}, '%')
+                        OR a.mngr_id LIKE CONCAT('%', #{searchKwd}, '%')
+                    )
+                </if>
+                <if test="searchField == '1'.toString()">
+                    AND a.mngr_name LIKE CONCAT('%', #{searchKwd}, '%')
+                </if>
+                <if test="searchField == '2'.toString()">
+                    AND a.mngr_id LIKE CONCAT('%', #{searchKwd}, '%')
+                </if>
+            </if>
+        </trim>
+        ORDER BY a.mngr_id DESC
+        LIMIT #{pageSize} OFFSET #{pageOffset}
+
+    </select>
+
+    <!-- 건수 조회 -->
+    <select id="selectTotalCount" resultType="long">
+        SELECT FOUND_ROWS()
+    </select>
+</mapper>
