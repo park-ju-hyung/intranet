@@ -1,0 +1,117 @@
+@charset "utf-8";
+/* 근태체크 */
+.commuting_wrap .up_bar {padding:15px 0; color:#272727; font-size:24px; text-align:center;}
+
+.commuting_wrap {padding-bottom: 100px;}
+.commuting_wrap .up_type {overflow:hidden; margin-bottom:30px;}
+.commuting_wrap .up_type > a {display:block; float:left; width:103px; height:40px; text-align:center; line-height:40px; font-size:15px; letter-spacing:-0.03em; color:#fff; background:#333337; font-weight:300;}
+.commuting_wrap .up_type > a.right {float:right; background:#8c8c8e;}
+.commuting_wrap .up_type .up_bar {float:left; width:calc(100% - 206px); color:#272727; font-size:24px; text-align:center; padding:0;}
+.commuting_wrap .up_bar img {vertical-align:sub;}
+.commuting_wrap .up_bar span {display:inline-block; margin:0 70px; vertical-align:middle;}
+
+.commuting_wrap .c_table table {width:100%; border-top:1px solid #656565;}
+.commuting_wrap .c_table table th {padding:10px 0; font-size:14px; color:#222; background:#fbfbfb; font-weight:400; border-bottom:1px solid #e1e4e5;}
+.commuting_wrap .c_table table td {position:relative; padding:15px 0; font-size:15px; text-align:center; color:#444; border-right:1px solid #e1e2e3;}
+.commuting_wrap .c_table table td:last-of-type {border-right:0;}
+.commuting_wrap .c_table table tr {border-bottom:1px solid #e1e2e3;}
+.commuting_wrap .c_table table thead tr {border-bottom:0;}
+.commuting_wrap .c_table table td .bullet {display:inline-block; width:10px; height:10px; vertical-align:middle; border-radius:50%; background-color: #e3185b;}
+.commuting_wrap .c_table table td .little {font-size:13px;}
+.commuting_wrap .c_table table td.day_sat1 {background-color:#dcedfd;color:#317dd4; }
+.commuting_wrap .c_table table td.day_sun1 {background-color:#ffe5e5;color:#e3185b; }
+.commuting_wrap .c_table table td a {display:inline-block; padding:4px 10px; margin-left:8px; border:1px solid #9d9d9d; vertical-align:middle; font-size:12px; color:#9e9e9e;}
+
+.commuting_wrap .c_table table .last {}
+.commuting_wrap .c_table table .last td {padding:10px 0; line-height:1.5; border-top:1px solid #656565; border-bottom:1px solid #656565; letter-spacing:-0.07em; color:#222;}
+.db550 {display:none;}
+.db330 {display:none;}
+.commuting_wrap .c_btn {margin-top:20px; overflow:hidden;}
+.commuting_wrap .c_btn.up_type {margin:0 0 20px; overflow:hidden;}
+.commuting_wrap .c_btn > a {display:inline-block; width:103px; height:40px; text-align:center; line-height:40px; font-size:15px; letter-spacing:-0.03em; color:#fff; background:#333337; font-weight:300; }
+.commuting_wrap .c_btn > a.right {float:right; background:#8c8c8e;}
+.commuting_wrap .c_btn.s_type a.right {width:117px; background:#323337 url(/img/write_icon.png) no-repeat 16px 12px; padding-left:27px; box-sizing:border-box;}
+.commuting_wrap span.col01 {color:#ea1c5b; display: inline-block; margin-right:3px; margin-left:-9px;}
+
+
+/* 일정표 */
+#cal_title a {cursor:pointer;}
+#cal_title a.c_left {margin-right:30px;}
+#cal_title a.c_right {margin-left:30px;}
+#cal_title img {vertical-align:baseline;}
+#cal_title select {height:40px; margin:0 2.5px; padding:0 0 0 10px;}
+.commuting_wrap .c_table.schedule_table table {border-top:0;}
+.commuting_wrap .c_table.schedule_table table th {padding:17px 0; font-size:16px; color:#222; background:#fbfbfb; font-weight:400; border-top:1px solid #e1e4e5; border-bottom:1px solid #e1e4e5;}
+.commuting_wrap .c_table.schedule_table table td {position:relative; padding:10px 0 0; font-size:18px; height:70px; text-align:left; vertical-align:top; color:#222;}
+.commuting_wrap .c_table.schedule_table table th:nth-of-type(1),
+.commuting_wrap .c_table.schedule_table table td:nth-of-type(1) {color:#e3185b;}
+.commuting_wrap .c_table.schedule_table table th:nth-of-type(7),
+.commuting_wrap .c_table.schedule_table table td:nth-of-type(7) {color:#317dd4;}
+.commuting_wrap .c_table.schedule_table td .date {display:block; width:100%; text-align:center;}
+.commuting_wrap .c_table.schedule_table td .text {min-height:28px; padding:3px 8px; font-size:13px;}
+.commuting_wrap .c_table.schedule_table td .lines {min-height:26px; padding:3px 8px; font-size:14px;}
+.commuting_wrap .c_table.schedule_table td ul {margin-bottom:0;}
+.commuting_wrap .c_table.schedule_table td strong {font-weight:400; color:#222;}
+.commuting_wrap .c_table.schedule_table td strong span {color:#e3185b;}
+.bg_type {background:#f0dbe2;}
+
+.s_list .btn {display:inline-block; padding:2px 10px; background:#a6a6a6; color:#fff; font-size:12px;}
+.commuting_wrap .c_table.s_list table td a{font-size:14px; color:#666; border:0; padding:0; margin:0;}
+
+.sr_table table {width:100%;}
+.sr_table table tr {border-bottom:1px solid #dedfe0;}
+.sr_table table th {padding:20px 0 20px 10px; font-size:14px; color:#222; text-align:left; background:#eeeff0;}
+.sr_table table th.vt {vertical-align:top;}
+.sr_table table td {padding:20px 0 20px 10px; font-size:14px; color:#454545;}
+.sr_table table td .in_txt {width:100%; border:1px solid #dedfe0; min-height:185px; box-sizing:border-box; padding:5px;}
+
+.sr_table.w_type table th {padding:10px 0 10px 10px;}
+.sr_table.w_type table td {padding:10px 0 10px 10px;}
+.sr_table table td input {height:35px; box-sizing:border-box; padding:0 10px; /*width:15.8% ;*/ border:1px solid #dedfe0;}
+.sr_table table td .modal-body input[type=checkbox] {height:auto;}
+.sr_table table td input[type=checkbox] {width:auto !important;}
+.sr_table table td select {height:35px; box-sizing:border-box; padding:0 10px; width:15.8% !important; border:1px solid #dedfe0;}
+.sr_table table td input.size02 {width:100px;}
+.sr_table table td input.size03 {width:50% !important;}
+.sr_table table td input[type=radio] {width:15px !important; height:15px !important; margin-top:0;}
+.sr_table table td > span {display:inline-block; margin:0 2% 0 1%; vertical-align:middle; line-height:35px;}
+.sr_table table td span > img {cursor:pointer;}
+.sr_table table td label {display:inline-block; margin-right:2%;}
+.sr_table table td textarea {width:100%; border:1px solid #dedfe0;resize:none; min-height:180px; box-sizing:border-box; padding:10px;}
+.sr_table table td .rentan {width: 20px; height: 20px;}
+
+.sr_table table td.lin_color label {vertical-align:middle;}
+.sr_table table td.lin_color label input {display:none;}
+.sr_table table td.lin_color label input + i {display:inline-block; width:30px; height:30px; margin:0 2% 0 0; vertical-align:middle;}
+.sr_table table td.lin_color label input:checked + i { background:url('/intranet/img/lin_color_check.png') no-repeat center center;}
+.sr_table table td.lin_color label input:checked="checked" + i {background:url('/intranet/img/lin_color_check.png') no-repeat center center;}
+
+.writeForm table td.lin_color label {vertical-align:middle; margin:2px 0; margin-right:30px;}
+.writeForm table td.lin_color label input {display:none;}
+.writeForm table td.lin_color label input + i {display:inline-block; width:30px; height:30px; margin:0 2% 0 0; vertical-align:middle;}
+.writeForm table td.lin_color label input:checked + i { background:url('/img/lin_color_check.png') no-repeat center center;}
+.writeForm table td.lin_color label input:checked="checked" + i {background:url('/img/lin_color_check.png') no-repeat center center;}
+
+#bbs table td.lin_color label {vertical-align:middle;}
+#bbs table td.lin_color label input {display:none;}
+#bbs table td.lin_color label input + i {display:inline-block; width:30px; height:30px; margin:0 2% 0 0; vertical-align:middle;}
+#bbs table td.lin_color label input:checked + i { background:url('/img/lin_color_check.png') no-repeat center center;}
+#bbs table td.lin_color label input:checked="checked" + i {background:url('/img/lin_color_check.png') no-repeat center center;}
+
+
+@media all and (max-width:640px){
+
+	/*일정표*/
+	.commuting_wrap .c_table.schedule_table table th {font-size:14px;}
+	.commuting_wrap .c_table.schedule_table table td {font-size:16px;}
+
+	.sr_table table td input.size02 {width:92px;}
+	.sr_table table td input {padding:0 5px;}
+
+}
+
+@media all and (max-width:550px){
+
+	.commuting_wrap .c_table.schedule_table td {padding:20px 0px 0px 0px; height:35px;}
+	.commuting_wrap .c_table.schedule_table td .text {padding:3px 1px; font-size:12px;}
+}

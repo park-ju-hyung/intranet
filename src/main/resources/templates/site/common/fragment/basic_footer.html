@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="footer">
-	<footer>
-      <div class="inner footer">
-        <h1><img th:src="@{/res/site/img/f-logo.png}" alt="국가뿌리산업진흥센타"></h1>
-        <ul>
-          <li> 
-            <a th:href="@{/personalPolicy}">개인정보처리방침</a>
-            <a th:href="@{/termsUse}">이용약관</a>
-          </li>
-          <li>우) 06211 서울특별시 강남구 테헤란로 322 (역삼동 707-34) 한신인터밸리 24 서관 19층 국가뿌리산업진흥센터</li>        
-          <li>COPYRIGHT(C) KITECH ALL RIGHTS RESERVED.</li>        
-        </ul>
-      </div>
-    </footer>
+	<div id="footer">
+		<div class="footer_top">
+			<div class="inner">
+				<div class="left">
+					<a href="/" class="logo">
+					<img src="/res/site/img/footer_logo.png" 
+					th:src="@{/res/site/img/footer_logo.png}" alt="logo" /></a>
+					<div class="add">
+						<span>경상남도 진주시 소호로 109, 201호 (충무공동, 세라믹소재종합지원센터)</span><br/>
+						<span>대표번호: 070-4693-2625</span>
+						<span>Fax: 055-792-2795</span>
+						<span>E-mail:yjpark119@daum.net</span>
+					</div>
+				</div>
+				<div class="right">
+					<div class="footer_gnb"></div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_bottom">
+			<a href="javascript:;" class="top_btn">
+				<img src="/res/site/img/foot_btn.png" th:src="@{/res/site/img/foot_btn.png}" alt="top" /></a>
+			<p class="copy">copyright@INI TECH inc. All Rights Reserved.</p>
+		</div>
+		<div class="top_btn">
+			<a href="javascript:;"><img src="/res/site/img/foot_btn.png" alt=""></a>
+		</div>
+	</div>
 </th:block>
 </html>
