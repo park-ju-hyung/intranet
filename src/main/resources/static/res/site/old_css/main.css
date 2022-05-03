@@ -1,0 +1,372 @@
+@import url("reset.css");
+@import url("common.css");
+
+
+.m-visual {
+  width: 100%;
+  height:465px ;
+  background: url("/res/site/img/new_imsi.jpg") no-repeat center center;  
+}
+.m-txtbox {
+  width: 700px;
+  padding:200px 50px;
+  line-height:250%;
+  text-shadow:2px 2px 4px black;
+}
+.mv-txt1 {
+  color:#fff;
+  font-size: 27px;
+  font-weight: 500;  
+}
+.mv-txt2 {
+  color:#fff;
+  font-size:37px;
+  font-weight: 500;
+}
+.m-notibox { 
+  position: relative;
+}
+.m-notibox:before {
+  position: absolute;
+  content:'';
+  width: 100%;
+  height: 110px;
+  bottom:0;
+  background:#f1f2f7;
+}
+.m-noti { 
+  padding:35px 0 0;
+  position: relative;
+  z-index: 0;
+}
+.m-noti h2 { 
+  font-size: 36px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 auto 20px;
+  position: relative;
+}
+.m-noti h2 label {  
+  position: absolute;
+  border:1px solid #333;  
+  height: 30px;
+  top:-20px;
+  transform: rotate(60deg);
+}
+.m-noti-cont { 
+  width:1245px;
+  margin: 0 auto;
+  display:flex;
+}
+.m-noti-cont li {
+  width: 33.33%;
+  color:#111;
+}
+
+.pd30{padding:30px}
+
+
+
+.m-noti-cont li:nth-child(1) {
+  background: #cce0f8;
+}
+.m-noti-cont li:nth-child(2) {
+  background: #c5f2e6;
+}
+.m-noti-cont li:nth-child(3) {
+  background: #fbe9a5;
+}
+.m-noti-cont h3 {
+  font-size: 24px;
+  font-weight:500;
+  text-indent:60px;
+  margin-bottom:32px;
+  position:relative;
+  color:#151515;
+}
+.m-noti-cont h3:before {
+  content:'';
+  position:absolute;
+  left:0; top:10px;
+  width:50px; height:1px;
+  background:#727272;
+}
+.m-regist {
+  display: inline-block;
+  font-size:14px;
+  text-align: center;
+  width: 90px;
+  padding: 5px 0;
+  margin-right:10px;
+  border-radius: 45px;
+  color:#fff;
+  margin-bottom: 32px;
+}
+.bg-regist {
+  background: #153666;
+}
+.bg-finish {
+  background: #ffcdcd;
+}
+.m-noti-cont h4 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height:130%;
+}
+.m-noti-date {
+  font-size: 16px;
+  padding:50px 0 ;
+}
+.m-noti-btnbox {
+  display: flex;
+  justify-content: space-between;
+}
+.m-noti-btnbox button {
+  font-size: 14px;
+  width:170px;
+  padding:12px 0; 
+  color:#fff;
+  border-radius:5px; 
+}
+.btn-dblue {
+  background: #0c2489;
+}
+
+.btn-dblue:hover {
+  background: #052cd1;
+}
+
+
+.btn-ygreen {
+  background: #e75822;
+}
+
+.btn-ygreen:hover {
+  background: #bd3f0f;
+}
+
+
+.btn-charcoal {
+  background: #474747;
+}
+
+.btn-charcoal:hover {
+  background: #736f6f;
+}
+
+.m-noti-quick { 
+  width: 100%;
+  width:100%;
+  padding:30px 0 20px 0;
+  margin-bottom: 80px;
+  background:#f1f2f7;
+}
+.m-noti-icons {
+  width:1245px;
+  margin:0 auto;
+}
+.m-noti-icons {
+  display: flex;
+  text-align: center;
+}
+.m-noti-icons li {
+  width: 16.66%;
+}
+.m-noti-icons li a {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:#1e2233;
+}
+
+.m-noti-icons li a:hover {
+  color:#161616;
+  background: #fdfdde;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  
+}
+
+.m-noti-icons span { 
+  display: block;
+  margin:17px 24px;
+  width:66px;
+  height:60px; 
+  background: url('/res/site/img/m-icon.png') no-repeat;
+}
+
+
+
+
+.m-noti-icons .micon-txt{padding-top: 24px; background: none;display: block; text-align: center; margin: 0px;width: 100%;}
+
+.m-noti-icons span.micon-01 {
+  background-position:0 0px;
+}
+.m-noti-icons span.micon-02 {
+  background-position:0 -70px;
+}
+.m-noti-icons span.micon-03 {
+  background-position:0 -146px;
+}
+.m-noti-icons span.micon-04 {
+  background-position:0 -210px;
+}
+.m-noti-icons span.micon-05 {
+  background-position:0 -280px;
+}
+.m-noti-icons span.micon-06 {
+  background-position:0 -350px;
+}
+.m-noti-icons li p {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 15px;
+  padding-top:20px;
+}
+.m-board {
+  width: 1280px;
+  margin:0 auto;
+  display: flex;  
+  justify-content: space-between;
+}
+.m-boardbox {
+  width: 926px;
+  position: relative;
+}
+.m-boardbox:before {
+  content:'';
+  position:absolute;
+  left:0; top:10px;
+  width:1px; height:380px;
+  background:#e9e9e9;
+}
+
+.board-cont { 
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.board-cont:last-child { 
+  margin-bottom: 0;
+}
+.board-cont h3 { 
+  width: 120px;
+  font-size:18px;
+  font-weight:500;
+  padding: 2px 0 0 16px ;
+  position: relative;
+}
+.board-cont h3:after {
+  z-index: 100;
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius:5px;
+  background-color: #222;
+}
+.board-cont h3 a {
+  position:absolute;
+  top:0; right: 0;
+}
+.mtab1 h3 {
+  color:#0a9189;
+ }
+.mtab2 h3 {
+  color:#5817bb;
+ }
+.mtab3 h3 {
+  color:#1e2233;
+ }
+.board-cont > div { 
+  width: 353px;
+}
+.board-cont > div h4 {
+  position:relative;
+   font-size: 18px;
+   border-bottom: 2px solid #e4e4e4;
+   padding-bottom:5px;
+   margin-bottom: 10px;
+   font-weight:500; 
+}
+.board-cont > div h4 a {
+  position: absolute;
+  font-size: 12px;
+  top:5px; right:0;
+ }
+.board-cont ul li { 
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding:3px 0;
+}
+
+.board-cont li a:hover{color:#144cbf}
+
+.mb-title { 
+  width:270px;
+  text-indent:10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size:14px;
+}
+.mb-title:before {
+  content: '';
+  position: absolute;
+  top:10px; left:0; 
+  width:2px; height:2px;
+  background-color:#222 ;
+}
+.mb-date {
+  text-align:right;
+  width:80px;
+}
+
+.m-quick { 
+  width: 280px;
+}
+.m-quick {
+  display: grid;
+  grid-template-columns:50% 50%;
+  grid-template-rows:repeat(3, minmax(100px, auto));
+  grid-gap:0px 0;
+}
+.m-quick li {
+  border:1px solid #12ccc1;
+  margin-top:-1px;
+  margin-left:-1px;
+}
+.m-quick li a {
+  width:100%;
+  text-align: center;
+  padding-top:25px;
+}
+.m-quick label{
+  display: block;
+  margin: 0 auto 10px;
+  width:66px;
+  height:60px; 
+  background: url('/res/site/img/m-quick.png') no-repeat;
+}
+.m-quick label.m-quick-01{
+  background-position: 5px 0px;
+}
+.m-quick label.m-quick-02{
+  background-position: -65px 0px;
+}
+.m-quick label.m-quick-03{
+  background-position:0 -64px;
+}
+.m-quick label.m-quick-04{
+  background-position: -65px -64px;
+}
+.m-quick label.m-quick-05{
+  background-position:0 -135px;
+}
+.m-quick label.m-quick-06{
+  background-position: -65px -135px;
+}

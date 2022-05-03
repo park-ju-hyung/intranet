@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="common-util">
+<script th:inline="javascript">
+$(document).ready(function() {
+	const header = $('meta[name="_csrf_header"]').attr('content');
+	const token = $('meta[name="_csrf"]').attr('content');
+	//ajaxUtil.setup(header, token);
+	
+	//slickController();
+});
+
+/* 풀페이지
+$('#fullpage').fullpage({
+	licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+	anchors : ['01', '02', '03', '04'],
+	navigation: true,
+	responsiveWidth: 1000,
+	navigationPosition: 'right',
+});
+*/
+/*
+var mc3 = new Swiper(".main_con03 .img_inner_slide_box",{
+	speed:4000,
+	autoplay:{
+		delay:2000,
+		pauseOnMouseEnter:true,
+	}
+});	
+
+const slickController = function() {
+	$slick = $('.slider');
+	
+	$slick.slick({
+		draggable: true,
+		adaptiveHeight: false,
+		dots: false,
+		arrows: false,
+		mobileFirst: true,
+		pauseOnDotsHover: true,
+		fade:true,
+		autoplay: true,
+		autoplaySpeed: 5000,
+	});
+}; */
+</script>
+</th:block>
+</html>
