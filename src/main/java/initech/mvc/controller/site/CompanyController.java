@@ -16,10 +16,10 @@ import lombok.RequiredArgsConstructor;
 public class CompanyController {
 
 
-	//문의하기
+	// 비전 및 미션
 	@GetMapping({"/Company/vision"})
 	public String vision(ModelMap modelMap) throws Exception {
-		return "site/user/WithUs/vision";
+		return "site/user/Company/vision";
 	}
 
 }
