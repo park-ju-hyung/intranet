@@ -19,7 +19,15 @@
 <title>국가뿌리산업진흥센터</title>
 
 <!-- css -->
+<!--<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/main.css}" />-->
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/basic.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/board.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/layout.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/res/site/css/main.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/content.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/notosanskr.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/jquery.datetimepicker.cs}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/gap.css}" />
 <script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/res/site/js/nav.js}"></script>
 <script type="text/javascript" th:src="@{/res/site/js/site-ajax-util.js}"></script>
@@ -30,7 +38,8 @@
 	<div class="wrap">
 		<th:block th:replace="site/common/fragment/basic_header :: header"></th:block>
 		<th:block layout:fragment="content">내용</th:block>
+		<th:block th:replace="site/common/fragment/basic_footer :: footer"></th:block>
 	</div>
-	<th:block th:replace="site/common/fragment/basic_footer :: footer"></th:block>
+
 </body>
 </html>

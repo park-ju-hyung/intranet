@@ -1,74 +1,131 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="header">
-	<header>
-      <div class="s-menu">
-        <span>        	
-        	<a th:if="${session.SESSION_SITE == null}" th:href="@{/user/login}">로그인</a>
-        	<a th:unless="${session.SESSION_SITE == null}" th:href="@{/user/logout}">로그아웃</a>
-        </span>
-        <span th:if="${session.SESSION_SITE == null}">
-        	<a th:if="${session.SESSION_SITE == null}" th:href="@{/member/memberJoinAgree}">회원가입</a>
-        </span>
-        <span th:if="${session.SESSION_SITE != null}">
-        	<a th:href="@{/myPage/}">마이페이지</a>
-        </span>
-        <span> <a th:href="@{#}">센터소개</a></span>
-        <span> <a th:href="@{#}">사이트맵</a></span>
-      </div>
-      <div class="gnbbox">
-        <h1><a th:href="@{/}"><img th:src="@{/res/site/img/m-logo.png}" alt="국가뿌리산업진흥센타"></a></h1>
-        <ul class="t-menu">
-          <li><a>사업소개</a>
-            <ul>
-              <li><a th:href="@{/company/companyIntro01}">사업소개</a></li>
-              <li><a th:href="@{/company/companyNotice}">공고</a></li>
-              <li><a th:href="@{/demand/demandNeeds}">수요조사</a></li>
-            </ul>
-          </li>
-          <li><a>사업신청</a>
-            <ul>
-              <li><a th:href="@{/apply/info}">사업신청안내</a></li>
-              <li><a th:href="@{/apply/applyList}">사업신청</a></li>
-            </ul>
-          </li>
-          <li><a>선정평가</a>
-          	<ul>
-          		<li><a th:href="@{/assess/assess01}">과제평가 결과</a></li>
-          		<li><a th:href="@{/assess/assess02}">이의신청</a></li>
-          	</ul>
-          </li>
-          <li><a>협약</a>
-          	<ul>
-          		<li><a th:href="@{/agreement/agreement01}">수정사업계획서 제출</a></li>
-          		<li><a th:href="@{/agreement/agreement02}">협약확인</a></li>
-          		<li><a th:href="@{/agreement/agreement03}">협약서류 작성 매뉴얼</a></li>
-          	</ul>
-          </li>
-          <li><a>사업수행</a>
-          	<ul>
-          		<li><a th:href="@{/conduct/conduct01}">월간점검 제출</a></li>
-          		<li><a th:href="@{/conduct/conduct02}">과제평가</a></li>
-          		<li><a th:href="@{/conduct/conduct03}">최종평가</a></li>
-          		<li><a th:href="@{/conduct/conduct04}">최종보고서 제출</a></li>
-          	</ul>
-          </li>
-          <li><a>사후관리</a>
-          	<ul>
-          		<li><a th:href="@{/management/List01}">성과관리</a></li>
-          		<li><a th:href="@{/management/List02}">이의신청</a></li>
-          	</ul>
-          </li>
-          <li><a>정보마당</a>
-             <ul>
-             	<li><a th:href="@{/notice/list}">공지사항</a></li>
-             	<li><a th:href="@{/qna/list}">Q&A</a></li>
-             	<!-- <li><a th:href="@{/dataroom/list}">자료실</a></li>
-             	<li><a th:href="@{/faq/list}">FAQ</a></li> -->
-             </ul>
-          </li>
-        </ul>
-      </div>
-    </header>
+<div id="header">
+	<a href="/" class="logo"></a>
+	<div class="inner">
+		<div class="gnb">
+			<ul>
+				<li>
+					<a class="mont" href="/about/vision/index.jsp">COMPANY</a>
+					<ul class="depth02">
+						<li><a href="/about/vision/index.jsp"><span>비전 및 미션</span></a></li>
+						<li><a href="/about/history/index.jsp"><span>연혁</span></a></li>
+						<li><a href="/about/company/index.jsp"><span>사업성과</span></a></li>
+						<li><a href="/about/patent/index.jsp"><span>인증 및 특허 현황</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/rnd/piezoele/index.jsp">R&D</a>
+					<ul class="depth02">
+						<li><a href="/rnd/piezoele/index.jsp"><span>압전</span></a></li>
+						<li><a href="/rnd/energy/index.jsp"><span>에너지 하베스팅</span></a></li>
+						<li><a href="/rnd/health/index.jsp"><span>헬스케어</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/products/wearable/index.jsp">PRODUCT</a>
+					<ul class="depth02">
+						<li><a href="/products/wearable/index.jsp"><span>웨어러블 센서소자</span></a></li>
+						<li><a href="/products/iot/index.jsp"><span>IoT 델리네이터</span></a></li>
+						<li><a href="/products/mitt/index.jsp"><span>전자미트</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/business/platform/index.jsp">BUSINESS</a>
+					<ul class="depth02">
+						<li><a href="/business/platform/index.jsp"><span>플랫폼 서비스</span></a></li>
+						<li><a href="/business/smart/index.jsp"><span>스마트 빌리지</span></a></li>
+<!-- 						<li><a href="javascript:;">주요사업</a></li> -->
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/with/direction/index.jsp">WITH US</a>
+					<ul class="depth02">
+						<li><a href="/with/direction/index.jsp"><span>오시는길</span></a></li>
+						<li><a href="user/write.html"><span>온라인문의</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="right">
+		<div class="all_menu_btn">
+			<i></i><i></i>
+		</div>
+	</div>
+	<div class="m_btn">
+		<a href="javascript:;">
+			<i></i><i></i>
+		</a>
+	</div>
+</div>
+<div id="all_menu">
+	<div class="all_menu_header">
+		<a href="/" class="logo"></a>
+		<div class="right">
+			<div class="all_menu_btn">
+				<i></i>
+			</div>
+		</div>
+	</div>
+	<div class="inner">
+		<div class="gnb"></div>
+	</div>
+</div>
+<div class="m_menu_bg"></div>
+<div id="m_menu">
+	<div class="top_box">
+		<img src="/img/logo02.png" alt="">
+		<a class="close_btn" href="javascript:;"><i></i><i></i></a>
+	</div>
+	<div class="gnb_box">
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		var gnbHtml = $("#header .gnb").html();
+		$("#all_menu .gnb").html(gnbHtml);
+		$("#m_menu .gnb_box").html(gnbHtml);
+	});
+	$("#header .all_menu_btn").on('click', function(){
+		$("#all_menu").fadeIn(200);
+	});
+	$("#all_menu .all_menu_btn").on('click', function(){
+		$("#all_menu").fadeOut(200);
+	});
+
+	$(".top_btn").on("click",function(){
+		$("body,html").animate({scrollTop:0});
+	});
+	
+	$(window).on("load",function(){
+		// 모바일 클릭
+		$("#header .m_btn").on("click",function(){
+			$("#m_menu").addClass("on");
+			$(".m_menu_bg").fadeIn();
+		});
+		$(".m_menu_bg, #m_menu .close_btn").on("click",function(){
+			$("#m_menu").removeClass("on");
+			$(".m_menu_bg").fadeOut();
+		});
+		// 모바일 메뉴
+		$("#m_menu .gnb_box > ul > li > a").on("click",function(){
+			if(!$(this).parent().hasClass("depth01")){
+				// 2depth가 있을 경우
+				$(this).parent("li").toggleClass("on").siblings().removeClass("on");
+				$(this).next(".depth02").stop(true,true).slideToggle().parent("li").siblings().find(".depth02").slideUp();
+				return false;
+			}
+		});
+		$('#header').on('mouseenter', function(){
+			$(this).addClass("on")
+		});
+		$('#header').on('mouseleave', function(){
+			$(this).removeClass("on")
+		});
+
+	});
+</script>
 </th:block>
 </html>
