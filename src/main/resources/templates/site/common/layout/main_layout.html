@@ -18,53 +18,32 @@
 <!-- title -->
 <title>아이엔아이테크</title>
 
+<!-- meta -->
+
+
 <!-- css -->
-<!--<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/main.css}" />-->
+<link rel="stylesheet" href="res/site/css/basic.css" th:href="@{res/site/css/basic.css}" type="text/css" media="all" />
+<link rel="stylesheet" href="res/site/css/board.css" th:href="@{res/site/css/board.css}" type="text/css" media="all" />
+<link rel="stylesheet" href="res/site/css/layout.css"th:href="@{res/site/css/layout.css}"  type="text/css" media="all" />
+<link rel="stylesheet" href="res/site/css/main.css" th:href="@{res/site/css/main.css}" type="text/css" media="all" />
+<link rel="stylesheet" href="res/site/css/content.css" th:href="@{res/site/css/content.css}" type="text/css" media="all" />
 
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/basic.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/board.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/layout.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/main.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/content.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/notosanskr.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/jquery.datetimepicker.cs}" />
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/gap.css}" />
-<script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{/res/site/js/nav.js}"></script>
-<script type="text/javascript" th:src="@{/res/site/js/site-ajax-util.js}"></script>
-
-
-<link rel="stylesheet" th:href="@{/res/site/css/basic.css}" type="text/css" media="all" />
-<link rel="stylesheet" th:href="@{/res/site/css/board.css}" type="text/css" media="all" />
-<link rel="stylesheet" th:href="@{/res/site/css/layout.css}" type="text/css" media="all" />
-<link rel="stylesheet" th:href="@{/res/site/css/main.css}" type="text/css" media="all" />
-<link rel="stylesheet" th:href="@{/res/site/css/content.css}" type="text/css" media="all" />
-<link rel="stylesheet" th:href="@{/res/site/css/notosanskr.css}" type="text/css" media="all" />
-<link rel="stylesheet" th:href="@{/res/site/css/jquery.datetimepicker.css}" type="text/css" media="all" />
-<!--<link rel="stylesheet" th:href="@{/res/site/css/summernote/jquery-ui.css}"/>-->
-<link rel="stylesheet" th:href="@{/res/site/css/gap.css}" type="text/css" media="all" />
-
-
-<script type="text/javascript" th:src="@{/res/site/js/jquery.js}"></script>
-<!--<script type="text/javascript" th:src="@{/res/site/js/nav.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/res/site/js/site-ajax-util.js}"></script>-->
+<!-- js -->
+<script src="res/site/js/jquery.js"></script>
+<script type="text/javascript" src="res/site/js/function.js"></script>
+<script type="text/javascript" src="res/site/js/menu.js"></script>
 
 <th:block th:replace="site/common/fragment/main_script :: common-util">
-<!--<th:block th:replace="site/common/fragment/basic_script :: common-util"></th:block>-->
 </head>
 <body class="main">
 	<div class="wrap">
 		<th:block th:replace="site/common/fragment/basic_header :: header"></th:block>
-
-		<th:block layout:fragment="content">내용</th:block>
-		<th:block th:replace="site/common/fragment/basic_footer :: footer"></th:block>
-
-		<th:block th:replace="site/common/fragment/main_content :: content"></th:block>
-		<div class="section fp-auto-height" id="section04">
-			<th:block th:replace="site/common/fragment/basic_footer :: footer"></th:block>
+		<div> id="fullpage">
+			<th:block th:replace="site/common/fragment/main_content :: content"></th:block>
+			<div class="section fp-auto-height" id="section04">
+				<th:block th:replace="site/common/fragment/basic_footer :: footer"></th:block>
+			</div>			
 		</div>
-		
-
 	</div>
 
 </body>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{site/common/layout/basic_layout}">
+<head>
+<th:block layout:fragment="script">
+<script type="text/javascript">
+	console.log('저는 바보입니다.');
+</script>
+</th:block>
+</head>
+<th:block layout:fragment="content">
+
+	<div class="vision_con01 wow fadeInUp">
+	<div class="sub_tit">
+		<div class="inner">
+			<h3>비전 및 미션</h3>
+		</div>
+	</div>
+	<ul>
+		<li>
+			<div class="img_box">
+				<img src="/img/vision_con01_img01.jpg" alt="">
+			</div>
+			<div class="txt_box">
+				<div class="txt">
+					<div class="tit type01">
+						<h5>VISION</h5>
+					</div>
+					<span><b>기술</b>이 곧 우리의 <b>비전</b>이고 <b>미래</b>입니다</span>
+					<p>
+						<b>㈜아이엔아이테크는 유·무기 복합소재 기반 에너지 소자 개발 전문기업</b>으로서 <br class="pc_only"/>
+						웨어러블 압전센서 소자의 원천기술은 향후 웨어러블 디바이스 소재부품 기술과 <br class="pc_only"/>
+						IT 기술을 활용한 포스트 스마트 기기의 신 시장을 선도 할 성장 잠재력이 <br class="pc_only"/>
+						매우 높은 신 산업으로써 국내의 원천기술을 보유한 <br class="pc_only"/>
+						작으나 <b>강한 기술력을 보유한 기업</b>입니다.
+					</p>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="img_box">
+				<img src="/img/vision_con01_img02.jpg" alt="">
+			</div>
+			<div class="txt_box">
+				<div class="txt">
+					<div class="tit">
+						<h5>기업정보</h5>
+					</div>
+					<dl>
+						<dt><span>회사명</span></dt>
+						<dd><p>(주)아이엔아이테크 (INITech Corporation)</p></dd>
+					</dl>
+					<dl>
+						<dt><span>대표이사</span></dt>
+						<dd><p>박영준</p></dd>
+					</dl>
+					<dl>
+						<dt><span>설립일</span></dt>
+						<dd><p>2013년 07월 19일</p></dd>
+					</dl>
+					<dl>
+						<dt><span>주소</span></dt>
+						<dd><p>경남 진주시 소호로 109, 201호 <br/>
+						(충무공동, 세라믹소재종합지원센터)</p></dd>
+					</dl>
+					<dl>
+						<dt><span>사업분야</span></dt>
+						<dd>
+							<ul>
+								<li><p>· 유·무기 복합소재 기반 에너지소자 개발</p></li>
+								<li><p>· 웨어러블 기기용 압전섬유 기반 Bendable 압전 센서 판매</p></li>
+								<li><p>· 공공 플랫폼, IoT 통신, Mobile Application 개발 등</p></li>
+							</ul>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+
+
+
+</th:block>
+
+</html>

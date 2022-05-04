@@ -17,33 +17,40 @@
 <!-- title -->
 <title th:text="|국가뿌리산업진흥센터 :: ${p_documentTitle}|">국가뿌리산업진흥센터</title>
 
-<!-- css -->
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/sub.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/datepicker.css}" />
-
-<!-- js -->
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/basic.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/board.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/layout.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/main.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/content.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/notosanskr.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/jquery.datetimepicker.cs}" />
+<link rel="stylesheet" type="text/css" th:href="@{/res/site/css/gap.css}" />
 <script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{/res/site/lib/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js}"></script>
 <script type="text/javascript" th:src="@{/res/site/js/nav.js}"></script>
 <script type="text/javascript" th:src="@{/res/site/js/site-ajax-util.js}"></script>
-<script type="text/javascript" th:src="@{/res/site/js/common-util.js}"></script>
-<script type="text/javascript" th:src="@{/res/site/js/moment.min.js}"></script>
-<script type="text/javascript" th:src="@{/res/site/js/bootstrap-datepicker.js}"></script>
-<script type="text/javascript" th:src="@{/res/site/js/bootstrap-datepicker.kr.js}"></script>
-<script type="text/javascript" th:src="@{/res/site/js/bootstrap-datetimepicker.min.js}"></script>
 
+
+<link rel="stylesheet" th:href="@{/res/site/css/basic.css}" type="text/css" media="all" />
+<link rel="stylesheet" th:href="@{/res/site/css/board.css}" type="text/css" media="all" />
+<link rel="stylesheet" th:href="@{/res/site/css/layout.css}" type="text/css" media="all" />
+<link rel="stylesheet" th:href="@{/res/site/css/main.css}" type="text/css" media="all" />
+<link rel="stylesheet" th:href="@{/res/site/css/content.css}" type="text/css" media="all" />
+<link rel="stylesheet" th:href="@{/res/site/css/notosanskr.css}" type="text/css" media="all" />
+<link rel="stylesheet" th:href="@{/res/site/css/jquery.datetimepicker.css}" type="text/css" media="all" />
+<!--<link rel="stylesheet" th:href="@{/res/site/css/summernote/jquery-ui.css}"/>-->
+<link rel="stylesheet" th:href="@{/res/site/css/gap.css}" type="text/css" media="all" />
 
 <th:block th:replace="site/common/fragment/basic_script :: common-util"></th:block>
+<!--각 메뉴마다 사용되어야할 스크립트 짜는 고-->
+<th:block layout:fragment="script"></th:block>
+
 </head>
 <body>
 	<div class="wrap">
 		<th:block th:replace="site/common/fragment/basic_header :: header"></th:block>
-		<div class="container">
+		<div class="content">
 			<th:block th:replace="site/common/fragment/basic_location :: location"></th:block>
-			<div class="contentsbox">
-				<th:block th:replace="site/common/fragment/basic_aside :: aside"></th:block>
-				<th:block layout:fragment="content">내용</th:block>
-			</div>
+			<th:block layout:fragment="content"></th:block>
 		</div>
 		<th:block th:replace="site/common/fragment/basic_footer :: footer"></th:block>
 	</div>

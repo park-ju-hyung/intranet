@@ -1,57 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="footer">
-<<<<<<< HEAD
-<div id="footer">
-	<div class="footer_top">
-		<div class="inner">
-<!-- 			<div class="contact_box"> -->
-<!-- 				<div class="txt"> -->
-<!-- 					<p>온라인 문의</p> -->
-<!-- 					<span class="mont">070-<br/>4693-2625</span> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			<div class="left">
-				<a href="/" class="logo"><img src="/img/footer_logo.png" alt="logo" /></a>
-				<div class="add">
-					<span>경상남도 진주시 소호로 109, 201호 (충무공동, 세라믹소재종합지원센터)</span><br/>
-					<span>대표번호: 070-4693-2625</span>
-					<span>Fax: 055-792-2795</span>
-					<span>E-mail:yjpark119@daum.net</span>
-				</div>
-			</div>
-			<div class="right">
-				<div class="footer_gnb"></div>
-			</div>
-		</div>
-	</div>
-	<div class="footer_bottom">
-		<a href="javascript:;" class="top_btn"><img src="/img/footer_top_btn.png" alt="top" /></a>
-		<p class="copy">copyright@INI TECH inc. All Rights Reserved.</p>
-	</div>
-	<div class="top_btn">
-		<a href="javascript:;"><img src="/img/foot_btn.png" alt=""></a>
-	</div>
-</div>
-
-<script>
-	$(document).ready(function(){
-		$("#footer .footer_top .footer_gnb").html($("#header .gnb").html()); 
-	});
-
-	// top 버튼
-	$(".top_btn a").on("click", function(){
-		$("html, body").animate({scrollTop:0}, 500);
-	});
-</script>
-=======
 	<div id="footer">
 		<div class="footer_top">
 			<div class="inner">
 				<div class="left">
-					<a href="/" class="logo">
-					<img src="/res/site/img/footer_logo.png" 
-					th:src="@{/res/site/img/footer_logo.png}" alt="logo" /></a>
+					<a href="/" class="logo"><img src="/res/site/img/footer_logo.png" alt="logo" /></a>
 					<div class="add">
 						<span>경상남도 진주시 소호로 109, 201호 (충무공동, 세라믹소재종합지원센터)</span><br/>
 						<span>대표번호: 070-4693-2625</span>
@@ -65,14 +19,12 @@
 			</div>
 		</div>
 		<div class="footer_bottom">
-			<a href="javascript:;" class="top_btn">
-				<img src="/res/site/img/foot_btn.png" th:src="@{/res/site/img/foot_btn.png}" alt="top" /></a>
+			<a href="javascript:;" class="top_btn"><img src="/res/site/img/footer_top_btn.png" alt="top" /></a>
 			<p class="copy">copyright@INI TECH inc. All Rights Reserved.</p>
 		</div>
 		<div class="top_btn">
-			<a href="javascript:;"><img src="/res/site/img/foot_btn.png" alt=""></a>
+			<a href="javascript:;"><img src="/img/foot_btn.png" alt=""></a>
 		</div>
 	</div>
->>>>>>> branch 'master' of https://github.com/inikorea/ini-home2022.git
 </th:block>
 </html>
