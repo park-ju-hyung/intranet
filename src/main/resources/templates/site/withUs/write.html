@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{site/common/layout/main_layout}">
+      layout:decorate="~{site/common/layout/basic_layout}">
 <head>
 <script th:inline="javascript">
 $(document).ready(function() {
@@ -13,83 +13,515 @@ $(document).ready(function() {
 
 </head>
 <th:block layout:fragment="content">
+<body style="">
+	
 
-	<!--visual-->
-	<div id="wrap">
-		<!-- main fullpage -->
-		<div class="content">
-			<div class="vision_con01 wow fadeInUp">
-				<div class="sub_tit">
-					<div class="inner">
-						<h3>비전 및 미션</h3>
-					</div>
-				</div>
-				<ul>
-					<li>
-						<div class="img_box">
-							<img src="/img/vision_con01_img01.jpg" alt="">
-						</div>
-						<div class="txt_box">
-							<div class="txt">
-								<div class="tit type01">
-									<h5>VISION</h5>
-								</div>
-								<span><b>기술</b>이 곧 우리의 <b>비전</b>이고 <b>미래</b>입니다</span>
-								<p>
-									<b>㈜아이엔아이테크는 유·무기 복합소재 기반 에너지 소자 개발 전문기업</b>으로서 <br class="pc_only"/>
-									웨어러블 압전센서 소자의 원천기술은 향후 웨어러블 디바이스 소재부품 기술과 <br class="pc_only"/>
-									IT 기술을 활용한 포스트 스마트 기기의 신 시장을 선도 할 성장 잠재력이 <br class="pc_only"/>
-									매우 높은 신 산업으로써 국내의 원천기술을 보유한 <br class="pc_only"/>
-									작으나 <b>강한 기술력을 보유한 기업</b>입니다.
-								</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="img_box">
-							<img src="/img/vision_con01_img02.jpg" alt="">
-						</div>
-						<div class="txt_box">
-							<div class="txt">
-								<div class="tit">
-									<h5>기업정보</h5>
-								</div>
-								<dl>
-									<dt><span>회사명</span></dt>
-									<dd><p>(주)아이엔아이테크 (INITech Corporation)</p></dd>
-								</dl>
-								<dl>
-									<dt><span>대표이사</span></dt>
-									<dd><p>박영준</p></dd>
-								</dl>
-								<dl>
-									<dt><span>설립일</span></dt>
-									<dd><p>2013년 07월 19일</p></dd>
-								</dl>
-								<dl>
-									<dt><span>주소</span></dt>
-									<dd><p>경남 진주시 소호로 109, 201호 <br/>
-									(충무공동, 세라믹소재종합지원센터)</p></dd>
-								</dl>
-								<dl>
-									<dt><span>사업분야</span></dt>
-									<dd>
-										<ul>
-											<li><p>· 유·무기 복합소재 기반 에너지소자 개발</p></li>
-											<li><p>· 웨어러블 기기용 압전섬유 기반 Bendable 압전 센서 판매</p></li>
-											<li><p>· 공공 플랫폼, IoT 통신, Mobile Application 개발 등</p></li>
-										</ul>
-									</dd>
-								</dl>
-							</div>
-						</div>
-					</li>
-				</ul>
+
+
+
+
+
+
+<div id="com2" style="width:0px; height:0px; position:absolute; left:0px; top:0px; z-index:1"> 
+<form name="urlMaintain" id="urlMaintain" action="/member/login.jsp" method="post">
+	<input type="hidden" name="url" id="main_url" value="/with/inquiry/write.jsp">
+	<input type="hidden" name="param" id="main_param" value="">
+</form>
+</div>
+
+
+
+<div id="header" class="">
+	<a href="/" class="logo"></a>
+	<div class="inner">
+		<div class="gnb">
+			<ul>
+				<li>
+					<a class="mont" href="/about/vision/index.jsp">COMPANY</a>
+					<ul class="depth02">
+						<li><a href="/about/vision/index.jsp"><span>비전 및 미션</span></a></li>
+						<li><a href="/about/history/index.jsp"><span>연혁</span></a></li>
+						<li><a href="/about/company/index.jsp"><span>사업성과</span></a></li>
+						<li><a href="/about/patent/index.jsp"><span>인증 및 특허 현황</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/rnd/piezoele/index.jsp">R&amp;D</a>
+					<ul class="depth02">
+						<li><a href="/rnd/piezoele/index.jsp"><span>압전</span></a></li>
+						<li><a href="/rnd/energy/index.jsp"><span>에너지 하베스팅</span></a></li>
+						<li><a href="/rnd/health/index.jsp"><span>헬스케어</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/products/wearable/index.jsp">PRODUCT</a>
+					<ul class="depth02">
+						<li><a href="/products/wearable/index.jsp"><span>웨어러블 센서소자</span></a></li>
+						<li><a href="/products/iot/index.jsp"><span>IoT 델리네이터</span></a></li>
+						<li><a href="/products/mitt/index.jsp"><span>전자미트</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/business/platform/index.jsp">BUSINESS</a>
+					<ul class="depth02">
+						<li><a href="/business/platform/index.jsp"><span>플랫폼 서비스</span></a></li>
+						<li><a href="/business/smart/index.jsp"><span>스마트 빌리지</span></a></li>
+<!-- 						<li><a href="javascript:;">주요사업</a></li> -->
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/with/direction/index.jsp">WITH US</a>
+					<ul class="depth02">
+						<li><a href="/with/direction/index.jsp"><span>오시는길</span></a></li>
+						<li class="on"><a href="/with/inquiry/write.jsp"><span>온라인문의</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="right">
+		<div class="all_menu_btn">
+			<i></i><i></i>
+		</div>
+	</div>
+	<div class="m_btn">
+		<a href="javascript:;">
+			<i></i><i></i>
+		</a>
+	</div>
+</div>
+<div id="all_menu">
+	<div class="all_menu_header">
+		<a href="/" class="logo"></a>
+		<div class="right">
+			<div class="all_menu_btn">
+				<i></i>
 			</div>
 		</div>
 	</div>
-	<!-- main fullpage //-->
+	<div class="inner">
+		<div class="gnb">
+			<ul>
+				<li>
+					<a class="mont" href="/about/vision/index.jsp">COMPANY</a>
+					<ul class="depth02">
+						<li><a href="/about/vision/index.jsp"><span>비전 및 미션</span></a></li>
+						<li><a href="/about/history/index.jsp"><span>연혁</span></a></li>
+						<li><a href="/about/company/index.jsp"><span>사업성과</span></a></li>
+						<li><a href="/about/patent/index.jsp"><span>인증 및 특허 현황</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/rnd/piezoele/index.jsp">R&amp;D</a>
+					<ul class="depth02">
+						<li><a href="/rnd/piezoele/index.jsp"><span>압전</span></a></li>
+						<li><a href="/rnd/energy/index.jsp"><span>에너지 하베스팅</span></a></li>
+						<li><a href="/rnd/health/index.jsp"><span>헬스케어</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/products/wearable/index.jsp">PRODUCT</a>
+					<ul class="depth02">
+						<li><a href="/products/wearable/index.jsp"><span>웨어러블 센서소자</span></a></li>
+						<li><a href="/products/iot/index.jsp"><span>IoT 델리네이터</span></a></li>
+						<li><a href="/products/mitt/index.jsp"><span>전자미트</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/business/platform/index.jsp">BUSINESS</a>
+					<ul class="depth02">
+						<li><a href="/business/platform/index.jsp"><span>플랫폼 서비스</span></a></li>
+						<li><a href="/business/smart/index.jsp"><span>스마트 빌리지</span></a></li>
+<!-- 						<li><a href="javascript:;">주요사업</a></li> -->
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/with/direction/index.jsp">WITH US</a>
+					<ul class="depth02">
+						<li><a href="/with/direction/index.jsp"><span>오시는길</span></a></li>
+						<li><a href="/with/inquiry/write.jsp"><span>온라인문의</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="m_menu_bg"></div>
+<div id="m_menu">
+	<div class="top_box">
+		<img src="/img/logo02.png" alt="">
+		<a class="close_btn" href="javascript:;"><i></i><i></i></a>
+	</div>
+	<div class="gnb_box">
+			<ul>
+				<li>
+					<a class="mont" href="/about/vision/index.jsp">COMPANY</a>
+					<ul class="depth02">
+						<li><a href="/about/vision/index.jsp"><span>비전 및 미션</span></a></li>
+						<li><a href="/about/history/index.jsp"><span>연혁</span></a></li>
+						<li><a href="/about/company/index.jsp"><span>사업성과</span></a></li>
+						<li><a href="/about/patent/index.jsp"><span>인증 및 특허 현황</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/rnd/piezoele/index.jsp">R&amp;D</a>
+					<ul class="depth02">
+						<li><a href="/rnd/piezoele/index.jsp"><span>압전</span></a></li>
+						<li><a href="/rnd/energy/index.jsp"><span>에너지 하베스팅</span></a></li>
+						<li><a href="/rnd/health/index.jsp"><span>헬스케어</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/products/wearable/index.jsp">PRODUCT</a>
+					<ul class="depth02">
+						<li><a href="/products/wearable/index.jsp"><span>웨어러블 센서소자</span></a></li>
+						<li><a href="/products/iot/index.jsp"><span>IoT 델리네이터</span></a></li>
+						<li><a href="/products/mitt/index.jsp"><span>전자미트</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/business/platform/index.jsp">BUSINESS</a>
+					<ul class="depth02">
+						<li><a href="/business/platform/index.jsp"><span>플랫폼 서비스</span></a></li>
+						<li><a href="/business/smart/index.jsp"><span>스마트 빌리지</span></a></li>
+<!-- 						<li><a href="javascript:;">주요사업</a></li> -->
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/with/direction/index.jsp">WITH US</a>
+					<ul class="depth02">
+						<li><a href="/with/direction/index.jsp"><span>오시는길</span></a></li>
+						<li><a href="/with/inquiry/write.jsp"><span>온라인문의</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+</div>
+<script>
+	$(document).ready(function(){
+		var gnbHtml = $("#header .gnb").html();
+		$("#all_menu .gnb").html(gnbHtml);
+		$("#m_menu .gnb_box").html(gnbHtml);
+	});
+	$("#header .all_menu_btn").on('click', function(){
+		$("#all_menu").fadeIn(200);
+	});
+	$("#all_menu .all_menu_btn").on('click', function(){
+		$("#all_menu").fadeOut(200);
+	});
+
+	$(".top_btn").on("click",function(){
+		$("body,html").animate({scrollTop:0});
+	});
+	
+	$(window).on("load",function(){
+		// 모바일 클릭
+		$("#header .m_btn").on("click",function(){
+			$("#m_menu").addClass("on");
+			$(".m_menu_bg").fadeIn();
+		});
+		$(".m_menu_bg, #m_menu .close_btn").on("click",function(){
+			$("#m_menu").removeClass("on");
+			$(".m_menu_bg").fadeOut();
+		});
+		// 모바일 메뉴
+		$("#m_menu .gnb_box > ul > li > a").on("click",function(){
+			if(!$(this).parent().hasClass("depth01")){
+				// 2depth가 있을 경우
+				$(this).parent("li").toggleClass("on").siblings().removeClass("on");
+				$(this).next(".depth02").stop(true,true).slideToggle().parent("li").siblings().find(".depth02").slideUp();
+				return false;
+			}
+		});
+		$('#header').on('mouseenter', function(){
+			$(this).addClass("on")
+		});
+		$('#header').on('mouseleave', function(){
+			$(this).removeClass("on")
+		});
+
+	});
+</script>
+	
 
 
+<div class="sub_visual">
+	<div class="bg" style="background-image: url(&quot;/img/sub_visual05.jpg&quot;);"></div>
+	<div class="inner">
+		<div class="text">
+			<h2 class="mont">WITH US</h2>
+		</div>
+	</div>
+</div>
+<div class="sub_path">
+	<div class="inner">
+		<ul>
+						<li><a href="/with/direction/index.jsp"><span>오시는길</span></a></li>
+						<li class="on"><a href="/with/inquiry/write.jsp"><span>온라인문의</span></a></li>
+					</ul>
+	</div>
+</div>
+
+<script>
+	$(document).on("ready", function(){
+		var url = window.location.pathname;
+		var urlPathname = url.substring( 0, url.substring(1).indexOf('/') + 2 );
+		var fileName = url.substring(url.lastIndexOf('/') + 1);
+		var isForDev = fileName == "read.jsp" || fileName == "edit.jsp" || fileName == "write.jsp" || fileName == "password.jsp" || fileName == "call.jsp" || fileName == "list.jsp" ;
+
+		$("#header .gnb .depth01, #header .gnb .depth02 li").each(function() {
+			if ( $(this).find("> a").attr("href") == url ){
+				$(this).addClass("on");
+
+				if( $(this).hasClass("depth01")){
+					// 1depth만 있을 경우
+					var indexNumber = $(this).index() + 1;
+					var depth01Text = $(this).text();
+
+					$(".sub_path").hide();
+				}else{
+					// 2depth가 있을 경우
+					var indexNumber = $(this).parents(".depth02").parent().index() + 1;
+					var depth01Text = $(this).parents(".depth02").prev().text();
+					var depth02Html = $(this).parents(".depth02").html();
+
+					$(".sub_path ul").append(depth02Html);
+				}
+				
+				$(".sub_visual .bg").css("background-image","url('/img/sub_visual0"+indexNumber+".jpg')");
+				$(".sub_visual .text h2").text(depth01Text);
+
+			} else if ( isForDev ){
+				if ( $(this).find(">a").attr("href").indexOf( url.substring(0, url.lastIndexOf('/')+1 ) ) > -1 ){
+					$(this).addClass("on");
+
+					if( $(this).hasClass("depth01")){
+						// 1depth만 있을 경우
+						var indexNumber = $(this).index() + 1;
+						var depth01Text = $(this).text();
+
+						$(".sub_path").hide();
+					}else{
+						// 2depth가 있을 경우
+						var indexNumber = $(this).parents(".depth02").parent().index() + 1;
+						var depth01Text = $(this).parents(".depth02").prev().text();
+						var depth02Html = $(this).parents(".depth02").html();
+
+						$(".sub_path ul").append(depth02Html);
+					}
+					
+					$(".sub_visual .bg").css("background-image","url('/img/sub_visual0"+indexNumber+".jpg')");
+					$(".sub_visual .text h2").text(depth01Text);
+				}
+			}
+		});
+	});
+
+	$(window).on("load", function(){
+	});
+</script>
+
+<div class="inquiry_box">
+	<div class="inner">
+		<div class="sub_tit">
+			<h3>온라인문의</h3>
+		</div>
+	</div>
+</div>	
+	<!-- 프로그램시작 -->
+	<form name="frm" id="frm" action="https://initech.vizensoft.com:443/with/inquiry/process.jsp" method="post" enctype="multipart/form-data" onsubmit="return goSave(this);">
+	<div class="programCon">
+		
+		<div class="join">
+			<div class="joinTop">
+				<div class="ScrollLy">
+					<h5 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">간소</h5><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">아이엔아이테크은(는) 귀하의 개인정보보호를 매우 중요시하며, 개인정보보호방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[개인정보 수집에 대한 동의]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">아이엔아이테크은(는) 귀하께 회원가입시 개인정보보호방침 또는 이용약관의 내용을 공지하며 회원가입버튼을 클릭하면 개인정보 수집에 대해 동의하신 것으로 봅니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[개인정보의 수집목적 및 이용목적]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">아이엔아이테크은(는) 다음과 같은 목적을 위하여 개인정보를 수집하고 있습니다 .</p><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">- 아이엔아이테크 및 제휴사이트 서비스를 위한 회원 가입 및 이용아이디 발급<br>- 서비스의 이행(경품 등 우편물 배송 및 예약에 관한 사항)<br>- 장애처리 및 개별 회원에 대한 개인 맞춤서비스<br>- 서비스 이용에 대한 통계수집<br>- 기타, 새로운 서비스 및 정보 안내<br>단, 이용자의 기본적 인권침해의 우려가 있는 민감한 개인정보는 수집하지 않습니다.<br>아이엔아이테크은(는) 상기 범위 내에서 보다 풍부한 서비스를 제공하기 위해 이용자의 자의에 의한 추가정보를 수집합니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[수집하는 개인정보 항목]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">아이엔아이테크은(는) 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은 개인정보를 수집하고 있습니다.</p><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">-수집항목: 이름, 생년월일, 성별, 로그인 ID, 비밀번호, 자택 전화번호, 자택 주소, 휴대전화번호, 이메일, 서비스이용기록, 접속로그, 쿠키, 접속 IP 정보 , 결제기록<br>-개인정보 수집방법: 홈페이지(회원가입, 게시판, 온라인상담, 온라인예약 등)<br>쿠키에 의한 개인정보 수집<br>아이엔아이테크은(는) 귀하에 대한 정보를 저장하고 수시로 찾아내는 '쿠키 (cookie)' 를 사용합니다. 쿠키는 웹사이트가 귀하의 컴퓨터 브라우저(넷스케이프, 인터넷 익스플로러 등)로 전송하는 소량의 정보입니다. 귀하가 웹사이트에 접속을 하면 아이엔아이테크 웹서버는 귀하의 브라우저에 있는 쿠키의 내용을 읽고, 귀하의 추가정보를 귀하의 컴퓨터에서 찾아 접속에 따른 아이디 등의 추가 입력없이 서비스를 제공할 수 있습니다. 쿠키는 귀하의 컴퓨터는 식별하지만 귀하를 개인적으로 식별하지는 않습니다.</p><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">또한 귀하는 쿠키에 대한 선택권이 있습니다. 웹브라우저의 옵션을 조정함으로써 모든 쿠키를 다 받아들이거나, 쿠키가 설치될 때 통지를 보내도록 하거나 아니면 모든 쿠키를 거부할 수 있는 선택권을 가질 수 있습니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[개인정보의 제3자에 대한 제공]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">아이엔아이테크은(는) 귀하의 개인정보를 &lt;개인정보의 수집목적 및 이용목적&gt;에서 고지한 범위 내에서 사용하며, 동 범위를 초과하여 이용하거나 타인 또는 타기업/기관에 제공하지 않습니다. 그러나 보다 나은 서비스 제공을 위하여 귀하의 개인정보를 제휴사에게 제공하거나 또는 제휴사와 공유할 수 있습니다. 단, 개인정보를 제공하거나 공유할 경우에는 사전에 귀하께 고지하여 드립니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[개인정보의 열람/정정]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">귀하는 언제든지 등록되어 있는 귀하의 개인정보를 열람하거나 정정하실 수 있습니다. 개인정보 열람 및 정정을 하고자 할 경우에는 &lt;회원정보수정&gt;을 클릭하여 직접 열람 또는 정정하거나 개인정보관리책임자에게 E-mail로 연락하시면 조치하여 드립니다.<br>귀하가 개인정보의 오류에 대한 정정을 요청한 경우, 정정을 완료하기 전까지 당해 개인정보를 이용하지 않습니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[개인정보 수집, 이용, 제공에 대한 동의철회]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">회원가입 등을 통해 개인정보의 수집, 이용, 제공에 대해 귀하께서 동의하신 내용을 귀하는 언제든지 철회할 수 있습니다. 동의철회는 웹사이트 및 개인정보관리책임자에게 E-mail 등으로 연락하시면 즉시 개인정보의 삭제 등 필요한 조치를 하겠습니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[개인정보의 보유기간 및 이용기간]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">귀하의 개인정보는 다음과 같이 개인정보의 수집목적 또는 제공받은 목적이 달성되면 파기됩니다.</p><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">-회원 가입정보의 경우, 회원 가입을 탈퇴하거나 회원에서 제명된 때<br>-예약의 경우, 예약에 따른 처리 및 진료가 완료된 때<br>위 보유기간에도 불구하고 계속 보유하여야 할 필요가 있을 경우에는 귀하의 동의를 받습니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[개인정보보호를 위한 기술적 대책]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">아이엔아이테크은(는) 귀하의 개인정보를 취급함에 있어 개인정보가 분실, 도난, 누출, 변조 또는 훼손되지 않도록 안전성 확보를 위하여 다음과 같은 기술적 대책을 강구하고 있습니다.</p><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">귀하의 개인정보는 비밀번호에 의해 보호되며, 파일 및 전송 데이터를 암호화하거나 파일 잠금기능(Lock)을 사용하여 중요한 데이터는 별도의 보안기능을 통해 보호되고 있습니다.<br>아이엔아이테크는 회원인증과 관련 암호알고리즘을 이용하여 네트워크 상의 개인정보를 안전하게 전송할 수 있는 인증 및 보안장치를 채택하고 있으며, 시스템상 사정에 의해 미시행시 도우미에 의한 의사 확인을 시행하고 있습니다.<br>해킹 등에 의해 귀하의 개인정보가 유출되는 것을 방지하기 위해 외부로부터의 침입을 차단하는 장치를 이용하고 있으며, 각 서버마다 침입탐지시스템을 설치하여 24시간 침입을 감시하고 있습니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[의견수렴 및 불만처리]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">아이엔아이테크은(는) 개인정보보호와 관련하여 귀하가 의견과 불만을 제기할 수 있는 창구를 개설하고 있습니다. 개인정보와 관련한 불만이 있으신 분은 아이엔아이테크의 개인정보 관리책임자에게 의견을 주시면 접수 즉시 조치하여 처리결과를 통보해 드립니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[14세 미만 어린이들에 대한 보호정책]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">아이엔아이테크은(는) 14세 미만 어린이들에 대한 회원 미가입 정책과 함께 개인정보를 부모의 동의 없이 제3자와 공유하지 않으며 사용자에 관한 정보를 매매하거나 대여하지 않습니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[개인정보 관리책임자]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">아이엔아이테크은(는) 개인정보에 대한 의견수렴 및 불만처리의 정책을 담당하는 개인정보정책 담당 관리책임자를 지정하고 있습니다. 본 정책에 대한 불만사항이 있으시다면 아래 연락처로 문의 하시면 친절히 처리하여 드리겠습니다.</p><h6 style="font-family: 돋움, Dotum, Helvetica, sans-serif;">[개인정보정책 책임자]</h6><p style="font-family: 돋움, Dotum, Helvetica, sans-serif; font-size: 12px;">성 명 :<br>000<br>소 속 :<br>아이엔아이테크<br>연락처 :<br>00-000-0000<br>이메일 :<br><a href="mailto:withsky@vizensoft.com"><font color="#0066cc">000@000.000</font></a><br>시행일<br>본 개인정보보호정책은 2010년 10월 26일부터 시행합니다.</p>	
+					<!-- //policy -->
+				</div>
+				<div class="jcheck">
+					<input type="checkbox" data-value="개인정보취급방침에 동의하세요." id="agree02" name="agree02" value="" title="개인정보취급방침에 동의합니다 체크해주세요." checked="checked">
+					<label for="agree02"> 개인정보취급방침에 동의합니다.</label>
+				</div>
+				<!-- //jcheck -->
+			</div>
+		</div>
+		
+		<!-- //join -->
+		
+		<div class="writeForm">
+			<table>
+				<colgroup>
+					<col class="writeForm_col01">
+					<col width="*">
+				</colgroup>
+				<tbody><tr>
+					<th><span class="col01">*</span>작성자</th>
+					<td>
+						<input data-value="작성자를 입력하세요." id="name" name="name" class="inputTxt inputName" type="text" value="" maxlength="20">
+					</td>
+				</tr>
+				<tr>
+					<th><span class="col01">*</span>이메일</th>
+					<td class="mail_type">
+						<input data-value="이메일을 입력하세요." name="email1" id="email1" class="inputEmail" type="text" value="" maxlength="70"><span class="email_txt">@</span>
+						<select class="selecEmail" name="email2" id="email2" onchange="chgDomains(this);" data-value="이메일을 선택하세요">
+							<option value="">선택하세요</option>
+							<option value="직접 입력">직접 입력</option><option value="naver.com">naver.com</option><option value="daum.net">daum.net</option><option value="gmail.com">gmail.com</option><option value="hotmail.com">hotmail.com</option><option value="nate.com">nate.com</option><option value="korea.com">korea.com</option>
+						</select>
+						
+					</td>
+				</tr>
+				<tr>
+					<th><span class="col01">*</span>비밀번호</th>
+					<td>
+						<input data-value="비밀번호를 입력하세요." name="password" id="password" class="inputPass" type="password" maxlength="100">
+					</td>
+				</tr>
+				<tr>
+					<th><span class="col01">*</span>연락처</th>
+					<td class="phone_type">
+						
+						<select class="selectNum" name="tel1" id="tel1">
+							<option value="02">02 서울</option><option value="031">031 경기</option><option value="032">032 인천</option><option value="032">032 인천</option><option value="033">033 강원</option><option value="041">041 충남</option><option value="043">043 충북</option><option value="051">051 부산</option><option value="052">052 울산</option><option value="053">053 대구</option><option value="054">054 경북</option><option value="055">055 경남</option><option value="061">061 전남</option><option value="062">062 광주</option><option value="063">063 전북</option><option value="064">064 제주</option><option value="050">050</option><option value="070">070</option><option value="010">010</option><option value="011">011</option><option value="016">016</option><option value="017">017</option><option value="018">018</option><option value="019">019</option>
+						</select>
+						<input data-value="연락처를 입력하세요." name="tel2" id="tel2" class="inputNum" type="text" value="" maxlength="4" onkeyup="isNumberOrHyphen2(this);">
+						<input data-value="연락처를 입력하세요." name="tel3" id="tel3" class="inputNum" type="text" value="" maxlength="4" onkeyup="isNumberOrHyphen2(this);">
+						<input type="hidden" name="cell" id="cell" value="">
+						
+					</td>
+				</tr>
+				<tr>
+					<th><span class="col01">*</span>휴대폰</th>
+					<td class="phone_type">
+						
+						<select class="selectNum" name="cell1" id="cell1">
+							<option value="010">010</option><option value="011">011</option><option value="016">016</option><option value="017">017</option><option value="018">018</option><option value="019">019</option>
+						</select>
+						<input data-value="휴대폰을 입력하세요." name="cell2" id="cell2" class="inputNum" type="text" value="" maxlength="4" onkeyup="isNumberOrHyphen2(this);">
+						<input data-value="휴대폰을 입력하세요." name="cell3" id="cell3" class="inputNum" type="text" value="" maxlength="4" onkeyup="isNumberOrHyphen2(this);">
+						<input type="hidden" name="cell" id="cell" value="">
+						
+						
+					</td>
+				</tr>
+				<tr>
+					<th><span class="col01">*</span>제목</th>
+					<td>
+						<input data-value="제목를 입력하세요." type="text" id="title" class="inputTit" name="title" value="" maxlength="120">
+						<!-- <span class="label_wrap"><input type="checkbox" name="secret" id="secret" value="1" /> <label for="secret">비공개</label></span> -->
+					</td>
+				</tr>
+				<tr>
+					<th><span class="col01">*</span>내용</th>
+					<td><textarea name="contents" id="contents" data-value="내용을 입력하세요." cols="30" rows="10" style="display: none;"></textarea><div class="note-editor note-frame panel panel-default"><div class="note-dropzone">  <div class="note-dropzone-message"></div></div><div class="note-toolbar panel-heading" role="toolbar"><div class="note-btn-group btn-group note-fontname"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn-default btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="글꼴" data-original-title="글꼴"><span class="note-current-fontname" style="font-family: &quot;Noto Sans KR&quot;;">Noto Sans KR</span> <span class="note-icon-caret"></span></button><ul class="dropdown-menu note-check dropdown-fontname" role="list" aria-label="글꼴"><li role="listitem" aria-label="굴림"><a href="#" data-value="굴림"><i class="note-icon-menu-check"></i> <span style="font-family: '굴림'">굴림</span></a></li><li role="listitem" aria-label="굴림체"><a href="#" data-value="굴림체"><i class="note-icon-menu-check"></i> <span style="font-family: '굴림체'">굴림체</span></a></li><li role="listitem" aria-label="궁서"><a href="#" data-value="궁서"><i class="note-icon-menu-check"></i> <span style="font-family: '궁서'">궁서</span></a></li><li role="listitem" aria-label="Nanum Gothic"><a href="#" data-value="Nanum Gothic"><i class="note-icon-menu-check"></i> <span style="font-family: 'Nanum Gothic'">Nanum Gothic</span></a></li><li role="listitem" aria-label="돋움"><a href="#" data-value="돋움"><i class="note-icon-menu-check"></i> <span style="font-family: '돋움'">돋움</span></a></li><li role="listitem" aria-label="돋움체"><a href="#" data-value="돋움체"><i class="note-icon-menu-check"></i> <span style="font-family: '돋움체'">돋움체</span></a></li><li role="listitem" aria-label="바탕"><a href="#" data-value="바탕"><i class="note-icon-menu-check"></i> <span style="font-family: '바탕'">바탕</span></a></li><li role="listitem" aria-label="바탕체"><a href="#" data-value="바탕체"><i class="note-icon-menu-check"></i> <span style="font-family: '바탕체'">바탕체</span></a></li><li role="listitem" aria-label="Arial"><a href="#" data-value="Arial"><i class="note-icon-menu-check"></i> <span style="font-family: 'Arial'">Arial</span></a></li><li role="listitem" aria-label="Arial Black"><a href="#" data-value="Arial Black"><i class="note-icon-menu-check"></i> <span style="font-family: 'Arial Black'">Arial Black</span></a></li><li role="listitem" aria-label="Comic Sans MS"><a href="#" data-value="Comic Sans MS"><i class="note-icon-menu-check"></i> <span style="font-family: 'Comic Sans MS'">Comic Sans MS</span></a></li><li role="listitem" aria-label="Courier New"><a href="#" data-value="Courier New"><i class="note-icon-menu-check"></i> <span style="font-family: 'Courier New'">Courier New</span></a></li><li role="listitem" aria-label="Helvetica"><a href="#" data-value="Helvetica"><i class="note-icon-menu-check"></i> <span style="font-family: 'Helvetica'">Helvetica</span></a></li><li role="listitem" aria-label="Noto Sans KR"><a href="#" data-value="Noto Sans KR" class="checked"><i class="note-icon-menu-check"></i> <span style="font-family: 'Noto Sans KR'">Noto Sans KR</span></a></li></ul></div></div><div class="note-btn-group btn-group note-fontsize"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn-default btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="글자 크기" data-original-title="글자 크기"><span class="note-current-fontsize">12px</span> <span class="note-icon-caret"></span></button><ul class="dropdown-menu note-check dropdown-fontsize" role="list" aria-label="글자 크기"><li role="listitem" aria-label="8"><a href="#" data-value="8"><i class="note-icon-menu-check"></i> <span style="font-size: 8px">8px</span></a></li><li role="listitem" aria-label="9"><a href="#" data-value="9"><i class="note-icon-menu-check"></i> <span style="font-size: 9px">9px</span></a></li><li role="listitem" aria-label="10"><a href="#" data-value="10"><i class="note-icon-menu-check"></i> <span style="font-size: 10px">10px</span></a></li><li role="listitem" aria-label="11"><a href="#" data-value="11"><i class="note-icon-menu-check"></i> <span style="font-size: 11px">11px</span></a></li><li role="listitem" aria-label="12"><a href="#" data-value="12" class="checked"><i class="note-icon-menu-check"></i> <span style="font-size: 12px">12px</span></a></li><li role="listitem" aria-label="14"><a href="#" data-value="14"><i class="note-icon-menu-check"></i> <span style="font-size: 14px">14px</span></a></li><li role="listitem" aria-label="16"><a href="#" data-value="16"><i class="note-icon-menu-check"></i> <span style="font-size: 16px">16px</span></a></li><li role="listitem" aria-label="18"><a href="#" data-value="18"><i class="note-icon-menu-check"></i> <span style="font-size: 18px">18px</span></a></li><li role="listitem" aria-label="24"><a href="#" data-value="24"><i class="note-icon-menu-check"></i> <span style="font-size: 24px">24px</span></a></li><li role="listitem" aria-label="36"><a href="#" data-value="36"><i class="note-icon-menu-check"></i> <span style="font-size: 36px">36px</span></a></li></ul></div></div><div class="note-btn-group btn-group note-height"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn-default btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="줄간격" data-original-title="줄간격"><i class="note-icon-text-height"></i> <span class="note-icon-caret"></span></button><ul class="dropdown-menu note-check dropdown-line-height" role="list" aria-label="줄간격"><li role="listitem" aria-label="1.0"><a href="#" data-value="1.0"><i class="note-icon-menu-check"></i> 1.0</a></li><li role="listitem" aria-label="1.2"><a href="#" data-value="1.2"><i class="note-icon-menu-check"></i> 1.2</a></li><li role="listitem" aria-label="1.4"><a href="#" data-value="1.4"><i class="note-icon-menu-check"></i> 1.4</a></li><li role="listitem" aria-label="1.5"><a href="#" data-value="1.5"><i class="note-icon-menu-check"></i> 1.5</a></li><li role="listitem" aria-label="1.6"><a href="#" data-value="1.6"><i class="note-icon-menu-check"></i> 1.6</a></li><li role="listitem" aria-label="1.8"><a href="#" data-value="1.8"><i class="note-icon-menu-check"></i> 1.8</a></li><li role="listitem" aria-label="2.0"><a href="#" data-value="2.0"><i class="note-icon-menu-check"></i> 2.0</a></li><li role="listitem" aria-label="3.0"><a href="#" data-value="3.0"><i class="note-icon-menu-check"></i> 3.0</a></li></ul></div></div><div class="note-btn-group btn-group note-width"></div><div class="note-btn-group btn-group note-hr"><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="구분선 추가 (CTRL+ENTER)" data-original-title="구분선 추가 (CTRL+ENTER)"><i class="note-icon-minus"></i></button></div><div class="note-btn-group btn-group note-superscript"><button type="button" class="note-btn btn-default btn-sm note-btn-superscript" role="button" tabindex="-1" title="" aria-label="위 첨자" data-original-title="위 첨자"><i class="note-icon-superscript"></i></button></div><div class="note-btn-group btn-group note-subscript"><button type="button" class="note-btn btn-default btn-sm note-btn-subscript" role="button" tabindex="-1" title="" aria-label="아래 첨자" data-original-title="아래 첨자"><i class="note-icon-subscript"></i></button></div><div class="note-btn-group btn-group note-font"><button type="button" class="note-btn btn-default btn-sm note-btn-bold" role="button" tabindex="-1" title="" aria-label="굵게 (CTRL+B)" data-original-title="굵게 (CTRL+B)"><i class="note-icon-bold"></i></button><button type="button" class="note-btn btn-default btn-sm note-btn-underline" role="button" tabindex="-1" title="" aria-label="밑줄 (CTRL+U)" data-original-title="밑줄 (CTRL+U)"><i class="note-icon-underline"></i></button></div><div class="note-btn-group btn-group note-color"><div class="note-btn-group btn-group note-color note-color-fore"><button type="button" class="note-btn btn-default btn-sm note-current-color-button" role="button" tabindex="-1" title="" aria-label="글자색" data-original-title="글자색"><i class="note-icon-font note-recent-color"></i></button><button type="button" class="note-btn btn-default btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="다른 색 선택" data-original-title="다른 색 선택"> <span class="note-icon-caret"></span></button><ul class="dropdown-menu" role="list"><div class="note-palette btn-group">  <div class="note-palette-title">글자색</div>  <div>    <button type="button" class="note-color-reset btn smbtn btn-default" data-event="removeFormat" data-value="foreColor">기본 값으로 변경    </button>  </div>  <div class="note-holder" data-event="foreColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#000000" data-event="foreColor" data-value="#000000" title="" aria-label="Black" data-toggle="button" tabindex="-1" data-original-title="Black"></button><button type="button" class="note-color-btn" style="background-color:#424242" data-event="foreColor" data-value="#424242" title="" aria-label="Tundora" data-toggle="button" tabindex="-1" data-original-title="Tundora"></button><button type="button" class="note-color-btn" style="background-color:#636363" data-event="foreColor" data-value="#636363" title="" aria-label="Dove Gray" data-toggle="button" tabindex="-1" data-original-title="Dove Gray"></button><button type="button" class="note-color-btn" style="background-color:#9C9C94" data-event="foreColor" data-value="#9C9C94" title="" aria-label="Star Dust" data-toggle="button" tabindex="-1" data-original-title="Star Dust"></button><button type="button" class="note-color-btn" style="background-color:#CEC6CE" data-event="foreColor" data-value="#CEC6CE" title="" aria-label="Pale Slate" data-toggle="button" tabindex="-1" data-original-title="Pale Slate"></button><button type="button" class="note-color-btn" style="background-color:#EFEFEF" data-event="foreColor" data-value="#EFEFEF" title="" aria-label="Gallery" data-toggle="button" tabindex="-1" data-original-title="Gallery"></button><button type="button" class="note-color-btn" style="background-color:#F7F7F7" data-event="foreColor" data-value="#F7F7F7" title="" aria-label="Alabaster" data-toggle="button" tabindex="-1" data-original-title="Alabaster"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="White" data-toggle="button" tabindex="-1" data-original-title="White"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FF0000" data-event="foreColor" data-value="#FF0000" title="" aria-label="Red" data-toggle="button" tabindex="-1" data-original-title="Red"></button><button type="button" class="note-color-btn" style="background-color:#FF9C00" data-event="foreColor" data-value="#FF9C00" title="" aria-label="Orange Peel" data-toggle="button" tabindex="-1" data-original-title="Orange Peel"></button><button type="button" class="note-color-btn" style="background-color:#FFFF00" data-event="foreColor" data-value="#FFFF00" title="" aria-label="Yellow" data-toggle="button" tabindex="-1" data-original-title="Yellow"></button><button type="button" class="note-color-btn" style="background-color:#00FF00" data-event="foreColor" data-value="#00FF00" title="" aria-label="Green" data-toggle="button" tabindex="-1" data-original-title="Green"></button><button type="button" class="note-color-btn" style="background-color:#00FFFF" data-event="foreColor" data-value="#00FFFF" title="" aria-label="Cyan" data-toggle="button" tabindex="-1" data-original-title="Cyan"></button><button type="button" class="note-color-btn" style="background-color:#0000FF" data-event="foreColor" data-value="#0000FF" title="" aria-label="Blue" data-toggle="button" tabindex="-1" data-original-title="Blue"></button><button type="button" class="note-color-btn" style="background-color:#9C00FF" data-event="foreColor" data-value="#9C00FF" title="" aria-label="Electric Violet" data-toggle="button" tabindex="-1" data-original-title="Electric Violet"></button><button type="button" class="note-color-btn" style="background-color:#FF00FF" data-event="foreColor" data-value="#FF00FF" title="" aria-label="Magenta" data-toggle="button" tabindex="-1" data-original-title="Magenta"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#F7C6CE" data-event="foreColor" data-value="#F7C6CE" title="" aria-label="Azalea" data-toggle="button" tabindex="-1" data-original-title="Azalea"></button><button type="button" class="note-color-btn" style="background-color:#FFE7CE" data-event="foreColor" data-value="#FFE7CE" title="" aria-label="Karry" data-toggle="button" tabindex="-1" data-original-title="Karry"></button><button type="button" class="note-color-btn" style="background-color:#FFEFC6" data-event="foreColor" data-value="#FFEFC6" title="" aria-label="Egg White" data-toggle="button" tabindex="-1" data-original-title="Egg White"></button><button type="button" class="note-color-btn" style="background-color:#D6EFD6" data-event="foreColor" data-value="#D6EFD6" title="" aria-label="Zanah" data-toggle="button" tabindex="-1" data-original-title="Zanah"></button><button type="button" class="note-color-btn" style="background-color:#CEDEE7" data-event="foreColor" data-value="#CEDEE7" title="" aria-label="Botticelli" data-toggle="button" tabindex="-1" data-original-title="Botticelli"></button><button type="button" class="note-color-btn" style="background-color:#CEE7F7" data-event="foreColor" data-value="#CEE7F7" title="" aria-label="Tropical Blue" data-toggle="button" tabindex="-1" data-original-title="Tropical Blue"></button><button type="button" class="note-color-btn" style="background-color:#D6D6E7" data-event="foreColor" data-value="#D6D6E7" title="" aria-label="Mischka" data-toggle="button" tabindex="-1" data-original-title="Mischka"></button><button type="button" class="note-color-btn" style="background-color:#E7D6DE" data-event="foreColor" data-value="#E7D6DE" title="" aria-label="Twilight" data-toggle="button" tabindex="-1" data-original-title="Twilight"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E79C9C" data-event="foreColor" data-value="#E79C9C" title="" aria-label="Tonys Pink" data-toggle="button" tabindex="-1" data-original-title="Tonys Pink"></button><button type="button" class="note-color-btn" style="background-color:#FFC69C" data-event="foreColor" data-value="#FFC69C" title="" aria-label="Peach Orange" data-toggle="button" tabindex="-1" data-original-title="Peach Orange"></button><button type="button" class="note-color-btn" style="background-color:#FFE79C" data-event="foreColor" data-value="#FFE79C" title="" aria-label="Cream Brulee" data-toggle="button" tabindex="-1" data-original-title="Cream Brulee"></button><button type="button" class="note-color-btn" style="background-color:#B5D6A5" data-event="foreColor" data-value="#B5D6A5" title="" aria-label="Sprout" data-toggle="button" tabindex="-1" data-original-title="Sprout"></button><button type="button" class="note-color-btn" style="background-color:#A5C6CE" data-event="foreColor" data-value="#A5C6CE" title="" aria-label="Casper" data-toggle="button" tabindex="-1" data-original-title="Casper"></button><button type="button" class="note-color-btn" style="background-color:#9CC6EF" data-event="foreColor" data-value="#9CC6EF" title="" aria-label="Perano" data-toggle="button" tabindex="-1" data-original-title="Perano"></button><button type="button" class="note-color-btn" style="background-color:#B5A5D6" data-event="foreColor" data-value="#B5A5D6" title="" aria-label="Cold Purple" data-toggle="button" tabindex="-1" data-original-title="Cold Purple"></button><button type="button" class="note-color-btn" style="background-color:#D6A5BD" data-event="foreColor" data-value="#D6A5BD" title="" aria-label="Careys Pink" data-toggle="button" tabindex="-1" data-original-title="Careys Pink"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E76363" data-event="foreColor" data-value="#E76363" title="" aria-label="Mandy" data-toggle="button" tabindex="-1" data-original-title="Mandy"></button><button type="button" class="note-color-btn" style="background-color:#F7AD6B" data-event="foreColor" data-value="#F7AD6B" title="" aria-label="Rajah" data-toggle="button" tabindex="-1" data-original-title="Rajah"></button><button type="button" class="note-color-btn" style="background-color:#FFD663" data-event="foreColor" data-value="#FFD663" title="" aria-label="Dandelion" data-toggle="button" tabindex="-1" data-original-title="Dandelion"></button><button type="button" class="note-color-btn" style="background-color:#94BD7B" data-event="foreColor" data-value="#94BD7B" title="" aria-label="Olivine" data-toggle="button" tabindex="-1" data-original-title="Olivine"></button><button type="button" class="note-color-btn" style="background-color:#73A5AD" data-event="foreColor" data-value="#73A5AD" title="" aria-label="Gulf Stream" data-toggle="button" tabindex="-1" data-original-title="Gulf Stream"></button><button type="button" class="note-color-btn" style="background-color:#6BADDE" data-event="foreColor" data-value="#6BADDE" title="" aria-label="Viking" data-toggle="button" tabindex="-1" data-original-title="Viking"></button><button type="button" class="note-color-btn" style="background-color:#8C7BC6" data-event="foreColor" data-value="#8C7BC6" title="" aria-label="Blue Marguerite" data-toggle="button" tabindex="-1" data-original-title="Blue Marguerite"></button><button type="button" class="note-color-btn" style="background-color:#C67BA5" data-event="foreColor" data-value="#C67BA5" title="" aria-label="Puce" data-toggle="button" tabindex="-1" data-original-title="Puce"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#CE0000" data-event="foreColor" data-value="#CE0000" title="" aria-label="Guardsman Red" data-toggle="button" tabindex="-1" data-original-title="Guardsman Red"></button><button type="button" class="note-color-btn" style="background-color:#E79439" data-event="foreColor" data-value="#E79439" title="" aria-label="Fire Bush" data-toggle="button" tabindex="-1" data-original-title="Fire Bush"></button><button type="button" class="note-color-btn" style="background-color:#EFC631" data-event="foreColor" data-value="#EFC631" title="" aria-label="Golden Dream" data-toggle="button" tabindex="-1" data-original-title="Golden Dream"></button><button type="button" class="note-color-btn" style="background-color:#6BA54A" data-event="foreColor" data-value="#6BA54A" title="" aria-label="Chelsea Cucumber" data-toggle="button" tabindex="-1" data-original-title="Chelsea Cucumber"></button><button type="button" class="note-color-btn" style="background-color:#4A7B8C" data-event="foreColor" data-value="#4A7B8C" title="" aria-label="Smalt Blue" data-toggle="button" tabindex="-1" data-original-title="Smalt Blue"></button><button type="button" class="note-color-btn" style="background-color:#3984C6" data-event="foreColor" data-value="#3984C6" title="" aria-label="Boston Blue" data-toggle="button" tabindex="-1" data-original-title="Boston Blue"></button><button type="button" class="note-color-btn" style="background-color:#634AA5" data-event="foreColor" data-value="#634AA5" title="" aria-label="Butterfly Bush" data-toggle="button" tabindex="-1" data-original-title="Butterfly Bush"></button><button type="button" class="note-color-btn" style="background-color:#A54A7B" data-event="foreColor" data-value="#A54A7B" title="" aria-label="Cadillac" data-toggle="button" tabindex="-1" data-original-title="Cadillac"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#9C0000" data-event="foreColor" data-value="#9C0000" title="" aria-label="Sangria" data-toggle="button" tabindex="-1" data-original-title="Sangria"></button><button type="button" class="note-color-btn" style="background-color:#B56308" data-event="foreColor" data-value="#B56308" title="" aria-label="Mai Tai" data-toggle="button" tabindex="-1" data-original-title="Mai Tai"></button><button type="button" class="note-color-btn" style="background-color:#BD9400" data-event="foreColor" data-value="#BD9400" title="" aria-label="Buddha Gold" data-toggle="button" tabindex="-1" data-original-title="Buddha Gold"></button><button type="button" class="note-color-btn" style="background-color:#397B21" data-event="foreColor" data-value="#397B21" title="" aria-label="Forest Green" data-toggle="button" tabindex="-1" data-original-title="Forest Green"></button><button type="button" class="note-color-btn" style="background-color:#104A5A" data-event="foreColor" data-value="#104A5A" title="" aria-label="Eden" data-toggle="button" tabindex="-1" data-original-title="Eden"></button><button type="button" class="note-color-btn" style="background-color:#085294" data-event="foreColor" data-value="#085294" title="" aria-label="Venice Blue" data-toggle="button" tabindex="-1" data-original-title="Venice Blue"></button><button type="button" class="note-color-btn" style="background-color:#311873" data-event="foreColor" data-value="#311873" title="" aria-label="Meteorite" data-toggle="button" tabindex="-1" data-original-title="Meteorite"></button><button type="button" class="note-color-btn" style="background-color:#731842" data-event="foreColor" data-value="#731842" title="" aria-label="Claret" data-toggle="button" tabindex="-1" data-original-title="Claret"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#630000" data-event="foreColor" data-value="#630000" title="" aria-label="Rosewood" data-toggle="button" tabindex="-1" data-original-title="Rosewood"></button><button type="button" class="note-color-btn" style="background-color:#7B3900" data-event="foreColor" data-value="#7B3900" title="" aria-label="Cinnamon" data-toggle="button" tabindex="-1" data-original-title="Cinnamon"></button><button type="button" class="note-color-btn" style="background-color:#846300" data-event="foreColor" data-value="#846300" title="" aria-label="Olive" data-toggle="button" tabindex="-1" data-original-title="Olive"></button><button type="button" class="note-color-btn" style="background-color:#295218" data-event="foreColor" data-value="#295218" title="" aria-label="Parsley" data-toggle="button" tabindex="-1" data-original-title="Parsley"></button><button type="button" class="note-color-btn" style="background-color:#083139" data-event="foreColor" data-value="#083139" title="" aria-label="Tiber" data-toggle="button" tabindex="-1" data-original-title="Tiber"></button><button type="button" class="note-color-btn" style="background-color:#003163" data-event="foreColor" data-value="#003163" title="" aria-label="Midnight Blue" data-toggle="button" tabindex="-1" data-original-title="Midnight Blue"></button><button type="button" class="note-color-btn" style="background-color:#21104A" data-event="foreColor" data-value="#21104A" title="" aria-label="Valentino" data-toggle="button" tabindex="-1" data-original-title="Valentino"></button><button type="button" class="note-color-btn" style="background-color:#4A1031" data-event="foreColor" data-value="#4A1031" title="" aria-label="Loulou" data-toggle="button" tabindex="-1" data-original-title="Loulou"></button></div></div></div></div></ul></div><div class="note-btn-group btn-group note-color note-color-back"><button type="button" class="note-btn btn-default btn-sm note-current-color-button" role="button" tabindex="-1" title="" aria-label="배경색" data-original-title="배경색" data-backcolor="#FFFF00"><i class="note-icon-font note-recent-color" style="background-color: rgb(255, 255, 0); color: transparent;"></i></button><button type="button" class="note-btn btn-default btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="다른 색 선택" data-original-title="다른 색 선택"> <span class="note-icon-caret"></span></button><ul class="dropdown-menu" role="list"><div class="note-palette btn-group">  <div class="note-palette-title">배경색</div>  <div>    <button type="button" class="note-color-reset btn smbtn btn-default" data-event="backColor" data-value="inherit">투명    </button>  </div>  <div class="note-holder" data-event="backColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#000000" data-event="backColor" data-value="#000000" title="" aria-label="Black" data-toggle="button" tabindex="-1" data-original-title="Black"></button><button type="button" class="note-color-btn" style="background-color:#424242" data-event="backColor" data-value="#424242" title="" aria-label="Tundora" data-toggle="button" tabindex="-1" data-original-title="Tundora"></button><button type="button" class="note-color-btn" style="background-color:#636363" data-event="backColor" data-value="#636363" title="" aria-label="Dove Gray" data-toggle="button" tabindex="-1" data-original-title="Dove Gray"></button><button type="button" class="note-color-btn" style="background-color:#9C9C94" data-event="backColor" data-value="#9C9C94" title="" aria-label="Star Dust" data-toggle="button" tabindex="-1" data-original-title="Star Dust"></button><button type="button" class="note-color-btn" style="background-color:#CEC6CE" data-event="backColor" data-value="#CEC6CE" title="" aria-label="Pale Slate" data-toggle="button" tabindex="-1" data-original-title="Pale Slate"></button><button type="button" class="note-color-btn" style="background-color:#EFEFEF" data-event="backColor" data-value="#EFEFEF" title="" aria-label="Gallery" data-toggle="button" tabindex="-1" data-original-title="Gallery"></button><button type="button" class="note-color-btn" style="background-color:#F7F7F7" data-event="backColor" data-value="#F7F7F7" title="" aria-label="Alabaster" data-toggle="button" tabindex="-1" data-original-title="Alabaster"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="White" data-toggle="button" tabindex="-1" data-original-title="White"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FF0000" data-event="backColor" data-value="#FF0000" title="" aria-label="Red" data-toggle="button" tabindex="-1" data-original-title="Red"></button><button type="button" class="note-color-btn" style="background-color:#FF9C00" data-event="backColor" data-value="#FF9C00" title="" aria-label="Orange Peel" data-toggle="button" tabindex="-1" data-original-title="Orange Peel"></button><button type="button" class="note-color-btn" style="background-color:#FFFF00" data-event="backColor" data-value="#FFFF00" title="" aria-label="Yellow" data-toggle="button" tabindex="-1" data-original-title="Yellow"></button><button type="button" class="note-color-btn" style="background-color:#00FF00" data-event="backColor" data-value="#00FF00" title="" aria-label="Green" data-toggle="button" tabindex="-1" data-original-title="Green"></button><button type="button" class="note-color-btn" style="background-color:#00FFFF" data-event="backColor" data-value="#00FFFF" title="" aria-label="Cyan" data-toggle="button" tabindex="-1" data-original-title="Cyan"></button><button type="button" class="note-color-btn" style="background-color:#0000FF" data-event="backColor" data-value="#0000FF" title="" aria-label="Blue" data-toggle="button" tabindex="-1" data-original-title="Blue"></button><button type="button" class="note-color-btn" style="background-color:#9C00FF" data-event="backColor" data-value="#9C00FF" title="" aria-label="Electric Violet" data-toggle="button" tabindex="-1" data-original-title="Electric Violet"></button><button type="button" class="note-color-btn" style="background-color:#FF00FF" data-event="backColor" data-value="#FF00FF" title="" aria-label="Magenta" data-toggle="button" tabindex="-1" data-original-title="Magenta"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#F7C6CE" data-event="backColor" data-value="#F7C6CE" title="" aria-label="Azalea" data-toggle="button" tabindex="-1" data-original-title="Azalea"></button><button type="button" class="note-color-btn" style="background-color:#FFE7CE" data-event="backColor" data-value="#FFE7CE" title="" aria-label="Karry" data-toggle="button" tabindex="-1" data-original-title="Karry"></button><button type="button" class="note-color-btn" style="background-color:#FFEFC6" data-event="backColor" data-value="#FFEFC6" title="" aria-label="Egg White" data-toggle="button" tabindex="-1" data-original-title="Egg White"></button><button type="button" class="note-color-btn" style="background-color:#D6EFD6" data-event="backColor" data-value="#D6EFD6" title="" aria-label="Zanah" data-toggle="button" tabindex="-1" data-original-title="Zanah"></button><button type="button" class="note-color-btn" style="background-color:#CEDEE7" data-event="backColor" data-value="#CEDEE7" title="" aria-label="Botticelli" data-toggle="button" tabindex="-1" data-original-title="Botticelli"></button><button type="button" class="note-color-btn" style="background-color:#CEE7F7" data-event="backColor" data-value="#CEE7F7" title="" aria-label="Tropical Blue" data-toggle="button" tabindex="-1" data-original-title="Tropical Blue"></button><button type="button" class="note-color-btn" style="background-color:#D6D6E7" data-event="backColor" data-value="#D6D6E7" title="" aria-label="Mischka" data-toggle="button" tabindex="-1" data-original-title="Mischka"></button><button type="button" class="note-color-btn" style="background-color:#E7D6DE" data-event="backColor" data-value="#E7D6DE" title="" aria-label="Twilight" data-toggle="button" tabindex="-1" data-original-title="Twilight"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E79C9C" data-event="backColor" data-value="#E79C9C" title="" aria-label="Tonys Pink" data-toggle="button" tabindex="-1" data-original-title="Tonys Pink"></button><button type="button" class="note-color-btn" style="background-color:#FFC69C" data-event="backColor" data-value="#FFC69C" title="" aria-label="Peach Orange" data-toggle="button" tabindex="-1" data-original-title="Peach Orange"></button><button type="button" class="note-color-btn" style="background-color:#FFE79C" data-event="backColor" data-value="#FFE79C" title="" aria-label="Cream Brulee" data-toggle="button" tabindex="-1" data-original-title="Cream Brulee"></button><button type="button" class="note-color-btn" style="background-color:#B5D6A5" data-event="backColor" data-value="#B5D6A5" title="" aria-label="Sprout" data-toggle="button" tabindex="-1" data-original-title="Sprout"></button><button type="button" class="note-color-btn" style="background-color:#A5C6CE" data-event="backColor" data-value="#A5C6CE" title="" aria-label="Casper" data-toggle="button" tabindex="-1" data-original-title="Casper"></button><button type="button" class="note-color-btn" style="background-color:#9CC6EF" data-event="backColor" data-value="#9CC6EF" title="" aria-label="Perano" data-toggle="button" tabindex="-1" data-original-title="Perano"></button><button type="button" class="note-color-btn" style="background-color:#B5A5D6" data-event="backColor" data-value="#B5A5D6" title="" aria-label="Cold Purple" data-toggle="button" tabindex="-1" data-original-title="Cold Purple"></button><button type="button" class="note-color-btn" style="background-color:#D6A5BD" data-event="backColor" data-value="#D6A5BD" title="" aria-label="Careys Pink" data-toggle="button" tabindex="-1" data-original-title="Careys Pink"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E76363" data-event="backColor" data-value="#E76363" title="" aria-label="Mandy" data-toggle="button" tabindex="-1" data-original-title="Mandy"></button><button type="button" class="note-color-btn" style="background-color:#F7AD6B" data-event="backColor" data-value="#F7AD6B" title="" aria-label="Rajah" data-toggle="button" tabindex="-1" data-original-title="Rajah"></button><button type="button" class="note-color-btn" style="background-color:#FFD663" data-event="backColor" data-value="#FFD663" title="" aria-label="Dandelion" data-toggle="button" tabindex="-1" data-original-title="Dandelion"></button><button type="button" class="note-color-btn" style="background-color:#94BD7B" data-event="backColor" data-value="#94BD7B" title="" aria-label="Olivine" data-toggle="button" tabindex="-1" data-original-title="Olivine"></button><button type="button" class="note-color-btn" style="background-color:#73A5AD" data-event="backColor" data-value="#73A5AD" title="" aria-label="Gulf Stream" data-toggle="button" tabindex="-1" data-original-title="Gulf Stream"></button><button type="button" class="note-color-btn" style="background-color:#6BADDE" data-event="backColor" data-value="#6BADDE" title="" aria-label="Viking" data-toggle="button" tabindex="-1" data-original-title="Viking"></button><button type="button" class="note-color-btn" style="background-color:#8C7BC6" data-event="backColor" data-value="#8C7BC6" title="" aria-label="Blue Marguerite" data-toggle="button" tabindex="-1" data-original-title="Blue Marguerite"></button><button type="button" class="note-color-btn" style="background-color:#C67BA5" data-event="backColor" data-value="#C67BA5" title="" aria-label="Puce" data-toggle="button" tabindex="-1" data-original-title="Puce"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#CE0000" data-event="backColor" data-value="#CE0000" title="" aria-label="Guardsman Red" data-toggle="button" tabindex="-1" data-original-title="Guardsman Red"></button><button type="button" class="note-color-btn" style="background-color:#E79439" data-event="backColor" data-value="#E79439" title="" aria-label="Fire Bush" data-toggle="button" tabindex="-1" data-original-title="Fire Bush"></button><button type="button" class="note-color-btn" style="background-color:#EFC631" data-event="backColor" data-value="#EFC631" title="" aria-label="Golden Dream" data-toggle="button" tabindex="-1" data-original-title="Golden Dream"></button><button type="button" class="note-color-btn" style="background-color:#6BA54A" data-event="backColor" data-value="#6BA54A" title="" aria-label="Chelsea Cucumber" data-toggle="button" tabindex="-1" data-original-title="Chelsea Cucumber"></button><button type="button" class="note-color-btn" style="background-color:#4A7B8C" data-event="backColor" data-value="#4A7B8C" title="" aria-label="Smalt Blue" data-toggle="button" tabindex="-1" data-original-title="Smalt Blue"></button><button type="button" class="note-color-btn" style="background-color:#3984C6" data-event="backColor" data-value="#3984C6" title="" aria-label="Boston Blue" data-toggle="button" tabindex="-1" data-original-title="Boston Blue"></button><button type="button" class="note-color-btn" style="background-color:#634AA5" data-event="backColor" data-value="#634AA5" title="" aria-label="Butterfly Bush" data-toggle="button" tabindex="-1" data-original-title="Butterfly Bush"></button><button type="button" class="note-color-btn" style="background-color:#A54A7B" data-event="backColor" data-value="#A54A7B" title="" aria-label="Cadillac" data-toggle="button" tabindex="-1" data-original-title="Cadillac"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#9C0000" data-event="backColor" data-value="#9C0000" title="" aria-label="Sangria" data-toggle="button" tabindex="-1" data-original-title="Sangria"></button><button type="button" class="note-color-btn" style="background-color:#B56308" data-event="backColor" data-value="#B56308" title="" aria-label="Mai Tai" data-toggle="button" tabindex="-1" data-original-title="Mai Tai"></button><button type="button" class="note-color-btn" style="background-color:#BD9400" data-event="backColor" data-value="#BD9400" title="" aria-label="Buddha Gold" data-toggle="button" tabindex="-1" data-original-title="Buddha Gold"></button><button type="button" class="note-color-btn" style="background-color:#397B21" data-event="backColor" data-value="#397B21" title="" aria-label="Forest Green" data-toggle="button" tabindex="-1" data-original-title="Forest Green"></button><button type="button" class="note-color-btn" style="background-color:#104A5A" data-event="backColor" data-value="#104A5A" title="" aria-label="Eden" data-toggle="button" tabindex="-1" data-original-title="Eden"></button><button type="button" class="note-color-btn" style="background-color:#085294" data-event="backColor" data-value="#085294" title="" aria-label="Venice Blue" data-toggle="button" tabindex="-1" data-original-title="Venice Blue"></button><button type="button" class="note-color-btn" style="background-color:#311873" data-event="backColor" data-value="#311873" title="" aria-label="Meteorite" data-toggle="button" tabindex="-1" data-original-title="Meteorite"></button><button type="button" class="note-color-btn" style="background-color:#731842" data-event="backColor" data-value="#731842" title="" aria-label="Claret" data-toggle="button" tabindex="-1" data-original-title="Claret"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#630000" data-event="backColor" data-value="#630000" title="" aria-label="Rosewood" data-toggle="button" tabindex="-1" data-original-title="Rosewood"></button><button type="button" class="note-color-btn" style="background-color:#7B3900" data-event="backColor" data-value="#7B3900" title="" aria-label="Cinnamon" data-toggle="button" tabindex="-1" data-original-title="Cinnamon"></button><button type="button" class="note-color-btn" style="background-color:#846300" data-event="backColor" data-value="#846300" title="" aria-label="Olive" data-toggle="button" tabindex="-1" data-original-title="Olive"></button><button type="button" class="note-color-btn" style="background-color:#295218" data-event="backColor" data-value="#295218" title="" aria-label="Parsley" data-toggle="button" tabindex="-1" data-original-title="Parsley"></button><button type="button" class="note-color-btn" style="background-color:#083139" data-event="backColor" data-value="#083139" title="" aria-label="Tiber" data-toggle="button" tabindex="-1" data-original-title="Tiber"></button><button type="button" class="note-color-btn" style="background-color:#003163" data-event="backColor" data-value="#003163" title="" aria-label="Midnight Blue" data-toggle="button" tabindex="-1" data-original-title="Midnight Blue"></button><button type="button" class="note-color-btn" style="background-color:#21104A" data-event="backColor" data-value="#21104A" title="" aria-label="Valentino" data-toggle="button" tabindex="-1" data-original-title="Valentino"></button><button type="button" class="note-color-btn" style="background-color:#4A1031" data-event="backColor" data-value="#4A1031" title="" aria-label="Loulou" data-toggle="button" tabindex="-1" data-original-title="Loulou"></button></div></div></div></div></ul></div></div><div class="note-btn-group btn-group note-para"><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="글머리 기호 (CTRL+SHIFT+NUM7)" data-original-title="글머리 기호 (CTRL+SHIFT+NUM7)"><i class="note-icon-unorderedlist"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="번호 매기기 (CTRL+SHIFT+NUM8)" data-original-title="번호 매기기 (CTRL+SHIFT+NUM8)"><i class="note-icon-orderedlist"></i></button><div class="note-btn-group btn-group"><button type="button" class="note-btn btn-default btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="문단 정렬" data-original-title="문단 정렬"><i class="note-icon-align-left"></i> <span class="note-icon-caret"></span></button><ul class="dropdown-menu" role="list"><div class="note-btn-group btn-group note-align"><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="왼쪽 정렬 (CTRL+SHIFT+L)" data-original-title="왼쪽 정렬 (CTRL+SHIFT+L)"><i class="note-icon-align-left"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="가운데 정렬 (CTRL+SHIFT+E)" data-original-title="가운데 정렬 (CTRL+SHIFT+E)"><i class="note-icon-align-center"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="오른쪽 정렬 (CTRL+SHIFT+R)" data-original-title="오른쪽 정렬 (CTRL+SHIFT+R)"><i class="note-icon-align-right"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="양쪽 정렬 (CTRL+SHIFT+J)" data-original-title="양쪽 정렬 (CTRL+SHIFT+J)"><i class="note-icon-align-justify"></i></button></div><div class="note-btn-group btn-group note-list"><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="내어쓰기 (CTRL+[)" data-original-title="내어쓰기 (CTRL+[)"><i class="note-icon-align-outdent"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="들여쓰기 (CTRL+])" data-original-title="들여쓰기 (CTRL+])"><i class="note-icon-align-indent"></i></button></div></ul></div></div><div class="note-btn-group btn-group note-table"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn-default btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="테이블" data-original-title="테이블"><i class="note-icon-table"></i> <span class="note-icon-caret"></span></button><ul class="dropdown-menu note-table" role="list" aria-label="테이블"><div class="note-dimension-picker">  <div class="note-dimension-picker-mousecatcher" data-event="insertTable" data-value="1x1" style="width: 10em; height: 10em;"></div>  <div class="note-dimension-picker-highlighted"></div>  <div class="note-dimension-picker-unhighlighted"></div></div><div class="note-dimension-display">1 x 1</div></ul></div></div><div class="note-btn-group btn-group note-insert"><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="링크 (CTRL+K)" data-original-title="링크 (CTRL+K)"><i class="note-icon-link"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="사진" data-original-title="사진"><i class="note-icon-picture"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="동영상" data-original-title="동영상"><i class="note-icon-video"></i></button></div><div class="note-btn-group btn-group note-view"><button type="button" class="note-btn btn-default btn-sm btn-fullscreen" role="button" tabindex="-1" title="" aria-label="전체 화면" data-original-title="전체 화면"><i class="note-icon-arrows-alt"></i></button><button type="button" class="note-btn btn-default btn-sm btn-codeview" role="button" tabindex="-1" title="" aria-label="HTML" data-original-title="HTML"><i class="note-icon-code"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="도움말" data-original-title="도움말"><i class="note-icon-question"></i></button></div></div><div class="note-editing-area"><div class="note-handle"><div class="note-control-selection"><div class="note-control-selection-bg"></div><div class="note-control-holder note-control-nw"></div><div class="note-control-holder note-control-ne"></div><div class="note-control-holder note-control-sw"></div><div class="note-control-sizing note-control-se"></div><div class="note-control-selection-info"></div></div></div><textarea class="note-codable" role="textbox" aria-multiline="true"></textarea><div class="note-editable" contenteditable="true" role="textbox" aria-multiline="true" style="height: 280px; min-height: 100px;"><p><br></p></div></div><output class="note-status-output" aria-live="polite"></output><div class="note-statusbar" role="status">  <div class="note-resizebar" role="seperator" aria-orientation="horizontal" aria-label="Resize">    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>  </div></div><div class="modal link-dialog" aria-hidden="false" tabindex="-1" role="dialog" aria-label="링크 추가"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>      <h4 class="modal-title">링크 추가</h4>    </div>    <div class="modal-body"><div class="form-group note-form-group"><label class="note-form-label">링크에 표시할 내용</label><input class="note-link-text form-control note-form-control note-input" type="text"></div><div class="form-group note-form-group"><label class="note-form-label">이동할 URL</label><input class="note-link-url form-control note-form-control note-input" type="text" value="http://"></div><div class="checkbox sn-checkbox-open-in-new-window"><label> <input role="checkbox" type="checkbox" checked="" aria-checked="true">새창으로 열기</label></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-link-btn" value="링크 추가" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="사진 추가"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>      <h4 class="modal-title">사진 추가</h4>    </div>    <div class="modal-body"><div class="form-group note-form-group note-group-select-from-files"><label class="note-form-label">파일 선택</label><input class="note-image-input note-form-control note-input" type="file" name="files" accept="image/*" multiple="multiple"></div><div class="form-group note-group-image-url" style="overflow:auto;"><label class="note-form-label">사진 URL</label><input class="note-image-url form-control note-form-control note-input  col-md-12" type="text"></div></div>    <div class="modal-footer"><input type="button" href="#" class="smbtn btn btn-primary note-btn note-btn-primary note-image-btn" value="사진 추가" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="동영상 추가"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>      <h4 class="modal-title">동영상 추가</h4>    </div>    <div class="modal-body"><div class="form-group note-form-group row-fluid"><label class="note-form-label">동영상 URL <small class="text-muted">(YouTube, Vimeo, Vine, Instagram, DailyMotion, Youku 사용 가능)</small></label><input class="note-video-url form-control note-form-control note-input" type="text"></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-video-btn" value="동영상 추가" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="도움말"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>      <h4 class="modal-title">도움말</h4>    </div>    <div class="modal-body" style="max-height: 300px; overflow: scroll;"><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>ENTER</kbd></label><span>Insert Paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Z</kbd></label><span>Undoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Y</kbd></label><span>Redoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>TAB</kbd></label><span>Tab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>SHIFT+TAB</kbd></label><span>Untab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+B</kbd></label><span>Set a bold style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+I</kbd></label><span>Set a italic style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+U</kbd></label><span>Set a underline style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+S</kbd></label><span>Set a strikethrough style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+BACKSLASH</kbd></label><span>Clean a style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+L</kbd></label><span>Set left align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+E</kbd></label><span>Set center align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+R</kbd></label><span>Set right align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+J</kbd></label><span>Set full align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM7</kbd></label><span>Toggle unordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM8</kbd></label><span>Toggle ordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+LEFTBRACKET</kbd></label><span>Outdent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+RIGHTBRACKET</kbd></label><span>Indent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM0</kbd></label><span>Change current block's format as a paragraph(P tag)</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM1</kbd></label><span>Change current block's format as H1</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM2</kbd></label><span>Change current block's format as H2</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM3</kbd></label><span>Change current block's format as H3</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM4</kbd></label><span>Change current block's format as H4</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM5</kbd></label><span>Change current block's format as H5</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM6</kbd></label><span>Change current block's format as H6</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+ENTER</kbd></label><span>Insert horizontal rule</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+K</kbd></label><span>Show Link Dialog</span></div>    <div class="modal-footer"><p class="text-center"><a href="http://summernote.org/" target="_blank">Summernote 0.8.11</a> · <a href="https://github.com/summernote/summernote" target="_blank">Project</a> · <a href="https://github.com/summernote/summernote/issues" target="_blank">Issues</a></p></div>  </div></div></div></div></td>
+				</tr>
+				
+			</tbody></table>
+		</div>
+		<div class="writeForm_btn">
+			<a href="javascript:;" id="w_btn" onclick="$('#frm').submit()">확인</a>
+			<a href="index.jsp?reqPageNo=1">취소</a>
+		</div>
+		<input type="hidden" name="cmd" id="cmd" value="write">
+		<input type="hidden" name="email" id="email" value="">
+		
+		<input type="hidden" name="hospital_fk" id="hospital_fk" value="1">
+		
+	</div>
+	</form>
+	<!-- 프로그램끝 -->
+	
+	
+
+
+<div id="footer">
+	<div class="footer_top">
+		<div class="inner">
+<!-- 			<div class="contact_box"> -->
+<!-- 				<div class="txt"> -->
+<!-- 					<p>온라인 문의</p> -->
+<!-- 					<span class="mont">070-<br/>4693-2625</span> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<div class="left">
+				<a href="/" class="logo"><img src="/img/footer_logo.png" alt="logo"></a>
+				<div class="add">
+					<span>경상남도 진주시 소호로 109, 201호 (충무공동, 세라믹소재종합지원센터)</span><br>
+					<span>대표번호: 070-4693-2625</span>
+					<span>Fax: 055-792-2795</span>
+					<span>E-mail:yjpark119@daum.net</span>
+				</div>
+			</div>
+			<div class="right">
+				<div class="footer_gnb">
+			<ul>
+				<li>
+					<a class="mont" href="/about/vision/index.jsp">COMPANY</a>
+					<ul class="depth02">
+						<li><a href="/about/vision/index.jsp"><span>비전 및 미션</span></a></li>
+						<li><a href="/about/history/index.jsp"><span>연혁</span></a></li>
+						<li><a href="/about/company/index.jsp"><span>사업성과</span></a></li>
+						<li><a href="/about/patent/index.jsp"><span>인증 및 특허 현황</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/rnd/piezoele/index.jsp">R&amp;D</a>
+					<ul class="depth02">
+						<li><a href="/rnd/piezoele/index.jsp"><span>압전</span></a></li>
+						<li><a href="/rnd/energy/index.jsp"><span>에너지 하베스팅</span></a></li>
+						<li><a href="/rnd/health/index.jsp"><span>헬스케어</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/products/wearable/index.jsp">PRODUCT</a>
+					<ul class="depth02">
+						<li><a href="/products/wearable/index.jsp"><span>웨어러블 센서소자</span></a></li>
+						<li><a href="/products/iot/index.jsp"><span>IoT 델리네이터</span></a></li>
+						<li><a href="/products/mitt/index.jsp"><span>전자미트</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/business/platform/index.jsp">BUSINESS</a>
+					<ul class="depth02">
+						<li><a href="/business/platform/index.jsp"><span>플랫폼 서비스</span></a></li>
+						<li><a href="/business/smart/index.jsp"><span>스마트 빌리지</span></a></li>
+<!-- 						<li><a href="javascript:;">주요사업</a></li> -->
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/with/direction/index.jsp">WITH US</a>
+					<ul class="depth02">
+						<li><a href="/with/direction/index.jsp"><span>오시는길</span></a></li>
+						<li><a href="/with/inquiry/write.jsp"><span>온라인문의</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer_bottom">
+		<a href="javascript:;" class="top_btn"><img src="/img/footer_top_btn.png" alt="top"></a>
+		<p class="copy">copyright@INI TECH inc. All Rights Reserved.</p>
+	</div>
+	<div class="top_btn">
+		<a href="javascript:;"><img src="/img/foot_btn.png" alt=""></a>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		$("#footer .footer_top .footer_gnb").html($("#header .gnb").html()); 
+	});
+
+	// top 버튼
+	$(".top_btn a").on("click", function(){
+		$("html, body").animate({scrollTop:0}, 500);
+	});
+</script>	
+
+
+
+<div class="note-popover popover in note-link-popover bottom">  <div class="arrow"></div>  <div class="popover-content note-children-container"><span><a target="_blank"></a>&nbsp;</span><div class="note-btn-group btn-group note-link"><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="수정" data-original-title="수정"><i class="note-icon-link"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="링크 삭제" data-original-title="링크 삭제"><i class="note-icon-chain-broken"></i></button></div></div></div><div class="note-popover popover in note-image-popover bottom">  <div class="arrow"></div>  <div class="popover-content note-children-container"><div class="note-btn-group btn-group note-imagesize"><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="100% 크기로 변경" data-original-title="100% 크기로 변경"><span class="note-fontsize-10">100%</span></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="50% 크기로 변경" data-original-title="50% 크기로 변경"><span class="note-fontsize-10">50%</span></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="25% 크기로 변경" data-original-title="25% 크기로 변경"><span class="note-fontsize-10">25%</span></button></div><div class="note-btn-group btn-group note-float"><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="왼쪽 정렬" data-original-title="왼쪽 정렬"><i class="note-icon-align-left"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="오른쪽 정렬" data-original-title="오른쪽 정렬"><i class="note-icon-align-right"></i></button><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="정렬하지 않음" data-original-title="정렬하지 않음"><i class="note-icon-align-justify"></i></button></div><div class="note-btn-group btn-group note-remove"><button type="button" class="note-btn btn-default btn-sm" role="button" tabindex="-1" title="" aria-label="사진 삭제" data-original-title="사진 삭제"><i class="note-icon-trash"></i></button></div></div></div><div class="note-popover popover in note-table-popover bottom">  <div class="arrow"></div>  <div class="popover-content note-children-container"><div class="note-btn-group btn-group note-add"><button type="button" class="note-btn btn-default btn-sm btn-md" role="button" tabindex="-1" title="" aria-label="Add row below" data-original-title="Add row below"><i class="note-icon-row-below"></i></button><button type="button" class="note-btn btn-default btn-sm btn-md" role="button" tabindex="-1" title="" aria-label="Add row above" data-original-title="Add row above"><i class="note-icon-row-above"></i></button><button type="button" class="note-btn btn-default btn-sm btn-md" role="button" tabindex="-1" title="" aria-label="Add column left" data-original-title="Add column left"><i class="note-icon-col-before"></i></button><button type="button" class="note-btn btn-default btn-sm btn-md" role="button" tabindex="-1" title="" aria-label="Add column right" data-original-title="Add column right"><i class="note-icon-col-after"></i></button><button type="button" class="note-btn btn-default btn-sm btn-md" role="button" tabindex="-1" title="" aria-label="Sum column right" data-original-title="Sum column right"><i class="note-icon-col-sum"></i></button><button type="button" class="note-btn btn-default btn-sm btn-md" role="button" tabindex="-1" title="" aria-label="Sum row below" data-original-title="Sum row below"><i class="note-icon-row-sum"></i></button></div><div class="note-btn-group btn-group note-delete"><button type="button" class="note-btn btn-default btn-sm btn-md" role="button" tabindex="-1" title="" aria-label="Delete row" data-original-title="Delete row"><i class="note-icon-row-remove"></i></button><button type="button" class="note-btn btn-default btn-sm btn-md" role="button" tabindex="-1" title="" aria-label="Delete column" data-original-title="Delete column"><i class="note-icon-col-remove"></i></button><button type="button" class="note-btn btn-default btn-sm btn-md" role="button" tabindex="-1" title="" aria-label="Delete table" data-original-title="Delete table"><i class="note-icon-trash"></i></button></div></div></div></body>
 </th:block>
 </html>

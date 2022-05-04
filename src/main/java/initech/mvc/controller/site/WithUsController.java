@@ -17,9 +17,9 @@ public class WithUsController {
 
 
 	//문의하기
-	@GetMapping({"/WithUs/write"})
-	public String writer(ModelMap modelMap) throws Exception {
-		return "site/user/WithUs/write";
+	@GetMapping({"/withUs/write"})
+	public String write(ModelMap modelMap) throws Exception {
+		return "site/withUs/write";
 	}
 
 }

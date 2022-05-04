@@ -13,13 +13,13 @@ import initech.mvc.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-public class CompanyController {
+public class companyController {
 
 
 	// 비전 및 미션
-	@GetMapping({"/Company/vision"})
+	@GetMapping({"/company/vision"})
 	public String vision(ModelMap modelMap) throws Exception {
-		return "site/user/Company/vision";
+		return "site/company/vision";
 	}
 
 }
