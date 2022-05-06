@@ -14,8 +14,51 @@
 					</div>
 				</div>
 				<div class="right">
-					<div class="footer_gnb"></div>
-				</div>
+				<div class="footer_gnb">
+			<ul>
+				<li>
+					<a class="mont" href="/about/vision/index.jsp">COMPANY</a>
+					<ul class="depth02">
+						<li><a href="/about/vision/index.jsp"><span>비전 및 미션</span></a></li>
+						<li><a href="/about/history/index.jsp"><span>연혁</span></a></li>
+						<li><a href="/about/company/index.jsp"><span>사업성과</span></a></li>
+						<li><a href="/about/patent/index.jsp"><span>인증 및 특허 현황</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/rnd/piezoele/index.jsp">R&amp;D</a>
+					<ul class="depth02">
+						<li><a href="/rnd/piezoele/index.jsp"><span>압전</span></a></li>
+						<li><a href="/rnd/energy/index.jsp"><span>에너지 하베스팅</span></a></li>
+						<li><a href="/rnd/health/index.jsp"><span>헬스케어</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/products/wearable/index.jsp">PRODUCT</a>
+					<ul class="depth02">
+						<li><a href="/products/wearable/index.jsp"><span>웨어러블 센서소자</span></a></li>
+						<li><a href="/products/iot/index.jsp"><span>IoT 델리네이터</span></a></li>
+						<li><a href="/products/mitt/index.jsp"><span>전자미트</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/business/platform/index.jsp">BUSINESS</a>
+					<ul class="depth02">
+						<li><a href="/business/platform/index.jsp"><span>플랫폼 서비스</span></a></li>
+						<li><a href="/business/smart/index.jsp"><span>스마트 빌리지</span></a></li>
+<!-- 						<li><a href="javascript:;">주요사업</a></li> -->
+					</ul>
+				</li>
+				<li>
+					<a class="mont" href="/with/direction/index.jsp">WITH US</a>
+					<ul class="depth02">
+						<li><a href="/with/direction/index.jsp"><span>오시는길</span></a></li>
+						<li><a href="/with/inquiry/write.jsp"><span>온라인문의</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+			</div>
 			</div>
 		</div>
 		<div class="footer_bottom">
@@ -26,5 +69,15 @@
 			<a href="javascript:;"><img src="/img/foot_btn.png" alt=""></a>
 		</div>
 	</div>
+	<script>
+	$(document).ready(function(){
+		$("#footer .footer_top .footer_gnb").html($("#header .gnb").html()); 
+	});
+
+	// top 버튼
+	$(".top_btn a").on("click", function(){
+		$("html, body").animate({scrollTop:0}, 500);
+	});
+</script>
 </th:block>
 </html>
