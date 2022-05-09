@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{mngr/common/layout/basic_layout}">
+<head>
+<!--selectbox-->
+<script>
+    function categoryChange2(e) {
+        var good_a = ["선택"];
+        var good_b = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
+        var good_c = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
+        var good_d = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
+        var good_e = ["선택", "IPFC-2050T", "IPFC-2050L"];
+        var target = document.getElementById("good2");
+
+        if (e.value == "a") var d = good_a;
+        else if (e.value == "b") var d = good_b;
+        else if (e.value == "c") var d = good_c;
+        else if (e.value == "d") var d = good_d;
+        else if (e.value == "e") var d = good_e;
+        else if (e.value == "f") var d = good_f;
+        else if (e.value == "g") var d = good_g;
+        else if (e.value == "h") var d = good_h;
+        else if (e.value == "i") var d = good_i;
+        else if (e.value == "j") var d = good_j;
+        else if (e.value == "k") var d = good_k;
+        else if (e.value == "l") var d = good_l;
+        target.options.length = 0;
+
+        for (x in d) {
+            var opt = document.createElement("option");
+            opt.value = d[x];
+            opt.innerHTML = d[x];
+            target.appendChild(opt);
+        }
+    }
+</script>
+<!--selectbox-->
+
+<!--pagenum-->
+<script>
+    $(document).ready(function () {
+
+        $('div a').click(function () {
+            var tab_id = $(this).attr('data-pg');
+
+            $('div a').removeClass('choice');
+            $('.paging a').removeClass('choice');
+
+            $(this).addClass('choice');
+            $("#" + tab_id).addClass('choice');
+        })
+
+    });
+</script>
+<!--pagenum-->
+
+</head>
+<th:block layout:fragment="content">
+<div class="main">
+        <!--left menu start-->
+        <!--
+        <div class="left-menu">
+            <!--left menu logo-->
+            <!--
+            <div class="logo-left">
+                <a href="javascript void(0)"></a>
+            </div>
+            <!--left menu content-->
+            <!--
+            <div class="left-menu-content">
+                <!--box1
+                <div class="box1">
+                    <h3>메뉴</h3>
+                    <div class="accordion">
+                        <input type="radio" name="accordion" id="answer01">
+                        <label for="answer01">
+                            <img src="./res/img/login_hover.png" alt="">온라인 문의
+                        </label>
+
+                        </ul>
+                    </div>
+                </div>
+                <!--box2
+            </div>
+        </div>-->
+        <!--left menu finish-->
+
+        <!--search content-->
+        <div class="content">
+            <!--header menu-->
+            <div class="header">
+                <div class="logo-left">
+                   <a href="javascript void(0)"></a>
+                </div>
+                <div class="logo-right">
+                    <ul>
+                        <li>
+                            <button>
+                                <img src="./res/img/login.png" alt="">
+                                <span>로그아웃</span>
+                            </button>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!--header menu-->
+
+                        <div class="inner-content">
+                <h3>
+                    <img src="./res/img/speaker.png" alt="">
+                    <span>온라인문의 상세</span>
+                </h3>
+                <div class="table-inner">
+                    <table class="table">
+                        <colgroup>
+                            <col width="10%">
+                            <col>
+                            <col width="10%">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>상담번호</th>
+                                <td colspan="3">234</td>
+                            </tr>
+                            <tr>
+                                <th>제목</th>
+                                <td colspan="3">소량 주문 제작 가능여부 문의 (경북대학교 공성호 교수님 연구실)</td>
+                            </tr>
+                            <tr>
+                                <th>작성자</th>
+                                <td colspan="3">박주형</td>
+                            </tr>
+                            <tr>
+                                <th>기업명</th>
+                                <td colspan="3">에이치앤제이</td>
+                            </tr>
+                            <tr>
+                                <th>전화번호</th>
+                                <td>010-8715-2497</td>
+                                <th>이메일</th>
+                                <td>ptg0131@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <th>등록일</th>
+                                <td colspan="3">2022-11-02</td>
+                            </tr>
+                            <tr>
+                                <th>문의제품</th>
+                                <td colspan="3">박주형</td>
+                            </tr>
+                            <tr>
+                                <th>문의내용</th>
+                                <td colspan="3">안녕하세요?
+                                    플렉서블 압전세라믹 복합체 필름을 구매 관련하여 아래 사이즈에 대한 견적 요청드립니다.
+                                    검토 후 발주 진행 하도록 하겠습니다.
+
+                                    1. 사이즈: 30*40
+                                    2. 수량 : 35 pcs
+
+                                    기타 추가 사항이 있으시면 연락 주시기 바랍니다.
+                                    감사합니다.
+
+                                    에이치앤제이 신원석 드림.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-button">
+                    <div class="table-right">
+                        <button class="delete">삭제하기</button>
+                        <button class="list">목록보기</button>
+                    </div>
+                </div>
+            </div>
+</div>
+
+</th:block>
+</html>

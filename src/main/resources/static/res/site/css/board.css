@@ -137,9 +137,36 @@
 .writeForm table .writeForm_col03{width:35%;}
 /*.writeForm table tr{border-bottom:1px solid #e1e3e4; font-size:0;}*/
 .writeForm > table > tbody > tr{border-bottom:1px solid #e1e3e4; }
-.writeForm > table > tbody > tr > th{padding:10px; font-size:14px; color:#222; background:#f9f8f8;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.writeForm > table > tbody > tr > th{text-align:center; padding:10px; font-size:14px; color:#222; background:#f9f8f8;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
 .writeForm > table > tbody > tr > td{padding:15px 5px 15px 15px; color:#444;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
-.writeForm table tr td input[type="text"]{height:37px; border:1px solid #dedede; font-size:14px; padding:0 20px; vertical-align:middle; box-sizing:border-box;}
+.writeForm table tr:first-child td input[type="text"]{width:100%; height:37px; border:1px solid #dedede; font-size:14px; padding:0 8px; vertical-align:middle; box-sizing:border-box;}
+.writeForm table tr td input[type="text"]{height:37px; border:1px solid #dedede; font-size:14px; padding:0 8px; vertical-align:middle; box-sizing:border-box;}
+
+.w12{width:12%;}
+.w23{width:23% !important}
+.w33{width:33%;}
+.w10{width:10% !important;}
+select:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+input:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+textarea:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+
+
 .writeForm table tr td input[type="password"]{height:37px; border:1px solid #dedede; font-size:14px; padding:0 20px; vertical-align:middle; box-sizing:border-box;}
 .writeForm table tr td input[type="file"]{width:60%; height:42px; border:1px solid #dedede; font-size:14px; padding:7px 20px; vertical-align:middle; box-sizing:border-box;}
 .writeForm table tr td .inputTxt{width:248px;}
@@ -153,7 +180,8 @@
 .writeForm table tr td .inputEmail03{width:248px;}
 .writeForm table tr td input[type="text"].inputEmail02 {vertical-align:top;}
 .writeForm table tr td .inputTit{width:80%;}
-.writeForm table tr td select {width:140px; height:37px; padding:0 0 0 10px; font-size:14px; color:#666; margin-right:10px; text-align:center; text-align-last: center; border-color:#dedede; vertical-align:top;}
+.writeForm table tr td select {width:140px; height:37px; font-size:14px; color:#666; margin-right:10px; border-color:#dedede; text-align: center;}
+.writeForm table tr:nth-child(3) td select {vertical-align:top; width:140px; height:37px; font-size:14px; color:#666; margin-right:10px; border-color:#dedede; text-align: center;}
 .writeForm_top table tr td select{width:70%;}
 .writeForm table tr td select.selecEmail{width:245px;}
 .writeForm table tr td select option{text-align:center;}
@@ -1168,15 +1196,15 @@
 }
 
 /*컬러지정*/
-.login_wrap .login_tit {color: #ea1c5b;}
-.loginCon li .login_btn {background-color:#ea1c5b;}
-.findCon li .login_btn {background-color:#ea1c5b;}
-.sec_ucon .login_btn {background-color:#ea1c5b;}
-.passwordCon li .password_btn a {background-color:#ea1c5b;}
-.writeForm_btn a {background-color:#ea1c5b;}
-.writeForm_btn a.mcol_type {background-color:#ea1c5b;}
-.under_btn .login_btn {background-color:#ea1c5b;}
-.writeForm_btn a.color_type {background-color:#ea1c5b;}
+.login_wrap .login_tit {color: #1d2fda;}
+.loginCon li .login_btn {background-color:#1d2fda;}
+.findCon li .login_btn {background-color:#1d2fda;}
+.sec_ucon .login_btn {background-color:#1d2fda;}
+.passwordCon li .password_btn a {background-color:#1d2fda;}
+.writeForm_btn a {background-color:#1d2fda;}
+.writeForm_btn a.mcol_type {    background: #1d2fda;}
+.under_btn .login_btn {background-color:#1d2fda;}
+.writeForm_btn a.color_type {background-color:#1d2fda;}
 
 
 /*2017/12/18 additional area for login.jsp*/

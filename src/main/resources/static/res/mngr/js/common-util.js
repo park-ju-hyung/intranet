@@ -159,10 +159,11 @@ function elCheckedCnt(obj) {
     }
     return rs;
 }
-
+/*김태영
 $.fn.formData = function () {
     return new FormData($(this)[0]);
 }
+*/
 
 //체크박스 체크된 값 배열
 function elCheckboxVal(obj) {

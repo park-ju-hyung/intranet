@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="common-util">
-<script th:inline="javascript">
 $(document).ready(function() {
 	const header = $('meta[name="_csrf_header"]').attr('content');
 	const token = $('meta[name="_csrf"]').attr('content');
@@ -90,6 +86,3 @@ const slickController = function() {
 		autoplaySpeed: 5000,
 	});
 }; */
-</script>
-</th:block>
-</html>

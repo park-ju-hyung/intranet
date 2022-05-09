@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-@charset "utf-8";
+
 /* 기본프로그램 사용자모듈 메뉴 - PC */
 .all_m_btn {padding:10px; background:#323337;}
 .all_m_btn img {position:absolute; top:28%; left:15px; width:10%; max-width:40px; cursor:pointer;}
@@ -201,8 +200,8 @@
 	#footer .footer_top .right .footer_gnb .depth02{display:none;}
 	#footer .footer_bottom a{display:block;}
 }
-=======
-@charset "utf-8";
+
+
 /* 기본프로그램 사용자모듈 메뉴 - PC */
 .all_m_btn {padding:10px; background:#323337;}
 .all_m_btn img {position:absolute; top:28%; left:15px; width:10%; max-width:40px; cursor:pointer;}
@@ -262,7 +261,7 @@
 /* header */
 #header{position:absolute; left:0; top:0; width:100%; z-index:100;}
 #header *{transition:all 0.3s;}
-#header a.logo{width:111px; height:49px; background-image:url('/img/logo.png'); background-repeat:no-repeat; background-position:center; display:block; position:absolute; left:50px; top:31px; z-index:2;}
+#header a.logo{width:111px; height:49px; background-image:url('/res/site/img/logo.png'); background-repeat:no-repeat; background-position:center; display:block; position:absolute; left:50px; top:31px; z-index:2;}
 #header .gnb > ul{font-size:0; letter-spacing:-4px;}
 #header .gnb > ul > li{display:inline-block; vertical-align:top; width:120px; text-align:center; }
 #header .gnb > ul > li > a{position:relative; display:block; padding:43px 0; font-size:16px; color:#ffffff; letter-spacing:0; font-weight:500;}
@@ -283,7 +282,7 @@
 
 #header.on{background:#fff;}
 #header.on:before{content:''; position:absolute; top:110px; left:0; display:block; width:100%; height:1px; background:#e5e5e5;}
-#header.on a.logo{background-image:url('/img/logo02.png');}
+#header.on a.logo{background-image:url('/res/site/img/logo02.png');}
 #header.on .gnb > ul > li{width:210px;}
 #header.on .gnb > ul > li > a{color:#222}
 #header.on .gnb > ul > li ul.depth02{display:block;}
@@ -404,4 +403,3 @@
 	#footer .footer_top .right .footer_gnb .depth02{display:none;}
 	#footer .footer_bottom a{display:block;}
 }
->>>>>>> branch 'master' of https://github.com/inikorea/ini-home2022.git

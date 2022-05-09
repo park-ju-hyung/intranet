@@ -9,6 +9,147 @@ $(document).ready(function() {
 });
 </script>
 
+<th:block layout:fragment="content">
+		<div id="fullpage">
+			<div class="section main_con01" id="section01">
+				<ul class="slider">
+					<li>
+						<div class="bg" style="background-image:url('/res/site/img/main_con01_bg01.jpg')"></div>
+						<div class="txt">
+							<h3><b>빠</b>르게 <b>쉽</b>게 <b>정</b>확하게</h3>
+							<p>헬스케어 산업을 선도하는 기업, <b>아이엔아이테크</b></p>
+							<!--<a class="main_btn mont" href="javascript:;">view more</a> -->
+						</div>
+					</li>
+					<li>
+						<div class="bg" style="background-image:url('/res/site/img/main_con01_bg02.jpg')"></div>
+						<div class="txt">
+							<h3><b>빠</b>르게 <b>쉽</b>게 <b>정</b>확하게</h3>
+							<p>헬스케어 산업을 선도하는 기업, <b>아이엔아이테크</b></p>
+							<!--<a class="main_btn mont" href="javascript:;">view more</a> -->
+						</div>
+					</li>
+					<li>
+						<div class="bg" style="background-image:url('/res/site/img/main_con01_bg03.jpg')"></div>
+						<div class="txt">
+							<h3><b>빠</b>르게 <b>쉽</b>게 <b>정</b>확하게</h3>
+							<p>헬스케어 산업을 선도하는 기업, <b>아이엔아이테크</b></p>
+							<!--<a class="main_btn mont" href="javascript:;">view more</a> -->
+						</div>
+					</li>
+				</ul>
+				<div class="scroll">
+					<span class="mont">Scroll down</span>
+				</div>
+			</div>
+				
+			<script>
+				$(document).ready(function(){
+					$slick = $('ul .slider');
+		
+					$slick.slick({
+						draggable: true,
+						adaptiveHeight: false,
+						dots: false,
+						arrows: false,
+						mobileFirst: true,
+						pauseOnDotsHover: true,
+						fade:true,
+						autoplay: true,
+						autoplaySpeed: 5000,
+					})
+				});
+			</script>
+
+			<div class="section main_con02" id="section02">
+				<ul>
+					<li>
+						<div class="bg" style="background-image:url('/res/site/img/main_con02_li_bg01.jpg')"></div>
+						<div class="txt">
+							<div>
+								<i></i>
+								<h4 class="mont">COMPANY</h4>
+								<p>아이엔아이테크를 소개합니다.</p>
+							</div>
+							<a class="main_btn type01 mont" href="/about/vision/index.jsp">view more</a>
+						</div>
+					</li>
+					<li>
+						<div class="bg" style="background-image:url('/res/site/img/main_con02_li_bg02.jpg')"></div>
+						<div class="txt">
+							<div>
+								<i></i>
+								<h4 class="mont">R&D</h4>
+								<p>새로운 변화로 삶의 가치를 높이는 기술</p>
+							</div>
+							<a class="main_btn type01 mont" href="/rnd/piezoele/index.jsp">view more</a>
+						</div>
+					</li>
+					<li>
+						<div class="bg" style="background-image:url('/img/main_con02_li_bg03.jpg')"></div>
+						<div class="txt">
+							<div>
+								<i></i>
+								<h4 class="mont">BUSINESS</h4>
+								<p>혁신적인 기술력과 경쟁력</p>
+							</div>
+							<a class="main_btn type01 mont" href="/business/platform/index.jsp">view more</a>
+						</div>
+					</li>
+				</ul>
+				<div class="scroll">
+					<span class="mont">Scroll down</span>
+					<i></i>
+				</div>
+			</div>
+
+			<div class="section main_con03" id="section03">
+				<div class="inner">
+					<div class="txt_box">
+						<h3><b>언</b>제나 <b>어</b>디서나 <b>누</b>구나</h3>
+						<p>
+							간편하고 정확하게 건강을 지키는 <br/>
+							서비스를 제공하는 아이엔아이테크
+						</p>
+						<a class="main_btn mont" href="/with/direction/index.jsp">view more</a>
+					</div>
+					<div class="img_box">
+						<img src="/img/main_con03_phone_img.png" alt="">
+						<div class="img_inner_slide_box">
+							<p class="swiper-wrapper">
+								<span class="swiper-slide"><img src="/img/main_con03_img01.png" alt=""></span>
+								<span class="swiper-slide"><img src="/img/main_con03_img01.png" alt=""></span>
+								<span class="swiper-slide"><img src="/img/main_con03_img01.png" alt=""></span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="scroll">
+					<span class="mont">Scroll down</span>
+					<i></i>
+				</div>
+			</div>
+	<!-- main fullpage //-->
+
+	<script>
+		// 풀페이지
+		$('#fullpage').fullpage({
+			licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+			anchors : ['01', '02', '03', '04'],
+			navigation: true,
+			responsiveWidth: 1000,
+			navigationPosition: 'right',
+		});
+
+		var mc3 = new Swiper(".main_con03 .img_inner_slide_box",{
+			speed:4000,
+			autoplay:{
+				delay:2000,
+				pauseOnMouseEnter:true,
+			}
+		});
+	</script>
+</th:block>
 
 
 </head>
