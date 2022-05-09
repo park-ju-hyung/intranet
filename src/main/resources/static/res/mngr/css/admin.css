@@ -17,6 +17,9 @@ body {
 a:focus {
   outline: 0
 }
+button{
+	outline:"none"
+}
 
 #wrapper {
   display: -webkit-box;

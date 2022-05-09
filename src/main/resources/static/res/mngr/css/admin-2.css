@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
 
+
 /**login page**/
 .login{
     width: 100%;
@@ -135,6 +136,11 @@ h3{
 address{
     font-style: normal !important;
 }
+input{
+	outline:none;
+}
+
+
 .form-control:focus {
     border-color: #66afe9;
     outline: 0;
@@ -150,8 +156,17 @@ address{
 .w50{
 	width:50% !important;
 }
+.w60{
+	width:60% !important;
+}
+.w80{
+	width:80% !important;
+}
 .w84{
 	width:84% !important;
+}
+.w88{
+	width:88% !important;
 }
 /**common**/
 
@@ -196,7 +211,7 @@ address{
 }
 .logo button {
     display: inline-block;
-    border:1px solid #4cc18a;
+    border: 1px solid #337ab7;
     background: #fff;
     padding:7px 20px;
     border-radius: 2rem;
@@ -468,6 +483,7 @@ input[id*="answer"]:checked + label em{
 h3 span{
     font-size: 24px;
     padding-left: 10px;
+    font-weight: bold;
 }
 h3 img{
     vertical-align: -8px;
@@ -862,23 +878,26 @@ label span{
 
 }
 .table tbody tr th:first-child{
-    padding: 8px 0 8px 0px;
+    padding: 20px 0 20px 0px;
     background: #eee;
     font-weight: 700;
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
     vertical-align: middle;
+    text-align: center;
+    font-size: 15px;
 }
 .table tbody tr th{
-    padding: 8px 0 8px 0px;
+    padding: 20px 0px !important;
     background: #eee;
     font-weight: 700;
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
     vertical-align: middle;
+    text-align: center;
 }
 .table tbody tr td{
-    padding: 20px 5px;
+    padding: 20px 10px 20px 10px !important;
     font-size: 14px;
     border-bottom: 1px solid #dadada;
     background-color: #fff;
@@ -974,7 +993,7 @@ label span{
 }
 .table-search thead tr th{
     padding: 10px;
-    background: #4cc18a;
+    background: #337ab7;
     font-weight: 700;
     border-bottom: 1px solid #dadada;
     vertical-align: middle;
@@ -1182,20 +1201,24 @@ label span{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #fff;
 }
 .paging a.prev{
     vertical-align: middle;
-    background: url(../img/page_l.png) no-repeat center;
+    background: url(/res/mngr/img/page_l.png) no-repeat center;
     background-size: 7px;
     text-indent: -5000px;
     cursor: pointer;
+    background-color: #fff;
 }
 .paging a.next{
     vertical-align: middle;
-    background: url(../img/page_r.png) no-repeat center;
+    background: url(/res/mngr/img/page_r.png) no-repeat center;
+    z-index: 300;
     background-size: 7px;
     text-indent: -5000px;
     cursor: pointer;
+    background-color: #fff;
 }
 
 
@@ -1355,7 +1378,12 @@ label span{
 .text-left{
     text-align: left !important;
 }
+.margin4030{
+	margin:40px 0px 30px 0px;
+}
+button{
 
+}
 /**except**/
 
 

@@ -3131,7 +3131,9 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
+	/**
   outline: 5px auto -webkit-focus-ring-color;
+  **/
   outline-offset: -2px;
 }
 .btn:hover,
@@ -3213,6 +3215,7 @@ fieldset[disabled] .btn-default.focus {
   color: #fff;
   background-color: #333;
 }
+
 .btn-primary {
   color: #fff;
   background-color: #337ab7;
@@ -3520,10 +3523,11 @@ fieldset[disabled] .btn-link:focus {
 }
 .btn-sm,
 .btn-group-sm > .btn {
-  padding: 5px 10px;
-  font-size: 12px;
-  line-height: 1.5;
-  border-radius: 3px;
+    padding: 5px 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 5px;
+    
 }
 .btn-xs,
 .btn-group-xs > .btn {
