@@ -13,13 +13,25 @@ import initech.mvc.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-public class directionController {
+public class productsController {
 
 
-	// 오시는길
-	@GetMapping({"/direction/direction"})
-	public String direction(ModelMap modelMap) throws Exception {
-		return "site/direction/direction";
+	//웨어러블센서소자
+	@GetMapping({"/products/wearable"})
+	public String wearable(ModelMap modelMap) throws Exception {
+		return "site/products/wearable";
 	}
-
+	
+	//IoT 델리네이터
+	@GetMapping({"/products/IoT"})
+	public String IoT(ModelMap modelMap) throws Exception {
+		return "site/products/IoT";
+	}
+	
+	//전자미트
+		@GetMapping({"/products/mitt"})
+		public String mitt(ModelMap modelMap) throws Exception {
+			return "site/products/mitt";
+	}
+	
 }

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{site/common/layout/basic_layout}">
+
+<head>
+	<th:block layout:fragment="script">
+
+	</th:block>
+</head>
+<th:block layout:fragment="content">
+	<!-- main fullpage -->
+	<div id="header">
+		<a href="/" class="logo"></a>
+		<div class="inner">
+			<div class="gnb">
+				<ul>
+					<li>
+						<a class="mont" href="/Company/vision">COMPANY</a>
+						<ul class="depth02">
+							<li><a href="/Company/vision"><span>비전 및 미션</span></a></li>
+							<li><a href="/Company/history"><span>연혁</span></a></li>
+							<li><a href="/Company/company"><span>사업성과</span></a></li>
+							<li><a href="/Company/patent"><span>인증 및 특허 현황</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="mont" href="/md/piezoele">R&D</a>
+						<ul class="depth02">
+							<li><a href="/md/piezoele"><span>압전</span></a></li>
+							<li><a href="/md/energy"><span>에너지 하베스팅</span></a></li>
+							<li><a href="/md/health"><span>헬스케어</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="mont" href="/products/wearable">PRODUCT</a>
+						<ul class="depth02">
+							<li><a href="/products/wearable"><span>웨어러블 센서소자</span></a></li>
+							<li><a href="/products/IoT"><span>IoT 델리네이터</span></a></li>
+							<li><a href="/products/mitt"><span>전자미트</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="mont" href="/Business/platform">BUSINESS</a>
+						<ul class="depth02">
+							<li><a href="/Business/platform"><span>플랫폼 서비스</span></a></li>
+							<li><a href="/Business/smart"><span>스마트 빌리지</span></a></li>
+							<!--<li><a href="javascript:;">주요사업</a></li> -->
+						</ul>
+					</li>
+					<li>
+						<a class="mont" href="/withUs/direction">WITH US</a>
+						<ul class="depth02">
+							<li><a href="/withUs/direction"><span>오시는길</span></a></li>
+							<li><a href="/withUs/write"><span>온라인문의</span></a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="right">
+			<div class="all_menu_btn">
+				<i></i><i></i>
+			</div>
+		</div>
+		<div class="m_btn">
+			<a href="javascript:;">
+				<i></i><i></i>
+			</a>
+		</div>
+	</div>
+	<div id="all_menu">
+		<div class="all_menu_header">
+			<a href="/" class="logo"></a>
+			<div class="right">
+				<div class="all_menu_btn">
+					<i></i>
+				</div>
+			</div>
+		</div>
+		<div class="inner">
+			<div class="gnb"></div>
+		</div>
+	</div>
+	<div class="m_menu_bg"></div>
+	<div id="m_menu">
+		<div class="top_box">
+			<img src="/img/logo02.png" alt="">
+			<a class="close_btn" href="javascript:;"><i></i><i></i></a>
+		</div>
+		<div class="gnb_box">
+		</div>
+	</div>
+	<script>
+		$(document).ready(function () {
+			var gnbHtml = $("#header .gnb").html();
+			$("#all_menu .gnb").html(gnbHtml);
+			$("#m_menu .gnb_box").html(gnbHtml);
+		});
+		$("#header .all_menu_btn").on('click', function () {
+			$("#all_menu").fadeIn(200);
+		});
+		$("#all_menu .all_menu_btn").on('click', function () {
+			$("#all_menu").fadeOut(200);
+		});
+
+		$(".top_btn").on("click", function () {
+			$("body,html").animate({scrollTop: 0});
+		});
+
+		$(window).on("load", function () {
+			// 모바일 클릭
+			$("#header .m_btn").on("click", function () {
+				$("#m_menu").addClass("on");
+				$(".m_menu_bg").fadeIn();
+			});
+			$(".m_menu_bg, #m_menu .close_btn").on("click", function () {
+				$("#m_menu").removeClass("on");
+				$(".m_menu_bg").fadeOut();
+			});
+			// 모바일 메뉴
+			$("#m_menu .gnb_box > ul > li > a").on("click", function () {
+				if (!$(this).parent().hasClass("depth01")) {
+					// 2depth가 있을 경우
+					$(this).parent("li").toggleClass("on").siblings().removeClass("on");
+					$(this).next(".depth02").stop(true, true).slideToggle().parent("li").siblings().find(".depth02").slideUp();
+					return false;
+				}
+			});
+			$('#header').on('mouseenter', function () {
+				$(this).addClass("on")
+			});
+			$('#header').on('mouseleave', function () {
+				$(this).removeClass("on")
+			});
+
+		});
+	</script>
+
+	<div class="content">
+
+		<div class="sub_visual">
+			<div class="bg"></div>
+			<div class="inner">
+				<div class="text">
+					<h2 class="mont">BUSINESS</h2>
+				</div>
+			</div>
+		</div>
+		<div class="sub_path">
+			<a href="/" class="logo"></a>
+			<div class="inner">
+				<ul>
+				<!--
+					<li class="on"><a href="/Business/platform"><span>플랫폼서비스</span></a></li>
+					<li><a href="/Business/smart"><span>스마트 빌리지</span></a></li>
+				-->
+				</ul>
+			</div>
+		</div>
+
+		<script>
+			$(document).on("ready", function () {
+				var url = window.location.pathname;
+				var urlPathname = url.substring(0, url.substring(1).indexOf('/') + 2);
+				var fileName = url.substring(url.lastIndexOf('/') + 1);
+				var isForDev = fileName == "read.jsp" || fileName == "edit.jsp" || fileName == "write.jsp" || fileName == "password.jsp" || fileName == "call.jsp" || fileName == "list.jsp";
+
+				$("#header .gnb .depth01, #header .gnb .depth02 li").each(function () {
+					if ($(this).find("> a").attr("href") == url) {
+						$(this).addClass("on");
+
+						if ($(this).hasClass("depth01")) {
+							// 1depth만 있을 경우
+							var indexNumber = $(this).index() + 1;
+							var depth01Text = $(this).text();
+
+							$(".sub_path").hide();
+						} else {
+							// 2depth가 있을 경우
+							var indexNumber = $(this).parents(".depth02").parent().index() + 1;
+							var depth01Text = $(this).parents(".depth02").prev().text();
+							var depth02Html = $(this).parents(".depth02").html();
+
+							$(".sub_path ul").append(depth02Html);
+						}
+
+						$(".sub_visual .bg").css("background-image", "url('/img/sub_visual0" + indexNumber + ".jpg')");
+						$(".sub_visual .text h2").text(depth01Text);
+
+					} else if (isForDev) {
+						if ($(this).find(">a").attr("href").indexOf(url.substring(0, url.lastIndexOf('/') + 1)) > -1) {
+							$(this).addClass("on");
+
+							if ($(this).hasClass("depth01")) {
+								// 1depth만 있을 경우
+								var indexNumber = $(this).index() + 1;
+								var depth01Text = $(this).text();
+
+								$(".sub_path").hide();
+							} else {
+								// 2depth가 있을 경우
+								var indexNumber = $(this).parents(".depth02").parent().index() + 1;
+								var depth01Text = $(this).parents(".depth02").prev().text();
+								var depth02Html = $(this).parents(".depth02").html();
+
+								$(".sub_path ul").append(depth02Html);
+							}
+
+							$(".sub_visual .bg").css("background-image", "url('/img/sub_visual0" + indexNumber + ".jpg')");
+							$(".sub_visual .text h2").text(depth01Text);
+						}
+					}
+				});
+			});
+
+			$(window).on("load", function () {
+			});
+		</script>
+
+		<div class="platform_con01 health_con wow fadeInUp">
+			<div class="inner">
+				<div class="sub_tit">
+					<h3>플랫폼 서비스</h3>
+				</div>
+				<div class="history_tit">
+					<div class="tit">
+						<p>헬스케어 모니터링 플랫폼 서비스</p>
+					</div>
+					<div class="txt_box">
+						<p><b>웨어러블 압전센서를 활용한 스마트인솔</b> <br />전원없이 동작하는 스마트인솔 및 웨어러블 헬스케어 <br />센서 및 개인 맞춤형 헬스케어를 위한 플랫폼
+							서비스</p>
+					</div>
+				</div>
+				<div class="top_box02">
+					<dl class="blue">
+						<dt><span>플랫폼 구성도</span></dt>
+						<dd>
+							<ul>
+								<li>
+									<div class="img_box">
+										<img src="/res/site/img/platform_con01_img01.png" alt="img" />
+									</div>
+									<div class="txt_box">
+										<p>인솔센서</p>
+									</div>
+								</li>
+								<li>
+									<div class="img_box">
+										<img src="/res/site/img/platform_con01_img02.png" alt="img" />
+									</div>
+									<div class="txt_box">
+										<p>BLE 통신</p>
+									</div>
+								</li>
+								<li>
+									<div class="img_box">
+										<img src="/res/site/img/platform_con01_img03.png" alt="img" />
+									</div>
+									<div class="txt_box">
+										<p>사용자 화면</p>
+									</div>
+								</li>
+								<li>
+									<div class="box">
+										<div class="img_box">
+											<img src="/res/site/img/platform_con01_img04.png" alt="img" />
+										</div>
+										<div class="txt_box">
+											<p>족압/보행/ 활동량 통한 건강관리</p>
+										</div>
+									</div>
+									<div class="box">
+										<div class="img_box">
+											<img src="/res/site/img/platform_con01_img05.png" alt="img" />
+										</div>
+										<div class="txt_box">
+											<p>걸음습관 분석 걸음교정 정보제공</p>
+										</div>
+									</div>
+									<div class="box">
+										<div class="img_box">
+											<img src="/res/site/img/platform_con01_img06.png" alt="img" />
+										</div>
+										<div class="txt_box">
+											<p>체중중심 <br class="pc_only" />(COP) 측정</p>
+										</div>
+									</div>
+									<div class="box">
+										<div class="img_box">
+											<img src="/res/site/img/platform_con01_img07.png" alt="img" />
+										</div>
+										<div class="txt_box">
+											<p>족압 <br class="pc_only" />압력분포 및 건강지표 제공</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+					<div class="desc02">
+						<p>초저가, 초경량의 자가 충,방전식 필름소재 및 소자</p>
+						<p>자가 충전이 가능한 초저가형 필름형 소자 기술</p>
+						<p>웨어러블 디바이스에 부착이 가능한 센서</p>
+						<p>생체신호를 실시간 모니터링 할 수 있는 헬스케어용 센서기술</p>
+						<p>개인의 건강지표 측정 및 개인 맞춤형 건강분석 기술</p>
+					</div>
+				</div>
+				<div class="bot_box">
+					<div class="left_box">
+						<ul>
+							<li>
+								<dl class="purple">
+									<dt>
+										<i><img src="/res/site/img/health_bot_icon01.png" alt=""></i>
+										<span class="mont">Big Data</span>
+									</dt>
+									<dd>
+										<div class="txt_box">
+											<div class="table">
+												<div class="table_box">
+													<span>유형패턴</span>
+													<span>진단처방</span>
+													<span>교정개선</span>
+													<span>운동예방</span>
+												</div>
+											</div>
+										</div>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl class="purple">
+									<dt>
+										<i><img src="/res/site/img/health_bot_icon02.png" alt=""></i>
+										<span>개인정보 Pattern</span>
+									</dt>
+									<dd>
+										<div class="txt_box">
+											<div class="table">
+												<div class="table_box">
+													<span>개인 정보</span>
+													<span>이력 정보</span>
+													<span>유사 질병</span>
+													<span>운동 처방</span>
+													<span>사후관리</span>
+												</div>
+											</div>
+										</div>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl class="purple">
+									<dt>
+										<i><img src="/res/site/img/health_bot_icon03.png" alt=""></i>
+										<span>제공콘텐츠</span>
+									</dt>
+									<dd>
+										<div class="txt_box">
+											<div class="table">
+												<div class="table_box">
+													<span>진단/처방</span>
+													<span>교정/개선</span>
+													<span>예방/사후관리</span>
+													<span>맞춤형 운동</span>
+												</div>
+											</div>
+										</div>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div class="right_box">
+						<dl class="purple">
+							<dt>
+								<span>의료전문기관</span>
+							</dt>
+							<dd>
+								<div class="txt_box">
+									<div class="table">
+										<div class="table_box">
+											<div class="list_box">
+												<img src="/res/site/img/health_bot_img01.png" alt="">
+												<span>병원</span>
+											</div>
+											<div class="list_box">
+												<img src="/res/site/img/health_bot_img02.png" alt="">
+												<span>재활</span>
+											</div>
+											<br />
+											<div class="list_box">
+												<img src="/res/site/img/health_bot_img03.png" alt="">
+												<span>운동</span>
+											</div>
+											<div class="list_box">
+												<img src="/res/site/img/health_bot_img04.png" alt="">
+												<span>미용</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</dd>
+						</dl>
+					</div>
+				</div>
+				<div class="desc">
+					<p><b>응용분야 : </b>스마트기기, 헬스케어, IoT(사물인터넷), 스포츠, 미용, 건강모니터링시스템 등 활용</p>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</th:block>
+
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{site/common/layout/basic_layout}">
+
+<head>
+	<th:block layout:fragment="script">
+
+	</th:block>
+</head>
+<th:block layout:fragment="content">
+	<!-- main fullpage -->
+	<div id="header">
+		<a href="/" class="logo"></a>
+		<div class="inner">
+			<div class="gnb">
+				<ul>
+					<li>
+						<a class="mont" href="/Company/vision">COMPANY</a>
+						<ul class="depth02">
+							<li><a href="/Company/vision"><span>비전 및 미션</span></a></li>
+							<li><a href="/Company/history"><span>연혁</span></a></li>
+							<li><a href="/Company/company"><span>사업성과</span></a></li>
+							<li><a href="/Company/patent"><span>인증 및 특허 현황</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="mont" href="/md/piezoele">R&D</a>
+						<ul class="depth02">
+							<li><a href="/md/piezoele"><span>압전</span></a></li>
+							<li><a href="/md/energy"><span>에너지 하베스팅</span></a></li>
+							<li><a href="/md/health"><span>헬스케어</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="mont" href="/products/wearable">PRODUCT</a>
+						<ul class="depth02">
+							<li><a href="/products/wearable"><span>웨어러블 센서소자</span></a></li>
+							<li><a href="/products/IoT"><span>IoT 델리네이터</span></a></li>
+							<li><a href="/products/mitt"><span>전자미트</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="mont" href="/Business/platform">BUSINESS</a>
+						<ul class="depth02">
+							<li><a href="/Business/platform"><span>플랫폼 서비스</span></a></li>
+							<li><a href="/Business/smart"><span>스마트 빌리지</span></a></li>
+							<!--<li><a href="javascript:;">주요사업</a></li> -->
+						</ul>
+					</li>
+					<li>
+						<a class="mont" href="/withUs/direction">WITH US</a>
+						<ul class="depth02">
+							<li><a href="/withUs/direction"><span>오시는길</span></a></li>
+							<li><a href="/withUs/write"><span>온라인문의</span></a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="right">
+			<div class="all_menu_btn">
+				<i></i><i></i>
+			</div>
+		</div>
+		<div class="m_btn">
+			<a href="javascript:;">
+				<i></i><i></i>
+			</a>
+		</div>
+	</div>
+	<div id="all_menu">
+		<div class="all_menu_header">
+			<a href="/" class="logo"></a>
+			<div class="right">
+				<div class="all_menu_btn">
+					<i></i>
+				</div>
+			</div>
+		</div>
+		<div class="inner">
+			<div class="gnb"></div>
+		</div>
+	</div>
+	<div class="m_menu_bg"></div>
+	<div id="m_menu">
+		<div class="top_box">
+			<img src="/img/logo02.png" alt="">
+			<a class="close_btn" href="javascript:;"><i></i><i></i></a>
+		</div>
+		<div class="gnb_box">
+		</div>
+	</div>
+	<script>
+		$(document).ready(function () {
+			var gnbHtml = $("#header .gnb").html();
+			$("#all_menu .gnb").html(gnbHtml);
+			$("#m_menu .gnb_box").html(gnbHtml);
+		});
+		$("#header .all_menu_btn").on('click', function () {
+			$("#all_menu").fadeIn(200);
+		});
+		$("#all_menu .all_menu_btn").on('click', function () {
+			$("#all_menu").fadeOut(200);
+		});
+
+		$(".top_btn").on("click", function () {
+			$("body,html").animate({scrollTop: 0});
+		});
+
+		$(window).on("load", function () {
+			// 모바일 클릭
+			$("#header .m_btn").on("click", function () {
+				$("#m_menu").addClass("on");
+				$(".m_menu_bg").fadeIn();
+			});
+			$(".m_menu_bg, #m_menu .close_btn").on("click", function () {
+				$("#m_menu").removeClass("on");
+				$(".m_menu_bg").fadeOut();
+			});
+			// 모바일 메뉴
+			$("#m_menu .gnb_box > ul > li > a").on("click", function () {
+				if (!$(this).parent().hasClass("depth01")) {
+					// 2depth가 있을 경우
+					$(this).parent("li").toggleClass("on").siblings().removeClass("on");
+					$(this).next(".depth02").stop(true, true).slideToggle().parent("li").siblings().find(".depth02").slideUp();
+					return false;
+				}
+			});
+			$('#header').on('mouseenter', function () {
+				$(this).addClass("on")
+			});
+			$('#header').on('mouseleave', function () {
+				$(this).removeClass("on")
+			});
+
+		});
+	</script>
+
+	<div class="content">
+
+		<div class="sub_visual">
+			<div class="bg"></div>
+			<div class="inner">
+				<div class="text">
+					<h2 class="mont">COMPANY</h2>
+				</div>
+			</div>
+		</div>
+		<div class="sub_path">
+			<a href="/" class="logo"></a>
+			<div class="inner">
+				<ul>
+					<!--
+					<li><a href="/Company/vision"><span>비전 및 미션</span></a></li>
+					<li><a href="/Company/history"><span>연혁</span></a></li>
+					<li class="on"><a href="/Company/company"><span>사업성과</span></a></li>
+					<li><a href="/Company/patent"><span>인증 및 특허 현황</span></a></li>
+				-->
+				</ul>
+			</div>
+		</div>
+
+		<script>
+			$(document).on("ready", function () {
+				var url = window.location.pathname;
+				var urlPathname = url.substring(0, url.substring(1).indexOf('/') + 2);
+				var fileName = url.substring(url.lastIndexOf('/') + 1);
+				var isForDev = fileName == "read.jsp" || fileName == "edit.jsp" || fileName == "write.jsp" || fileName == "password.jsp" || fileName == "call.jsp" || fileName == "list.jsp";
+
+				$("#header .gnb .depth01, #header .gnb .depth02 li").each(function () {
+					if ($(this).find("> a").attr("href") == url) {
+						$(this).addClass("on");
+
+						if ($(this).hasClass("depth01")) {
+							// 1depth만 있을 경우
+							var indexNumber = $(this).index() + 1;
+							var depth01Text = $(this).text();
+
+							$(".sub_path").hide();
+						} else {
+							// 2depth가 있을 경우
+							var indexNumber = $(this).parents(".depth02").parent().index() + 1;
+							var depth01Text = $(this).parents(".depth02").prev().text();
+							var depth02Html = $(this).parents(".depth02").html();
+
+							$(".sub_path ul").append(depth02Html);
+						}
+
+						$(".sub_visual .bg").css("background-image", "url('/img/sub_visual0" + indexNumber + ".jpg')");
+						$(".sub_visual .text h2").text(depth01Text);
+
+					} else if (isForDev) {
+						if ($(this).find(">a").attr("href").indexOf(url.substring(0, url.lastIndexOf('/') + 1)) > -1) {
+							$(this).addClass("on");
+
+							if ($(this).hasClass("depth01")) {
+								// 1depth만 있을 경우
+								var indexNumber = $(this).index() + 1;
+								var depth01Text = $(this).text();
+
+								$(".sub_path").hide();
+							} else {
+								// 2depth가 있을 경우
+								var indexNumber = $(this).parents(".depth02").parent().index() + 1;
+								var depth01Text = $(this).parents(".depth02").prev().text();
+								var depth02Html = $(this).parents(".depth02").html();
+
+								$(".sub_path ul").append(depth02Html);
+							}
+
+							$(".sub_visual .bg").css("background-image", "url('/img/sub_visual0" + indexNumber + ".jpg')");
+							$(".sub_visual .text h2").text(depth01Text);
+						}
+					}
+				});
+			});
+
+			$(window).on("load", function () {
+			});
+		</script>
+
+		<div class="company_con01 wow fadeInUp">
+			<div class="inner">
+				<div class="sub_tit">
+					<h3>사업성과</h3>
+				</div>
+				<div class="table_wrap02">
+					<table>
+						<colgroup>
+							<col width="25%" />
+							<col width="*" />
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>2019.6 ~ 2020.6</th>
+								<td>
+									<p>
+										<b>중소기업기술정보진흥원</b> <br />
+										"스마트 웨어러블 압전센서를 활용한 헬스케어 모니터링 플랫폼 기술개발"
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<th>2019.8 ~ 2020.2</th>
+								<td>
+									<p>
+										<b>한국환경</b> <br />
+										"기존 화학물질 유해성 정보 확인사업"
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<th>2018.5 ~ 2021.4</th>
+								<td>
+									<p>
+										<b>한국에너지기술평가원</b> <br />
+										"미소풍력을 이용한 독립전원형 IoT 델리네이터 시스템 개발"
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<th>2016.9 ~ 2020.8</th>
+								<td>
+									<p>
+										<b>한국산업기술평가관리원</b> <br />
+										"다공성 전극과 고전도성 전해질을 이용한 초소형 전기화학 가스센서 및 계측전송 기술개발"
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<th>2016.8 ~ 2018.8</th>
+								<td>
+									<p>
+										<b>중소기업정보기술진흥원</b> <br />
+										"웨어러블 압전센서를 활용한 전자미트 개발"
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<th>2016.8 ~ 2018.8</th>
+								<td>
+									<p>
+										<b>중소기업기술정보진흥원</b> <br />
+										"웨어러블 기기용 압전섬유 기반 Bendable 압전센서 제조"
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<th>2014.4 ~ 2018.3</th>
+								<td>
+									<p>
+										<b>한국산업기술진흥원</b> <br />
+										"중소기업 화학물질 관리기반 구축사업"
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<th>2013.5 ~ 2014.4</th>
+								<td>
+									<p>
+										<b>한국산업기술평가관리원</b> <br />
+										"국가기반 물질정보 유통, 보급지원 시스템구축"
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+</html>
