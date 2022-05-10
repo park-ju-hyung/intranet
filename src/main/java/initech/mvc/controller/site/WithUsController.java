@@ -21,5 +21,9 @@ public class WithUsController {
 	public String write(ModelMap modelMap) throws Exception {
 		return "site/withUs/write";
 	}
-
+	
+	@GetMapping({"/withUs/direction"})
+	public String termsUse(ModelMap modelMap) throws Exception {
+		return "site/withUs/direction";
+	}
 }
