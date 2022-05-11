@@ -203,10 +203,6 @@ body{-webkit-text-size-adjust:none; }
 	.commuting_wrap .c_btn > a{font-size:16px !important;}
 
 
-
-=======
-@charset "utf-8";
-
 /* 프로그램부분 모바일 폰트 크기 조정 */
 
 body{-webkit-text-size-adjust:none; }
@@ -239,10 +235,14 @@ body{-webkit-text-size-adjust:none; }
 	.writeForm > table > tbody > tr > th{padding:15px; font-size:18px;}
 	.writeForm table tr td{font-size:18px;}
 	.writeForm table tr td input[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0;}
+		.writeForm table tr td input[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0; width:100%;}
 	.writeForm table tr td input[type="password"]{height:40px; font-size:16px;}
 	.writeForm table tr td input[type="radio"]{width:20px; height:20px;}
 	.writeForm table tr td input[type="file"]{width:calc(100% - 115px); font-size:16px; height:40px;}
 	.writeForm table tr td select{width:240px; height:40px; font-size:16px; -webkit-border-radius: 0;}
+	.writeForm table tr:nth-child(5) td select:first-child{margin-right: 0px !important; width:64% !important;}
+	.writeForm table tr:nth-child(5) td select:nth-child(2){width: 138px !important;}
+	
 	.writeForm table tr td label{font-size:16px;}
 	.writeForm table tr td textarea{font-size:16px;}
 	.writeForm table tr td .inputIdtype{width:calc(100% - 140px)}	
@@ -407,8 +407,8 @@ body{-webkit-text-size-adjust:none; }
 	/* 스케줄 */
 	.commuting_wrap .c_table.schedule_table table th{font-size:16px !important;}
 	.commuting_wrap .c_btn > a{font-size:16px !important;}
-
-
-
->>>>>>> branch 'master' of https://github.com/inikorea/ini-home2022.git
 }
+	@media (max-width: 1024px){
+	.pc{display:none}
+	.mb{display:block}
+	}

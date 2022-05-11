@@ -137,13 +137,16 @@
 .writeForm table .writeForm_col03{width:35%;}
 /*.writeForm table tr{border-bottom:1px solid #e1e3e4; font-size:0;}*/
 .writeForm > table > tbody > tr{border-bottom:1px solid #e1e3e4; }
-.writeForm > table > tbody > tr > th{text-align:center; padding:10px; font-size:14px; color:#222; background:#f9f8f8;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.writeForm > table > tbody > tr > th{text-align:center; padding:25px; font-size:14px; color:#222; background:#f9f8f8;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
 .writeForm > table > tbody > tr > td{padding:15px 5px 15px 15px; color:#444;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
 .writeForm table tr:first-child td input[type="text"]{width:100%; height:37px; border:1px solid #dedede; font-size:14px; padding:0 8px; vertical-align:middle; box-sizing:border-box;}
-.writeForm table tr td input[type="text"]{height:37px; border:1px solid #dedede; font-size:14px; padding:0 8px; vertical-align:middle; box-sizing:border-box;}
+.writeForm table tr td input[type="text"]{text-align:left; height:37px; border:1px solid #dedede; font-size:14px; padding:0 8px; vertical-align:middle; box-sizing:border-box;}
 
+.w100
 .w12{width:12%;}
+.w15{width:15%;}
 .w23{width:23% !important}
+.w30{width:30% !important}
 .w33{width:33%;}
 .w10{width:10% !important;}
 select:focus {
@@ -180,7 +183,7 @@ textarea:focus {
 .writeForm table tr td .inputEmail03{width:248px;}
 .writeForm table tr td input[type="text"].inputEmail02 {vertical-align:top;}
 .writeForm table tr td .inputTit{width:80%;}
-.writeForm table tr td select {width:140px; height:37px; font-size:14px; color:#666; margin-right:10px; border-color:#dedede; text-align: center;}
+.writeForm table tr td select {width:140px; height:37px; font-size:14px; color:#666;border-color:#dedede; text-align: center;}
 .writeForm table tr:nth-child(3) td select {vertical-align:top; width:140px; height:37px; font-size:14px; color:#666; margin-right:10px; border-color:#dedede; text-align: center;}
 .writeForm_top table tr td select{width:70%;}
 .writeForm table tr td select.selecEmail{width:245px;}
