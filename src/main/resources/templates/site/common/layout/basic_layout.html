@@ -30,6 +30,7 @@
 
 <!-- js -->
 <script src="/res/site/js/jquery.js"></script>
+<script type="text/javascript" th:src="@{/res/site/lib/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js}"></script>
 <script type="text/javascript" src="/res/site/js/function.js"></script>
 <script type="text/javascript" src="/res/site/js/menu.js"></script>
 <script src="/res/site/js/main.js"></script>
@@ -70,10 +71,10 @@
 <!-- <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script> -->
 <script type="text/javascript" src="/res/site/js/jquery.colorPicker.js"></script>
 <script type='text/javascript' src='/res/site/js/validationBind.js'></script> 
-<!--
+
 <script>
 $(window).load(function(){
-	jQuery.datetimepicker.setLocale('ko');		// 달력 언어 설정
+	//jQuery.datetimepicker.setLocale('ko');		// 달력 언어 설정
 	if($(parent.frames['mainFrame']).size() > 0){
 		
 		//$("[name=mainFrame]",parent.document).attr("src",$(parent.frames['mainFrame'].document).get(0).URL);	
@@ -87,7 +88,7 @@ var commonsecond = '<%=second%>';
 
 var key = '<%=session.getAttribute("SESSIONKEY")%>';
 </script>
--->
+
 <!-- viewport 480px -->
 <script type='text/javascript' src='/res/site/js/viewport.js'></script> 
 <link rel="stylesheet" href="/res/site/css/board_mobile.css" type="text/css" media="all">

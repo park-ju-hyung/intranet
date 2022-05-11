@@ -22,18 +22,25 @@
 <link rel="stylesheet" type="text/css" th:href="@{/res/mngr/css/boot-2.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/res/mngr/css/datepicker3-2.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/res/mngr/css/jquery-ui.min-2.css}" />
+
 <!--
 <link rel="stylesheet" type="text/css" th:href="@{/res/mngr/css/sb-admin-2.min.css}">
 -->
 <!--js-->
+<script type="text/javascript" th:src="@{/res/site/js/jquery-3.4.1.min.js}" charset="utf-8"></script>
+<script type="text/javascript" th:src="@{/res/site/lib/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js}"></script>
+<script type="text/javascript" th:src="@{/res/mngr/js/moment.min.js}"></script>
 <script type="text/javascript" th:src="@{/res/mngr/js/bootstrap.bundle.min-2.js}"></script>
-<script type="text/javascript" th:src="@{/res/mngr/js/bootstrap-datepicker.kr-2.js}"></script>
 <script type="text/javascript" th:src="@{/res/mngr/js/bootstrap-datepicker-2.js}"></script>
 <script type="text/javascript" th:src="@{/res/mngr/js/bootstrap-datetimepicker.min-2.js}"></script>
 <script type="text/javascript" th:src="@{/res/mngr/js/bootstrap-datepicker-2.js}"></script>
 <script type="text/javascript" th:src="@{/res/mngr/js/bootstrap-datepicker-2.js}"></script>
-
-
+<script type="text/javascript" th:src="@{/res/mngr/js/bootstrap-datepicker.kr-2.js}"></script>
+<script type="text/javascript" th:src="@{/res/mngr/js/mngr-ajax-util.js}"></script>
+<script type="text/javascript">
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+</script>
 </head>
 <body>
 	<div class="wrap">

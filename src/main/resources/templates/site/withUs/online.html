@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{site/common/layout/basic_layout}">
+
+	<head>
+		<th:block layout:fragment="script">
+
+			<script type="text/javascript">
+
+				$(function () {
+					saveFunc();
+				});
+
+				var saveFunc = function () {
+					$("#w_btn").off("click").on("click", function (e) {
+						e.preventDefault();
+
+						var title = $("[name=title]");
+						var writer = $("[name=writer]");
+						var callNo = $("[name=callNo]");
+						var email1 = $("[name=email1]");
+						var email2 = $("[name=email2]");
+						var email = email1.val() + '@' + email2.val();
+						$("[name=email]").val(email);
+						var compNm = $("[name=compNm]");
+						var prdtNm1 = $("select[name=prdtNm1] option:selected").text();
+						var good2 = $("select[name=good2] option:selected").val();
+						var prdtNm = prdtNm1 + '>' + good2;
+						$("[name=prdtNm]").val(prdtNm);
+						var prdtCt = $("[name=prdtCt]");
+
+						if (!confirm("저장 할까요?")) {
+							return false;
+						}
+
+						var formData = $("form[name=writeForm]").serializeObject();
+
+						$.ajax({
+							data: JSON.stringify(formData),
+							url: "/online/save",
+							type: "post",
+							dataType: "json",
+							contentType: "application/json"
+						}).done(function (result, status, xhr) {
+							alert("저장 되었습니다.");
+							$(location).attr("href", "/withUs/online");
+						}).fail(function (xhr, status, error) {
+							alert("저장에 실패했습니다.");
+						});
+					});
+				};
+
+				function selectEmail(ele){
+					var $this = $(ele);
+					var $email2 = $('input[name=email2]');
+				
+					if($this.val() == "1"){
+						$email2.attr('readonly', false);
+						$email2.val('');
+					} else {
+						$email2.attr('readonly', true);
+						$email2.val($this.val());
+					}
+				}
+			</script>
+
+			<!--selectbox-->
+			<script>
+				function categoryChange2(e) {
+					var good_a = ["선택"];
+					var good_b = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
+					var good_c = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
+					var good_d = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
+					var good_e = ["선택", "IPFC-2050T", "IPFC-2050L"];
+					var target = document.getElementById("good2");
+
+					if (e.value == "a") var d = good_a;
+					else if (e.value == "b") var d = good_b;
+					else if (e.value == "c") var d = good_c;
+					else if (e.value == "d") var d = good_d;
+					else if (e.value == "e") var d = good_e;
+					else if (e.value == "f") var d = good_f;
+					else if (e.value == "g") var d = good_g;
+					else if (e.value == "h") var d = good_h;
+					else if (e.value == "i") var d = good_i;
+					else if (e.value == "j") var d = good_j;
+					else if (e.value == "k") var d = good_k;
+					else if (e.value == "l") var d = good_l;
+					target.options.length = 0;
+
+					for (x in d) {
+						var opt = document.createElement("option");
+						opt.value = d[x];
+						opt.innerHTML = d[x];
+						target.appendChild(opt);
+					}
+				}
+			</script>
+			<!--selectbox-->
+
+			<!--이메일-->
+		</th:block>
+	</head>
+
+	<th:block layout:fragment="content">
+		<div id="com2" style="width:0px; height:0px; position:absolute; left:0px; top:0px; z-index:1"> 
+			<form name="urlMaintain" id="urlMaintain" action="/member/login.jsp" method="post">
+				<input type="hidden" name="url" id="main_url" value="/withUs/online" />
+				<input type="hidden" name="param" id="main_param" value="" />
+			</form>
+		</div>
+
+		<div id="header">
+			<a href="/" class="logo"></a>
+			<div class="inner">
+				<div class="gnb">
+					<ul>
+						<li>
+							<a class="mont" href="/about/vision/index.jsp">COMPANY</a>
+							<ul class="depth02">
+								<li><a href="/about/vision/index.jsp"><span>비전 및 미션</span></a></li>
+								<li><a href="/about/history/index.jsp"><span>연혁</span></a></li>
+								<li><a href="/about/company/index.jsp"><span>사업성과</span></a></li>
+								<li><a href="/about/patent/index.jsp"><span>인증 및 특허 현황</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="mont" href="/rnd/piezoele/index.jsp">R&D</a>
+							<ul class="depth02">
+								<li><a href="/rnd/piezoele/index.jsp"><span>압전</span></a></li>
+								<li><a href="/rnd/energy/index.jsp"><span>에너지 하베스팅</span></a></li>
+								<li><a href="/rnd/health/index.jsp"><span>헬스케어</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="mont" href="/products/wearable/index.jsp">PRODUCT</a>
+							<ul class="depth02">
+								<li><a href="/products/wearable/index.jsp"><span>웨어러블 센서소자</span></a></li>
+								<li><a href="/products/iot/index.jsp"><span>IoT 델리네이터</span></a></li>
+								<li><a href="/products/mitt/index.jsp"><span>전자미트</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="mont" href="/business/platform/index.jsp">BUSINESS</a>
+							<ul class="depth02">
+								<li><a href="/business/platform/index.jsp"><span>플랫폼 서비스</span></a></li>
+								<li><a href="/business/smart/index.jsp"><span>스마트 빌리지</span></a></li>
+								<!-- <li><a href="javascript:;">주요사업</a></li> -->
+							</ul>
+						</li>
+						<li>
+							<a class="mont" href="/with/direction/index.jsp">WITH US</a>
+							<ul class="depth02">
+								<li><a href="/with/direction/index.jsp"><span>오시는길</span></a></li>
+								<li><a href="/withUs/online"><span>온라인문의</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="right">
+				<div class="all_menu_btn">
+					<i></i><i></i>
+				</div>
+			</div>
+			<div class="m_btn">
+				<a href="javascript:;">
+					<i></i><i></i>
+				</a>
+			</div>
+		</div>
+
+		<div id="all_menu">
+			<div class="all_menu_header">
+				<a href="/" class="logo"></a>
+				<div class="right">
+					<div class="all_menu_btn">
+						<i></i>
+					</div>
+				</div>
+			</div>
+			<div class="inner">
+				<div class="gnb"></div>
+			</div>
+		</div>
+
+		<div class="m_menu_bg"></div>
+
+		<div id="m_menu">
+			<div class="top_box">
+				<img src="/img/logo02.png" alt="">
+				<a class="close_btn" href="javascript:;"><i></i><i></i></a>
+			</div>
+			<div class="gnb_box"></div>
+		</div>
+
+		<script>
+			$(document).ready(function(){
+				var gnbHtml = $("#header .gnb").html();
+				$("#all_menu .gnb").html(gnbHtml);
+				$("#m_menu .gnb_box").html(gnbHtml);
+			});
+			$("#header .all_menu_btn").on('click', function(){
+				$("#all_menu").fadeIn(200);
+			});
+			$("#all_menu .all_menu_btn").on('click', function(){
+				$("#all_menu").fadeOut(200);
+			});
+
+			$(".top_btn").on("click",function(){
+				$("body,html").animate({scrollTop:0});
+			});
+			
+			$(window).on("load",function(){
+				// 모바일 클릭
+				$("#header .m_btn").on("click",function(){
+					$("#m_menu").addClass("on");
+					$(".m_menu_bg").fadeIn();
+				});
+				$(".m_menu_bg, #m_menu .close_btn").on("click",function(){
+					$("#m_menu").removeClass("on");
+					$(".m_menu_bg").fadeOut();
+				});
+				// 모바일 메뉴
+				$("#m_menu .gnb_box > ul > li > a").on("click",function(){
+					if(!$(this).parent().hasClass("depth01")){
+						// 2depth가 있을 경우
+						$(this).parent("li").toggleClass("on").siblings().removeClass("on");
+						$(this).next(".depth02").stop(true,true).slideToggle().parent("li").siblings().find(".depth02").slideUp();
+						return false;
+					}
+				});
+				$('#header').on('mouseenter', function(){
+					$(this).addClass("on")
+				});
+				$('#header').on('mouseleave', function(){
+					$(this).removeClass("on")
+				});
+
+			});
+		</script>
+
+		<div class="sub_visual">
+			<div class="bg"></div>
+			<div class="inner">
+				<div class="text">
+					<h2 class="mont">WITH US</h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="sub_path">
+			<a href="/" class="logo"></a>
+			<div class="inner">
+				<ul>
+					<li><a href="/with/direction/index.jsp"><span>오시는길</span></a></li>
+					<li class="on"><a href="/withUs/online"><span>온라인문의</span></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="inquiry_box">
+			<div class="inner">
+				<div class="sub_tit">
+					<h3>온라인문의</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="with_top_box">
+			<div class="inner">
+				<div class="sub_tabbtn">
+					<ul class="grid05">
+						<li><a href="javascript:;"><span>오시는길</span></a></li>
+						<li class="on"><a href="javascript:;"><span>온라인문의</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<form name="writeForm" method="get" action="">
+			<input type="hidden" name="email">
+			<input type="hidden" name="prdtNm">
+			<div class="programCon">
+				<!-- //join -->
+				<div class="writeForm">
+					<table>
+						<tr>
+							<th>제목</th>
+							<td colspan="3">
+								<input data-value="제목을 입력하세요." id="title" name="title" class="inputTxt inputName" type="text" value="">
+							</td>
+						</tr>
+						<tr>
+							<th>작성자</th>
+							<td>
+								<input data-value="작성자를 입력하세요." id="writer" name="writer" class="inputTxt inputName" type="text" value="" >
+							</td>
+							<th>휴대전화</th>
+							<td>
+								<input data-value="휴대전화를 입력하세요." id="callNo" name="callNo" class="inputTxt inputName" type="text" value="">
+							</td>
+						</tr>
+						<tr>
+							<th><span class="col01">*</span>이메일</th>
+							<td colspan="3">
+								<input name="email1" type="text"> 
+									@ 
+								<input name="email2" type="text" readonly="readonly" class="w10">
+								<select name="select_email" onchange="selectEmail(this)">
+									<option value="1" selected>직접입력</option> 
+									<option value="naver.com">naver.com</option> 
+									<option value="gmail.com">gmail.com</option>
+									<option value="hanmail.net">hanmail.net</option> 
+									<option value="hotmail.com">hotmail.com</option> 
+									<option value="nate.com">nate.com</option>                          
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>기업명</th>
+							<td colspan="3">
+								<input data-value="작성자를 입력하세요." id="compNm" name="compNm" class="inputTxt inputName" type="text" value="" <%=(Function.setPlaceHolder("작성자", request) )%>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="col01">*</span>제품</th>
+							<td colspan="3">
+								<select id="prdtNm1 " name="prdtNm1" onchange="categoryChange2(this)" class="w23">
+									<option value="a">선택</option>
+									<option value="b">압전세라믹필름</option>
+									<option value="c">적충형압전세라믹필름</option>
+									<option value="d">압전세라믹캔틸레버</option>
+									<option value="e">플렉서블압전세라믹복합체필름</option>
+								</select>
+								<select id="good2" name="good2" class="w33">
+									<option>선택</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td colspan="3"><textarea name="prdtCt" id="prdtCt" data-value="내용을 입력하세요." cols="30" rows="10"></textarea></td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="writeForm_btn">
+					<a href="#" id="w_btn">문의하기</a>
+				</div>
+			</div>
+		</form>
+	</th:block>
+</html>
