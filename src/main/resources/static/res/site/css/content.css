@@ -1,4 +1,8 @@
 /* 공통 */
+/* 주형 */
+.company-background{
+  background-image: url(/res/site/img/IOT.png);
+}
 /* sub_tit */
 .sub_tit {padding-bottom: 50px;}
 .sub_tit h3 {font-size: 56px; letter-spacing: -0.045em; color: #222222; text-align: center;}
@@ -789,7 +793,7 @@
 }
 
 /* sub_visual */
-.sub_visual{position:relative; height:350px; background:#aaa; z-index:10; overflow:hidden;}
+.sub_visual{position:relative; height:550px;/**height:350px;**/ background:#aaa; z-index:10; overflow:hidden;}
 .sub_visual .bg{position:absolute; top:0; left:0; width:100%; height:100%; background-repeat: no-repeat; background-size: cover; background-position: center center; z-index:-1; animation:sacle 2s ease-out;}
 .sub_visual .inner{display:table; height:100%; margin:0 auto; padding-top: 115px; box-sizing: border-box;}
 .sub_visual .text{display:table-cell; vertical-align:middle; text-align:center;}
