@@ -145,6 +145,8 @@
 .w100
 .w12{width:12%;}
 .w15{width:15%;}
+.w15_1{width:15% !important; text-align: left !important;}
+.w21{width:21% !important; text-align: left !important; padding-left: 6px ;}
 .w23{width:79% !important}
 .w30{width:30% !important}
 .w33{width:33%;}
@@ -184,10 +186,10 @@ textarea:focus {
 .writeForm table tr td input[type="text"].inputEmail02 {vertical-align:top;}
 .writeForm table tr td .inputTit{width:80%;}
 .writeForm table tr td select {width:140px; height:37px; font-size:14px; color:#666;border-color:#dedede; text-align: center;}
-.writeForm table tr:nth-child(3) td select { width:140px;}
+.writeForm table tr:nth-child(3) td select { width:140px; vertical-align: middle;}
 .writeForm_top table tr td select{width:70%;}
 .writeForm table tr td select.selecEmail{width:245px;}
-.writeForm table tr td select option{text-align:center;}
+/*.writeForm table tr td select option{text-align:center;}*/
 .writeForm table tr td > span{margin:0 10px; font-size:14px; color:#444; vertical-align:middle;}
 .writeForm table tr td span.label{font-size:14px;}
 .writeForm table tr td.step span{color:#333; font-weight:500;}

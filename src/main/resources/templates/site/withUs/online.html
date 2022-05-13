@@ -28,7 +28,7 @@ const registEvent = function() {
 		categoryChange($('.prdtNm1 option:selected'));
 	});
 	
-	$('#btn-write').click(function() {
+	$('#w_btn').click(function() {
 		saveFunc();
 	});
 };
@@ -81,9 +81,11 @@ const nullCheck = function() {
 	}
 	if(formData['email2'] == '') {
 		alert('이메일을 선택해주세요.');
-		$('select[name="email2"]').focus();
+		$('input[name="email2"]').focus();
 		return false;
 	}
+	
+	/*
 	if(formData['prdtNm1'] == 'a') {
 		alert('제품명을 선택해주세요.');
 		$('select[name="prdtNm1"]').focus();
@@ -99,11 +101,23 @@ const nullCheck = function() {
 		$('#prdtCt').focus();
 		return false;
 	}
+	*/
 	
-	let prdtNm = formData['prdtNm1'] + ' ' + formData['prdtNm2'];
+	var prdtNm1 = $("select[name=prdtNm1] option:selected").text();
+	var prdtNm2 = $("select[name=prdtNm2] option:selected").val();
+	var prdtNm = prdtNm1 + ' > ' + prdtNm2;
+	$("[name=prdtNm]").val(prdtNm);
+	var prdtCt = $("[name=prdtCt]");
+	
+	// let prdtNm = formData['prdtNm1'] + ' > ' + formData['prdtNm2'];
+	// $('input[name="prdtNm"]').val(prdtNm);
+	
 	let email = formData['email1'] + '@' + formData['email2'];
-	$('input[name="prdtNm"]').val(prdtNm);
 	$('input[name="email"]').val(email);
+	
+	if (!confirm("저장하시겠습니까?")) {
+		return false;
+	}
 	
 	return true;
 };
@@ -145,7 +159,7 @@ function selectEmail(ele) {
 	var $this = $(ele);
 	var $email2 = $('input[name=email2]');
 
-	if ($this.val() == "1") {
+	if ($this.val() == "직접입력") {
 		$email2.attr('readonly', false);
 		$email2.val('');
 	} else {
@@ -227,26 +241,24 @@ function selectEmail(ele) {
 	</div>
 
 	<form name="writeForm" action="#">
-		<input type="hidden" name="email">
-		<input type="hidden" name="prdtNm">
 		<div class="programCon">
 			<!-- //join -->
 			<div class="writeForm">
 				<table>
 					<tr>
-						<th>제목</th>
+						<th><span class="col01">*</span>제목</th>
 						<td colspan="3">
 							<input id="title" name="title" class="inputTxt inputName"
 								type="text" value="">
 						</td>
 					</tr>
 					<tr>
-						<th>작성자</th>
+						<th><span class="col01">*</span>작성자</th>
 						<td>
 							<input id="writer" name="writer" class="inputTxt inputName"
 								type="text" value="">
 						</td>
-						<th>전화번호</th>
+						<th><span class="col01">*</span>전화번호</th>
 						<td>
 							<input id="callNo" name="callNo" class="inputTxt inputName"
 								type="text" value="">
@@ -259,7 +271,7 @@ function selectEmail(ele) {
 							@
 							<input name="email2" type="text" class="w10">
 							<select name="select_email" onchange="selectEmail(this)">
-								<option value="1" selected>선택</option>
+								<option value="직접입력" selected>직접입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="hanmail.net">hanmail.net</option>
@@ -277,16 +289,16 @@ function selectEmail(ele) {
 						</td>
 					</tr>
 					<tr>
-						<th><span class="col01">*</span>제품명</th>
+						<th>제품명</th>
 						<td colspan="3">
-							<select id="prdtNm1" name="prdtNm1" class="prdtNm1 w23">
+							<select id="prdtNm1" name="prdtNm1" class="prdtNm1 w21">
                                 <option value="a">선택</option>
 								<option value="압전세라믹필름">압전세라믹필름</option>
 								<option value="적충형압전세라믹필름">적충형압전세라믹필름</option>
 								<option value="압전세라믹캔틸레버">압전세라믹캔틸레버</option>
 								<option value="플렉서블압전세라믹복합체필름">플렉서블압전세라믹복합체필름</option>
 							</select>
-							<select id="prdtNm2" name="prdtNm2" class="prdtNm2 w33">
+							<select id="prdtNm2" name="prdtNm2" class="prdtNm2 w15_1">
 								<option value="">선택</option>
 							</select>
 							<input type="hidden" name="prdtNm" value="">
@@ -299,8 +311,8 @@ function selectEmail(ele) {
 				</table>
 			</div>
 			</form>
-			<div class="btn_group">
-				<button button="type" id="btn-write" class="btn-write">문의하기</button>
+			<div class="writeForm_btn">
+				<a href="#" id="w_btn">문의하기</a>
 			</div>
 		</div>
 	
