@@ -34,7 +34,6 @@ public class MngrOlineService {
 		onlineDTO.setPageOffset(AppPagingUtil.getOffset(pageNo, pageSize));
 
 		List<OnlineVO> list = onlineMapper.selectOnlineListPaging(onlineDTO);
-		list = onlineMapper.selectOnlineListPaging(onlineDTO);
 		
 		if (pageNo != 1 && list.size() == 0) {
 			pageNo = 1;
@@ -49,7 +48,6 @@ public class MngrOlineService {
 		
 		rs.put("onlineDTO", onlineDTO);
 		rs.put("list", list);
-		
 		rs.put("totalCount", totalCount);
 		rs.put("totalPageNo", totalPageNo);
 		rs.put("pagingHtml", pagingHtml);

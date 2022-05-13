@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,13 @@ public class MngrOlineController {
     }
     
     
+    // 관리자 > 게시판 > view 페이지
+	@GetMapping({"/mngr/withUs/online-view"})
+	public String mngrView(ModelMap modelMap) throws Exception {
+		return "mngr/withUs/online-view";
+	}
+	
+	
     // 관리자 > 게시판 > 데이터 조회
     @ResponseBody
     @RequestMapping(value = {"/mngr/online/find"}, method = {RequestMethod.POST})
@@ -49,7 +57,6 @@ public class MngrOlineController {
         return new ResponseEntity<>(mngrOlineService.mngrFind(onlineDTO), HttpStatus.OK);
     }
     
-
     
     // 관리자 > 게시판 > 제거
     @ResponseBody
