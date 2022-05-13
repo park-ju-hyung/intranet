@@ -3,10 +3,12 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{/site/common/layout/basic_layout}">
 <head>
-</head>
 
+
+
+</head>
 <th:block layout:fragment="basic_script">
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		initPage();
 		registEvent();
@@ -23,9 +25,7 @@
 	};
 	
 	const registEvent = function() {
-		// prdtNm1�쓽 蹂��솕瑜� 媛먯�
 		$('.prdtNm1').change(function() {
-			// prdtNm2�쓽 媛믪쓣 蹂�寃쏀븯�뒗 �븿�닔
 			categoryChange($('.prdtNm1 option:selected'));
 		});
 	};
@@ -34,56 +34,10 @@
 		$("#w_btn").off("click").on("click", function (e) {
 			e.preventDefault();
 			
-			var title = $("[name=title]");
-			var writer = $("[name=writer]");
-			var callNo = $("[name=callNo]");
-			var email1 = $("[name=email1]");
-			var email2 = $("[name=email2]");
-			var email = email1.val() + '@' + email2.val();
-			$("[name=email]").val(email);
-			var compNm = $("[name=compNm]");
-			var prdtNm1 = $("select[name=prdtNm1] option:selected").text();
-			var prdtNm2 = $("select[name=prdtNm2] option:selected").val();
-			var prdtNm = prdtNm1 + ' > ' + prdtNm2;
-			$("[name=prdtNm]").val(prdtNm);
-			var prdtCt = $("[name=prdtCt]");
-			
-			//�븘�닔�빆紐� 泥댄겕
-			if(title.val().trim().length == 0) {
-				alert('�젣紐⑹쓣 �엯�젰�빐二쇱꽭�슂.');
-				$('input[name="title"]').focus();
-				return;
-			}
-			if(writer.val().trim().length == 0) {
-				alert('�옉�꽦�옄瑜� �엯�젰�빐二쇱꽭�슂.');
-				$('input[name="writer"]').focus();
-				return;
-			}
-			if(callNo.val().trim().length == 0) {
-				alert('�쟾�솕踰덊샇瑜� �엯�젰�빐二쇱꽭�슂.');
-				$('input[name="callNo"]').focus();
-				return;
-			}
-			if(email1.val().trim().length == 0) {
-				alert('�씠硫붿씪�쓣 �엯�젰�빐二쇱꽭�슂.');
-				$('input[name="email1"]').focus();
-				return;
-			}
-			if(email2.val().trim().length == 0) {
-				alert('�씠硫붿씪�쓣 �꽑�깮�빐二쇱꽭�슂.');
-				$('input[name="email2"]').focus();
-				return;
-			}
-			if(prdtCt.val().trim().length == 0) {
-				alert('�궡�슜�쓣 �옉�꽦�빐二쇱꽭�슂.');
-				$('#prdtCt').focus();
-				return;
-			}
-			
-			if (!confirm("���옣 �븷源뚯슂?")) {
+			if(!nullCheck()) {
 				return false;
 			}
-	
+			
 			var formData = $("form[name=writeForm]").serializeObject();
 	
 			$.ajax({
@@ -93,12 +47,14 @@
 				dataType: "json",
 				contentType: "application/json"
 			}).done(function (result, status, xhr) {
-				alert("���옣 �릺�뿀�뒿�땲�떎.");
+				alert("등록되었습니다.");
 				$(location).attr("href", "/withUs/online");
 			}).fail(function (xhr, status, error) {
-				alert("���옣�뿉 �떎�뙣�뻽�뒿�땲�떎.");
+				alert("등록에 실패하였습니다.");
 			});
+			
 		});
+		
 	};
 	
 	function selectEmail(ele) {
@@ -113,109 +69,98 @@
 			$email2.val($this.val());
 		}
 	}
-	
-	const categoryChange = function(value) {
-		let prdt1_val = $(value).val();
 		
-		let prdt2_a = ["�꽑�깮"];
-		// 1. �븬�쟾�꽭�씪誘뱁븘由꾩씪 �븣 prdtNm2�쓽 �샃�뀡媛믩뱾 
-		let prdt2_b = ["�꽑�깮", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
-		// 2. �쟻異⑺삎�븬�쟾�꽭�씪誘뱁븘由꾩씪 �븣 prdtNm2�쓽 �샃�뀡媛믩뱾
-		let prdt2_c = ["�꽑�깮", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
-		// 3.�븬�쟾�꽭�씪誘뱀틪�떥�젅踰꾩씪 �븣 prdtNm2�쓽 �샃�뀡媛믩뱾
-		let prdt2_d = ["�꽑�깮", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
-		// 4.�뵆�젆�꽌釉붿븬�쟾�꽭�씪誘밸났�빀泥댄븘由꾩씪 �븣 prdtNm2�쓽 �샃�뀡媛믩뱾
-		let prdt2_e = ["�꽑�깮", "IPFC-2050T", "IPFC-2050L"];
-		
-		let prdt2_result = null;
-		
-		var target = $('.prdtNm2');
-		
-		if(prdt1_val == 'a') prdt2_result  = prdt2_a;
-		if(prdt1_val == 'b') prdt2_result  = prdt2_b;
-		if(prdt1_val == 'c') prdt2_result  = prdt2_c;
-		if(prdt1_val == 'd') prdt2_result  = prdt2_d;
-		if(prdt1_val == 'e') prdt2_result  = prdt2_e;
-		
-		$(target).children().remove();
-		
-		for (index in prdt2_result) {	
-		    let option = document.createElement('option');
-		    option.value = prdt2_result[index];
-		    option.text = prdt2_result[index];
-		    $(target).append(option);
-		}
-	};
-	
-	</script>
-</th:block>
 
+const nullCheck = function() {
+	let formData = $("form[name=writeForm]").serializeObject();
+	
+	// 입력값 null 체크
+	if(formData['title'] == '') {
+		alert('제목을 입력해주세요.');
+		$('input[name="title"]').focus();
+		return false;
+	}
+	if(formData['writer'] == '') {
+		alert('작성자를 입력해주세요');
+		$('input[name="writer"]').focus();
+		return false;
+	}
+	if(formData['callNo'] == '') {
+		alert('전화번호를 입력해주세요.');
+		$('input[name="callNo"]').focus();
+		return false;
+	}
+	if(formData['email1'] == '') {
+		alert('이메일을 입력해주세요.');
+		$('input[name="email1"]').focus();
+		return false;
+	}
+	if(formData['email2'] == '') {
+		alert('이메일을 선택해주세요.');
+		$('select[name="email2"]').focus();
+		return false;
+	}
+	if(formData['prdtNm1'] == 'a') {
+		alert('제품명을 선택해주세요.');
+		$('select[name="prdtNm1"]').focus();
+		return false;
+	}
+	if(formData['prdtNm2'] == '선택') {
+		alert('제품코드를 선택해주세요.');
+		$('select[name="prdtNm2"]').focus();
+		return false;
+	}
+	if(formData['prdtCt'] == '') {
+		alert('내용을 입력해주세요.');
+		$('#prdtCt').focus();
+		return false;
+	}
+	
+	if (!confirm("저장하시겠습니까?")) {
+		return false;
+	}
+};
+	
+const categoryChange = function(value) {
+	let prdt1_val = $(value).val();
+	
+	let prdt2_a = ["선택"];
+	// 1. 압전세라믹필름일 때 prdtNm2의 옵션값들 
+	let prdt2_b = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
+	// 2. 적충형압전세라믹필름일 때 prdtNm2의 옵션값들
+	let prdt2_c = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
+	// 3.압전세라믹캔틸레버일 때 prdtNm2의 옵션값들
+	let prdt2_d = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
+	// 4.플렉서블압전세라믹복합체필름일 때 prdtNm2의 옵션값들
+	let prdt2_e = ["선택", "IPFC-2050T", "IPFC-2050L"];
+	
+	let prdt2_result = null;
+	
+	var target = $('.prdtNm2');
+	
+	if(prdt1_val == 'a') prdt2_result  = prdt2_a;
+	if(prdt1_val == 'b') prdt2_result  = prdt2_b;
+	if(prdt1_val == 'c') prdt2_result  = prdt2_c;
+	if(prdt1_val == 'd') prdt2_result  = prdt2_d;
+	if(prdt1_val == 'e') prdt2_result  = prdt2_e;
+	
+	$(target).children().remove();
+	
+	for (index in prdt2_result) {	
+	    let option = document.createElement('option');
+	    option.value = prdt2_result[index];
+	    option.text = prdt2_result[index];
+	    $(target).append(option);
+	}
+};	
+</script>
+</th:block>
 <th:block layout:fragment="content">
 	<div id="com2" style="width:0px; height:0px; position:absolute; left:0px; top:0px; z-index:1">
 		<form name="urlMaintain" id="urlMaintain" action="/member/login.jsp" method="post">
 			<input type="hidden" name="url" id="main_url" value="/withUs/online" />
 			<input type="hidden" name="param" id="main_param" value="" />
 		</form>
-	</div>
-
-	<div id="header">
-		<a href="/" class="logo"></a>
-		<div class="inner">
-			<div class="gnb">
-				<ul>
-					<li>
-						<a class="mont" href="/Company/vision">COMPANY</a>
-						<ul class="depth02">
-							<li><a href="/Company/vision"><span>鍮꾩쟾 諛� 誘몄뀡</span></a></li>
-							<li><a href="/Company/history"><span>�뿰�쁺</span></a></li>
-							<li><a href="/Company/company"><span>�궗�뾽�꽦怨�</span></a></li>
-							<li><a href="/Company/patent"><span>�씤利� 諛� �듅�뿀 �쁽�솴</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="mont" href="/md/piezoele">R&D</a>
-						<ul class="depth02">
-							<li><a href="/md/piezoele"><span>�븬�쟾</span></a></li>
-							<li><a href="/md/energy"><span>�뿉�꼫吏� �븯踰좎뒪�똿</span></a></li>
-							<li><a href="/md/health"><span>�뿬�뒪耳��뼱</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="mont" href="/products/wearable">PRODUCT</a>
-						<ul class="depth02">
-							<li><a href="/products/wearable"><span>�썾�뼱�윭釉� �꽱�꽌�냼�옄</span></a></li>
-							<li><a href="/products/IoT"><span>IoT �뜽由щ꽕�씠�꽣</span></a></li>
-							<li><a href="/products/mitt"><span>�쟾�옄誘명듃</span></a></li>
-						</ul>
-					</li>
-					<!--
-					<li>
-						<a class="mont" href="/Business/platform">BUSINESS</a>
-						<ul class="depth02">
-							<li><a href="/Business/platform"><span>�뵆�옯�뤌 �꽌鍮꾩뒪</span></a></li>
-						</ul>
-					</li>
-					-->
-					<li>
-						<a class="mont" href="/withUs/direction">WITH US</a>
-						<ul class="depth02">
-							<li><a href="/withUs/direction"><span>�삤�떆�뒗湲�</span></a></li>
-							<li><a href="/withUs/online"><span>�삩�씪�씤臾몄쓽</span></a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="right">
-			<div class="all_menu_btn">
-				<i></i><i></i>
-			</div>
-		</div>
-		<div class="m_btn">
-			<a href="javascript:;">
-				<i></i><i></i>
-			</a>
-		</div>
 	</div>
 
 	<div id="all_menu">
@@ -255,8 +200,8 @@
 		<a href="/" class="logo"></a>
 		<div class="inner">
 			<ul>
-				<li><a href="/withUs/direction"><span>�삤�떆�뒗湲�</span></a></li>
-				<li class="on"><a href="/withUs/online"><span>�삩�씪�씤臾몄쓽</span></a></li>
+				<li><a href="/withUs/direction"><span>오시는길</span></a></li>
+				<li class="on"><a href="/withUs/online"><span>온라인문의</span></a></li>
 			</ul>
 		</div>
 	</div>
@@ -264,7 +209,7 @@
 	<div class="inquiry_box">
 		<div class="inner">
 			<div class="sub_tit">
-				<h3>�삩�씪�씤臾몄쓽</h3>
+				<h3>온라인문의</h3>
 			</div>
 		</div>
 	</div>
@@ -273,14 +218,14 @@
 		<div class="inner">
 			<div class="sub_tabbtn">
 				<ul class="grid05">
-					<li><a href="/withUs/direction"><span>�삤�떆�뒗湲�</span></a></li>
-					<li class="on"><a href="/withUs/online"><span>�삩�씪�씤臾몄쓽</span></a></li>
+					<li><a href="/withUs/direction"><span>오시는길</span></a></li>
+					<li class="on"><a href="/withUs/online"><span>온라인문의</span></a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 
-	<form name="writeForm" method="get" action="">
+	<form name="writeForm" method="POST" action="" onsubmit="return false">
 		<input type="hidden" name="email">
 		<input type="hidden" name="prdtNm">
 		<div class="programCon">
@@ -288,32 +233,32 @@
 			<div class="writeForm">
 				<table>
 					<tr>
-						<th>�젣紐�</th>
+						<th>제목</th>
 						<td colspan="3">
-							<input data-value="�젣紐⑹쓣 �엯�젰�븯�꽭�슂." id="title" name="title" class="inputTxt inputName"
+							<input id="title" name="title" class="inputTxt inputName"
 								type="text" value="">
 						</td>
 					</tr>
 					<tr>
-						<th>�옉�꽦�옄</th>
+						<th>작성자</th>
 						<td>
 							<input data-value="�옉�꽦�옄瑜� �엯�젰�븯�꽭�슂." id="writer" name="writer" class="inputTxt inputName"
 								type="text" value="">
 						</td>
-						<th>�쑕���쟾�솕</th>
+						<th>전화번호</th>
 						<td>
 							<input data-value="�쑕���쟾�솕瑜� �엯�젰�븯�꽭�슂." id="callNo" name="callNo" class="inputTxt inputName"
 								type="text" value="">
 						</td>
 					</tr>
 					<tr>
-						<th><span class="col01">*</span>�씠硫붿씪</th>
+						<th><span class="col01">*</span>이메일</th>
 						<td colspan="3">
 							<input name="email1" type="text">
 							@
 							<input name="email2" type="text" class="w10">
 							<select name="select_email" onchange="selectEmail(this)">
-								<option value="1" selected>吏곸젒�엯�젰</option>
+								<option value="1" selected>선택</option>
 								<option value="naver.com">naver.com</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="hanmail.net">hanmail.net</option>
@@ -323,37 +268,36 @@
 						</td>
 					</tr>
 					<tr>
-						<th>湲곗뾽紐�</th>
+						<th>기업명</th>
 						<td colspan="3">
-							<input data-value="�옉�꽦�옄瑜� �엯�젰�븯�꽭�슂." id="compNm" name="compNm" class="inputTxt inputName"
+							<input id="compNm" name="compNm" class="inputTxt inputName"
 								type="text" value="">
 						</td>
 					</tr>
 					<tr>
-						<th><span class="col01">*</span>�젣�뭹</th>
+						<th><span class="col01">*</span>제품명</th>
 						<td colspan="3">
 							<select id="prdtNm1" name="prdtNm1" class="prdtNm1 w23">
-								<option value="a">�꽑�깮</option>
-								<option value="b">�븬�쟾�꽭�씪誘뱁븘由�</option>
-								<option value="c">�쟻異⑺삎�븬�쟾�꽭�씪誘뱁븘由�</option>
-								<option value="d">�븬�쟾�꽭�씪誘뱀틪�떥�젅踰�</option>
-								<option value="e">�뵆�젆�꽌釉붿븬�쟾�꽭�씪誘밸났�빀泥댄븘由�</option>
+                                <option value="a">선택</option>
+								<option value="b">압전세라믹필름</option>
+								<option value="c">적충형압전세라믹필름</option>
+								<option value="d">압전세라믹캔틸레버</option>
+								<option value="e">플렉서블압전세라믹복합체필름</option>
 							</select>
 							<select id="prdtNm2" name="prdtNm2" class="prdtNm2 w33">
-								<option>�꽑�깮</option>
+								<option value="">선택</option>
 							</select>
 						</td>
 					</tr> 
 					<tr>
-						<th>�궡�슜</th>
-						<td colspan="3"><textarea name="prdtCt" id="prdtCt" data-value="�궡�슜�쓣 �엯�젰�븯�꽭�슂." cols="30"
-								rows="10"></textarea></td>
+						<th>내용</th>
+						<td colspan="3"><textarea name="prdtCt" id="prdtCt" cols="30" rows="10"></textarea></td>
 					</tr>
 				</table>
 			</div>
 
 			<div class="writeForm_btn">
-				<a href="#" id="w_btn">臾몄쓽�븯湲�</a>
+				<a href="#" id="w_btn">문의하기</a>
 			</div>
 		</div>
 	</form>
