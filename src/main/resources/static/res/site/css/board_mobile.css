@@ -237,14 +237,14 @@ body{-webkit-text-size-adjust:none; }
 	.writeForm table tr td input[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0; width:100%;}
 	.writeForm table tr:nth-child(3) td input:nth-child(1)[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0; width:35%;}
 	.writeForm table tr:nth-child(3) td input:nth-child(2)[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0; width:26% !important;}
-	.writeForm table tr:nth-child(3) td select { width:120px; vertical-align: middle;}
+	.writeForm table tr:nth-child(3) td select { width:138px; vertical-align: middle;}
 	.writeForm table tr td input[type="password"]{height:40px; font-size:16px;}
 	.writeForm table tr td input[type="radio"]{width:20px; height:20px;}
 	.writeForm table tr td input[type="file"]{width:calc(100% - 115px); font-size:16px; height:40px;}
 	.writeForm table tr td select{width:240px; height:40px; font-size:16px; -webkit-border-radius: 0;}
 	.writeForm table tr:nth-child(5) td select:first-child{margin-right: 0px !important; width:64% !important;}
-	.writeForm table tr:nth-child(5) td select:nth-child(2){width: 138px !important;}
-	
+	.writeForm table tr:nth-child(5) td select:nth-child(2){width: 150px !important;}
+	 
 	.writeForm table tr td label{font-size:16px;}
 	.writeForm table tr td textarea{font-size:16px;}
 	.writeForm table tr td .inputIdtype{width:calc(100% - 140px)}	

@@ -168,7 +168,7 @@ textarea:focus {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
-
+ 
 
 .writeForm table tr td input[type="password"]{height:37px; border:1px solid #dedede; font-size:14px; padding:0 20px; vertical-align:middle; box-sizing:border-box;}
 .writeForm table tr td input[type="file"]{width:60%; height:42px; border:1px solid #dedede; font-size:14px; padding:7px 20px; vertical-align:middle; box-sizing:border-box;}
