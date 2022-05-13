@@ -74,11 +74,19 @@
 <script type='text/javascript' src='/res/site/js/viewport.js'></script> 
 <link rel="stylesheet" href="/res/site/css/board_mobile.css" type="text/css" media="all">
 
+<!-- main_layout common js -->
+<th:block th:replace="site/common/fragment/main_script :: main-script"></th:block>
+<!-- // main_layout common js -->
 </head>
-<body>
-	<th:block th:replace="site/common/fragment/basic_header :: header"></th:block>
+<body class="main">
+	<div id="wrap">
+		<th:block th:replace="site/common/fragment/basic_header :: header"></th:block>
+	</div>
 	<div id="fullpage">
 		<th:block th:replace="/site/common/fragment/main_content :: content"></th:block>
+		<div class="section fp-auto-height" id="section04">
+			<th:block th:replace="site/common/fragment/basic_footer :: footer"></th:block>
+		</div>		
 	</div>
 </body>
 </html>
