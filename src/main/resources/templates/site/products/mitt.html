@@ -3,126 +3,62 @@
 	layout:decorate="~{site/common/layout/basic_layout}">
  
 <head>
-	<th:block layout:fragment="script">
-		<script type="text/javascript">
-			function selectEmail(ele) {
-				var $this = $(ele);
-				var $email2 = $('input[name=email2]');
-
-				if ($this.val() == "1") {
-					$email2.attr('readonly', false);
-					$email2.val('');
-				} else {
-					$email2.attr('readonly', true);
-					$email2.val($this.val());
-				}
-			}
-		</script>
-		<!--selectbox-->
-		<script>
-			function categoryChange2(e) {
-				var good_a = ["선택"];
-				var good_b = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
-				var good_c = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
-				var good_d = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
-				var good_e = ["선택", "IPFC-2050T", "IPFC-2050L"];
-				var target = document.getElementById("good2");
-
-				if (e.value == "a") var d = good_a;
-				else if (e.value == "b") var d = good_b;
-				else if (e.value == "c") var d = good_c;
-				else if (e.value == "d") var d = good_d;
-				else if (e.value == "e") var d = good_e;
-				else if (e.value == "f") var d = good_f;
-				else if (e.value == "g") var d = good_g;
-				else if (e.value == "h") var d = good_h;
-				else if (e.value == "i") var d = good_i;
-				else if (e.value == "j") var d = good_j;
-				else if (e.value == "k") var d = good_k;
-				else if (e.value == "l") var d = good_l;
-				target.options.length = 0;
-
-				for (x in d) {
-					var opt = document.createElement("option");
-					opt.value = d[x];
-					opt.innerHTML = d[x];
-					target.appendChild(opt);
-				}
-			}
-		</script>
-		<!--selectbox-->
-		<!--이메일-->
-		</script>
-	</th:block>
+	
 </head>
+<th:block layout:fragment="script">
+<script type="text/javascript">
+	function selectEmail(ele) {
+		var $this = $(ele);
+		var $email2 = $('input[name=email2]');
+
+		if ($this.val() == "1") {
+			$email2.attr('readonly', false);
+			$email2.val('');
+		} else {
+			$email2.attr('readonly', true);
+			$email2.val($this.val());
+		}
+	}
+</script>
+<!--selectbox-->
+<script>
+	function categoryChange2(e) {
+		var good_a = ["선택"];
+		var good_b = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
+		var good_c = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
+		var good_d = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
+		var good_e = ["선택", "IPFC-2050T", "IPFC-2050L"];
+		var target = document.getElementById("good2");
+
+		if (e.value == "a") var d = good_a;
+		else if (e.value == "b") var d = good_b;
+		else if (e.value == "c") var d = good_c;
+		else if (e.value == "d") var d = good_d;
+		else if (e.value == "e") var d = good_e;
+		else if (e.value == "f") var d = good_f;
+		else if (e.value == "g") var d = good_g;
+		else if (e.value == "h") var d = good_h;
+		else if (e.value == "i") var d = good_i;
+		else if (e.value == "j") var d = good_j;
+		else if (e.value == "k") var d = good_k;
+		else if (e.value == "l") var d = good_l;
+		target.options.length = 0;
+
+		for (x in d) {
+			var opt = document.createElement("option");
+			opt.value = d[x];
+			opt.innerHTML = d[x];
+			target.appendChild(opt);
+		}
+	}
+</script>
+</th:block>
 <th:block layout:fragment="content">
 	<div id="com2" style="width:0px; height:0px; position:absolute; left:0px; top:0px; z-index:1">
 		<form name="urlMaintain" id="urlMaintain" action="/member/login.jsp" method="post">
 			<input type="hidden" name="url" id="main_url" value="/with/inquiry/write.jsp" />
 			<input type="hidden" name="param" id="main_param" value="" />
 		</form>
-	</div>
-
-
-
-	<div id="header">
-		<a href="/" class="logo"></a>
-		<div class="inner">
-			<div class="gnb">
-				<ul>
-					<li>
-						<a class="mont" href="/Company/vision">COMPANY</a>
-						<ul class="depth02">
-							<li><a href="/Company/vision"><span>비전 및 미션</span></a></li>
-							<li><a href="/Company/history"><span>연혁</span></a></li>
-							<li><a href="/Company/company"><span>사업성과</span></a></li>
-							<li><a href="/Company/patent"><span>인증 및 특허 현황</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="mont" href="/md/piezoele">R&D</a>
-						<ul class="depth02">
-							<li><a href="/md/piezoele"><span>압전</span></a></li>
-							<li><a href="/md/energy"><span>에너지 하베스팅</span></a></li>
-							<li><a href="/md/health"><span>헬스케어</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="mont" href="/products/wearable">PRODUCT</a>
-						<ul class="depth02">
-							<li><a href="/products/wearable"><span>웨어러블 센서소자</span></a></li>
-							<li><a href="/products/IoT"><span>IoT 델리네이터</span></a></li>
-							<li><a href="/products/mitt"><span>전자미트</span></a></li>
-						</ul>
-					</li>
-					<!--
-					<li>
-						<a class="mont" href="/Business/platform">BUSINESS</a>
-						<ul class="depth02">
-							<li><a href="/Business/platform"><span>플랫폼 서비스</span></a></li>
-						</ul>
-					</li>
-					-->
-					<li>
-						<a class="mont" href="/withUs/direction">WITH US</a>
-						<ul class="depth02">
-							<li><a href="/withUs/direction"><span>오시는길</span></a></li>
-							<li><a href="/withUs/online"><span>온라인문의</span></a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="right">
-			<div class="all_menu_btn">
-				<i></i><i></i>
-			</div>
-		</div>
-		<div class="m_btn">
-			<a href="javascript:;">
-				<i></i><i></i>
-			</a>
-		</div>
 	</div>
 	<div id="all_menu">
 		<div class="all_menu_header">
@@ -325,5 +261,5 @@
 
 
 	</form>
-
+</th:block>
 </html>
