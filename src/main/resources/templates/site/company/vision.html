@@ -5,15 +5,37 @@
 <head>
 </head>
 <th:block layout:fragment="basic_script">
-<script>
-	$(document).on("ready", function () {
-		var url = window.location.pathname;
-		var urlPathname = url.substring(0, url.substring(1).indexOf('/') + 2);
-		var fileName = url.substring(url.lastIndexOf('/') + 1);
-		var isForDev = fileName == "read.jsp" || fileName == "edit.jsp" || fileName == "write.jsp" || fileName == "password.jsp" || fileName == "call.jsp" || fileName == "list.jsp";
+<script type="text/javascript">
+$(document).on("ready", function () {
+	var url = window.location.pathname;
+	var urlPathname = url.substring(0, url.substring(1).indexOf('/') + 2);
+	var fileName = url.substring(url.lastIndexOf('/') + 1);
+	var isForDev = fileName == "read.jsp" || fileName == "edit.jsp" || fileName == "write.jsp" || fileName == "password.jsp" || fileName == "call.jsp" || fileName == "list.jsp";
 
-		$("#header .gnb .depth01, #header .gnb .depth02 li").each(function () {
-			if ($(this).find("> a").attr("href") == url) {
+	$("#header .gnb .depth01, #header .gnb .depth02 li").each(function () {
+		if ($(this).find("> a").attr("href") == url) {
+			$(this).addClass("on");
+
+			if ($(this).hasClass("depth01")) {
+				// 1depth
+				var indexNumber = $(this).index() + 1;
+				var depth01Text = $(this).text();
+
+				$(".sub_path").hide();
+			} else {
+				// 2depth
+				var indexNumber = $(this).parents(".depth02").parent().index() + 1;
+				var depth01Text = $(this).parents(".depth02").prev().text();
+				var depth02Html = $(this).parents(".depth02").html();
+
+				$(".sub_path ul").append(depth02Html);
+			}
+
+		
+			$(".sub_visual .text h2").text(depth01Text);
+
+		} else if (isForDev) {
+			if ($(this).find(">a").attr("href").indexOf(url.substring(0, url.lastIndexOf('/') + 1)) > -1) {
 				$(this).addClass("on");
 
 				if ($(this).hasClass("depth01")) {
@@ -31,37 +53,15 @@
 					$(".sub_path ul").append(depth02Html);
 				}
 
-			
+
 				$(".sub_visual .text h2").text(depth01Text);
-
-			} else if (isForDev) {
-				if ($(this).find(">a").attr("href").indexOf(url.substring(0, url.lastIndexOf('/') + 1)) > -1) {
-					$(this).addClass("on");
-
-					if ($(this).hasClass("depth01")) {
-						// 1depth
-						var indexNumber = $(this).index() + 1;
-						var depth01Text = $(this).text();
-
-						$(".sub_path").hide();
-					} else {
-						// 2depth
-						var indexNumber = $(this).parents(".depth02").parent().index() + 1;
-						var depth01Text = $(this).parents(".depth02").prev().text();
-						var depth02Html = $(this).parents(".depth02").html();
-
-						$(".sub_path ul").append(depth02Html);
-					}
-
-
-					$(".sub_visual .text h2").text(depth01Text);
-				}
 			}
-		});
+		}
 	});
+});
 
-	$(window).on("load", function () {
-	});
+$(window).on("load", function () {
+});
 </script>
 </th:block>
 <th:block layout:fragment="content">
@@ -104,10 +104,10 @@
 			<div class="inner">
 				<ul>
 					<!--
-					<li class="on"><a href="/Company/vision"><span>鍮꾩쟾 諛� 誘몄뀡</span></a></li>
-					<li><a href="/Company/history"><span>�뿰�쁺</span></a></li>
-					<li><a href="/Company/company"><span>�궗�뾽�꽦怨�</span></a></li>
-					<li><a href="/Company/patent"><span>�씤利� 諛� �듅�뿀 �쁽�솴</span></a></li>
+					<li class="on"><a href="/company/vision"><span>鍮꾩쟾 諛� 誘몄뀡</span></a></li>
+					<li><a href="/company/history"><span>�뿰�쁺</span></a></li>
+					<li><a href="/company/company"><span>�궗�뾽�꽦怨�</span></a></li>
+					<li><a href="/company/patent"><span>�씤利� 諛� �듅�뿀 �쁽�솴</span></a></li>
 				-->
 				</ul>
 			</div>
@@ -184,5 +184,4 @@
 
 	</div>
 </th:block>
-
 </html>
