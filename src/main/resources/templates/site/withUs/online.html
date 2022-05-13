@@ -115,7 +115,7 @@ const nullCheck = function() {
 	let email = formData['email1'] + '@' + formData['email2'];
 	$('input[name="email"]').val(email);
 	
-	if (!confirm("저장하시겠습니까?")) {
+	if (!confirm("등록하시겠습니까?")) {
 		return false;
 	}
 	
@@ -258,10 +258,10 @@ function selectEmail(ele) {
 							<input id="writer" name="writer" class="inputTxt inputName"
 								type="text" value="">
 						</td>
-						<th><span class="col01">*</span>전화번호</th>
+						<th><span class="col01">*</span>휴대전화</th>
 						<td>
 							<input id="callNo" name="callNo" class="inputTxt inputName"
-								type="text" value="">
+								type="text" value="" placeholder="예) 010-xxxx-xxxx">
 						</td>
 					</tr>
 					<tr>
