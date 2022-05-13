@@ -9,6 +9,7 @@ $(document).ready(function() {
 	initPage();
 	registEvent();
 	setDefault();
+	categoryChange();
 	findAllAction();
 });
 
@@ -18,6 +19,7 @@ const initPage = function() {
 };
 
 const setDefault = function() {
+	// 데이트피커 초기화
     $('#schDateStart').datepicker({
         format: "yyyy-mm-dd",
         startView: 3,
@@ -44,24 +46,23 @@ const setDefault = function() {
 };
 
 const registEvent = function() {
-	// prdNm1의 변화를 감지
-	$('.prdNm1').change(function() {
-		// prdNm2의 값을 변경하는 함수
-		categoryChange($('.prdNm1 option:selected'));
+	// prdtNm1의 변화를 감지
+	$('.prdtNm1').change(function() {
+		// prdtNm2의 값을 변경하는 함수
+		categoryChange($('.prdtNm1 option:selected'));
 	});
 };
 
 const findAllAction = function() {
-	//searchBnDisplaySYmd = $('input[name="searchBnDisplaySYmd"]').val();
-	//searchBnDisplayEYmd = $('input[name="searchBnDisplayEYmd"]').val();
+	const schDateStart = $('#schDateStart').val();
+	const schDateEnd = $('#schDateEnd').val();
 	
-	/*
-	if (searchBnDisplaySYmd > searchBnDisplayEYmd) {
+	
+	if (schDateStart > schDateEnd) {
 		alert('검색 기간의 끝날짜가 시작날짜보다 빠릅니다.');
-		$('input[name="searchBnDisplayEYmd"]').focus();
+		$('#schDateEnd').focus();
 		return;
 	}
-	*/
 	
 	const formData = $('form[name="searchForm"]').serializeObject();
 
@@ -104,43 +105,63 @@ const findAllAction = function() {
 };
 
 const viewFunc = function() {
-
+	$('.viewBtn').off('click').on('click', function (e) {
+		e.preventDefault();
+		const idx = $(this).attr('data-id');
+		$('input[name="onlineId"]').val(idx);
+		$(location).attr('href', 'online-view?' + $('[name="searchForm"]').serialize());
+	});
 };
 
 const pagingFunc = function() {
-
+	$('.pagination .page-link').off('click').on('click', function (e) {
+		e.preventDefault();
+		if ($(this).parent('a').hasClass('active') == false) {
+			$('[name="pageNo"]').val($(this).attr('data-pageNo'));
+			findAllAction();
+		}
+	});
 };
+
+/*
+const logoutFunc = function() {
+	$('.logout_btn').off('click').on('click', function (e) {
+		e.preventDefault();
+		$(location).attr('href', 'online-list?'.serialize());
+	});
+};
+*/
 
 
 const categoryChange = function(value) {
-	let prd1_val = $(value).val();
+	let prdt1_val = $(value).val();
 	
-	let prd2_a = ["선택"];
-	// 1. 압전세라믹필름일 때 prdNm2의 옵션값들 
-	let prd2_b = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
-	// 2. 적충형압전세라믹필름일 때 prdNm2의 옵션값들
-	let prd2_c = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
-	// 3.압전세라믹캔틸레버일 때 prdNm2의 옵션값들
-	let prd2_d = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
-	// 4.플렉서블압전세라믹복합체필름일 때 prdNm2의 옵션값들
-	let prd2_e = ["선택", "IPFC-2050T", "IPFC-2050L"];
+	let prdt2_a = ["선택"];
+	// 1. 압전세라믹필름일 때 prdtNm2의 옵션값들 
+	let prdt2_b = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
+	// 2. 적충형압전세라믹필름일 때 prdtNm2의 옵션값들
+	let prdt2_c = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
+	// 3.압전세라믹캔틸레버일 때 prdtNm2의 옵션값들
+	let prdt2_d = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
+	// 4.플렉서블압전세라믹복합체필름일 때 prdtNm2의 옵션값들
+	let prdt2_e = ["선택", "IPFC-2050T", "IPFC-2050L"];
 	
-	let prd2_result = null;
+	let prdt2_result = null;
 	
-	var target = $('.prdNm2');
+	var target = $('.prdtNm2');
 	
-	if(prd1_val == 'a') prd2_result  = prd2_a;
-	if(prd1_val == 'b') prd2_result  = prd2_b;
-	if(prd1_val == 'c') prd2_result  = prd2_c;
-	if(prd1_val == 'd') prd2_result  = prd2_d;
-	if(prd1_val == 'e') prd2_result  = prd2_e;
+	if(prdt1_val == 'a') prdt2_result  = prdt2_a;
+	if(prdt1_val == 'b') prdt2_result  = prdt2_b;
+	if(prdt1_val == 'c') prdt2_result  = prdt2_c;
+	if(prdt1_val == 'd') prdt2_result  = prdt2_d;
+	if(prdt1_val == 'e') prdt2_result  = prdt2_e;
 	
 	$(target).children().remove();
 	
-	for (index in prd2_result) {	
+	for (index in prdt2_result) {	
 	    let option = document.createElement('option');
-	    option.value = prd2_result[index];
-	    option.text = prd2_result[index];
+	    option.value = prdt2_result[index];
+	    option.text = prdt2_result[index];
 	    $(target).append(option);
 	}
 };
@@ -150,9 +171,10 @@ const categoryChange = function(value) {
 
 <th:block layout:fragment="content">
     <form name="searchForm" method="get" action="" onsubmit="return false;">
-
-    </form>
-
+    	<input type="hidden" name="pageNo" th:value="${onlineDTO.pageNo}"/>
+		<input type="hidden" name="pageBlock" th:value="${onlineDTO.pageBlock}"/>
+		<input type="hidden" name="pageSize" th:value="${onlineDTO.pageSize}"/>
+    
         <div class="main">
             <!--search content-->
             <div class="content">
@@ -160,7 +182,7 @@ const categoryChange = function(value) {
                 <div class="header">
                     <div class="logo">
                         <a href="javascript void(0)"></a>
-                        <button>
+                        <button id="logout_btn">
                             <img src="/res/mngr/img/login2.png" alt="">
                             <span>로그아웃</span>
                         </button>
@@ -230,14 +252,14 @@ const categoryChange = function(value) {
                                                 <div class="form-group">
                                                     <label for="" class="col-xs-2 control-label">제품명</label>
                                                     <div class="col-xs-10">
-                                                        <select class="prdNm1 form-control-2 w65 dib">
+                                                        <select class="prdtNm1 form-control-2 w65 dib">
                                                             <option value="a">선택</option>
-                                                            <option value="b">압전세라믹필름</option>
-                                                            <option value="c">적충형압전세라믹필름</option>
-                                                            <option value="d">압전세라믹캔틸레버</option>
-                                                            <option value="e">플렉서블압전세라믹복합체필름</option>
+															<option value="b">압전세라믹필름</option>
+															<option value="c">적충형압전세라믹필름</option>
+															<option value="d">압전세라믹캔틸레버</option>
+															<option value="e">플렉서블압전세라믹복합체필름</option>
                                                         </select>
-                                                        <select class="prdNm2 form-control w33 dib padding6-10">
+                                                        <select class="prdtNm2 form-control w33 dib padding6-10">
                                                             <option>선택</option>
                                                         </select>
                                                     </div>
@@ -283,7 +305,7 @@ const categoryChange = function(value) {
                         <table class="table-search">
                             <colgroup>
                                 <col width="7%">
-                                <col width="13%">
+                                <col width="20%">
                                 <col>
                                 <col width="10%">
                                 <col width="7%">
@@ -334,7 +356,7 @@ const categoryChange = function(value) {
                             </form>
                         </div>
                         
-                        <div class="col-xs-8">
+                        <div class="el-paging col-xs-8">
                             <div class="pagination paging">
                                 <a class="prev" alt="이전페이지"></a>
                                 <a href="#1^10" data-pg="1">1</a>
@@ -354,5 +376,6 @@ const categoryChange = function(value) {
                 </div>
             </div>
         </div>
-    </th:block>
+    </form>
+</th:block>
 </html>
