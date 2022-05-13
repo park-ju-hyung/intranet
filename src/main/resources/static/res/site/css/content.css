@@ -1,4 +1,8 @@
 /* 공통 */
+/* 주형 */
+.company-background{
+  background-image: url(/res/site/img/IOT.png);
+}
 /* sub_tit */
 .sub_tit {padding-bottom: 50px;}
 .sub_tit h3 {font-size: 56px; letter-spacing: -0.045em; color: #222222; text-align: center;}
@@ -15,6 +19,7 @@
 
 @media all and (max-width: 1000px) {
 	.sub_tit h3 {font-size: 44px;}
+	
 }
 
 /* sub_tabbtn */
@@ -725,7 +730,7 @@
 .sub_tit h3 {font-size: 56px; letter-spacing: -0.045em; color: #222222; text-align: center;}
 
 .history_tit{text-align:center; }
-.history_tit .tit p{position:relative; font-size:36px; letter-spacing:-0.045em; color:#1d2fda; font-weight:500; line-height:1.2;word-break:keep-all;}
+.history_tit .tit p{position:relative; font-size:33px !important; letter-spacing:-0.045em; color:#1d2fda; font-weight:500; line-height:1.2;word-break:keep-all;}
 .history_tit .tit p:after{content:''; position:absolute; left:50%; top:50%; width:87px; height:87px; border-radius:50%; background:rgba(20,31,137,0.14); z-index:-1; transform:translate(-50% , -50%); }
 .history_tit .tit p:before{content:''; position:absolute; left:50%; top:50%; width:102px; height:102px; border-radius:50%; border:1px solid rgba(20,31,137,0.14); background:transparent; z-index:-1; transform:translate(-50% , -50%); }
 .history_tit .txt_box{text-align:center; padding-top:50px; }
@@ -741,6 +746,9 @@
 /* sub_tabbtn */
 .sub_tabbtn ul{font-size:0; letter-spacing:-4px; text-align:center;}
 .sub_tabbtn ul li{display:inline-block; vertical-align:top; width:100%; max-width:260px; height:60px; border:1px solid #e5e5e5; border-right:0; box-sizing:border-box;}
+.sub_tabbtn2 ul li{display:inline-block; vertical-align:top; width:33%; max-width:260px; height:60px; border:1px solid #e5e5e5; border-right:0; box-sizing:border-box;}
+
+
 .sub_tabbtn ul li:last-of-type{border-right:1px solid #e5e5e5;}
 .sub_tabbtn ul li a{display:table; width:100%; height:100%; font-size:18px; color:#444; letter-spacing:-0.045em; font-weight:300; line-height:1.2; padding:0 5px; box-sizing:border-box;}
 .sub_tabbtn ul li a span{display:table-cell; vertical-align:middle;}
@@ -785,7 +793,7 @@
 }
 
 /* sub_visual */
-.sub_visual{position:relative; height:350px; background:#aaa; z-index:10; overflow:hidden;}
+.sub_visual{position:relative; height:550px;/**height:350px;**/ background:#aaa; z-index:10; overflow:hidden;}
 .sub_visual .bg{position:absolute; top:0; left:0; width:100%; height:100%; background-repeat: no-repeat; background-size: cover; background-position: center center; z-index:-1; animation:sacle 2s ease-out;}
 .sub_visual .inner{display:table; height:100%; margin:0 auto; padding-top: 115px; box-sizing: border-box;}
 .sub_visual .text{display:table-cell; vertical-align:middle; text-align:center;}
@@ -794,6 +802,7 @@
 .sub_path{background:#f9f9f9; border-bottom:1px solid #e5e5e5; text-align:center;}
 .sub_path ul{font-size:0; letter-spacing:-4px;}
 .sub_path ul li{display:inline-block; vertical-align:top; width:25%; max-width:220px;}
+.sub_path2 ul li{display:inline-block; vertical-align:top; width:33%; max-width:220px;}
 .sub_path ul li a{position:relative; display:table; width:100%; height:90px; font-size:20px; color:#222; letter-spacing:-0.045em; font-weight:400; line-height:1.5;}
 .sub_path ul li a:before{content:''; position:absolute; bottom:-1px; left:50%; display:block; width:0; height:2px; background:#1d2fda; transform:translateX(-50%); -webkit-transform:translateX(-50%); -moz-transform:translateX(-50%); -ms-transform:translateX(-50%); -o-transform:translateX(-50%); transition:all 0.3s;}
 .sub_path ul li a span{display:table-cell; vertical-align:middle; width:100%;}
@@ -812,9 +821,9 @@
 .sensor_box .img_box ul li:last-of-type{margin-right:0}
 .sensor_box .img_box ul li img{width:100%}
 .sensor_box .txt_box{margin:30px 0; text-align:center; }
-.sensor_box .txt_box p{position:relative; width:385px; font-size:18px; letter-spacing:-0.045em; color:#222222; font-weight:300; margin:0 auto;}
-.sensor_box .txt_box p:before{content:''; display:inline-block; vertical-align:middle; margin-right:30px; width:2px; height:14px; background:#666666;}
-.sensor_box .txt_box p:after{content:''; display:inline-block; vertical-align:middle; margin-left:30px; width:2px; height:14px; background:#666666; }
+.sensor_box .txt_box p{width: 434px; position:relative; font-size:18px; letter-spacing:-0.045em; color:#222222; font-weight:300; margin:0 auto;}
+.sensor_box .txt_box p:before{content:''; display:inline-block; vertical-align:middle; margin-right:3px; width:2px; height:14px; background:#666666;}
+.sensor_box .txt_box p:after{content:''; display:inline-block; vertical-align:middle; margin-left:3px; width:2px; height:14px; background:#666666; }
 
 .sensor_box .txt_box.type01 p{display:inline-block; width:auto; padding:0 30px; box-sizing:border-box; }
 
@@ -832,7 +841,7 @@
 	.sensor_box .img_box ul li + li{margin-top:15px; }
 
 	.sensor_box.type01 .img_box ul li{display:block; width:100%; margin-righT:0; }
-	.sensor_box.type01 .txt_box p{width:auto; display:inline-block; padding:0 20px; box-sizing:border-box; }
+	.sensor_box.type01 .txt_box p{font-size:17px; width:auto; display:inline-block; padding:0 20px; box-sizing:border-box; }
 }
 
 
@@ -1045,8 +1054,8 @@
 .energy_con02 .video_wrap .video_box iframe{position:absolute; left:0; top:0; width:100%; height:100%;}
 .energy_con02 .video_wrap .txt_box{margin:30px 0; text-align:center; }
 .energy_con02 .video_wrap .txt_box p{position:relative; width:615px; font-size:18px; letter-spacing:-0.045em; color:#222222; font-weight:300; margin:0 auto;}
-.energy_con02 .video_wrap .txt_box p:before{content:''; display:inline-block; vertical-align:middle; margin-right:30px; width:2px; height:14px; background:#666666; }
-.energy_con02 .video_wrap .txt_box p:after{content:''; display:inline-block; vertical-align:middle; margin-left:30px; width:2px; height:14px; background:#666666; }
+.energy_con02 .video_wrap .txt_box p:before{content:''; display:inline-block; vertical-align:middle; margin-right:3px; width:2px; height:14px; background:#666666; }
+.energy_con02 .video_wrap .txt_box p:after{content:''; display:inline-block; vertical-align:middle; margin-left:3px; width:2px; height:14px; background:#666666; }
 .energy_con02 .sensor_box.type01 .img_box ul li{position:relative; max-width: 186px;}
 .energy_con02 .sensor_box.type01 .img_box ul li:last-of-type {margin-right: 0;}
 .energy_con02 .sensor_box.type01 .img_box ul li .img {position: relative; padding:89.23% 0;}
@@ -1058,7 +1067,16 @@
 	.energy_con02 .video_wrap .txt_box p{width:auto; padding:0 20px; box-sizing:border-box; font-size:17px; }
 	.energy_con02 .sensor_box.type01 .img_box ul li {display: inline-block; width: calc(50% - 10px); margin-right: 20px; max-width: 186px;}
 	.energy_con02 .sensor_box.type01 .img_box ul li + li {margin-top: 0;}
+	.history_tit .txt_box p {
+    font-size: 20px;
+    letter-spacing: -0.045em;
+    color: #222222;
+    font-weight: 300;
+    word-break: keep-all;
+    }
+    
 }
+
 
 .energy_con03{padding:100px 0 150px;}
 .energy_con03 .desc{padding-top:25px; text-align:center; }
