@@ -95,14 +95,14 @@
 							<li><a href="/products/mitt"><span>전자미트</span></a></li>
 						</ul>
 					</li>
+					<!--
 					<li>
 						<a class="mont" href="/Business/platform">BUSINESS</a>
 						<ul class="depth02">
 							<li><a href="/Business/platform"><span>플랫폼 서비스</span></a></li>
-							<li><a href="/Business/smart"><span>스마트 빌리지</span></a></li>
-							<!--<li><a href="javascript:;">주요사업</a></li> -->
 						</ul>
 					</li>
+					-->
 					<li>
 						<a class="mont" href="/withUs/direction">WITH US</a>
 						<ul class="depth02">
@@ -146,51 +146,8 @@
 		<div class="gnb_box">
 		</div>
 	</div>
-	<script>
-		$(document).ready(function () {
-			var gnbHtml = $("#header .gnb").html();
-			$("#all_menu .gnb").html(gnbHtml);
-			$("#m_menu .gnb_box").html(gnbHtml);
-		});
-		$("#header .all_menu_btn").on('click', function () {
-			$("#all_menu").fadeIn(200);
-		});
-		$("#all_menu .all_menu_btn").on('click', function () {
-			$("#all_menu").fadeOut(200);
-		});
+	
 
-		$(".top_btn").on("click", function () {
-			$("body,html").animate({scrollTop: 0});
-		});
-
-		$(window).on("load", function () {
-			// 모바일 클릭
-			$("#header .m_btn").on("click", function () {
-				$("#m_menu").addClass("on");
-				$(".m_menu_bg").fadeIn();
-			});
-			$(".m_menu_bg, #m_menu .close_btn").on("click", function () {
-				$("#m_menu").removeClass("on");
-				$(".m_menu_bg").fadeOut();
-			});
-			// 모바일 메뉴
-			$("#m_menu .gnb_box > ul > li > a").on("click", function () {
-				if (!$(this).parent().hasClass("depth01")) {
-					// 2depth가 있을 경우
-					$(this).parent("li").toggleClass("on").siblings().removeClass("on");
-					$(this).next(".depth02").stop(true, true).slideToggle().parent("li").siblings().find(".depth02").slideUp();
-					return false;
-				}
-			});
-			$('#header').on('mouseenter', function () {
-				$(this).addClass("on")
-			});
-			$('#header').on('mouseleave', function () {
-				$(this).removeClass("on")
-			});
-
-		});
-	</script>
 	<div class="sub_visual">
 		<div class="bg"></div>
 		<div class="inner">

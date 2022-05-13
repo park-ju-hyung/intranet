@@ -145,7 +145,7 @@
 .w100
 .w12{width:12%;}
 .w15{width:15%;}
-.w23{width:23% !important}
+.w23{width:79% !important}
 .w30{width:30% !important}
 .w33{width:33%;}
 .w10{width:10% !important;}
@@ -184,7 +184,7 @@ textarea:focus {
 .writeForm table tr td input[type="text"].inputEmail02 {vertical-align:top;}
 .writeForm table tr td .inputTit{width:80%;}
 .writeForm table tr td select {width:140px; height:37px; font-size:14px; color:#666;border-color:#dedede; text-align: center;}
-.writeForm table tr:nth-child(3) td select {vertical-align:top; width:140px; height:37px; font-size:14px; color:#666; margin-right:10px; border-color:#dedede; text-align: center;}
+.writeForm table tr:nth-child(3) td select { width:140px;}
 .writeForm_top table tr td select{width:70%;}
 .writeForm table tr td select.selecEmail{width:245px;}
 .writeForm table tr td select option{text-align:center;}
@@ -896,6 +896,9 @@ textarea:focus {
 	.writeForm table tr td.step{padding:20px 0;}
 	.writeForm_top table tr td select {width:100%; margin:0;}
 	.writeForm table tr td input[type="text"]{padding:0 10px;}
+	.writeForm table tr:nth-child(3) td input:nth-child(1)[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0; width:59%;}
+	.writeForm table tr:nth-child(3) td input:nth-child(2)[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0; width:20% !important;}
+	.writeForm table tr:nth-child(3) td select { width:120px; vertical-align: middle;}
 	.writeForm table tr td input[type="password"]{padding:0 10px;}
 	.writeForm table tr td input[type="file"]{width:calc(100% - 115px);}
 	.writeForm table tr td .inputTxt{width:100%;}

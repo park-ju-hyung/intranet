@@ -71,7 +71,7 @@ a.main_btn.type01 {width: 212px; height: 212px; line-height: 212px;}
 }
 
 /* main_con02 */
-.main_con02 {background:url('/res/site/img/main_con02_bg.jpg') no-repeat center center / cover; }
+.main_con02 {background:url('/res/site/img/main_test1.PNG') no-repeat center center / cover; }
 .main_con02 ul {padding:0px; height:100%; font-size:0; letter-spacing:-4px; box-sizing:border-box; }
 .main_con02 ul li {overflow:hidden; position:relative; display:inline-block; vertical-align:top; width:33.33%; height:100%; border-right:1px solid rgba(255,255,255,.3); font-size:14px; letter-spacing:-0.045em; text-align:center; box-sizing:border-box; }
 .main_con02 ul li:last-of-type {border-right:0 none; }
