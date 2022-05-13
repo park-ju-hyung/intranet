@@ -3,58 +3,47 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{mngr/common/layout/basic_layout}">
 
-    <head>
-        <!--selectbox-->
-        <script>
-            function categoryChange2(e) {
-                var good_a = ["선택"];
-                var good_b = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
-                var good_c = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
-                var good_d = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
-                var good_e = ["선택", "IPFC-2050T", "IPFC-2050L"];
-                var target = document.getElementById("good2");
+<head>
+<script th:inline="javascript">
+	$(document).ready(function() {
+		initPage();
+		setDefault();
+	});
+	
+	const initPage = function() {
+		listFunc();
+	};
+	
+	const setDefault = function() {
+		
+	};
+	
+	const listFunc = function () {
+	    $(".list").off("click").on("click", function (e) {
+	        e.preventDefault();
+	        $(location).attr("href", "online-list?" + $("[name=searchForm]").serialize());
+	    });
+	};
+</script>
 
-                if (e.value == "a") var d = good_a;
-                else if (e.value == "b") var d = good_b;
-                else if (e.value == "c") var d = good_c;
-                else if (e.value == "d") var d = good_d;
-                else if (e.value == "e") var d = good_e;
-                else if (e.value == "f") var d = good_f;
-                else if (e.value == "g") var d = good_g;
-                else if (e.value == "h") var d = good_h;
-                else if (e.value == "i") var d = good_i;
-                else if (e.value == "j") var d = good_j;
-                else if (e.value == "k") var d = good_k;
-                else if (e.value == "l") var d = good_l;
-                target.options.length = 0;
 
-                for (x in d) {
-                    var opt = document.createElement("option");
-                    opt.value = d[x];
-                    opt.innerHTML = d[x];
-                    target.appendChild(opt);
-                }
-            }
-        </script>
-        <!--selectbox-->
+<!--pagenum-->
+<script>
+    $(document).ready(function () {
 
-        <!--pagenum-->
-        <script>
-            $(document).ready(function () {
+        $('div a').click(function () {
+            var tab_id = $(this).attr('data-pg');
 
-                $('div a').click(function () {
-                    var tab_id = $(this).attr('data-pg');
+            $('div a').removeClass('choice');
+            $('.paging a').removeClass('choice');
 
-                    $('div a').removeClass('choice');
-                    $('.paging a').removeClass('choice');
+            $(this).addClass('choice');
+            $("#" + tab_id).addClass('choice');
+        })
 
-                    $(this).addClass('choice');
-                    $("#" + tab_id).addClass('choice');
-                })
-
-            });
-        </script>
-        <!--pagenum-->
+    });
+</script>
+<!--pagenum-->
 
     </head>
 
@@ -119,7 +108,7 @@
                                 </tr>
                                 <tr>
                                     <th>문의제품</th>
-                                    <td colspan="3">박주형</td>
+                                    <td colspan="3">압전세라믹필름</td>
                                 </tr>
                                 <tr>
                                     <th>문의내용</th>
