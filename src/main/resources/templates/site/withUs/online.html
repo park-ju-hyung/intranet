@@ -9,68 +9,52 @@
 </head>
 <th:block layout:fragment="basic_script">
 <script type="text/javascript">
-	$(document).ready(function() {
-		initPage();
-		registEvent();
-		setDefault();
-		saveFunc();
+$(document).ready(function() {		
+	initPage();
+	registEvent();
+	setDefault();
+});
+
+const initPage = function() {
+
+};
+
+const setDefault = function() {
+
+};
+	
+const registEvent = function() {
+	$('.prdtNm1').change(function() {
+		categoryChange($('.prdtNm1 option:selected'));
 	});
 	
-	const initPage = function() {
-	
-	};
-	
-	const setDefault = function() {
-	
-	};
-	
-	const registEvent = function() {
-		$('.prdtNm1').change(function() {
-			categoryChange($('.prdtNm1 option:selected'));
-		});
-	};
-	
-	var saveFunc = function () {
-		$("#w_btn").off("click").on("click", function (e) {
-			e.preventDefault();
-			
-			if(!nullCheck()) {
-				return false;
-			}
-			
-			var formData = $("form[name=writeForm]").serializeObject();
-	
-			$.ajax({
-				data: JSON.stringify(formData),
-				url: "/online/save",
-				type: "post",
-				dataType: "json",
-				contentType: "application/json"
-			}).done(function (result, status, xhr) {
-				alert("등록되었습니다.");
-				$(location).attr("href", "/withUs/online");
-			}).fail(function (xhr, status, error) {
-				alert("등록에 실패하였습니다.");
-			});
-			
-		});
-		
-	};
-	
-	function selectEmail(ele) {
-		var $this = $(ele);
-		var $email2 = $('input[name=email2]');
-	
-		if ($this.val() == "1") {
-			$email2.attr('readonly', false);
-			$email2.val('');
-		} else {
-			$email2.attr('readonly', true);
-			$email2.val($this.val());
-		}
-	}
-		
+	$('#btn-write').click(function() {
+		saveFunc();
+	});
+};
 
+const saveFunc = function () {	
+	if(!nullCheck()) {
+		return false;
+	}
+	
+	var formData = $("form[name=writeForm]").serializeObject();
+
+	$.ajax({
+		data: JSON.stringify(formData),
+		url: "/online/save",
+		type: "post",
+		dataType: "json",
+		contentType: "application/json"
+	}).done(function (result, status, xhr) {
+		alert("등록되었습니다.");
+		$(location).attr("href", "/withUs/online");
+	}).fail(function (xhr, status, error) {
+		alert("등록에 실패하였습니다.");
+	});
+	
+};
+	
 const nullCheck = function() {
 	let formData = $("form[name=writeForm]").serializeObject();
 	
@@ -116,11 +100,14 @@ const nullCheck = function() {
 		return false;
 	}
 	
-	if (!confirm("저장하시겠습니까?")) {
-		return false;
-	}
-};
+	let prdtNm = formData['prdtNm1'] + ' ' + formData['prdtNm2'];
+	let email = formData['email1'] + '@' + formData['email2'];
+	$('input[name="prdtNm"]').val(prdtNm);
+	$('input[name="email"]').val(email);
 	
+	return true;
+};
+		
 const categoryChange = function(value) {
 	let prdt1_val = $(value).val();
 	
@@ -139,10 +126,10 @@ const categoryChange = function(value) {
 	var target = $('.prdtNm2');
 	
 	if(prdt1_val == 'a') prdt2_result  = prdt2_a;
-	if(prdt1_val == 'b') prdt2_result  = prdt2_b;
-	if(prdt1_val == 'c') prdt2_result  = prdt2_c;
-	if(prdt1_val == 'd') prdt2_result  = prdt2_d;
-	if(prdt1_val == 'e') prdt2_result  = prdt2_e;
+	if(prdt1_val == '압전세라믹필름') prdt2_result  = prdt2_b;
+	if(prdt1_val == '적충형압전세라믹필름') prdt2_result  = prdt2_c;
+	if(prdt1_val == '압전세라믹캔틸레버') prdt2_result  = prdt2_d;
+	if(prdt1_val == '플렉서블압전세라믹복합체필름') prdt2_result  = prdt2_e;
 	
 	$(target).children().remove();
 	
@@ -153,6 +140,20 @@ const categoryChange = function(value) {
 	    $(target).append(option);
 	}
 };	
+
+function selectEmail(ele) {
+	var $this = $(ele);
+	var $email2 = $('input[name=email2]');
+
+	if ($this.val() == "1") {
+		$email2.attr('readonly', false);
+		$email2.val('');
+	} else {
+		$email2.attr('readonly', true);
+		$email2.val($this.val());
+	}
+};
+
 </script>
 </th:block>
 <th:block layout:fragment="content">
@@ -181,7 +182,7 @@ const categoryChange = function(value) {
 
 	<div id="m_menu">
 		<div class="top_box">
-			<img src="/img/logo02.png" alt="">
+			<img src="/res/site/img/logo02.png" alt="">
 			<a class="close_btn" href="javascript:;"><i></i><i></i></a>
 		</div>
 		<div class="gnb_box"></div>
@@ -225,7 +226,7 @@ const categoryChange = function(value) {
 		</div>
 	</div>
 
-	<form name="writeForm" method="POST" action="" onsubmit="return false">
+	<form name="writeForm" action="#">
 		<input type="hidden" name="email">
 		<input type="hidden" name="prdtNm">
 		<div class="programCon">
@@ -242,12 +243,12 @@ const categoryChange = function(value) {
 					<tr>
 						<th>작성자</th>
 						<td>
-							<input data-value="�옉�꽦�옄瑜� �엯�젰�븯�꽭�슂." id="writer" name="writer" class="inputTxt inputName"
+							<input id="writer" name="writer" class="inputTxt inputName"
 								type="text" value="">
 						</td>
 						<th>전화번호</th>
 						<td>
-							<input data-value="�쑕���쟾�솕瑜� �엯�젰�븯�꽭�슂." id="callNo" name="callNo" class="inputTxt inputName"
+							<input id="callNo" name="callNo" class="inputTxt inputName"
 								type="text" value="">
 						</td>
 					</tr>
@@ -265,6 +266,7 @@ const categoryChange = function(value) {
 								<option value="hotmail.com">hotmail.com</option>
 								<option value="nate.com">nate.com</option>
 							</select>
+							<input type="hidden" name="email" value="">
 						</td>
 					</tr>
 					<tr>
@@ -279,14 +281,15 @@ const categoryChange = function(value) {
 						<td colspan="3">
 							<select id="prdtNm1" name="prdtNm1" class="prdtNm1 w23">
                                 <option value="a">선택</option>
-								<option value="b">압전세라믹필름</option>
-								<option value="c">적충형압전세라믹필름</option>
-								<option value="d">압전세라믹캔틸레버</option>
-								<option value="e">플렉서블압전세라믹복합체필름</option>
+								<option value="압전세라믹필름">압전세라믹필름</option>
+								<option value="적충형압전세라믹필름">적충형압전세라믹필름</option>
+								<option value="압전세라믹캔틸레버">압전세라믹캔틸레버</option>
+								<option value="플렉서블압전세라믹복합체필름">플렉서블압전세라믹복합체필름</option>
 							</select>
 							<select id="prdtNm2" name="prdtNm2" class="prdtNm2 w33">
 								<option value="">선택</option>
 							</select>
+							<input type="hidden" name="prdtNm" value="">
 						</td>
 					</tr> 
 					<tr>
@@ -295,11 +298,11 @@ const categoryChange = function(value) {
 					</tr>
 				</table>
 			</div>
-
-			<div class="writeForm_btn">
-				<a href="#" id="w_btn">문의하기</a>
+			</form>
+			<div class="btn_group">
+				<button button="type" id="btn-write" class="btn-write">문의하기</button>
 			</div>
 		</div>
-	</form>
+	
 </th:block>
 </html>
