@@ -37,7 +37,7 @@
 
 <!-- font -->
 <link rel="preconnect" href="//fonts.googleapis.com">
-<link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="//fonts.gstatic.com">
 <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 
@@ -62,9 +62,6 @@
 <!-- wow 동적효과 --> 
 <script type="text/javascript" src="/res/site/js/wow.js"></script>
 <link rel="stylesheet" href="/res/site/css/wow.css" type="text/css" media="all" />
-<script>
-	new WOW().init();
-</script>
 
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 <script type="text/javascript" src="/res/site/js/function_jquery.js"></script>
@@ -72,23 +69,6 @@
 <!-- <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script> -->
 <script type="text/javascript" src="/res/site/js/jquery.colorPicker.js"></script>
 <script type='text/javascript' src='/res/site/js/validationBind.js'></script> 
-
-<script>
-$(window).load(function(){
-	jQuery.datetimepicker.setLocale('ko');		// 달력 언어 설정
-	if($(parent.frames['mainFrame']).size() > 0){
-		
-		//$("[name=mainFrame]",parent.document).attr("src",$(parent.frames['mainFrame'].document).get(0).URL);	
-	}	
-})
-
-
-var commonhour = '<%=hour%>';
-var commonminute = '<%=minute%>';
-var commonsecond = '<%=second%>';
-
-var key = '<%=session.getAttribute("SESSIONKEY")%>';
-</script>
 
 <!-- viewport 480px -->
 <script type='text/javascript' src='/res/site/js/viewport.js'></script> 
