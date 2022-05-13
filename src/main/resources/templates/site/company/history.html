@@ -9,66 +9,6 @@
 </head>
 <th:block layout:fragment="content">
 	<!-- main fullpage -->
-	<div id="header">
-		<a href="/" class="logo"></a>
-		<div class="inner">
-			<div class="gnb">
-				<ul>
-					<li>
-						<a class="mont" href="/Company/vision">COMPANY</a>
-						<ul class="depth02">
-							<li><a href="/Company/vision"><span>비전 및 미션</span></a></li>
-							<li><a href="/Company/history"><span>연혁</span></a></li>
-							<li><a href="/Company/company"><span>사업성과</span></a></li>
-							<li><a href="/Company/patent"><span>인증 및 특허 현황</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="mont" href="/md/piezoele">R&D</a>
-						<ul class="depth02">
-							<li><a href="/md/piezoele"><span>압전</span></a></li>
-							<li><a href="/md/energy"><span>에너지 하베스팅</span></a></li>
-							<li><a href="/md/health"><span>헬스케어</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="mont" href="/products/wearable">PRODUCT</a>
-						<ul class="depth02">
-							<li><a href="/products/wearable"><span>웨어러블 센서소자</span></a></li>
-							<li><a href="/products/IoT"><span>IoT 델리네이터</span></a></li>
-							<li><a href="/products/mitt"><span>전자미트</span></a></li>
-						</ul>
-					</li>
-					<!--
-					<li>
-						<a class="mont" href="/Business/platform">BUSINESS</a>
-						<ul class="depth02">
-							<li><a href="/Business/platform"><span>플랫폼 서비스</span></a></li>
-							
-						</ul>
-					</li>
-					-->
-					<li>
-						<a class="mont" href="/withUs/direction">WITH US</a>
-						<ul class="depth02">
-							<li><a href="/withUs/direction"><span>오시는길</span></a></li>
-							<li><a href="/withUs/online"><span>온라인문의</span></a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="right">
-			<div class="all_menu_btn">
-				<i></i><i></i>
-			</div>
-		</div>
-		<div class="m_btn">
-			<a href="javascript:;">
-				<i></i><i></i>
-			</a>
-		</div>
-	</div>
 	<div id="all_menu">
 		<div class="all_menu_header">
 			<a href="/" class="logo"></a>
@@ -85,7 +25,7 @@
 	<div class="m_menu_bg"></div>
 	<div id="m_menu">
 		<div class="top_box">
-			<img src="/img/logo02.png" alt="">
+			<img src="/res/site/img/logo02.png" alt="">
 			<a class="close_btn" href="javascript:;"><i></i><i></i></a>
 		</div>
 		<div class="gnb_box">
@@ -142,7 +82,7 @@
 							$(".sub_path ul").append(depth02Html);
 						}
 
-						$(".sub_visual .bg").css("background-image", "url('/img/sub_visual0" + indexNumber + ".jpg')");
+						$(".sub_visual .bg").css("background-image", "url('/res/site/img/sub_visual0" + indexNumber + ".jpg')");
 						$(".sub_visual .text h2").text(depth01Text);
 
 					} else if (isForDev) {
@@ -164,7 +104,7 @@
 								$(".sub_path ul").append(depth02Html);
 							}
 
-							$(".sub_visual .bg").css("background-image", "url('/img/sub_visual0" + indexNumber + ".jpg')");
+							$(".sub_visual .bg").css("background-image", "url('/res/site/img/sub_visual0" + indexNumber + ".jpg')");
 							$(".sub_visual .text h2").text(depth01Text);
 						}
 					}

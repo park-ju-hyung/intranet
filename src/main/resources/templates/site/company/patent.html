@@ -8,66 +8,6 @@
 	</th:block>
 </head>
 <th:block layout:fragment="content">
-	<!-- main fullpage -->
-	<div id="header">
-		<a href="/" class="logo"></a>
-		<div class="inner">
-			<div class="gnb">
-				<ul>
-					<li>
-						<a class="mont" href="/Company/vision">COMPANY</a>
-						<ul class="depth02">
-							<li><a href="/Company/vision"><span>비전 및 미션</span></a></li>
-							<li><a href="/Company/history"><span>연혁</span></a></li>
-							<li><a href="/Company/company"><span>사업성과</span></a></li>
-							<li><a href="/Company/patent"><span>인증 및 특허 현황</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="mont" href="/md/piezoele">R&D</a>
-						<ul class="depth02">
-							<li><a href="/md/piezoele"><span>압전</span></a></li>
-							<li><a href="/md/energy"><span>에너지 하베스팅</span></a></li>
-							<li><a href="/md/health"><span>헬스케어</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a class="mont" href="/products/wearable">PRODUCT</a>
-						<ul class="depth02">
-							<li><a href="/products/wearable"><span>웨어러블 센서소자</span></a></li>
-							<li><a href="/products/IoT"><span>IoT 델리네이터</span></a></li>
-							<li><a href="/products/mitt"><span>전자미트</span></a></li>
-						</ul>
-					</li>
-					<!--
-					<li>
-						<a class="mont" href="/Business/platform">BUSINESS</a>
-						<ul class="depth02">
-							<li><a href="/Business/platform"><span>플랫폼 서비스</span></a></li>
-						</ul>
-					</li>
-					-->
-					<li>
-						<a class="mont" href="/withUs/direction">WITH US</a>
-						<ul class="depth02">
-							<li><a href="/withUs/direction"><span>오시는길</span></a></li>
-							<li><a href="/withUs/online"><span>온라인문의</span></a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="right">
-			<div class="all_menu_btn">
-				<i></i><i></i>
-			</div>
-		</div>
-		<div class="m_btn">
-			<a href="javascript:;">
-				<i></i><i></i>
-			</a>
-		</div>
-	</div>
 	<div id="all_menu">
 		<div class="all_menu_header">
 			<a href="/" class="logo"></a>
@@ -106,10 +46,10 @@
 			<div class="inner">
 				<ul>
 					<!--
-					<li><a href="/Company/vision"><span>비전 및 미션</span></a></li>
-					<li><a href="/Company/history"><span>연혁</span></a></li>
-					<li><a href="/Company/company"><span>사업성과</span></a></li>
-					<li class="on"><a href="/Company/patent"><span>인증 및 특허 현황</span></a></li>
+					<li><a href="/Company/vision"><span>鍮꾩쟾 諛� 誘몄뀡</span></a></li>
+					<li><a href="/Company/history"><span>�뿰�쁺</span></a></li>
+					<li><a href="/Company/company"><span>�궗�뾽�꽦怨�</span></a></li>
+					<li class="on"><a href="/Company/patent"><span>�씤利� 諛� �듅�뿀 �쁽�솴</span></a></li>
 				-->
 				</ul>
 			</div>
@@ -127,13 +67,13 @@
 						$(this).addClass("on");
 
 						if ($(this).hasClass("depth01")) {
-							// 1depth만 있을 경우
+							// 1depth留� �엳�쓣 寃쎌슦
 							var indexNumber = $(this).index() + 1;
 							var depth01Text = $(this).text();
 
 							$(".sub_path").hide();
 						} else {
-							// 2depth가 있을 경우
+							// 2depth媛� �엳�쓣 寃쎌슦
 							var indexNumber = $(this).parents(".depth02").parent().index() + 1;
 							var depth01Text = $(this).parents(".depth02").prev().text();
 							var depth02Html = $(this).parents(".depth02").html();
@@ -141,7 +81,7 @@
 							$(".sub_path ul").append(depth02Html);
 						}
 
-						$(".sub_visual .bg").css("background-image", "url('/img/sub_visual0" + indexNumber + ".jpg')");
+						$(".sub_visual .bg").css("background-image", "url('/res/site/img/sub_visual0" + indexNumber + ".jpg')");
 						$(".sub_visual .text h2").text(depth01Text);
 
 					} else if (isForDev) {
@@ -149,13 +89,13 @@
 							$(this).addClass("on");
 
 							if ($(this).hasClass("depth01")) {
-								// 1depth만 있을 경우
+								// 1depth留� �엳�쓣 寃쎌슦
 								var indexNumber = $(this).index() + 1;
 								var depth01Text = $(this).text();
 
 								$(".sub_path").hide();
 							} else {
-								// 2depth가 있을 경우
+								// 2depth媛� �엳�쓣 寃쎌슦
 								var indexNumber = $(this).parents(".depth02").parent().index() + 1;
 								var depth01Text = $(this).parents(".depth02").prev().text();
 								var depth02Html = $(this).parents(".depth02").html();
@@ -163,7 +103,7 @@
 								$(".sub_path ul").append(depth02Html);
 							}
 
-							$(".sub_visual .bg").css("background-image", "url('/img/sub_visual0" + indexNumber + ".jpg')");
+							$(".sub_visual .bg").css("background-image", "url('/res/site/img/sub_visual0" + indexNumber + ".jpg')");
 							$(".sub_visual .text h2").text(depth01Text);
 						}
 					}
@@ -177,7 +117,7 @@
 		<div class="patent_con02 wow fadeInUp">
 			<div class="inner">
 				<div class="sub_tit">
-					<h3>인증 및 특허 현황</h3>
+					<h3>�씤利� 諛� �듅�뿀 �쁽�솴</h3>
 				</div>
 				<div class="patent_list">
 					<ul>
@@ -186,8 +126,8 @@
 								<img src="/res/site/img/patent_img01.png" alt="">
 							</div>
 							<div class="txt_box">
-								<p>플렉서블 압전소자 구조체 및 이의 제조방법 특허등록 완료</p>
-								<!-- <span>특허청 <br/>2016. 06. 10 ~ 2017. 06. 20</span> -->
+								<p>�뵆�젆�꽌釉� �븬�쟾�냼�옄 援ъ“泥� 諛� �씠�쓽 �젣議곕갑踰� �듅�뿀�벑濡� �셿猷�</p>
+								<!-- <span>�듅�뿀泥� <br/>2016. 06. 10 ~ 2017. 06. 20</span> -->
 							</div>
 						</li>
 						<li>
@@ -195,8 +135,8 @@
 								<img src="/res/site/img/patent_img02.png" alt="">
 							</div>
 							<div class="txt_box">
-								<p>타격 감지용 플렉서블 압전소자 구조체, 이를 이용한 전자미트 및 전자미트를 이용한 운동관리 시스템 </p>
-								<!--<span>특허청 <br/>2016. 12. 30 ~ 2017. 11. 23</span> -->
+								<p>��寃� 媛먯��슜 �뵆�젆�꽌釉� �븬�쟾�냼�옄 援ъ“泥�, �씠瑜� �씠�슜�븳 �쟾�옄誘명듃 諛� �쟾�옄誘명듃瑜� �씠�슜�븳 �슫�룞愿�由� �떆�뒪�뀥 </p>
+								<!--<span>�듅�뿀泥� <br/>2016. 12. 30 ~ 2017. 11. 23</span> -->
 							</div>
 						</li>
 						<li>
@@ -204,8 +144,8 @@
 								<img src="/res/site/img/patent_img03.png" alt="">
 							</div>
 							<div class="txt_box">
-								<p>하이브리드 타입 압전센서</p>
-								<!--<span>특허청 <br/>2017. 11. 30 ~ 2019. 08. 23</span> -->
+								<p>�븯�씠釉뚮━�뱶 ���엯 �븬�쟾�꽱�꽌</p>
+								<!--<span>�듅�뿀泥� <br/>2017. 11. 30 ~ 2019. 08. 23</span> -->
 							</div>
 						</li>
 						<li>
@@ -213,8 +153,8 @@
 								<img src="/res/site/img/patent_img04.png" alt="">
 							</div>
 							<div class="txt_box">
-								<p>자가발전이 가능한 델리네이터를 이용한 미세먼지 및 유해가스 측정시스템</p>
-								<!--<span>특허청 <br/>2018. 07. 12 ~ 2019. 09. 20</span> -->
+								<p>�옄媛�諛쒖쟾�씠 媛��뒫�븳 �뜽由щ꽕�씠�꽣瑜� �씠�슜�븳 誘몄꽭癒쇱� 諛� �쑀�빐媛��뒪 痢≪젙�떆�뒪�뀥</p>
+								<!--<span>�듅�뿀泥� <br/>2018. 07. 12 ~ 2019. 09. 20</span> -->
 							</div>
 						</li>
 						<li>
@@ -222,8 +162,8 @@
 								<img src="/res/site/img/patent_img05.png" alt="">
 							</div>
 							<div class="txt_box">
-								<p>발광부를 포함한 자가발전 델리네이터</p>
-								<!--<span>특허청 <br/>2019. 09. 20 ~ 2021. 09. 04</span> -->
+								<p>諛쒓킅遺�瑜� �룷�븿�븳 �옄媛�諛쒖쟾 �뜽由щ꽕�씠�꽣</p>
+								<!--<span>�듅�뿀泥� <br/>2019. 09. 20 ~ 2021. 09. 04</span> -->
 							</div>
 						</li>
 						<li>
@@ -231,8 +171,8 @@
 								<img src="/res/site/img/patent_img06.png" alt="">
 							</div>
 							<div class="txt_box">
-								<p>초음파 진동을 이용한 발열체</p>
-								<!--<span>특허청 <br/>2019. 12. 12 ~ 2021. 07. 20</span> -->
+								<p>珥덉쓬�뙆 吏꾨룞�쓣 �씠�슜�븳 諛쒖뿴泥�</p>
+								<!--<span>�듅�뿀泥� <br/>2019. 12. 12 ~ 2021. 07. 20</span> -->
 							</div>
 						</li>
 						<li>
@@ -240,8 +180,8 @@
 								<img src="/res/site/img/patent_img07.png" alt="">
 							</div>
 							<div class="txt_box">
-								<p>초음파 진동을 이용한 발열구조체</p>
-								<!--<span>특허청 <br/>2019. 12. 12 ~ 2021. 07. 20</span> -->
+								<p>珥덉쓬�뙆 吏꾨룞�쓣 �씠�슜�븳 諛쒖뿴援ъ“泥�</p>
+								<!--<span>�듅�뿀泥� <br/>2019. 12. 12 ~ 2021. 07. 20</span> -->
 							</div>
 						</li>
 						<li>
@@ -249,8 +189,8 @@
 								<img src="/res/site/img/patent_img08.png" alt="">
 							</div>
 							<div class="txt_box">
-								<p>기업부설연구소 인정서</p>
-								<!--<span>과학기술정보통신부 <br/>2021. 05. 28</span> -->
+								<p>湲곗뾽遺��꽕�뿰援ъ냼 �씤�젙�꽌</p>
+								<!--<span>怨쇳븰湲곗닠�젙蹂댄넻�떊遺� <br/>2021. 05. 28</span> -->
 							</div>
 						</li>
 						<li>
@@ -258,8 +198,8 @@
 								<img src="/res/site/img/patent_img09.png" alt="">
 							</div>
 							<div class="txt_box">
-								<p>벤처기업확인서</p>
-								<!--<span>벤처기업확인기관 <br/>2022. 03. 02</span> -->
+								<p>踰ㅼ쿂湲곗뾽�솗�씤�꽌</p>
+								<!--<span>踰ㅼ쿂湲곗뾽�솗�씤湲곌� <br/>2022. 03. 02</span> -->
 							</div>
 						</li>
 					</ul>
