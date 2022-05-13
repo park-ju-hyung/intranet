@@ -1,5 +1,5 @@
 
-/* 湲곕낯�봽濡쒓렇�옩 �궗�슜�옄紐⑤뱢 硫붾돱 - PC */
+/* 기본프로그램 사용자모듈 메뉴 - PC */
 .all_m_btn {padding:10px; background:#323337;}
 .all_m_btn img {position:absolute; top:28%; left:15px; width:10%; max-width:40px; cursor:pointer;}
 .all_m_btn .mutit {text-align:center; font-weight:900; font-size:26px; color:#fff;}
@@ -8,7 +8,7 @@
 .pro_m_wrap .bg_black {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:-1;}
 
 
-/* 湲곕낯�봽濡쒓렇�옩 �궗�슜�옄紐⑤뱢 硫붾돱 - MOBILE */
+/* 기본프로그램 사용자모듈 메뉴 - MOBILE */
 .pro_m_wrap .subleftmenu {
 	list-style:none;
 	margin:0;
@@ -53,7 +53,7 @@
 	.inner{width:93.75%;}
 }
 
-/* font 3�썡22�씪 �룿�듃�궘�젣 */
+/* font 3월22일 폰트삭제 */
 
 /* header */
 #header{position:absolute; left:0; top:0; width:100%; z-index:100;}
@@ -202,7 +202,7 @@
 }
 
 
-/* 湲곕낯�봽濡쒓렇�옩 �궗�슜�옄紐⑤뱢 硫붾돱 - PC */
+/* 기본프로그램 사용자모듈 메뉴 - PC */
 .all_m_btn {padding:10px; background:#323337;}
 .all_m_btn img {position:absolute; top:28%; left:15px; width:10%; max-width:40px; cursor:pointer;}
 .all_m_btn .mutit {text-align:center; font-weight:900; font-size:26px; color:#fff;}
@@ -211,7 +211,7 @@
 .pro_m_wrap .bg_black {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:-1;}
 
 
-/* 湲곕낯�봽濡쒓렇�옩 �궗�슜�옄紐⑤뱢 硫붾돱 - MOBILE */
+/* 기본프로그램 사용자모듈 메뉴 - MOBILE */
 .pro_m_wrap .subleftmenu {
 	list-style:none;
 	margin:0;
@@ -256,7 +256,7 @@
 	.inner{width:93.75%;}
 }
 
-/* font 3�썡22�씪 �룿�듃�궘�젣 */
+/* font 3월22일 폰트삭제 */
 
 /* header */
 #header{position:absolute; left:0; top:0; width:100%; z-index:100;}
