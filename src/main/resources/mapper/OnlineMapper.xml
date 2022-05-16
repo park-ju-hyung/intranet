@@ -7,7 +7,8 @@
 
 	<sql id="basicTable">
 		SELECT SQL_CALC_FOUND_ROWS
-		    online_id
+			ROW_NUMBER() OVER(ORDER BY online_id) AS no
+		    , online_id
 		    , title
 			, writer
 			, compNm
