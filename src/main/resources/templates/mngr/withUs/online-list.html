@@ -88,8 +88,10 @@ const findAllAction = function() {
 			html += '<tr>';
 			html += '<td>' + (el.no) + '</td>';
 			html += '<td>' + (el.prdtNm) + '</td>';
-			html += '<td class="txt-left"><a href="#" class="viewBtn" data-id="' + (el.onlineId) + '">' + (el.title) + '</a></td>';
+			//html += '<td class="txt-left"><a href="#" class="viewBtn" data-id="' + (el.onlineId) + '">' + (el.title) + '</a></td>';
+			html += '<td>' + (el.prdtCt) + '</td>';
 			html += '<td>' + (el.compNm) + '</td>';
+			html += '<td>' + (el.email) + '</td>';
 			html += '<td>' + (el.writer) + '</td>';
 			html += '<td>' + (el.registDate) + '</td>';
 		});
@@ -308,6 +310,7 @@ const categoryChange = function(value) {
                                 <col width="20%">
                                 <col>
                                 <col width="10%">
+                                <col width="10%">
                                 <col width="7%">
                                 <col width="10%">
                             </colgroup>
@@ -315,8 +318,9 @@ const categoryChange = function(value) {
                                 <tr>
                                     <th>No</th>
                                     <th>제품명</th>
-                                    <th>제목</th>
+                                    <th>내용</th>
                                     <th>기업명</th>
+                                    <th>이메일</th>
                                     <th>작성자</th>
                                     <th>등록일</th>
                                 </tr>
