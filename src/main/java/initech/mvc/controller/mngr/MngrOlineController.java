@@ -17,15 +17,13 @@ import initech.mvc.dto.OnlineDTO;
 import initech.mvc.service.mngr.MngrOlineService;
 
 @Controller
-@RequestMapping("/mngr/*")
 public class MngrOlineController {
 	
 	@Autowired
     private MngrOlineService mngrOlineService;
-	
 
 	// 관리자 > 게시판 > 리스트 페이지
-    @RequestMapping(value = {"", "/withUs/online-list"}, method = {RequestMethod.GET})
+    @RequestMapping(value = {"/mngr/", "/mngr", "/mngr/withUs/online-list"}, method = {RequestMethod.GET})
     public String mngrList(
     		@ModelAttribute OnlineDTO onlineDTO
             , ModelMap modelMap
@@ -36,14 +34,14 @@ public class MngrOlineController {
 
      //관리자 > 게시판 > 데이터 전체 조회
     @ResponseBody
-    @RequestMapping(value = {"/online/find-all"}, method = {RequestMethod.POST})
+    @RequestMapping(value = {"/mngr/online/find-all"}, method = {RequestMethod.POST})
     public ResponseEntity<?> mngrFindAll(@RequestBody OnlineDTO onlineDTO) throws Exception {
         return new ResponseEntity<>(mngrOlineService.mngrFindAll(onlineDTO), HttpStatus.OK);
     }
     
     
     // 관리자 > 게시판 > view 페이지
-	@GetMapping({"/withUs/online-view"})
+	@GetMapping({"/mngr/withUs/online-view"})
 	public String mngrView(ModelMap modelMap) throws Exception {
 		return "mngr/withUs/online-view";
 	}
@@ -51,17 +49,16 @@ public class MngrOlineController {
 	
     // 관리자 > 게시판 > 데이터 조회
     @ResponseBody
-    @RequestMapping(value = {"/online/find"}, method = {RequestMethod.POST})
+    @RequestMapping(value = {"/mngr/online/find"}, method = {RequestMethod.POST})
     public ResponseEntity<?> mngrFind(@RequestBody OnlineDTO onlineDTO
             , BindingResult bindingResult
             ) throws Exception {
         return new ResponseEntity<>(mngrOlineService.mngrFind(onlineDTO), HttpStatus.OK);
     }
-    
-    
+        
     // 관리자 > 게시판 > 제거
     @ResponseBody
-    @RequestMapping(value = {"/online/remove"}, method = {RequestMethod.POST})
+    @RequestMapping(value = {"/mngr/online/remove"}, method = {RequestMethod.POST})
     public Object mngrRemove(
             @RequestBody OnlineDTO onlineDTO
             ) throws Exception {
