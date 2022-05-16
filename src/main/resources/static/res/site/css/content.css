@@ -1,7 +1,19 @@
 /* 공통 */
 /* 주형 */
 .company-background{
-  background-image: url(/res/site/img/IOT.png);
+   background-image: url(/res/site/img/company_header.jpg);
+}
+.RD-background{
+   background-image: url(/res/site/img/RD_header.jpg);
+}
+.product-background{
+   background-image: url(/res/site/img/product_header.jpg);
+}
+.busniess-background{
+   background-image: url(/res/site/img/business_header.jpg);
+}
+.withus-background{
+   background-image: url(/res/site/img/withus_header.jpg);
 }
 /* sub_tit */
 .sub_tit {padding-bottom: 50px;}

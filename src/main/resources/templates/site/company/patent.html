@@ -34,7 +34,7 @@
 	<div class="content">
 
 		<div class="sub_visual">
-			<div class="bg"></div>
+			<div class="bg company-background"></div>
 			<div class="inner">
 				<div class="text">
 					<h2 class="mont">COMPANY</h2>
@@ -67,21 +67,22 @@
 						$(this).addClass("on");
 
 						if ($(this).hasClass("depth01")) {
-							// 1depth留� �엳�쓣 寃쎌슦
+							// 1depth 있을경우
 							var indexNumber = $(this).index() + 1;
 							var depth01Text = $(this).text();
 
 							$(".sub_path").hide();
 						} else {
-							// 2depth媛� �엳�쓣 寃쎌슦
+							// 2depth 있을 경우
 							var indexNumber = $(this).parents(".depth02").parent().index() + 1;
 							var depth01Text = $(this).parents(".depth02").prev().text();
 							var depth02Html = $(this).parents(".depth02").html();
 
 							$(".sub_path ul").append(depth02Html);
 						}
-
+						/**
 						$(".sub_visual .bg").css("background-image", "url('/res/site/img/sub_visual0" + indexNumber + ".jpg')");
+						**/
 						$(".sub_visual .text h2").text(depth01Text);
 
 					} else if (isForDev) {
@@ -102,8 +103,10 @@
 
 								$(".sub_path ul").append(depth02Html);
 							}
-
+							
+							/**
 							$(".sub_visual .bg").css("background-image", "url('/res/site/img/sub_visual0" + indexNumber + ".jpg')");
+						    **/
 							$(".sub_visual .text h2").text(depth01Text);
 						}
 					}
