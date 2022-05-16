@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class OnlineVO extends BaseVO implements Serializable {
 
+	private long no;	// 온라인NO
 	private long onlineId;	// 상담번호(PK)
 	private String title;	// 제목
 	private String writer;	// 작성자
