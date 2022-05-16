@@ -36,18 +36,9 @@
     
     <!-- 조회 -->
 	<select id="selectOnline" parameterType="initech.mvc.dto.OnlineDTO" resultType="initech.mvc.vo.OnlineVO">
-		SELECT
-			online_id
-			, title
-			, writer
-			, callNo
-			, email
-			, compNm
-			, prdt_nm
-			, prdt_ct
-			, regist_date
-		FROM
-		notice
+		<include refid="basicTable"/>
+		WHERE
+			online_id = #{onlineId}
 	</select>
     
   

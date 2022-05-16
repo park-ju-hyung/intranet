@@ -61,7 +61,7 @@ public class MngrOlineService {
 		OnlineVO onlineVo = onlineMapper.selectOnline(onlineDTO);
 
 		rs.put("onlineDTO", onlineDTO);
-		rs.put("online", onlineVo);
+		rs.put("onlineVO", onlineVo);
 
 		return rs;
 	}

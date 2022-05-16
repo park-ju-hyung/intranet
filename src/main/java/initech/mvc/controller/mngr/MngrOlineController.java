@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import initech.mvc.dto.OnlineDTO;
 import initech.mvc.service.mngr.MngrOlineService;
+import lombok.val;
 
 @Controller
 public class MngrOlineController {
@@ -40,21 +41,15 @@ public class MngrOlineController {
     }
     
     
-    // 관리자 > 게시판 > view 페이지
-	@GetMapping({"/mngr/withUs/online-view"})
-	public String mngrView(ModelMap modelMap) throws Exception {
-		return "mngr/withUs/online-view";
-	}
-	
-	
-    // 관리자 > 게시판 > 데이터 조회
-    @ResponseBody
-    @RequestMapping(value = {"/mngr/online/find"}, method = {RequestMethod.POST})
-    public ResponseEntity<?> mngrFind(@RequestBody OnlineDTO onlineDTO
-            , BindingResult bindingResult
-            ) throws Exception {
-        return new ResponseEntity<>(mngrOlineService.mngrFind(onlineDTO), HttpStatus.OK);
-    }
+ // 관리자 > 게시판 > 데이터 조회
+ 	@GetMapping({"/mngr/withUs/online-view"})
+     public String view (@ModelAttribute("onlineDTO") OnlineDTO onlineDTO, ModelMap modelMap) throws Exception {
+ 		val nlString = System.getProperty("line.separator").toString();
+         modelMap.addAttribute("nlString", nlString);
+ 		
+ 		modelMap.addAttribute("online", mngrOlineService.mngrFind(onlineDTO));
+         return "mngr/withUs/online-view";
+     }
         
     // 관리자 > 게시판 > 제거
     @ResponseBody

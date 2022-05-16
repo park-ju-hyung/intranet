@@ -88,10 +88,8 @@ const findAllAction = function() {
 			html += '<tr>';
 			html += '<td>' + (el.no) + '</td>';
 			html += '<td>' + (el.prdtNm) + '</td>';
-			//html += '<td class="txt-left"><a href="#" class="viewBtn" data-id="' + (el.onlineId) + '">' + (el.title) + '</a></td>';
-			html += '<td>' + (el.prdtCt) + '</td>';
+			html += '<td class="txt-left"><a href="#" class="viewBtn" data-id="' + (el.onlineId) + '">' + (el.title) + '</a></td>';
 			html += '<td>' + (el.compNm) + '</td>';
-			html += '<td>' + (el.email) + '</td>';
 			html += '<td>' + (el.writer) + '</td>';
 			html += '<td>' + (el.registDate) + '</td>';
 		});
@@ -124,15 +122,6 @@ const pagingFunc = function() {
 		}
 	});
 };
-
-/*
-const logoutFunc = function() {
-	$('.logout_btn').off('click').on('click', function (e) {
-		e.preventDefault();
-		$(location).attr('href', 'online-list?'.serialize());
-	});
-};
-*/
 
 
 const categoryChange = function(value) {
@@ -173,6 +162,7 @@ const categoryChange = function(value) {
 
 <th:block layout:fragment="content">
     <form name="searchForm" method="get" action="" onsubmit="return false;">
+    	<input type="hidden" name="onlineId" value="0"/>
     	<input type="hidden" name="pageNo" th:value="${onlineDTO.pageNo}"/>
 		<input type="hidden" name="pageBlock" th:value="${onlineDTO.pageBlock}"/>
 		<input type="hidden" name="pageSize" th:value="${onlineDTO.pageSize}"/>
@@ -310,7 +300,6 @@ const categoryChange = function(value) {
                                 <col width="20%">
                                 <col>
                                 <col width="10%">
-                                <col width="10%">
                                 <col width="7%">
                                 <col width="10%">
                             </colgroup>
@@ -318,9 +307,8 @@ const categoryChange = function(value) {
                                 <tr>
                                     <th>No</th>
                                     <th>제품명</th>
-                                    <th>내용</th>
+                                    <th>제목</th>
                                     <th>기업명</th>
-                                    <th>이메일</th>
                                     <th>작성자</th>
                                     <th>등록일</th>
                                 </tr>
