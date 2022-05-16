@@ -1007,6 +1007,7 @@ label span{
     background-color: #fff;
     text-align: center;
 }
+/*
 .table-search tbody tr td:nth-child(5){
     padding: 20px 12px;
     font-size: 14px;
@@ -1014,6 +1015,7 @@ label span{
     background-color: #fff;
     text-align: left;
 }
+*/
 .table-search tbody td .register{
     padding: 5px 10px;
     font-size: 12px;
