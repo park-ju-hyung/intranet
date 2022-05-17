@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 
 const initPage = function() {
-
+	logoutFunc();
 };
 
 const setDefault = function() {
@@ -121,6 +121,13 @@ const pagingFunc = function() {
 			findAllAction();
 		}
 	});
+};
+
+const logoutFunc = function () {
+    $("#logout_btn").off("click").on("click", function (e) {
+        e.preventDefault();
+        $(location).attr("href", "/mngr/logout");
+    });
 };
 
 

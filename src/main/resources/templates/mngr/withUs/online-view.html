@@ -13,6 +13,7 @@
 	const initPage = function() {
 		listFunc();
 		deleteFunc();
+		logoutFunc();
 	};
 	
 	const setDefault = function() {
@@ -60,6 +61,13 @@
 			alert('삭제 오류.');
 		});
 	};
+	
+	const logoutFunc = function () {
+	    $("#logout_btn").off("click").on("click", function (e) {
+	        e.preventDefault();
+	        $(location).attr("href", "/mngr/logout");
+	    });
+	};
 
 </script>
 
@@ -78,7 +86,7 @@
                 <div class="header">
                     <div class="logo">
                         <a href="javascript void(0)"></a>
-                        <button>
+                        <button id="logout_btn">
                             <img src="/res/mngr/img/login.png" alt="">
                             <span>로그아웃</span>
                         </button>
