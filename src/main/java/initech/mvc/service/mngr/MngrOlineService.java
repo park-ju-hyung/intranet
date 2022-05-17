@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import initech.common.util.AppPagingUtil;
 import initech.mvc.dto.OnlineDTO;
@@ -67,8 +69,11 @@ public class MngrOlineService {
 	}
 	
 	// 관리자 > 게시판 > 삭제
-    public void mngrRemove(OnlineDTO onlineDTO) throws Exception{
-    	onlineMapper.deleteOnline(onlineDTO);
+    public Map<String, Object> mngrRemove(OnlineDTO onlineDTO) throws Exception {
+		Map<String, Object> rs = new HashMap<String, Object>();
+	
+		onlineMapper.deleteOnline(onlineDTO);
+		return rs;
     }
     
     

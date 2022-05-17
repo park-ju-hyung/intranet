@@ -12,6 +12,7 @@
 	
 	const initPage = function() {
 		listFunc();
+		deleteFunc();
 	};
 	
 	const setDefault = function() {
@@ -27,39 +28,38 @@
 	
 	const deleteFunc = function () {
 		$('.delete').off('click').on('click', function (e) {
+			e.preventDefault();
 			deleteOnline();
 		});
 	}
 	
-const deleteOnline	 = function () {
-	if (!confirm('삭제하시겠습니까?')) {
-		return;
-	}
-	
-	const formData = {
-		onlineId : $('input[name="onlineId"]').val(),
-	};
-
-	$.ajax({
-		data : JSON.stringify(formData),
-		url : '/mngr/online/remove',
-		type : 'post',
-		dataType : 'json',
-		contentType : 'application/json'
-	})
-	.done(function(res, status, xhr) {
-		if (res.result < 0) {
-			alert(res.message);
-				return;
+	const deleteOnline	 = function () {
+		if (!confirm('삭제하시겠습니까?')) {
+			return;
 		}
 		
-		alert('삭제되었습니다.');
-		$(location).attr('href', 'list?' + $('[name="searchForm"]').serialize());
-	})
-	.fail(function(xhr, status, error) {
-		alert('저장 오류.');
-	});
-};
+		const formData = {
+			onlineId : $('input[name="onlineId"]').val(),
+		};
+	
+		$.ajax({
+			data : JSON.stringify(formData),
+			url : '/mngr/online/remove',
+			type : 'post',
+			dataType : 'json',
+			contentType : 'application/json',
+			beforeSend : function(xhr){
+				xhr.setRequestHeader(header, token);
+			}	
+		})
+		.done(function(res, status, xhr) {
+			alert('삭제되었습니다.');
+			$(location).attr('href', 'online-list?' + $('[name="searchForm"]').serialize());
+		})
+		.fail(function(xhr, status, error) {
+			alert('삭제 오류.');
+		});
+	};
 
 </script>
 
@@ -68,6 +68,7 @@ const deleteOnline	 = function () {
 
     <th:block layout:fragment="content">
         <form name="searchForm" method="get" action="">
+        	<input type="hidden" name="onlineId" th:value="${onlineDTO.onlineId}"/>
         </form>
 
         <div class="main">

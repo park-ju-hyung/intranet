@@ -44,21 +44,17 @@ public class MngrOlineController {
  // 관리자 > 게시판 > 데이터 조회
  	@GetMapping({"/mngr/withUs/online-view"})
      public String view (@ModelAttribute("onlineDTO") OnlineDTO onlineDTO, ModelMap modelMap) throws Exception {
- 		val nlString = System.getProperty("line.separator").toString();
-         modelMap.addAttribute("nlString", nlString);
- 		
- 		modelMap.addAttribute("online", mngrOlineService.mngrFind(onlineDTO));
-         return "mngr/withUs/online-view";
+		 val nlString = System.getProperty("line.separator").toString();
+		 modelMap.addAttribute("nlString", nlString);
+		
+		 modelMap.addAttribute("online", mngrOlineService.mngrFind(onlineDTO));
+		 return "mngr/withUs/online-view";
      }
         
     // 관리자 > 게시판 > 제거
-    @ResponseBody
     @RequestMapping(value = {"/mngr/online/remove"}, method = {RequestMethod.POST})
-    public Object mngrRemove(
-            @RequestBody OnlineDTO onlineDTO
-            ) throws Exception {
-    	mngrOlineService.mngrRemove(onlineDTO);
-        return new ResponseEntity<>(onlineDTO, HttpStatus.OK);
+    public ResponseEntity<?> mngrRemove(@RequestBody OnlineDTO onlineDTO) throws Exception {
+        return new ResponseEntity<>(mngrOlineService.mngrRemove(onlineDTO), HttpStatus.OK);
     }
     
 }
