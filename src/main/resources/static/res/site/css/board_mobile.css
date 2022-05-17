@@ -205,6 +205,8 @@ body{-webkit-text-size-adjust:none; }
 
 body{-webkit-text-size-adjust:none; }
 
+
+
 @media all and (max-width:640px){
 	.program_table table tr{padding:10px 0;}
 	.program_table table tr td{font-size:16px; white-space:nowrap;}
@@ -237,6 +239,7 @@ body{-webkit-text-size-adjust:none; }
 	.writeForm table tr td input[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0; width:100%;}
 	.writeForm table tr:nth-child(3) td input:nth-child(1)[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0; width:35%;}
 	.writeForm table tr:nth-child(3) td input:nth-child(2)[type="text"]{height:40px; font-size:16px; -webkit-border-radius: 0; width:26% !important;}
+	
 	.writeForm table tr:nth-child(3) td select { width:138px; vertical-align: middle;}
 	.writeForm table tr td input[type="password"]{height:40px; font-size:16px;}
 	.writeForm table tr td input[type="radio"]{width:20px; height:20px;}
@@ -254,7 +257,25 @@ body{-webkit-text-size-adjust:none; }
 	.writeForm_btn a{font-size:16px; height:40px; line-height:40px;}
 	
 	#useFile a.btns{font-size:16px; height:40px; line-height:40px;}	
-
+	
+	.history_tit .txt_box19 p {
+    font-size: 19px;
+    letter-spacing: -0.045em;
+    color: #222222;
+    font-weight: 300;
+    word-break: keep-all;
+    }
+    .history_tit .txt_box19 span {
+    font-size: 20px;
+    letter-spacing: -0.045em;
+    color: #1d2fda;
+    font-weight: 500;
+    display: block;
+    padding-top: 15px;
+    line-height: 1.5;
+    word-break: keep-all;
+    }
+    
 	/* 게시판 읽기 */
 	.readTop{padding:10px 0}
 	.readTop .imgTitle{font-size:18px;}
@@ -425,6 +446,27 @@ body{-webkit-text-size-adjust:none; }
     }
     .writeForm table tr:nth-child(5) td select:first-child {
     margin-right: 0px !important;
-    width: 70% !important;
+    width: 68% !important;
     }
+    .writeForm table tr:nth-child(3) td select {
+    width: 127px;
+    vertical-align: middle;
+    }
+    .history_tit .txt_box18 p {
+    font-size: 18px;
+    letter-spacing: -0.045em;
+    color: #222222;
+    font-weight: 300;
+    word-break: keep-all;
+    }
+    .history_tit .txt_box18 span {
+    font-size: 16px;
+    letter-spacing: -0.045em;
+    color: #1d2fda;
+    font-weight: 500;
+    display: block;
+    padding-top: 15px;
+    line-height: 1.5;
+    word-break: keep-all;
+}
 

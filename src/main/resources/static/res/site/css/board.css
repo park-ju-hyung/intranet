@@ -894,6 +894,20 @@ textarea:focus {
 	.writeForm table tbody{display:block;}
 	.writeForm table tr{display:block; overflow:hidden;}
 	.writeForm table tr th{display:block;}
+	
+	
+	
+	.w21{
+    width: 84% !important;
+    text-align: center !important;
+    padding-left: 6px;
+    }
+    .w15_1 {
+    width: 15% !important;
+    text-align: center !important;
+    }
+	
+	
 	.writeForm table tr td{float:left; width:100%; height:auto; padding:10px 0; /*font-size:0;*/}
 	.writeForm table tr td.step{padding:20px 0;}
 	.writeForm_top table tr td select {width:100%; margin:0;}

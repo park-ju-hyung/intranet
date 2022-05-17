@@ -49,11 +49,11 @@ hr{display:none; clear:both;}
 	{
 		transform:rotate(405deg);
 	}
-=======
-@charset "utf-8";
+
+
 
 /* 크로스브라우징을 위한 CSS 초기화 */
-*{margin:0; padding:0;} 
+{margin:0; padding:0;} 
 body{font-size:12px; font-family:'Noto Sans KR', sans-serif;}/* font-family:'Nanum Gothic', sans-serif; */
 a{outline:0px;}
 a:link{color:inherit; text-decoration:none;}                                       

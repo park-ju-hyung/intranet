@@ -1079,14 +1079,23 @@
 	.energy_con02 .video_wrap .txt_box p{width:auto; padding:0 20px; box-sizing:border-box; font-size:17px; }
 	.energy_con02 .sensor_box.type01 .img_box ul li {display: inline-block; width: calc(50% - 10px); margin-right: 20px; max-width: 186px;}
 	.energy_con02 .sensor_box.type01 .img_box ul li + li {margin-top: 0;}
-	.history_tit .txt_box p {
-    font-size: 20px;
+    .history_tit .txt_box21 p {
+    font-size: 21px;
     letter-spacing: -0.045em;
     color: #222222;
     font-weight: 300;
     word-break: keep-all;
     }
-    
+    .history_tit .txt_box21 span {
+    font-size: 17px;
+    letter-spacing: -0.045em;
+    color: #1d2fda;
+    font-weight: 500;
+    display: block;
+    padding-top: 15px;
+    line-height: 1.5;
+    word-break: keep-all;
+    }
 }
 
 
