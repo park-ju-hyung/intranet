@@ -109,7 +109,7 @@ const viewFunc = function() {
 		e.preventDefault();
 		const idx = $(this).attr('data-id');
 		$('input[name="onlineId"]').val(idx);
-		$(location).attr('href', 'online-view?' + $('[name="searchForm"]').serialize());
+		$(location).attr('href', '/mngr/withUs/online-view?' + $('[name="searchForm"]').serialize());
 	});
 };
 
