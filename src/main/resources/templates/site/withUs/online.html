@@ -118,14 +118,12 @@ const nullCheck = function() {
 	}
 	*/
 	
-	var prdtNm1 = $("select[name=prdtNm1] option:selected").text();
-	var prdtNm2 = $("select[name=prdtNm2] option:selected").val();
-	var prdtNm = prdtNm1 + ' > ' + prdtNm2;
-	$("[name=prdtNm]").val(prdtNm);
-	var prdtCt = $("[name=prdtCt]");
+	let prdtNm = '';
 	
-	// let prdtNm = formData['prdtNm1'] + ' > ' + formData['prdtNm2'];
-	// $('input[name="prdtNm"]').val(prdtNm);
+	if(formData['prdtNm1'] != '' && formData['prdtNm2'] != '') {
+		prdtNm = formData['prdtNm1'] + ' > ' + formData['prdtNm2'];
+	}
+	$('input[name="prdtNm"]').val(prdtNm);
 	
 	let email = formData['email1'] + '@' + formData['email2'];
 	$('input[name="email"]').val(email);
@@ -154,7 +152,7 @@ const categoryChange = function(value) {
 	
 	var target = $('.prdtNm2');
 	
-	if(prdt1_val == 'a') prdt2_result  = prdt2_a;
+	if(prdt1_val == '') prdt2_result  = prdt2_a;
 	if(prdt1_val == '압전세라믹필름') prdt2_result  = prdt2_b;
 	if(prdt1_val == '적충형압전세라믹필름') prdt2_result  = prdt2_c;
 	if(prdt1_val == '압전세라믹캔틸레버') prdt2_result  = prdt2_d;
@@ -308,7 +306,7 @@ function selectEmail(ele) {
 						<th>제품명</th>
 						<td colspan="3">
 							<select id="prdtNm1" name="prdtNm1" class="prdtNm1 w21">
-                                <option value="a">선택</option>
+                                <option value="">선택</option>
 								<option value="압전세라믹필름">압전세라믹필름</option>
 								<option value="적충형압전세라믹필름">적충형압전세라믹필름</option>
 								<option value="압전세라믹캔틸레버">압전세라믹캔틸레버</option>
