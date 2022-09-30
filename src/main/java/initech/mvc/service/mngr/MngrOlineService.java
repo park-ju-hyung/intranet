@@ -49,6 +49,7 @@ public class MngrOlineService {
 		String pagingHtml = AppPagingUtil.getMngrPagingHtml(totalCount, pageNo, pageSize, pageBlock);
 		
 		rs.put("onlineDTO", onlineDTO);
+		//System.out.println(list);
 		rs.put("list", list);
 		rs.put("totalCount", totalCount);
 		rs.put("totalPageNo", totalPageNo);

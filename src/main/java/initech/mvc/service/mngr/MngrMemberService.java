@@ -49,7 +49,7 @@ public class MngrMemberService implements UserDetailsService {
 
 		//log.info("login id: {}, pwd: {}", vo.getMngrId(), vo.getMngrPasswd());
 		return new User(vo.getMngrId(), vo.getMngrPasswd(), authorities);
-		//return new User(userId, mngrPasswordEncoder.encode("Qnfl@2021"), authorities);
+		//return new User(userId, mngrPasswordEncoder.encode("125125"), authorities);
     }
 
 }

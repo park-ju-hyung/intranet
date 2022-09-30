@@ -1205,25 +1205,44 @@ label span{
     justify-content: center;
     background-color: #fff;
 }
+.paging a.prev, .paging a.next{
+    vertical-align: middle;
+    background: url(/res/mngr/img/btn-pagination.png) no-repeat;
+    text-indent: -5000px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
 .paging a.prev{
-    vertical-align: middle;
-    background: url(/res/mngr/img/page_l.png) no-repeat center;
-    background-size: 7px;
-    text-indent: -5000px;
-    cursor: pointer;
+	background-position: -26px 5px;
+}
+.paging a.prev:hover {
+    background-position: -26px -22px !important;
+    background: url(/res/mngr/img/btn-pagination.png) no-repeat;
     background-color: #fff;
 }
-.paging a.next{
-    vertical-align: middle;
-    background: url(/res/mngr/img/page_r.png) no-repeat center;
-    z-index: 300;
-    background-size: 7px;
-    text-indent: -5000px;
-    cursor: pointer;
+.paging a.next {
+    background-position: 6px -81px;
+}
+.paging a.next:hover {
+    background-position: 6px -54px !important;
+    background: url(/res/mngr/img/btn-pagination.png) no-repeat;
     background-color: #fff;
 }
 
+.paging a:hover{
+    background: #337ab7;
+    color: #f3f3f3;
+}
 
+.paging .active {
+	z-index: 1;
+	background-color: #337ab7;
+	border-color: #337ab7;
+    color: #f3f3f3;
+}
+
+/*
 .pagination a:hover:nth-child(2){
     background: #292e42;
     color: #f3f3f3;
@@ -1306,6 +1325,7 @@ label span{
     background: #292e42;
     color: #f3f3f3;
 }
+*/
 
 
 
@@ -1390,5 +1410,21 @@ button{
 
 
 
+/* 달력 이미지 */
+.candel{
+	padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    width: 20%;
+    line-height: 1;
+    color: #555555;
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: table-cell;
+    border-radius: 0px 4px 4px 0px;
+    background: url(/res/mngr/img/icons8-calendar-30.png) no-repeat center center;
+}
 
 
