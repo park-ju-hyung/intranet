@@ -9,7 +9,6 @@ $(document).ready(function() {
 	initPage();
 	registEvent();
 	setDefault();
-	categoryChange();
 	findAllAction();
 });
 
@@ -17,6 +16,8 @@ $(document).ready(function() {
 const initPage = function() {
 	logoutFunc();
 };
+
+const prd = { 'name1' : null, 'name2' : null }; // 제품명1, 제품명2가 들어갈 변수선언
 
 const setDefault = function() {
 	// 데이트피커 초기화
@@ -43,6 +44,12 @@ const setDefault = function() {
         autoclose: true,
         todayHighlight: true
     });
+    
+    prd.name1 = document.querySelector('.prdtNm1');
+    prd.name2 = document.querySelector('.prdtNm2');
+    
+    prd.name1.addEventListener('change', categoryChange);
+    
 };
 
 const registEvent = function() {
@@ -50,6 +57,30 @@ const registEvent = function() {
 	$('.prdtNm1').change(function() {
 		// prdtNm2의 값을 변경하는 함수
 		categoryChange($('.prdtNm1 option:selected'));
+	});
+	
+	$('#btnSearch').on('click', function(e) {
+		e.preventDefault();
+		findAllAction();
+	});
+	// 검색 엔터
+	$('input[name="searchTitle"]').on('keydown', function(e) {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			findAllAction();
+		}
+	});
+	$('input[name="schCompNm"]').on('keydown', function(e) {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			findAllAction();
+		}
+	});
+	$('input[name="schWriter"]').on('keydown', function(e) {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			findAllAction();
+		}
 	});
 };
 
@@ -96,9 +127,9 @@ const findAllAction = function() {
 
 		$('.table-search tbody').html(html);
 		$('.el-paging').html(result.pagingHtml);
-
 		pagingFunc();
 		viewFunc();
+		
 	}).fail(function (xhr, status, error) {
 		alert("데이터를 불러오는데 실패했습니다.");
 	});
@@ -131,38 +162,51 @@ const logoutFunc = function () {
 };
 
 
-const categoryChange = function(value) {
-	let prdt1_val = $(value).val();
-	
-	let prdt2_a = ["선택"];
-	// 1. 압전세라믹필름일 때 prdtNm2의 옵션값들 
-	let prdt2_b = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
-	// 2. 적충형압전세라믹필름일 때 prdtNm2의 옵션값들
-	let prdt2_c = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
-	// 3.압전세라믹캔틸레버일 때 prdtNm2의 옵션값들
-	let prdt2_d = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
-	// 4.플렉서블압전세라믹복합체필름일 때 prdtNm2의 옵션값들
-	let prdt2_e = ["선택", "IPFC-2050T", "IPFC-2050L"];
+const categoryChange = function(e) {
+	let prd1Val = e.target.value;
+	//alert(prd1Val)
+	console.log(prd1Val);
 	
 	let prdt2_result = null;
+	let prd2Val = prd.name2;
 	
-	var target = $('.prdtNm2');
-	
-	if(prdt1_val == 'a') prdt2_result  = prdt2_a;
-	if(prdt1_val == 'b') prdt2_result  = prdt2_b;
-	if(prdt1_val == 'c') prdt2_result  = prdt2_c;
-	if(prdt1_val == 'd') prdt2_result  = prdt2_d;
-	if(prdt1_val == 'e') prdt2_result  = prdt2_e;
-	
-	$(target).children().remove();
-	
-	for (index in prdt2_result) {	
-	    let option = document.createElement('option');
-	    option.value = prdt2_result[index];
-	    option.text = prdt2_result[index];
-	    $(target).append(option);
+	// 압전 세라믹필름일 때 prd.name2의 옵션값 정의
+	if (prd1Val == ''){
+		prdt2_result = ["선택"];
+	} else if(prd1Val == '압전세라믹필름') {
+		prdt2_result  = ["선택", "IP-1515", "IP-1530", "IP-1545", "IP-T1030"];
+	} else if(prd1Val == '적충형압전세라믹필름') {
+		prdt2_result  = ["선택", "IP-1515L", "IP-1530L", "IP-1545L", "IP-T1030L"];
+	} else if(prd1Val == '압전세라믹캔틸레버') {
+		prdt2_result  = ["선택", "IPC-1515", "IPC-1530", "IPC-1545", "IPC-T1030"];
+	} else if(prd1Val == '플렉서블압전세라믹복합체필름') {
+		prdt2_result  = ["선택", "IPFC-2050T", "IPFC-2050L"];
 	}
+	
+	$(prd2Val).empty();
+	
+    for (index in prdt2_result) {
+      $(prd2Val).append( '<option>' + prdt2_result[index] + '</option>' );
+    }
+	
 };
+
+function Change(idx){
+    var pagenum = idx;
+    var nowPaging = $("#pageUnit option:selected").val();
+    
+    if(nowPaging == 10){
+        location.href="/mngr/withUs/online-list?pageNo=" + pagenum + "&pageBlock=10&pageSize="+nowPaging;
+    }else if(nowPaging == 20){
+        location.href="/mngr/withUs/online-list?pageNo=" + pagenum + "&pageBlock=10&pageSize="+nowPaging;
+    }else if(nowPaging == 30){
+        location.href="/mngr/withUs/online-list?pageNo=" + pagenum + "&pageBlock=10&pageSize="+nowPaging;
+    }else if(nowPaging == 40){
+        location.href="/mngr/withUs/online-list?pageNo=" + pagenum + "&pageBlock=10&pageSize="+nowPaging;
+    }else if(nowPaging == 50){
+        location.href="/mngr/withUs/online-list?pageNo=" + pagenum + "&pageBlock=10&pageSize="+nowPaging;
+    }
+}
 
 </script>    
 </head>
@@ -180,7 +224,7 @@ const categoryChange = function(value) {
                 <!--header menu-->
                 <div class="header">
                     <div class="logo">
-                        <a href="javascript void(0)"></a>
+                        <a href="/mngr"></a>
                         <button id="logout_btn">
                             <img src="/res/mngr/img/login2.png" alt="">
                             <span>로그아웃</span>
@@ -209,83 +253,69 @@ const categoryChange = function(value) {
                                 <div class="card-body">
                                     <div class="col-xs-12">
                                         <div class="col-xs-4">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="" class="col-xs-2 control-label">등록일</label>
-                                                    <div class="col-lg-9">
-                                                        <div class='input-group date w45-inline' id='datapickerBox'>
-                                                            <input type="text" id="schDateStart" class="form-control">
-                                                            <span class="input-group-addon"><span
-                                                                    class="glyphicon glyphicon-calendar"></span>
-                                                            </span>
-                                                        </div>
+                                            <div class="form-group">
+                                                <label for="" class="col-xs-2 control-label">등록일</label>
+                                                <div class="col-lg-9">
+                                                    <div class='input-group date w45-inline' id='datapickerBox'>
+                                                        <input type="text" id="schDateStart" name="schDateStart" class="form-control">
+                                                        <div class="candel"></div>
+                                                    </div>
 
-                                                        <div class="tiled1">~</div>
+                                                    <div class="tiled1">~</div>
 
-                                                        <div class='input-group date w45-inline' id='datapickerBox'>
-                                                            <input type="text" id="schDateEnd" class="form-control">
-                                                            <span class="input-group-addon"><span
-                                                                    class="glyphicon glyphicon-calendar"></span>
-                                                            </span>
-                                                        </div>
+                                                    <div class='input-group date w45-inline' id='datapickerBox'>
+                                                        <input type="text" id="schDateEnd" name="schDateEnd" class="form-control">
+                                                        <div class="candel"></div>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
 
                                         <div class="col-xs-8">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="" class="col-xs-1 control-label">제목</label>
-                                                    <div class="col-xs-10">
-                                                        <input type="text" class="form-control w88">
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="" class="col-xs-1 control-label">제목</label>
+                                                <div class="col-xs-10">
+                                                    <input type="text" name="searchTitle" class="form-control w88">
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="col-xs-12">
                                         <div class="col-xs-4">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="" class="col-xs-2 control-label">제품명</label>
-                                                    <div class="col-xs-10">
-                                                        <select class="prdtNm1 form-control-2 w65 dib">
-                                                            <option value="a">선택</option>
-															<option value="b">압전세라믹필름</option>
-															<option value="c">적충형압전세라믹필름</option>
-															<option value="d">압전세라믹캔틸레버</option>
-															<option value="e">플렉서블압전세라믹복합체필름</option>
-                                                        </select>
-                                                        <select class="prdtNm2 form-control w33 dib padding6-10">
-                                                            <option>선택</option>
-                                                        </select>
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="" class="col-xs-2 control-label">제품명</label>
+                                                <div class="col-xs-10">
+                                                    <select class="prdtNm1 form-control-2 w65 dib" name="schPrdtNm1">
+                                                        <option value="">선택</option>
+														<option value="압전세라믹필름">압전세라믹필름</option>
+														<option value="적충형압전세라믹필름">적충형압전세라믹필름</option>
+														<option value="압전세라믹캔틸레버">압전세라믹캔틸레버</option>
+														<option value="플렉서블압전세라믹복합체필름">플렉서블압전세라믹복합체필름</option>
+                                                    </select>
+                                                    <select class="prdtNm2 form-control w33 dib padding6-10" name="schPrdtNm2">
+                                                        <option value="">선택</option>
+                                                    </select>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
 
                                         <div class="col-xs-4">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="" class="col-xs-2 control-label">기업명</label>
-                                                    <div class="col-xs-9">
-                                                        <input type="text" class="w60 form-control">
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="" class="col-xs-2 control-label">기업명</label>
+                                                <div class="col-xs-9">
+                                                    <input type="text" name="schCompNm" class="w60 form-control">
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
 
                                         <div class="col-xs-4">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="" class="col-xs-2 control-label">작성자</label>
-                                                    <div class="col-xs-9">
-                                                        <input type="text" class="form-control w60">
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="" class="col-xs-2 control-label">작성자</label>
+                                                <div class="col-xs-9">
+                                                    <input type="text" name="schWriter" class="form-control w60">
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -343,12 +373,12 @@ const categoryChange = function(value) {
                             <form class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-xs-9">
-                                        <select class="form-control w80" id="regOldDiv1" name="regOldDiv1">
-                                            <option selected="selected" value="10">10개씩보기</option>
-                                            <option value="20">20개씩보기</option>
-                                            <option value="30">30개씩보기</option>
-                                            <option value="40">40개씩보기</option>
-                                            <option value="50">50개씩보기</option>
+                                        <select id="pageUnit" name="pageUnit" onchange="Change(1)" class="form-control w80">
+                                            <option value="10" th:selected="${onlineDTO.pageSize == 10}">10개씩보기</option>
+                                            <option value="20" th:selected="${onlineDTO.pageSize == 20}">20개씩보기</option>
+                                            <option value="30" th:selected="${onlineDTO.pageSize == 30}">30개씩보기</option>
+                                            <option value="40" th:selected="${onlineDTO.pageSize == 40}">40개씩보기</option>
+                                            <option value="50" th:selected="${onlineDTO.pageSize == 50}">50개씩보기</option>
                                         </select>
                                     </div>
                                 </div>

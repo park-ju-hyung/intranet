@@ -24,6 +24,29 @@
     <select id="selectOnlineListPaging" 
     parameterType="initech.mvc.dto.OnlineDTO" resultType="initech.mvc.vo.OnlineVO">
 		<include refid="basicTable"/>
+		<trim prefix="WHERE" prefixOverrides="AND | OR ">
+			<if test="schDateStart != null and schDateStart != ''">
+				AND DATE_FORMAT(regist_date, '%Y-%m-%d') <![CDATA[>=]]> #{schDateStart}
+			</if>
+			<if test="schDateEnd != null and schDateEnd != ''">
+				AND DATE_FORMAT(regist_date, '%Y-%m-%d') <![CDATA[<=]]> #{schDateEnd}
+			</if>
+	        <if test="searchTitle != null and searchTitle != ''">
+				AND UPPER(title) LIKE CONCAT('%', UPPER(#{searchTitle}), '%')
+			</if>
+			<if test="schPrdtNm1 != null and schPrdtNm1 != ''">
+				AND (substr(prdt_nm, 1, INSTR(prdt_nm, ' ') - 1) = #{schPrdtNm1} OR prdt_nm = #{schPrdtNm1})
+			</if>
+			<if test="schPrdtNm2 != null and schPrdtNm2 != '' and schPrdtNm2 != '선택'">
+				AND UPPER(prdt_nm) LIKE CONCAT('%', UPPER(#{schPrdtNm2}), '%')
+			</if>
+			<if test="schCompNm != null and schCompNm != ''">
+				AND UPPER(compNm) LIKE CONCAT('%', UPPER(#{schCompNm}), '%')
+			</if>
+			<if test="schWriter != null and schWriter != ''">
+				AND UPPER(writer) LIKE CONCAT('%', UPPER(#{schWriter}), '%')
+			</if>
+        </trim>
 		ORDER BY online_id DESC
 		LIMIT #{pageSize} OFFSET #{pageOffset}
     </select>

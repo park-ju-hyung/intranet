@@ -29,4 +29,14 @@ public class OnlineDTO extends BaseDTO implements Serializable{
 	private String prdtCt;	// 문의내용
 	private Date registDate;	// 등록일
 	
+	// 추가된 필드
+	private String schDateStart;	// 등록일(첫날짜) 검색
+	private String schDateEnd;		// 등록일(끝날짜) 검색
+	private String searchTitle;		// 제목 검색
+	private String schPrdtNm1;		// 제품명1 검색
+	private String schPrdtNm2;		// 제품명2 검색
+	private String schCompNm;		// 기업명 검색
+	private String schWriter;		// 작성자 검색
+	
+	
 }

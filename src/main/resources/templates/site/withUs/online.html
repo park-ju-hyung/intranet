@@ -121,7 +121,9 @@ const nullCheck = function() {
 	
 	let prdtNm = '';
 	
-	if(formData['prdtNm1'] != '' && formData['prdtNm2'] != '') {
+	if(formData['prdtNm1'] != '' && formData['prdtNm2'] == '선택') {
+		prdtNm = formData['prdtNm1'];
+	} else if(formData['prdtNm1'] != '' && formData['prdtNm2'] != ''){
 		prdtNm = formData['prdtNm1'] + ' > ' + formData['prdtNm2'];
 	}
 	$('input[name="prdtNm"]').val(prdtNm);
