@@ -1,0 +1,22 @@
+/** margin-top **/
+.mgt-15 {
+  margin-top: 15px;
+}
+/** width **/
+.w269 {
+  width: 269px !important;
+}
+.w500 {
+  width: 500px !important;
+}
+.w100 {
+  width: 100px !important;
+}
+/** bold **/
+.highight {
+  font-weight: bold;
+}
+/** display **/
+.dib {
+  display: inline-block;
+}

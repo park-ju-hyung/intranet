@@ -1,0 +1,286 @@
+/** 전체적인 기본 세팅 **/
+body {
+  padding: 0px;
+  margin: 0px;
+}
+p {
+  margin: 0px;
+  padding: 0px;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+ul li {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none; /* 불렛을 없앰 */
+}
+
+/** button **/
+.deepblue-button {
+  display: block;
+  width: 100%;
+  height: 50px;
+  font-size: 23px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  background-color: #002063;
+  border-radius: 5px;
+}
+.gray-button {
+  display: block;
+  width: 100%;
+  height: 50px;
+  font-size: 23px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  background-color: #9da6a9;
+}
+.logout-button {
+  background-color: #666;
+  border-radius: 5px;
+  font-size: 13px;
+  color: #fff;
+  /* height: 13px; */
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.confirm-code {
+  display: inline-block;
+  width: 85px;
+  height: 38px;
+  font-size: 10px !important;
+  background-color: #cacaca;
+  border-radius: 5px;
+  font-size: 10px;
+  color: #fff;
+}
+button {
+  border: none;
+  cursor: pointer;
+}
+.register-button-form {
+  text-align: center;
+}
+
+table.view + .register-button-form > .deepblue-button,
+table.view + .register-button-form > .register-button {
+  display: inline-block;
+  vertical-align: top;
+  width: 15%;
+}
+
+/** 기본 checkbox **/
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0px;
+}
+input[type="checkbox"] + label {
+  cursor: pointer;
+  vertical-align: 6px;
+  font-size: 13px;
+}
+
+/** 기본 input **/
+.form-control2 {
+  border: 1px solid rgba(159, 159, 159, 1);
+  width: 100%;
+  height: 50px;
+  font-size: 21px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  outline: none;
+}
+.form-control2:focus {
+  border: 2px solid #4a90e2;
+  outline: none;
+}
+
+/** 데이터 등록 양식 **/
+.register-form {
+  width: 360px;
+  margin: 0 auto;
+}
+.register-form > form> p {
+  font-size: 25px;
+  text-align: center;
+  margin: 30px 0px;
+}
+.register-form > form > div {
+  margin-top: 20px;
+}
+.register-form > form > div > label {
+  font-size: 15px;
+  display: block;
+}
+.register-form > form > div > input {
+  border-radius: 4px;
+  margin-top: 8px;
+  height: 38px;
+  font-size: 15px;
+  color: #666;
+}
+.register-form > form > div > input::placeholder {
+  color: #cacaca;
+  font-size: 15px;
+}
+.register-button {
+  width: 100%;
+  height: 50px;
+  font-size: 21px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  outline: none;
+  background-color: #2d65f2;
+  cursor: pointer;
+  margin: 30px 0px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+/** left-menu **/
+.left-menu {
+  background-color: #000;
+  width: 260px;
+  min-height: 100vh; /* 최소 높이를 뷰포트의 높이로 설정 */
+  overflow-y: auto; /* 메뉴 내용이 많을 경우 스크롤바가 나타나도록 설정 */
+}
+.left-menu > ul > li {
+  margin-top: 10px;
+}
+
+.left-menu > ul > li > a {
+  color: #cacacaca;
+}
+.left-menu > ul > li:first-child > span {
+  color: #fff;
+}
+.left-menu > ul > li:first-child > a:first-child,
+.left-menu > ul > li:first-child > span {
+  display: inline-block;
+}
+.left-menu > ul > li:first-child > a:nth-child(4) {
+  display: block;
+  margin-top: 10px;
+}
+
+.left-menu > ul > li:not(:first-child):hover {
+  background-color: #333333;
+}
+.left-menu > ul > li:not(:first-child) > a {
+  display: block;
+  font-size: 21px;
+  padding: 10px 0px;
+}
+.left-menu > ul > li.active {
+  background-color: #333333;
+}
+
+/** content **/
+.container {
+  display: flex;
+}
+.content {
+  width: calc(1800px - 260px);
+  margin: 0 auto;
+  padding: 60px 0px;
+  overflow-y: auto;
+}
+.content > P {
+  font-size: 33px;
+  color: #2d65f2;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/** content-view-table **/
+.content > table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+.content > table.view {
+  width: 70%;
+}
+.content > table.view > tbody > tr {
+  border-top: 1px solid #cacaca;
+}
+.content > table.view > tbody > tr > td {
+  font-size: 18px;
+  padding: 8px;
+}
+.content > table.view > tbody > tr > td > input {
+  margin-top: 0px;
+}
+.content > table.view > tbody > tr > td:first-child {
+  border-right: 1px solid #cacaca;
+  text-align: center;
+}
+.content > table.view > tbody > tr > td:nth-child(2) {
+  text-align: left;
+}
+.content > table.view > tbody > tr:last-child {
+  border-bottom: 1px solid #cacaca;
+}
+
+/** content-list-table **/
+.content > table.list {
+  width: 100%;
+  margin-top: 30px;
+}
+.content > table.list > tbody > tr {
+  border-top: 1px solid #cacaca;
+}
+.content > table.list > tbody > tr > td {
+  font-size: 18px;
+  padding: 8px;
+}
+.content > table.list > tbody > tr > td > input {
+  margin-top: 0px;
+}
+.content > table.list > tbody > tr > td {
+  text-align: center;
+}
+.content > table.list > tbody > tr:last-child {
+  border-bottom: 1px solid #cacaca;
+}
+
+.content > table.list > tbody > tr:not(:first-child) > td {
+  padding: 15px 0px;
+}
+
+/** pop-up **/
+.pop-up {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; /* 팝업의 너비, 필요에 따라 조정 가능 */
+  height: 200px; /* 팝업의 높이, 필요에 따라 조정 가능 */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 설정 */
+  margin-left: auto;
+  margin-right: auto;
+}

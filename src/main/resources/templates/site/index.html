@@ -1,13 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{site/common/layout/main_layout}">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/site/css/user.css}" />
+    <title>로그인</title>
 </head>
-<body>
-<th:block layout:fragment="content">
-</th:block>
+
+<body class="login-body">
+    <div class="bg-white">
+
+        <div class="login-content">
+            <p>Check your vacation</p>
+            <p>Sign in to start your session</p>
+            <input type="text" placeholder="E-mail" class="form-control2">
+            <input type="text" placeholder="password" class="form-control2">
+            <div class="mgt-15">
+                <input type="checkbox" id="autoid">
+                <label for="autoid">자동저장</label>
+                <div href="javscript void(0)" class="find_link ">
+                    <a href="">
+                        아이디 찾기
+                    </a>
+                    <span>|</span>
+                    <a href="">
+                        비밀번호 찾기
+                    </a>
+                </div>
+            </div>
+            <button class="deepblue-button">
+                <span>로그인</span>
+            </button>
+            <a href="/register" class="gray-button">
+                회원가입
+            </a>
+        </div>
+
+    </div>
 </body>
+
 </html>

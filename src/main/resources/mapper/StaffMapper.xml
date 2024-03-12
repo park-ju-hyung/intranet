@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="initech.mvc.mapper.StaffMapper">
+    <insert id="insertStaff" parameterType="initech.mvc.mapper.StaffMapper">
+        INSERT INTO member
+        (memberid, member_password , member_name, member_department, member_position,member_EmploymentDate, member_birth, member_email, email_verifycode, TermsAgreed)
+        VALUES
+            (#{memberid}, #{member_password} ,#{member_name}, #{member_department}, #{member_position}, #{member_EmploymentDate}, #{member_birth}, #{member_email}, #{email_verifycode}, #{TermsAgreed})
+    </insert>
+</mapper>
