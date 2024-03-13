@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -33,6 +34,8 @@ public class StaffService {
     public void register(StaffVO staff) {
         staffMapper.insertStaff(staff);
     }
+
+
 
 
 }

@@ -15,7 +15,7 @@ import java.util.Date;
 @Builder
 public class StaffDTO{
     private Long bt_idm;
-    @NotBlank(message = "아이디는 필수 입력 항목입니다.")
+    // @NotBlank(message = "아이디는 필수 입력 항목입니다.")
     // @Pattern(regexp = "^[a-zA-Z0-9_]{4,20}$")
     private String memberid;
     // @NotBlank(message = "비밀번호는 필수 입력 항목입니다.")

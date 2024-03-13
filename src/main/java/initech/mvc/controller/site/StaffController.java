@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class StaffController {
@@ -32,16 +34,136 @@ public class StaffController {
         return "site/member/register";
     }
 
+    // 회원가입 기능
     @PostMapping("/register")
-    public String registerStaff(@Valid StaffVO staff, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            // 에러가 있으면 뷰 이름을 직접 리턴합니다.
-            return "member/register";
+    public String registerStaff(@Valid @ModelAttribute("staff") StaffVO staff,
+                                @RequestParam(value = "conditions1", required = false) String conditions1,
+                                @RequestParam(value = "conditions2", required = false) String conditions2,
+                                BindingResult bindingResult,
+                                Model model) throws Exception {
+
+        // 약관 동의 여부 검증
+        if (conditions1 == null || conditions2 == null ) {
+            // 약관에 동의하지 않은 경우, 오류 메시지를 모델에 추가하여 회원가입 페이지로 반환
+            model.addAttribute("termsError", "약관에 동의해야 회원가입이 가능합니다.");
+            return "site/member/register";
         }
 
-        // 유효성 검사를 통과하면 비즈니스 로직을 수행합니다.
-        // staffService.register(staff); // 비즈니스 로직 호출
-        return "redirect:/site/index"; // 성공 시 리다이렉션
+        /**
+
+        // 아이디 유효성 검사
+        List<FieldError> memberidErrors = bindingResult.getFieldErrors("memberid");
+        String memberidErrorMessage = null;
+
+        for (FieldError error : memberidErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberidErrorMessage = "아이디는 필수 항목입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Size".equals(error.getCode())) {
+                memberidErrorMessage = "아이디는 최소 4~20자리여야 합니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            } else if ("Pattern".equals(error.getCode())) {
+                if (memberidErrorMessage == null) { // 이전에 다른 메시지가 설정되지 않았다면
+                    memberidErrorMessage = "특수문자는 _만 가능합니다.";
+                }
+            }
+        }
+
+        // 비밀번호 유효성 검사
+        List<FieldError> memberPasswordErrors = bindingResult.getFieldErrors("member_password");
+        String memberPasswordErrorMessage = null;
+
+        for (FieldError error : memberPasswordErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberPasswordErrorMessage = "비밀번호는 필수 항목입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Size".equals(error.getCode())) {
+                memberPasswordErrorMessage = "비밀번호는 최소 8~16자리여야 합니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            } else if ("Pattern".equals(error.getCode())) {
+                if (memberPasswordErrorMessage == null) { // 이전에 다른 메시지가 설정되지 않았다면
+                    memberPasswordErrorMessage = "비밀번호는 영문 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.";
+                }
+            }
+        }
+
+        // 이름 유효성 검사
+        String memberNameErrorMessage = bindingResult.getFieldError("member_name") != null ?
+                bindingResult.getFieldError("member_name").getDefaultMessage() : null;
+
+
+        // 부서 유효성 검사
+        String memberDepartmentErrorMessage = bindingResult.getFieldError("member_department") != null ?
+                bindingResult.getFieldError("member_department").getDefaultMessage() : null;
+
+        // 직급 유효성 검사
+        String memberPostionErrorMessage = bindingResult.getFieldError("member_position") != null ?
+                bindingResult.getFieldError("member_position").getDefaultMessage() : null;
+
+        // 입사일자 유효성 검사
+        List<FieldError> memberEmployErrors = bindingResult.getFieldErrors("member_EmploymentDate");
+        String memberEmployErrorMessage = null;
+
+        for (FieldError error : memberEmployErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberEmployErrorMessage = "입사일자는 필수입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Pattern".equals(error.getCode())) {
+                memberEmployErrorMessage = "올바른 형식이 아닙니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            }
+        }
+
+        // 생년월일 유효성 검사
+        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("member_birth");
+        String memberBirthErrorMessage = null;
+
+        for (FieldError error : memberBirthErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberBirthErrorMessage = "생년월일은 필수입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Pattern".equals(error.getCode())) {
+                memberBirthErrorMessage = "올바른 형식이 아닙니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            }
+        }
+
+        // 이메일 유효성 검사
+        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("member_email");
+        String memberEmailErrorMessage = null;
+
+        for (FieldError error : memberEmailErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberEmailErrorMessage = "이메일은 필수입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Email".equals(error.getCode())) {
+                memberEmailErrorMessage = "올바른 형식이 아닙니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            }
+        }
+
+        // 인증코드 유효성 검사
+        String emailVerifycodeErrorMessage = bindingResult.getFieldError("email_verifycode") != null ?
+                bindingResult.getFieldError("member_position").getDefaultMessage() : null;
+
+
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("memberidError", memberidErrorMessage);
+            model.addAttribute("memberPasswordError", memberPasswordErrorMessage);
+            model.addAttribute("memberNameError", memberNameErrorMessage);
+            model.addAttribute("memberDepartmentError", memberDepartmentErrorMessage);
+            model.addAttribute("memberPostionError", memberPostionErrorMessage);
+            model.addAttribute("memberEmployError", memberEmployErrorMessage);
+            model.addAttribute("memberBirthError", memberBirthErrorMessage);
+            model.addAttribute("memberEmailError", memberEmailErrorMessage);
+            model.addAttribute("emailVericodefyError", emailVerifycodeErrorMessage);
+            return "site/member/register";
+        }
+         **/
+        model.addAttribute("searchUrl", "/member/register");
+        staffService.register(staff);
+        return "/site/index";
     }
 
 

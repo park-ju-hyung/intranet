@@ -12,16 +12,22 @@
 
 <body>
     <div class="register-form">
-        <form th:action="@{/register}" th:object="${staff}" method="post">
+        <form id="signupForm" th:action="@{/register}" th:object="${staff}" method="post">
         <p>회원가입</p>
             <div>
                 <label for="memberid">아이디</label>
-                <input id="memberid" th:field="*{memberid}" type="text" placeholder="아이디를 입력하세요" class="form-control2">
-                <div th:if="${#fields.hasErrors('memberid')}" th:errors="*{memberid}" class="error-message" style="color:red"></div>
+                <input id="memberid" th:field="*{memberid}" type="text" placeholder="4~20자리 / 영문, 숫자, 특수문자 '_'사용가능" class="form-control2">
+                <div th:if="${memberidError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberidError}"></span>
+                </div>
+
             </div>
             <div>
                 <label>비밀번호</label>
                 <input id="member_password" th:field="*{member_password}" type="text" placeholder="8~16자리/영문 대소문자, 숫자, 특수문자 조합" class="form-control2">
+                <div th:if="${memberPasswordError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberPasswordError}"></span>
+                </div>
             </div>
             <div>
                 <label>비밀번호 확인</label>
@@ -30,32 +36,54 @@
             <div>
                 <label>이름</label>
                 <input id="member_name" th:field="*{member_name}" type="text" placeholder="이름 입력" class="form-control2">
+                <div th:if="${memberNameError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberNameError}"></span>
+                </div>
             </div>
             <div>
                 <label>부서</label>
                 <input id="member_department" th:field="*{member_department}" type="text" placeholder="부서 입력" class="form-control2">
+                <div th:if="${memberDepartmentError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberDepartmentError}"></span>
+                </div>
             </div>
             <div>
                 <label>직급</label>
                 <input id="member_position" th:field="*{member_position}" type="text" placeholder="직급 입력" class="form-control2">
+                <div th:if="${memberPostionError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberPostionError}"></span>
+                </div>
             </div>
             <div>
                 <label>입사일자</label>
                 <input id="member_EmploymentDate" th:field="*{member_EmploymentDate}" type="text" placeholder="입사 일자" class="form-control2">
+                <div th:if="${memberEmployError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberEmployError}"></span>
+                </div>
             </div>
             <div>
                 <label>생년월일</label>
                 <input id="member_birth" th:field="*{member_birth}" type="text" placeholder="YYYYMMDD" class="form-control2">
+                <div th:if="${memberBirthError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberBirthError}"></span>
+                </div>
             </div>
             <div>
                 <label>이메일</label>
                 <input id="member_email" th:field="*{member_email}" type="text" placeholder="이메일" class="w269 form-control2">
+
                 <button class="confirm-code">
                     <span>인증번호발송</span>
                 </button>
+                <div th:if="${memberEmailError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberEmailError}"></span>
+                </div>
 
-                <label>인증코드</label>
+                <label style="margin-top: 20px;">인증코드</label>
                 <input id="email_verifycode" th:field="*{email_verifycode}" type="text" placeholder="인증코드 입력" class="form-control2">
+                <div th:if="${emailVericodefyError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${emailVericodefyError}"></span>
+                </div>
             </div>
             <div>
                 <p style="text-align: left;">약관</p>
@@ -69,24 +97,24 @@
                             </p>
                         </li>
                         <li>
-                            <input type="checkbox" id="condiitions1">
-                            <label for="condiitions1" class="highight">(필수) 개인회원 약관에 동의</label>
+                            <input type="checkbox" id="conditions1" name="conditions1" class="required">
+                            <label for="conditions1">(필수) 약관에 동의합니다.</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="condiitions2">
-                            <label for="condiitions2" class="highight">(필수) 개인회원 약관에 동의</label>
+                            <input type="checkbox" id="conditions2" name="conditions2" class="required">
+                            <label for="conditions2">(필수) 약관에 동의합니다.</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="condiitions3">
-                            <label for="condiitions3">(선택) 우치기반서비스 이용약관에 동의</label>
+                            <input type="checkbox" id="conditions3">
+                            <label for="conditions3">(선택) 우치기반서비스 이용약관에 동의</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="condiitions4">
-                            <label for="condiitions4">(선택) 마케팅 정보 수신 동의</label>
+                            <input type="checkbox" id="conditions4">
+                            <label for="conditions4">(선택) 마케팅 정보 수신 동의</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="condiitions5">
-                            <label for="condiitions5">(선택) 개인회원 약관에 동의</label>
+                            <input type="checkbox" id="conditions5">
+                            <label for="conditions5">(선택) 개인회원 약관에 동의</label>
                         </li>
                     </ul>
                 </div>
@@ -97,17 +125,19 @@
         </form>
 
     </div>
+    <!-- JavaScript 코드 -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 전체 동의 체크박스 선택/해제
+            // 전체 동의 체크박스 선택/해제 이벤트 리스너
             document.getElementById('All-select').addEventListener('change', function() {
-                var checkboxes = document.querySelectorAll('.condiitions input[type="checkbox"]');
+                var checkboxes = document.querySelectorAll('.condiitions input[type="checkbox"]:not(#All-select)');
                 checkboxes.forEach(function(checkbox) {
                     checkbox.checked = this.checked;
                 }, this);
+                updateSubmitButtonState(); // 회원가입 버튼 상태 업데이트
             });
 
-            // 개별 체크박스 선택에 따른 전체 동의 체크박스 상태 변경
+            // 개별 체크박스 선택에 따른 전체 동의 체크박스 및 회원가입 버튼 상태 업데이트
             var individualCheckboxes = document.querySelectorAll('.condiitions input[type="checkbox"]:not(#All-select)');
             individualCheckboxes.forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
@@ -118,10 +148,39 @@
                         }
                     });
                     document.getElementById('All-select').checked = allChecked;
+                    updateSubmitButtonState(); // 회원가입 버튼 상태 업데이트
                 });
             });
+
+            // 페이지 로드 시 회원가입 버튼 상태 초기화 함수 호출
+            updateSubmitButtonState();
+
+            function updateSubmitButtonState() {
+                var isAllRequiredChecked = Array.from(document.querySelectorAll('.condiitions input[type="checkbox"].required')).every(checkbox => checkbox.checked);
+                var submitButton = document.querySelector('.register-button');
+                submitButton.disabled = !isAllRequiredChecked;
+            }
+        });
+
+        // 폼 제출 이벤트 리스너
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            // 약관 동의 체크 여부 확인
+            var conditions1Checked = document.getElementById('conditions1').checked;
+            var conditions2Checked = document.getElementById('conditions2').checked;
+
+            // 약관에 동의하지 않은 경우 폼 제출을 막음
+            if (!conditions1Checked || !conditions2Checked) {
+                alert('모든 필수 약관에 동의해야 회원가입이 가능합니다.');
+                // event.preventDefault(); // 폼 제출 막기를 주석 처리해야 합니다.
+
+                // 제출을 막은 후에 경고 메시지를 페이지의 다른 부분에 표시할 수 있습니다.
+                // 여기에 필요한 코드 추가
+            }
         });
     </script>
+
+
+
 </body>
 
 </html>
