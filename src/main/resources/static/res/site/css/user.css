@@ -38,31 +38,31 @@
 }
 
 /** member-register **/
-.condiitions {
+.conditions {
   border: 1px solid #666;
   padding: 10px;
   margin-top: 8px;
 }
 
-.condiitions input[type="checkbox"] {
+.conditions input[type="checkbox"] {
   width: 30px;
   height: 25px;
   margin: 0px;
 }
-.condiitions input[type="checkbox"] + label {
+.conditions input[type="checkbox"] + label {
   cursor: pointer;
   vertical-align: 7px;
   font-size: 15px;
 }
-.condiitions p {
+.conditions p {
   font-size: 13px;
   padding-left: 38px;
   padding-bottom: 12px;
 }
-.condiitions > ul > li:first-child {
+.conditions > ul > li:first-child {
   border-bottom: 1px solid #666;
 }
-.condiitions > ul > li:not(:first-child) {
+.conditions > ul > li:not(:first-child) {
   margin-top: 20px;
 }
 

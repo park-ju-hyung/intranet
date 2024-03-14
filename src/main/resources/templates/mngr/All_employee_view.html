@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../static/res/common/css/admin-bootstrap.css">
+    <link rel="stylesheet" href="../../../static/res/common/css/admin.css">
+    <link rel="stylesheet" href="../../../static/res/common/css/boot.css">
+    <link rel="stylesheet" href="../../../static/res/common/css/common.css">
+    <link rel="stylesheet" href="../../../static/res/common/css/source.css">
+    <script defer src="../../../static/res/mngr/js/main.js"> </script>
+    <title>관리자 - 연차신청 view</title>
+</head>
+
+<body>
+    <div class="container">
+        <!--left-menu-->
+        <div class="left-menu">
+            <ul>
+                <li>
+                    <a href="javascript void(0)">홍길동</a>
+                    <span>님</span>
+                    <button class="logout-button">
+                        로그아웃
+                    </button>
+                    <a href="javascript void(0)">내정보 수정</a>
+                </li>
+                <li class="active">
+                    <a href="../admin/All_employee.html">
+                        연차신청
+                    </a>
+                </li>
+                <li>
+                    <a href="../admin/approval.html">
+                        회원가입 승인
+                    </a>
+                </li>
+                <li>
+                    <a href="../admin/management.html">
+                        회원관리
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--left-menu-->
+        <!--content-->
+        <div class="content">
+            <p>연차신청</p>
+            <table class="view">
+                <colgroup>
+                    <col width="20%">
+                    <col width="80%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>이름</td>
+                        <td>
+                            홍길동
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>직급</td>
+                        <td>
+                            사원
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>연차 시작일</td>
+                        <td>
+                            2024-01-02
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>연차 종료일</td>
+                        <td>
+                            2024-01-03
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>총 연차일수</td>
+                        <td>
+                            1일
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>사유</td>
+                        <td>
+                            사유
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="register-button-form">
+                <button class="deepblue-button" id="toggleFadeButton">
+                    반려
+                </button>
+                <button class="register-button">
+                    승인
+                </button>
+            </div>
+            <div class="pop-up" id="hz" style="display: none;">
+                <p style="text-align: center;">반려사유</p>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <button>입력</button>
+                <button id="toggleFadeButton2" class="scClose">닫기</button>
+                <!--
+                <div class="inner pc">
+                    <label for="">키워드검색</label>
+                    <div>
+                        <input type="text" />
+                        <button class="btnSearch"></button>
+                    </div>
+                </div>
+
+                <div class="inner mb">
+                    <div class="searcharea">
+                        <input type="text" placeholder="검색어를 입력하세요." />
+                        <button class="btnSearch">검색</button>
+                    </div>
+                    <button id="toggleFadeButton2" class="scClose">닫기</button>
+                </div>
+                -->
+            </div>
+
+        </div>
+
+        <!--content-->
+    </div>
+
+
+
+
+
+
+
+    <!--content-->
+</body>
+
+</html>

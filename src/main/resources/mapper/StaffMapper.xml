@@ -6,27 +6,22 @@
     <!-- 등록 -->
     <insert id="insertStaff" parameterType="initech.mvc.mapper.StaffMapper">
         INSERT INTO member
-        (memberid, member_password , member_name, member_department, member_position,member_EmploymentDate, member_birth, member_email, email_verifycode, TermsAgreed)
+        (memberid, member_password , confirmPassword , member_name, member_department, member_position,member_EmploymentDate, member_birth, member_email, email_verifycode, TermsAgreed)
         VALUES
-            (#{memberid}, #{member_password} ,#{member_name}, #{member_department}, #{member_position}, #{member_EmploymentDate}, #{member_birth}, #{member_email}, #{email_verifycode}, #{TermsAgreed})
+            (#{memberid}, #{member_password} , #{confirmPassword} ,#{member_name}, #{member_department}, #{member_position}, #{member_EmploymentDate}, #{member_birth}, #{member_email}, #{email_verifycode}, #{TermsAgreed})
     </insert>
 
     <!-- 조회 -->
-    <select id="selectAllUsers" resultType="initech.mvc.vo.StaffVO">
-        SELECT
-            bt_idm AS "btIdm",
-            memberid AS "memberid",
-            member_password AS "memberPassword",
-            member_name AS "memberName",
-            member_department AS "memberDepartment",
-            member_position AS "memberPosition",
-            member_EmploymentDate AS "memberEmploymentDate",
-            member_birth AS "memberBirth",
-            member_email AS "memberEmail",
-            email_verifycode AS "emailVerifyCode",
-            TermsAgreed AS "termsAgreed"
-        FROM
-            member
+    <resultMap id="staffResultMap" type="initech.mvc.vo.StaffVO">
+        <result column="member_name" property="member_name"/>
+        <result column="member_department" property="member_department"/>
+        <result column="member_position" property="member_position"/>
+        <result column="member_EmploymentDate" property="member_EmploymentDate"/>
+        <!-- 기타 필드 매핑 -->
+    </resultMap>
+
+    <select id="selectAllUsers" resultMap="staffResultMap">
+        SELECT * FROM member;
     </select>
 
 

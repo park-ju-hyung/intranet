@@ -5,13 +5,12 @@ import initech.mvc.vo.StaffVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.AbstractBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -37,19 +36,10 @@ public class StaffController {
     // 회원가입 기능
     @PostMapping("/register")
     public String registerStaff(@Valid @ModelAttribute("staff") StaffVO staff,
-                                @RequestParam(value = "conditions1", required = false) String conditions1,
-                                @RequestParam(value = "conditions2", required = false) String conditions2,
                                 BindingResult bindingResult,
-                                Model model) throws Exception {
+                                Model model, AbstractBindingResult result) throws Exception {
 
-        // 약관 동의 여부 검증
-        if (conditions1 == null || conditions2 == null ) {
-            // 약관에 동의하지 않은 경우, 오류 메시지를 모델에 추가하여 회원가입 페이지로 반환
-            model.addAttribute("termsError", "약관에 동의해야 회원가입이 가능합니다.");
-            return "site/member/register";
-        }
 
-        /**
 
         // 아이디 유효성 검사
         List<FieldError> memberidErrors = bindingResult.getFieldErrors("memberid");
@@ -86,6 +76,18 @@ public class StaffController {
                 }
             }
         }
+
+        // 비밀번호 확인 유효성 검사
+        String confirmPassword = staff.getConfirmPassword();
+        if (confirmPassword == null || confirmPassword.isEmpty()) {
+            bindingResult.rejectValue("confirmPassword", "NotBlank", "");
+        } else if (!staff.getConfirmPassword().equals(staff.getMember_password())) {
+            result.rejectValue("confirmPassword", "Match", "비밀번호가 일치하지 않습니다.");
+        }
+
+
+
+
 
         // 이름 유효성 검사
         String memberNameErrorMessage = bindingResult.getFieldError("member_name") != null ?
@@ -160,7 +162,7 @@ public class StaffController {
             model.addAttribute("emailVericodefyError", emailVerifycodeErrorMessage);
             return "site/member/register";
         }
-         **/
+
         model.addAttribute("searchUrl", "/member/register");
         staffService.register(staff);
         return "/site/index";

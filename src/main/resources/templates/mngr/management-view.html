@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../static/res/common/css/admin-bootstrap.css">
+    <link rel="stylesheet" href="../../../static/res/common/css/admin.css">
+    <link rel="stylesheet" href="../../../static/res/common/css/boot.css">
+    <link rel="stylesheet" href="../../../static/res/common/css/common.css">
+    <link rel="stylesheet" href="../../../static/res/common/css/source.css">
+    <script defer src="../../../static/res/mngr/js/main.js"> </script>
+
+    <title>관리자 - 회원관리 view</title>
+</head>
+
+<body>
+    <div class="container">
+        <!--left-menu-->
+        <div class="left-menu">
+            <ul>
+                <li>
+                    <a href="javascript void(0)">홍길동</a>
+                    <span>님</span>
+                    <button class="logout-button">
+                        로그아웃
+                    </button>
+                    <a href="javascript void(0)">내정보 수정</a>
+                </li>
+                <li>
+                    <a href="../admin/All_employee.html">
+                        연차신청
+                    </a>
+                </li>
+                <li>
+                    <a href="../admin/approval.html">
+                        회원가입 승인
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="../admin/management.html">
+                        회원관리
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!--left-menu-->
+        <!--content-->
+        <div class="content">
+            <p>회원정보수정</p>
+            <table class="view">
+                <colgroup>
+                    <col width="20%">
+                    <col width="80%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>이름</td>
+                        <td>
+                            홍길동
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>생년월일</td>
+                        <td>
+                            240101
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>아이디</td>
+                        <td>
+                            ptg0131
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>이메일</td>
+                        <td>
+                            ptg0131@gmail.com
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>부서</td>
+                        <td>
+                            <select name="department" id="department" class="form-control w100">
+                                <option value="hr">인사부</option>
+                                <option value="it">IT부</option>
+                                <option value="marketing">마케팅부</option>
+                                <option value="sales">영업부</option>
+                                <option value="finance">재무부</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>직급</td>
+                        <td>
+                            <select name="position" id="position" class="form-control w100">
+                                <option value="intern">인턴</option>
+                                <option value="staff">사원</option>
+                                <option value="senior">선임</option>
+                                <option value="manager">관리자</option>
+                                <option value="director">이사</option>
+                                <option value="executive">임원</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>직급</td>
+                        <td>
+                            <select name="employmentStatus" id="employmentStatus" class="form-control w100">
+                                <option value="employed">재직</option>
+                                <option value="leave">휴무</option>
+                                <option value="resigned">퇴사</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="register-button-form">
+                <button class="deepblue-button" id="toggleFadeButton">
+                    삭제
+                </button>
+                <button class="register-button">
+                    수정
+                </button>
+            </div>
+            <div class="pop-up" id="hz" style="display: none;">
+                <p style="text-align: center;">삭제사유</p>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <button>입력</button>
+                <button id="toggleFadeButton2" class="scClose">닫기</button>
+                <!--
+                                                                <div class="inner pc">
+                                                                    <label for="">키워드검색</label>
+                                                                    <div>
+                                                                        <input type="text" />
+                                                                        <button class="btnSearch"></button>
+                                                                    </div>
+                                                                </div>
+                                                
+                                                                <div class="inner mb">
+                                                                    <div class="searcharea">
+                                                                        <input type="text" placeholder="검색어를 입력하세요." />
+                                                                        <button class="btnSearch">검색</button>
+                                                                    </div>
+                                                                    <button id="toggleFadeButton2" class="scClose">닫기</button>
+                                                                </div>
+                                                                -->
+            </div>
+
+
+        </div>
+
+        <!--content-->
+    </div>
+
+
+
+
+
+
+
+    <!--content-->
+</body>
+
+</html>

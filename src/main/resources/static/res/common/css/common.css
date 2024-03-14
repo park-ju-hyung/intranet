@@ -121,6 +121,14 @@ input[type="checkbox"] + label {
   width: 360px;
   margin: 0 auto;
 }
+.essential{
+  text-align: right !important;
+  font-size: 13px !important;
+}
+.essential-style{
+ color: red;
+  display: inline-block;
+}
 .register-form > form> p {
   font-size: 25px;
   text-align: center;
@@ -131,9 +139,10 @@ input[type="checkbox"] + label {
 }
 .register-form > form > div > label {
   font-size: 15px;
-  display: block;
+  display: inline-block;
 }
-.register-form > form > div > input {
+.register-form > form > div > input,
+.register-form > form > div > div > input{
   border-radius: 4px;
   margin-top: 8px;
   height: 38px;
