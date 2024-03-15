@@ -7,6 +7,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -45,4 +48,11 @@ public class StaffVO {
     @NotBlank(message = "인증코드는 필수 입력 항목입니다.")
     private String email_verifycode;
     private boolean TermsAgreed;
+
+    // 신청일자 (게시물 신청일자)
+    @CreationTimestamp // 엔티티를 저장될때 현재 일시를 자동으로 설정
+    private LocalDateTime applicationDate;
+    // 업데이트 일자
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 }
