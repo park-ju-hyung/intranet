@@ -115,8 +115,15 @@
                         <td>상태</td>
                     </tr>
                     <tr th:each="staff, iterStat : ${staffList}">
-                        <td>1</td>
-                        <td th:text="${staff.member_name}">이름</td>
+                        <td>
+                            <p th:text="${staff.bt_idm}"></p>
+                        </td>
+                        <td >
+                            <!--
+                            <a th:href="@{/admin/managementView/{bt_idm}(bt_idm=${staff.bt_idm})}" th:text="${staff.member_name}">이름</a>
+                            -->
+                            <a th:href="@{/admin/managementView(id=${staff.bt_idm})}" th:text="${staff.member_name}">Default Name</a>
+                        </td>
                         <td th:text="${staff.member_department}">부서</td>
                         <td th:text="${staff.member_position}">직급</td>
                         <td th:text="${staff.member_EmploymentDate}">입사일자</td>

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="initech.mvc.mapper.StaffMapper">
-    <!-- 등록 -->
+    <!-- register 등록 -->
     <insert id="insertStaff" parameterType="initech.mvc.vo.StaffVO">
         INSERT INTO member
         (memberid, member_password, confirmPassword, member_name, member_department, member_position, member_EmploymentDate, member_birth, member_email, email_verifycode, TermsAgreed, applicationDate, updatedAt)
@@ -11,8 +11,9 @@
             (#{memberid}, #{member_password}, #{confirmPassword}, #{member_name}, #{member_department}, #{member_position}, #{member_EmploymentDate}, #{member_birth}, #{member_email}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW())
     </insert>
 
-    <!-- 조회 -->
+    <!-- list 조회 -->
     <resultMap id="staffResultMap" type="initech.mvc.vo.StaffVO">
+        <result column="bt_idm" property="bt_idm"/>
         <result column="member_name" property="member_name"/>
         <result column="member_department" property="member_department"/>
         <result column="member_position" property="member_position"/>
@@ -21,15 +22,25 @@
         <!-- 기타 필드 매핑 -->
     </resultMap>
 
-    <!--페이징 조회 -->
+    <!--list 페이징 조회 -->
     <select id="selectAllUsers" resultMap="staffResultMap" parameterType="map">
         SELECT * FROM member ORDER BY bt_idm LIMIT #{size} OFFSET #{offset}
     </select>
 
-    <!-- 전체 데이터의 수를 조회하는 쿼리 -->
+    <!-- list 전체 데이터의 수를 조회하는 쿼리 -->
     <select id="countAllUsers" resultType="int">
         SELECT COUNT(*) FROM member
     </select>
+
+    <!-- 상세 조회 쿼리 -->
+    <select id="UsersDetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
+        SELECT member_name, member_birth, memberid, member_email, member_department, member_position
+        FROM member
+        WHERE bt_idm = #{bt_idm}
+    </select>
+
+
+
 
 
 

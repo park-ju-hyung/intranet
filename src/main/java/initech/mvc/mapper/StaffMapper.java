@@ -21,4 +21,15 @@ public interface StaffMapper {
     // 전체 사용자 수 조회
     int countAllUsers();
 
+
+    // 상세조회
+    StaffVO UsersDetail(Long bt_idm);
+
+
+
+
+
+
+
+
 }

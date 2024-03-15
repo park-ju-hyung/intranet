@@ -163,6 +163,7 @@ public class StaffController {
             return "site/member/register";
         }
 
+        model.addAttribute("message", "회원가입이 정상적으로 완료되었습니다.");
         model.addAttribute("searchUrl", "/member/register");
         staffService.register(staff);
         return "/site/index";

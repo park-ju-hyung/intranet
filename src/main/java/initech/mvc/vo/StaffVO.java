@@ -3,6 +3,7 @@ package initech.mvc.vo;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

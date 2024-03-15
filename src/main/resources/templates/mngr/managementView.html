@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin-bootstrap.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/boot.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/common.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/source.css">
-    <script defer src="../../../static/res/mngr/js/main.js"> </script>
-
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin-bootstrap.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+    <script defer src="@/res/mngr/js/main.js"> </script>
     <title>관리자 - 회원관리 view</title>
 </head>
 
@@ -58,25 +57,25 @@
                     <tr>
                         <td>이름</td>
                         <td>
-                            홍길동
+                            <p th:text="${staff.member_name}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>생년월일</td>
                         <td>
-                            240101
+                            <p th:text="${staff.member_birth}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>아이디</td>
                         <td>
-                            ptg0131
+                            <p th:text="${staff.memberid}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>이메일</td>
                         <td>
-                            ptg0131@gmail.com
+                            <p th:text="${staff.member_email}"></p>
                         </td>
                     </tr>
                     <tr>

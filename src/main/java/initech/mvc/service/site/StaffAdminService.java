@@ -17,7 +17,7 @@ public class StaffAdminService {
         this.staffMapper = staffMapper;
     }
 
-
+    // list
     public List<StaffVO> getAllUsers(int offset, int size) {
         return staffMapper.selectAllUsers(offset, size);
     }
@@ -25,4 +25,8 @@ public class StaffAdminService {
         return staffMapper.countAllUsers();
     }
 
+    // 상세조회
+    public StaffVO UsersDetail(Long bt_idm) {
+        return staffMapper.UsersDetail(bt_idm);
+    }
 }
