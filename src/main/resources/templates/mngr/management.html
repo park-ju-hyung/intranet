@@ -143,26 +143,50 @@
                     </div>
                 </div>
                 <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var size = urlParams.get('size') || '10'; // 기본값은 10으로 설정
+                        var selectBox = document.getElementById('regOldDiv1');
+
+                        // select 박스에서 해당하는 값이 선택되도록 함
+                        for (var i = 0; i < selectBox.options.length; i++) {
+                            if (selectBox.options[i].value === size) {
+                                selectBox.selectedIndex = i;
+                                break;
+                            }
+                        }
+                    });
+
                     function changePageSize() {
                         var selectBox = document.getElementById("regOldDiv1");
                         var selectedValue = selectBox.options[selectBox.selectedIndex].value;
 
-                        // 현재 URL에서 기존의 size 파라미터 제거
-                        var url = window.location.href.replace(/([?&])size=[^&]+(&|$)/, '$1').replace(/(&)$/, '');
+                        // 현재 URL 파싱
+                        var url = new URL(window.location.href);
+                        var searchParams = url.searchParams;
 
-                        // 새로운 size 파라미터 추가
-                        url += (url.indexOf('?') === -1 ? '?' : '&') + 'size=' + encodeURIComponent(selectedValue);
+                        // size 파라미터 업데이트
+                        searchParams.set('size', selectedValue);
+
+                        // 페이지 리로드 전에 page 파라미터를 1로 설정
+                        searchParams.set('page', 1);
+
+                        // 변경된 searchParams를 이용하여 URL의 search 부분 업데이트
+                        url.search = searchParams.toString();
 
                         // 페이지 리로딩
-                        window.location.href = url;
+                        window.location.href = url.toString();
                     }
                 </script>
                 <!--paging-->
                 <div class="col-xs-8">
-                    <div class="pagination paging">
-                        <a class="prev" href="" alt="이전페이지">이전</a>
-                        <a>1</a>
-                        <a class="next" href="" alt="다음페이지"></a>
+                    <div class="pagination paging" th:if="${not #lists.isEmpty(staffList)}">
+                        <a class="prev" th:if="${currentPage > 1}" th:href="@{/admin/management(page=${currentPage - 1})}" alt="이전페이지">이전</a>
+                        <th:block th:each="pageNum : ${#numbers.sequence(1, totalPages)}">
+                            <a th:if="${pageNum != currentPage}" th:href="@{/admin/management(page=${pageNum})}" th:text="${pageNum}"></a>
+                            <a th:if="${pageNum == currentPage}" th:text="${pageNum}" style="color: red"></a>
+                        </th:block>
+                        <a class="next" th:if="${currentPage < totalPages}" th:href="@{/admin/management(page=${currentPage + 1})}" alt="다음페이지">다음</a>
                     </div>
                 </div>
             </div>

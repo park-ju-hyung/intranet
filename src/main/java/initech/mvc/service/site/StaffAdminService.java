@@ -17,9 +17,12 @@ public class StaffAdminService {
         this.staffMapper = staffMapper;
     }
 
-    public List<StaffVO> getAllUsers() {
-        return staffMapper.selectAllUsers();
-    }
 
+    public List<StaffVO> getAllUsers(int offset, int size) {
+        return staffMapper.selectAllUsers(offset, size);
+    }
+    public int getTotalUserCount() {
+        return staffMapper.countAllUsers();
+    }
 
 }

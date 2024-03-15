@@ -20,11 +20,15 @@
         <!-- 기타 필드 매핑 -->
     </resultMap>
 
-    <select id="selectAllUsers" resultMap="staffResultMap">
-        SELECT * FROM member;
+    <!--페이징 조회 -->
+    <select id="selectAllUsers" resultMap="staffResultMap" parameterType="map">
+        SELECT * FROM member ORDER BY bt_idm LIMIT #{size} OFFSET #{offset}
     </select>
 
-
+    <!-- 전체 데이터의 수를 조회하는 쿼리 -->
+    <select id="countAllUsers" resultType="int">
+        SELECT COUNT(*) FROM member
+    </select>
 
 
 
