@@ -95,10 +95,16 @@ public class StaffController {
 
 
         // 부서 유효성 검사
+        if (staff.getMember_department() == null || staff.getMember_department().isEmpty()) {
+            bindingResult.rejectValue("member_department", "error.member_department", "부서를 선택해야 합니다.");
+        }
         String memberDepartmentErrorMessage = bindingResult.getFieldError("member_department") != null ?
                 bindingResult.getFieldError("member_department").getDefaultMessage() : null;
 
         // 직급 유효성 검사
+        if (staff.getMember_position() == null || staff.getMember_position().isEmpty()) {
+            bindingResult.rejectValue("member_position", "error.member_position", "직급을 선택해야 합니다.");
+        }
         String memberPostionErrorMessage = bindingResult.getFieldError("member_position") != null ?
                 bindingResult.getFieldError("member_position").getDefaultMessage() : null;
 
@@ -146,7 +152,7 @@ public class StaffController {
 
         // 인증코드 유효성 검사
         String emailVerifycodeErrorMessage = bindingResult.getFieldError("email_verifycode") != null ?
-                bindingResult.getFieldError("member_position").getDefaultMessage() : null;
+                bindingResult.getFieldError("email_verifycode").getDefaultMessage() : null;
 
 
 

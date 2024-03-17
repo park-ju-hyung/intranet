@@ -142,7 +142,8 @@ input[type="checkbox"] + label {
   display: inline-block;
 }
 .register-form > form > div > input,
-.register-form > form > div > div > input{
+.register-form > form > div > div > input,
+.register-form > form > div > select{
   border-radius: 4px;
   margin-top: 8px;
   height: 38px;

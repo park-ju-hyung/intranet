@@ -54,15 +54,33 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>부서</label>
+                <select id="member_department" name="member_department" class="form-control2">
+                    <option value="">부서를 선택하세요</option>
+                    <option value="it" th:selected="${staff.member_department == 'it'}">IT</option>
+                    <option value="hr" th:selected="${staff.member_department == 'hr'}">인사</option>
+                    <option value="marketing" th:selected="${staff.member_department == 'marketing'}">마케팅</option>
+                    <option value="finance" th:selected="${staff.member_department == 'finance'}">재무</option>
+                </select>
+                <div th:if="${memberDepartmentError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberDepartmentError}"></span>
+                </div>
+                <!--
                 <input id="member_department" th:field="*{member_department}" type="text" placeholder="부서 입력" class="form-control2">
                 <div th:if="${memberDepartmentError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberDepartmentError}"></span>
                 </div>
+                -->
             </div>
             <div>
                 <span class="essential-style">*</span>
                 <label>직급</label>
-                <input id="member_position" th:field="*{member_position}" type="text" placeholder="직급 입력" class="form-control2">
+                <select id="member_position" name="member_position" class="form-control2">
+                    <option value="">직급을 선택하세요</option>
+                    <option value="사원" th:selected="${staff.member_position == '사원'}">사원</option>
+                    <option value="대리" th:selected="${staff.member_position == '대리'}">대리</option>
+                    <option value="과장" th:selected="${staff.member_position == '과장'}">과장</option>
+                    <option value="부장" th:selected="${staff.member_position == '부장'}">부장</option>
+                </select>
                 <div th:if="${memberPostionError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberPostionError}"></span>
                 </div>
