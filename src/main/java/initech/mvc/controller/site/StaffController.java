@@ -90,23 +90,23 @@ public class StaffController {
 
 
         // 이름 유효성 검사
-        String memberNameErrorMessage = bindingResult.getFieldError("member_name") != null ?
-                bindingResult.getFieldError("member_name").getDefaultMessage() : null;
+        String memberNameErrorMessage = bindingResult.getFieldError("memberName") != null ?
+                bindingResult.getFieldError("memberName").getDefaultMessage() : null;
 
 
         // 부서 유효성 검사
-        if (staff.getMember_department() == null || staff.getMember_department().isEmpty()) {
-            bindingResult.rejectValue("member_department", "error.member_department", "부서를 선택해야 합니다.");
+        if (staff.getMemberDepartment() == null || staff.getMemberDepartment().isEmpty()) {
+            bindingResult.rejectValue("memberDepartment", "error.member_department", "부서를 선택해야 합니다.");
         }
-        String memberDepartmentErrorMessage = bindingResult.getFieldError("member_department") != null ?
-                bindingResult.getFieldError("member_department").getDefaultMessage() : null;
+        String memberDepartmentErrorMessage = bindingResult.getFieldError("memberDepartment") != null ?
+                bindingResult.getFieldError("memberDepartment").getDefaultMessage() : null;
 
         // 직급 유효성 검사
-        if (staff.getMember_position() == null || staff.getMember_position().isEmpty()) {
-            bindingResult.rejectValue("member_position", "error.member_position", "직급을 선택해야 합니다.");
+        if (staff.getMemberPosition() == null || staff.getMemberPosition().isEmpty()) {
+            bindingResult.rejectValue("memberPosition", "error.memberPosition", "직급을 선택해야 합니다.");
         }
-        String memberPostionErrorMessage = bindingResult.getFieldError("member_position") != null ?
-                bindingResult.getFieldError("member_position").getDefaultMessage() : null;
+        String memberPostionErrorMessage = bindingResult.getFieldError("memberPosition") != null ?
+                bindingResult.getFieldError("memberPosition").getDefaultMessage() : null;
 
         // 입사일자 유효성 검사
         List<FieldError> memberEmployErrors = bindingResult.getFieldErrors("member_EmploymentDate");
@@ -123,7 +123,7 @@ public class StaffController {
         }
 
         // 생년월일 유효성 검사
-        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("member_birth");
+        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("memberBirth");
         String memberBirthErrorMessage = null;
 
         for (FieldError error : memberBirthErrors) {
@@ -137,7 +137,7 @@ public class StaffController {
         }
 
         // 이메일 유효성 검사
-        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("member_email");
+        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("memberEmail");
         String memberEmailErrorMessage = null;
 
         for (FieldError error : memberEmailErrors) {

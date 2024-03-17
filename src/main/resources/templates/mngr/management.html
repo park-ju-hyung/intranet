@@ -122,10 +122,10 @@
                             <!--
                             <a th:href="@{/admin/managementView/{bt_idm}(bt_idm=${staff.bt_idm})}" th:text="${staff.member_name}">이름</a>
                             -->
-                            <a th:href="@{/admin/managementView(id=${staff.bt_idm})}" th:text="${staff.member_name}">Default Name</a>
+                            <a th:href="@{/admin/managementView(id=${staff.bt_idm})}" th:text="${staff.memberName}">Default Name</a>
                         </td>
-                        <td th:text="${staff.member_department}">부서</td>
-                        <td th:text="${staff.member_position}">직급</td>
+                        <td th:text="${staff.memberDepartment}">부서</td>
+                        <td th:text="${staff.getMemberPosition()}">직급</td>
                         <td th:text="${staff.member_EmploymentDate}">입사일자</td>
                         <td th:text="${#temporals.format(staff.applicationDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                         <td>상태</td>

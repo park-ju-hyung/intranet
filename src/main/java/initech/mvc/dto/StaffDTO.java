@@ -31,20 +31,21 @@ public class StaffDTO{
     @NotBlank(message = "비밀번호 확인은 필수 입력 항목입니다.")
     private String confirmPassword;
     @NotBlank(message = "이름은 필수 입력 항목입니다.")
-    private String member_name;
+    private String memberName;
     @NotBlank(message = "부서는 필수 입력 항목입니다.")
-    private String member_department;
+    private String memberDepartment;
     @NotBlank(message = "직급은 필수 입력 항목입니다.")
-    private String member_position;
+    private String memberPosition;
     @NotBlank(message = "입사일자는 필수 입력 항목입니다.")
     @Pattern(regexp = "^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$", message = "올바른 형식이 아닙니다.")
     private String member_EmploymentDate;
+    @Column(name = "member_birth")
     @NotBlank(message = "생년월일은 필수 입력 항목입니다.")
     @Pattern(regexp = "^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$", message = "올바른 형식이 아닙니다.")
-    private String member_birth;
+    private String memberBirth;
     @NotBlank(message = "이메일은 필수 입력 항목입니다.")
     @Email
-    private String member_email;
+    private String memberEmail;
     @NotBlank(message = "인증코드는 필수 입력 항목입니다.")
     private String email_verifycode;
     private boolean TermsAgreed;

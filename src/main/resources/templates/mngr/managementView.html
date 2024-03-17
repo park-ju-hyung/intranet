@@ -57,13 +57,13 @@
                     <tr>
                         <td>이름</td>
                         <td>
-                            <p th:text="${staff.member_name}"></p>
+                   <p th:text="${staff.memberName}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>생년월일</td>
                         <td>
-                            <p th:text="${staff.member_birth}"></p>
+                            <p th:text="${staff.memberBirth}"></p>
                         </td>
                     </tr>
                     <tr>
@@ -75,31 +75,29 @@
                     <tr>
                         <td>이메일</td>
                         <td>
-                            <p th:text="${staff.member_email}"></p>
+                            <p th:text="${staff.memberEmail}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>부서</td>
                         <td>
-                            <select name="department" id="department" class="form-control w100">
-                                <option value="hr">인사부</option>
-                                <option value="it">IT부</option>
-                                <option value="marketing">마케팅부</option>
-                                <option value="sales">영업부</option>
-                                <option value="finance">재무부</option>
+                            <select name="memberDepartment" id="memberDepartment" class="form-control w100">
+                                <option value="">부서를 선택하세요</option>
+                                <option value="it" th:selected="${staff.memberDepartment == 'it'}">IT</option>
+                                <option value="hr" th:selected="${staff.memberDepartment == 'hr'}">인사</option>
+                                <option value="marketing" th:selected="${staff.memberDepartment == 'marketing'}">마케팅</option>
+                                <option value="finance" th:selected="${staff.memberDepartment == 'finance'}">재무</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>직급</td>
                         <td>
-                            <select name="position" id="position" class="form-control w100">
-                                <option value="intern">인턴</option>
-                                <option value="staff">사원</option>
-                                <option value="senior">선임</option>
-                                <option value="manager">관리자</option>
-                                <option value="director">이사</option>
-                                <option value="executive">임원</option>
+                            <select name="memberPosition" id="memberPosition" class="form-control w100">
+                                <option value="사원" th:selected="${staff.memberPosition == '사원'}">사원</option>
+                                <option value="대리" th:selected="${staff.memberPosition == '대리'}">대리</option>
+                                <option value="과장" th:selected="${staff.memberPosition == '과장'}">과장</option>
+                                <option value="부장" th:selected="${staff.memberPosition == '부장'}">부장</option>
                             </select>
                         </td>
                     </tr>

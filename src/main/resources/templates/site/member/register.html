@@ -46,7 +46,7 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>이름</label>
-                <input id="member_name" th:field="*{member_name}" type="text" placeholder="이름 입력" class="form-control2">
+                <input id="memberName" th:field="*{memberName}" type="text" placeholder="이름 입력" class="form-control2">
                 <div th:if="${memberNameError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberNameError}"></span>
                 </div>
@@ -54,12 +54,12 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>부서</label>
-                <select id="member_department" name="member_department" class="form-control2">
+                <select id="memberDepartment" name="memberDepartment" class="form-control2">
                     <option value="">부서를 선택하세요</option>
-                    <option value="it" th:selected="${staff.member_department == 'it'}">IT</option>
-                    <option value="hr" th:selected="${staff.member_department == 'hr'}">인사</option>
-                    <option value="marketing" th:selected="${staff.member_department == 'marketing'}">마케팅</option>
-                    <option value="finance" th:selected="${staff.member_department == 'finance'}">재무</option>
+                    <option value="it" th:selected="${staff.memberDepartment == 'it'}">IT</option>
+                    <option value="hr" th:selected="${staff.memberDepartment == 'hr'}">인사</option>
+                    <option value="marketing" th:selected="${staff.memberDepartment == 'marketing'}">마케팅</option>
+                    <option value="finance" th:selected="${staff.memberDepartment == 'finance'}">재무</option>
                 </select>
                 <div th:if="${memberDepartmentError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberDepartmentError}"></span>
@@ -74,12 +74,12 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>직급</label>
-                <select id="member_position" name="member_position" class="form-control2">
+                <select id="memberPosition" name="memberPosition" class="form-control2">
                     <option value="">직급을 선택하세요</option>
-                    <option value="사원" th:selected="${staff.member_position == '사원'}">사원</option>
-                    <option value="대리" th:selected="${staff.member_position == '대리'}">대리</option>
-                    <option value="과장" th:selected="${staff.member_position == '과장'}">과장</option>
-                    <option value="부장" th:selected="${staff.member_position == '부장'}">부장</option>
+                    <option value="사원" th:selected="${staff.memberPosition == '사원'}">사원</option>
+                    <option value="대리" th:selected="${staff.memberPosition == '대리'}">대리</option>
+                    <option value="과장" th:selected="${staff.memberPosition == '과장'}">과장</option>
+                    <option value="부장" th:selected="${staff.memberPosition == '부장'}">부장</option>
                 </select>
                 <div th:if="${memberPostionError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberPostionError}"></span>
@@ -96,7 +96,7 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>생년월일</label>
-                <input id="member_birth" th:field="*{member_birth}" type="text" placeholder="YYYYMMDD" class="form-control2">
+                <input id="memberBirth" th:field="*{memberBirth}" type="text" placeholder="YYYYMMDD" class="form-control2">
                 <div th:if="${memberBirthError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberBirthError}"></span>
                 </div>
@@ -105,7 +105,7 @@
                 <span class="essential-style">*</span>
                 <label>이메일</label>
                 <div>
-                    <input id="member_email" th:field="*{member_email}" type="text" placeholder="이메일" class="w269 form-control2">
+                    <input id="memberEmail" th:field="*{memberEmail}" type="text" placeholder="이메일" class="w269 form-control2">
                     <button class="confirm-code">
                         <span>인증번호발송</span>
                     </button>

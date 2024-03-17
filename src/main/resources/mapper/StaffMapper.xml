@@ -6,15 +6,15 @@
     <!-- register 등록 -->
     <insert id="insertStaff" parameterType="initech.mvc.vo.StaffVO">
         INSERT INTO member
-        (memberid, member_password, confirmPassword, member_name, member_department, member_position, member_EmploymentDate, member_birth, member_email, email_verifycode, TermsAgreed, applicationDate, updatedAt)
+        (memberid, member_password, confirmPassword, memberName, memberDepartment, memberPosition, member_EmploymentDate, memberBirth, memberEmail, email_verifycode, TermsAgreed, applicationDate, updatedAt)
         VALUES
-            (#{memberid}, #{member_password}, #{confirmPassword}, #{member_name}, #{member_department}, #{member_position}, #{member_EmploymentDate}, #{member_birth}, #{member_email}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW())
+            (#{memberid}, #{member_password}, #{confirmPassword}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{member_EmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW())
     </insert>
 
     <!-- list 조회 -->
     <resultMap id="staffResultMap" type="initech.mvc.vo.StaffVO">
         <result column="bt_idm" property="bt_idm"/>
-        <result column="member_name" property="member_name"/>
+        <result column="memberName" property="memberName"/>
         <result column="member_department" property="member_department"/>
         <result column="member_position" property="member_position"/>
         <result column="member_EmploymentDate" property="member_EmploymentDate"/>
@@ -34,7 +34,7 @@
 
     <!-- 상세 조회 쿼리 -->
     <select id="UsersDetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
-        SELECT member_name, member_birth, memberid, member_email, member_department, member_position
+        SELECT memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition
         FROM member
         WHERE bt_idm = #{bt_idm}
     </select>
