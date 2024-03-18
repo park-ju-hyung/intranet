@@ -8,6 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -21,6 +22,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Setter
 public class StaffVO {
     private Long bt_idm;
+    private int orderNumber;
     @NotBlank(message = "아이디는 필수 항목입니다.")
     @Size(min=4, max=20, message = "아이디는 최소 4~20자리여야 합니다.")
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "특수문자는 _만 가능합니다.")
@@ -57,4 +59,10 @@ public class StaffVO {
     // 업데이트 일자
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    // 게시물 검색조건 시작날짜
+    private LocalDateTime searchStartDate;
+
+    // 게시물 검색조건 끝날짜
+    private LocalDateTime searchEndDate;
 }

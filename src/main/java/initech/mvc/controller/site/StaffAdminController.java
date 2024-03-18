@@ -3,6 +3,7 @@ package initech.mvc.controller.site;
 import initech.mvc.service.site.StaffAdminService;
 import initech.mvc.vo.StaffVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -27,12 +30,40 @@ public class StaffAdminController {
     public String managementPage(
             Model model,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "memberName", required = false) String memberName,
+            @RequestParam(value = "searchStartDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchStartDate,
+            @RequestParam(value = "searchEndDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchEndDate) {
 
-        int offset = (page - 1) * size;
-        List<StaffVO> staffList = staffAdminService.getAllUsers(offset, size);
 
-        int totalUsers = staffAdminService.getTotalUserCount();
+
+        // 검색조건
+        List<StaffVO> staffList = null;
+        boolean isMemberNameValid = memberName != null && !memberName.trim().isEmpty();
+        boolean isSearchStartDateValid = searchStartDate != null;
+        boolean isSearchEndDateValid = searchEndDate != null;
+
+        if (isMemberNameValid || isSearchStartDateValid || isSearchEndDateValid) {
+            staffList = staffAdminService.searchUsers(page, size, memberName, searchStartDate, searchEndDate);
+        } else {
+            staffList = staffAdminService.getUsersByPage(page, size);
+        }
+
+        // 데이터 순번 처리
+        staffList = staffAdminService.getUsersByPage(page, size);
+        for (int i = 0; i < staffList.size(); i++) {
+            int orderNumber = (page - 1) * size + i + 1;
+            staffList.get(i).setOrderNumber(orderNumber);
+        }
+
+        // 페이징 처리
+        int totalUsers;
+        if (memberName != null || searchStartDate != null || searchEndDate != null) {
+            totalUsers = staffAdminService.getFilteredUserCount(memberName, searchStartDate, searchEndDate);
+        } else {
+            totalUsers = staffAdminService.getTotalUserCount();
+        }
+
         int totalPages = (int) Math.ceil((double) totalUsers / size);
 
         model.addAttribute("staffList", staffList);
@@ -46,13 +77,8 @@ public class StaffAdminController {
     // 관리자 > 회원관리 > view
     @GetMapping("/admin/managementView")
     public String showUsersDetail(@RequestParam(value = "id") Long bt_idm, Model model) {
-        // 서비스를 통해 사용자 상세 정보 조회
         StaffVO staffDetail = staffAdminService.UsersDetail(bt_idm);
-
-        // 조회된 상세 정보를 모델에 추가
         model.addAttribute("staff", staffDetail);
-
-        // 뷰 이름 반환
         return "/mngr/managementView";
     }
 

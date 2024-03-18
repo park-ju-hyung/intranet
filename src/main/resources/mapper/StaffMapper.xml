@@ -24,12 +24,45 @@
 
     <!--list 페이징 조회 -->
     <select id="selectAllUsers" resultMap="staffResultMap" parameterType="map">
-        SELECT * FROM member ORDER BY bt_idm LIMIT #{size} OFFSET #{offset}
+        SELECT * FROM member ORDER BY applicationDate DESC LIMIT #{size} OFFSET #{offset}
     </select>
 
     <!-- list 전체 데이터의 수를 조회하는 쿼리 -->
     <select id="countAllUsers" resultType="int">
         SELECT COUNT(*) FROM member
+    </select>
+
+    <!-- list 검색조건 -->
+    <select id="searchUsers" resultMap="staffResultMap" parameterType="map">
+        SELECT * FROM member
+        <where>
+            <if test="memberName != null">
+                memberName LIKE CONCAT('%', #{memberName}, '%')
+            </if>
+            <if test="searchStartDate != null">
+                AND DATE(applicationDate) &gt;= #{searchStartDate}
+            </if>
+            <if test="searchEndDate != null">
+                AND DATE(applicationDate) &lt;= #{searchEndDate}
+            </if>
+        </where>
+        ORDER BY bt_idm LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!--검색 조건에 따른 사용자의 총 개수를 반환-->
+    <select id="getFilteredUserCount" resultType="int">
+        SELECT COUNT(*) FROM member
+        <where>
+            <if test="memberName != null and memberName != ''">
+                AND memberName LIKE CONCAT('%', #{memberName}, '%')
+            </if>
+            <if test="searchStartDate != null">
+                AND applicationDate &gt;= #{searchStartDate}
+            </if>
+            <if test="searchEndDate != null">
+                AND applicationDate &lt;= #{searchEndDate}
+            </if>
+        </where>
     </select>
 
     <!-- 상세 조회 쿼리 -->
