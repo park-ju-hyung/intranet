@@ -72,6 +72,14 @@
         WHERE id = #{id}
     </select>
 
+    <!-- 관리자 > 회원관리 > view 수정 기능 -->
+    <update id="updateStaff" parameterType="initech.mvc.vo.StaffVO">
+        UPDATE staff
+        SET memberDepartment = #{memberDepartment},
+            memberPosition = #{memberPosition},
+            employmentStatus = #{employmentStatus}
+        WHERE id = #{id}
+    </update>
 
 
 

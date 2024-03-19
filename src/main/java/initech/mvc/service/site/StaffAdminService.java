@@ -5,6 +5,7 @@ import initech.mvc.vo.StaffVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,10 @@ public class StaffAdminService {
         return staffMapper.getFilteredUserCount(memberName, searchStartDate, searchEndDate);
     }
 
+    // 관리자 > 회원관리 > view 수정 기능
+    public int updateStaff(StaffVO staff) {
+        return staffMapper.updateStaff(staff);
+    }
 
 
 

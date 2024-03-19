@@ -6,6 +6,7 @@ import initech.mvc.dto.UserDTO;
 import initech.mvc.vo.StaffVO;
 import initech.mvc.vo.UserVO;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
@@ -36,7 +37,8 @@ public interface StaffMapper {
                              @Param("searchEndDate") LocalDate searchEndDate);
 
 
-
+    // 관리자 > 회원관리 > view 수정 기능
+    int updateStaff(@Param("staff") StaffVO staff);
 
 
 
