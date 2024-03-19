@@ -21,7 +21,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Getter
 @Setter
 public class StaffVO {
-    private Long bt_idm;
+    @Column(name = "bt_idm")
+    private Long id;
+
     private int orderNumber;
     @NotBlank(message = "아이디는 필수 항목입니다.")
     @Size(min=4, max=20, message = "아이디는 최소 4~20자리여야 합니다.")
@@ -65,4 +67,8 @@ public class StaffVO {
 
     // 게시물 검색조건 끝날짜
     private LocalDateTime searchEndDate;
+
+
+    // 상태
+    private String employmentStatus = "재직";
 }
