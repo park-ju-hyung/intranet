@@ -36,8 +36,8 @@ public class StaffAdminService {
     }
 
     // 상세조회
-    public StaffVO UsersDetail(Long bt_idm) {
-        return staffMapper.UsersDetail(bt_idm);
+    public StaffVO UsersDetail(Long id) {
+        return staffMapper.UsersDetail(id);
     }
 
     // 검색된 사용자의 총 개수를 반환하는 메서드

@@ -13,7 +13,7 @@
 
     <!-- list 조회 -->
     <resultMap id="staffResultMap" type="initech.mvc.vo.StaffVO">
-        <result column="bt_idm" property="bt_idm"/>
+        <result column="id" property="id"/>
         <result column="memberName" property="memberName"/>
         <result column="member_department" property="member_department"/>
         <result column="member_position" property="member_position"/>
@@ -69,8 +69,11 @@
     <select id="UsersDetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
         SELECT memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition
         FROM member
-        WHERE bt_idm = #{bt_idm}
+        WHERE id = #{id}
     </select>
+
+
+
 
 
 

@@ -28,12 +28,15 @@ public interface StaffMapper {
     int countAllUsers();
 
     // 상세조회
-    StaffVO UsersDetail(Long bt_idm);
+    StaffVO UsersDetail(Long id);
 
     // 검색 조건에 따른 사용자의 총 개수를 반환
     int getFilteredUserCount(@Param("memberName") String memberName,
                              @Param("searchStartDate") LocalDate searchStartDate,
                              @Param("searchEndDate") LocalDate searchEndDate);
+
+
+
 
 
 

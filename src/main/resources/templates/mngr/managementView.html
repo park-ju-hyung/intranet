@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
-    <script defer src="@/res/mngr/js/main.js"> </script>
     <title>관리자 - 회원관리 view</title>
 </head>
 
@@ -48,16 +47,18 @@
         <!--content-->
         <div class="content">
             <p>회원정보수정</p>
-            <table class="view">
-                <colgroup>
-                    <col width="20%">
-                    <col width="80%">
-                </colgroup>
-                <tbody>
+
+            <form th:action="@{/admin/updateStaff/{id}(id=${staff.id})}" th:object="${staff}" method="post">
+                <table class="view">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="80%">
+                    </colgroup>
+                    <tbody>
                     <tr>
                         <td>이름</td>
                         <td>
-                   <p th:text="${staff.memberName}"></p>
+                            <p th:text="${staff.memberName}"></p>
                         </td>
                     </tr>
                     <tr>
@@ -78,6 +79,7 @@
                             <p th:text="${staff.memberEmail}"></p>
                         </td>
                     </tr>
+
                     <tr>
                         <td>부서</td>
                         <td>
@@ -102,47 +104,34 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>직급</td>
+                        <td>상태</td>
                         <td>
                             <select name="employmentStatus" id="employmentStatus" class="form-control w100">
-                                <option value="employed">재직</option>
-                                <option value="leave">휴무</option>
-                                <option value="resigned">퇴사</option>
+                                <option value="employed" th:selected="${staff.employmentStatus == '재직'}">재직</option>
+                                <option value="leave" th:selected="${staff.employmentStatus == '휴무'}">휴무</option>
+                                <option value="designed" th:selected="${staff.employmentStatus == '퇴사'}">퇴사</option>
                             </select>
                         </td>
                     </tr>
-                </tbody>
-            </table>
-            <div class="register-button-form">
-                <button class="deepblue-button" id="toggleFadeButton">
-                    삭제
-                </button>
-                <button class="register-button">
-                    수정
-                </button>
-            </div>
+                    </tbody>
+                </table>
+                <div class="register-button-form">
+                    <button type="submit" class="register-button">
+                        수정
+                    </button>
+                </div>
+            </form>
+            <form th:action="@{/admin/delete/{id}(id=${staff.id})}" method="post">
+                <input type="hidden" name="_method" value="delete" />
+                <button type="submit" class="deepblue-button" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+            </form>
+
             <div class="pop-up" id="hz" style="display: none;">
                 <p style="text-align: center;">삭제사유</p>
                 <textarea name="" id="" cols="30" rows="10"></textarea>
                 <button>입력</button>
                 <button id="toggleFadeButton2" class="scClose">닫기</button>
-                <!--
-                                                                <div class="inner pc">
-                                                                    <label for="">키워드검색</label>
-                                                                    <div>
-                                                                        <input type="text" />
-                                                                        <button class="btnSearch"></button>
-                                                                    </div>
-                                                                </div>
-                                                
-                                                                <div class="inner mb">
-                                                                    <div class="searcharea">
-                                                                        <input type="text" placeholder="검색어를 입력하세요." />
-                                                                        <button class="btnSearch">검색</button>
-                                                                    </div>
-                                                                    <button id="toggleFadeButton2" class="scClose">닫기</button>
-                                                                </div>
-                                                                -->
+
             </div>
 
 
