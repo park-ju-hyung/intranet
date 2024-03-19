@@ -6,9 +6,9 @@
     <!-- register 등록 -->
     <insert id="insertStaff" parameterType="initech.mvc.vo.StaffVO">
         INSERT INTO member
-        (memberid, member_password, confirmPassword, memberName, memberDepartment, memberPosition, member_EmploymentDate, memberBirth, memberEmail, email_verifycode, TermsAgreed, applicationDate, updatedAt)
+        (memberid, member_password, confirmPassword, memberName, memberDepartment, memberPosition, member_EmploymentDate, memberBirth, memberEmail, email_verifycode, TermsAgreed, applicationDate, updatedAt, employmentStatus)
         VALUES
-            (#{memberid}, #{member_password}, #{confirmPassword}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{member_EmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW())
+            (#{memberid}, #{member_password}, #{confirmPassword}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{member_EmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW(), #{employmentStatus})
     </insert>
 
     <!-- list 조회 -->
@@ -46,7 +46,7 @@
                 AND DATE(applicationDate) &lt;= #{searchEndDate}
             </if>
         </where>
-        ORDER BY bt_idm LIMIT #{size} OFFSET #{offset}
+        ORDER BY applicationDate DESC LIMIT #{size} OFFSET #{offset}
     </select>
 
     <!--검색 조건에 따른 사용자의 총 개수를 반환-->
@@ -54,13 +54,13 @@
         SELECT COUNT(*) FROM member
         <where>
             <if test="memberName != null and memberName != ''">
-                AND memberName LIKE CONCAT('%', #{memberName}, '%')
+                memberName LIKE CONCAT('%', #{memberName}, '%')
             </if>
             <if test="searchStartDate != null">
-                AND applicationDate &gt;= #{searchStartDate}
+                AND DATE(applicationDate) &gt;= #{searchStartDate}
             </if>
             <if test="searchEndDate != null">
-                AND applicationDate &lt;= #{searchEndDate}
+                AND DATE(applicationDate) &lt;= #{searchEndDate}
             </if>
         </where>
     </select>

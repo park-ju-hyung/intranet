@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StaffAdminService {
@@ -42,4 +44,9 @@ public class StaffAdminService {
     public int getFilteredUserCount(String memberName, LocalDate searchStartDate, LocalDate searchEndDate) {
         return staffMapper.getFilteredUserCount(memberName, searchStartDate, searchEndDate);
     }
+
+
+
+
+
 }

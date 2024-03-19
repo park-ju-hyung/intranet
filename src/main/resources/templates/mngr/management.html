@@ -59,7 +59,7 @@
                                 <!-- 제목 검색 -->
                                 <div class="col-xs-4">
                                     <div class="form-group">
-                                        <label for="memberName" class="col-xs-3 control-label">제목</label>
+                                        <label for="memberName" class="col-xs-3 control-label">이름</label>
                                         <div class="col-xs-9">
                                             <input type="text" class="form-control" id="memberName" name="memberName" th:value="${memberName}">
                                         </div>
@@ -128,7 +128,7 @@
                         <td th:text="${staff.getMemberPosition()}">직급</td>
                         <td th:text="${staff.member_EmploymentDate}">입사일자</td>
                         <td th:text="${#temporals.format(staff.applicationDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                        <td>상태</td>
+                        <td th:text="${staff.employmentStatus}"></td>
                     </tr>
                     <!-- 검색 조건이 없을떄 -->
                 </tbody>
@@ -189,14 +189,14 @@
                 <!--paging-->
                 <div class="col-xs-8">
                     <div class="pagination paging" th:if="${totalPages > 1}">
-                        <a th:if="${currentPage > 1}" th:href="@{/admin/management(page=${currentPage - 1}, size=${size}, memberName=${memberName}, searchStartDate=${searchStartDate}, searchEndDate=${searchEndDate})}">이전</a>
+                        <a th:if="${currentPage > 1}" th:href="@{/admin/management(page=${currentPage - 1}, size=${size}, memberName=${param.memberName}, searchStartDate=${param.searchStartDate}, searchEndDate=${param.searchEndDate})}">이전</a>
 
                         <th:block th:each="pageNum : ${#numbers.sequence(1, totalPages)}">
-                            <a th:if="${pageNum != currentPage}" th:href="@{/admin/management(page=${pageNum}, size=${size}, memberName=${memberName}, searchStartDate=${searchStartDate}, searchEndDate=${searchEndDate})}" th:text="${pageNum}"></a>
+                            <a th:if="${pageNum != currentPage}" th:href="@{/admin/management(page=${pageNum}, size=${size}, memberName=${param.memberName}, searchStartDate=${param.searchStartDate}, searchEndDate=${param.searchEndDate})}" th:text="${pageNum}"></a>
                             <a th:if="${pageNum == currentPage}" th:text="${pageNum}" style="color: red;"></a>
                         </th:block>
 
-                        <a th:if="${currentPage < totalPages}" th:href="@{/admin/management(page=${currentPage + 1}, size=${size}, memberName=${memberName}, searchStartDate=${searchStartDate}, searchEndDate=${searchEndDate})}">다음</a>
+                        <a th:if="${currentPage < totalPages}" th:href="@{/admin/management(page=${currentPage + 1}, size=${size}, memberName=${param.memberName}, searchStartDate=${param.searchStartDate}, searchEndDate=${param.searchEndDate})}">다음</a>
                     </div>
                 </div>
 

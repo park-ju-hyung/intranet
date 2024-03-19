@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @DBMapper
 @Repository
@@ -29,11 +30,12 @@ public interface StaffMapper {
     // 상세조회
     StaffVO UsersDetail(Long bt_idm);
 
-
     // 검색 조건에 따른 사용자의 총 개수를 반환
     int getFilteredUserCount(@Param("memberName") String memberName,
                              @Param("searchStartDate") LocalDate searchStartDate,
                              @Param("searchEndDate") LocalDate searchEndDate);
+
+
 
 
 }
