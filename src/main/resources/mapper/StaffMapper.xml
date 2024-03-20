@@ -67,18 +67,18 @@
 
     <!-- 상세 조회 쿼리 -->
     <select id="UsersDetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
-        SELECT memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition
+        SELECT id, memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition
         FROM member
         WHERE id = #{id}
     </select>
 
     <!-- 관리자 > 회원관리 > view 수정 기능 -->
     <update id="updateStaff" parameterType="initech.mvc.vo.StaffVO">
-        UPDATE staff
-        SET memberDepartment = #{memberDepartment},
-            memberPosition = #{memberPosition},
-            employmentStatus = #{employmentStatus}
-        WHERE id = #{id}
+        UPDATE member
+        SET memberDepartment = #{staff.memberDepartment},
+            memberPosition = #{staff.memberPosition},
+            employmentStatus = #{staff.employmentStatus}
+        WHERE id = #{staff.id}
     </update>
 
 

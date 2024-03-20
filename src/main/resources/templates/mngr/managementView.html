@@ -59,7 +59,11 @@
                     <tr>
                         <td>이름</td>
                         <td>
+
                             <p th:text="${staff.memberName}"></p>
+                       <!--
+                            <p th:text="${staff.id}"></p>
+                        -->
                         </td>
                     </tr>
                     <tr>
@@ -87,9 +91,9 @@
                             <select name="memberDepartment" id="memberDepartment" class="form-control w100">
                                 <option value="">부서를 선택하세요</option>
                                 <option value="it" th:selected="${staff.memberDepartment == 'it'}">IT</option>
-                                <option value="hr" th:selected="${staff.memberDepartment == 'hr'}">인사</option>
-                                <option value="marketing" th:selected="${staff.memberDepartment == 'marketing'}">마케팅</option>
-                                <option value="finance" th:selected="${staff.memberDepartment == 'finance'}">재무</option>
+                                <option value="인사" th:selected="${staff.memberDepartment == 'hr'}">인사</option>
+                                <option value="마케팅" th:selected="${staff.memberDepartment == 'marketing'}">마케팅</option>
+                                <option value="재무" th:selected="${staff.memberDepartment == 'finance'}">재무</option>
                             </select>
                         </td>
                     </tr>
@@ -108,9 +112,9 @@
                         <td>상태</td>
                         <td>
                             <select name="employmentStatus" id="employmentStatus" class="form-control w100">
-                                <option value="employed" th:selected="${staff.employmentStatus == '재직'}">재직</option>
-                                <option value="leave" th:selected="${staff.employmentStatus == '휴무'}">휴무</option>
-                                <option value="designed" th:selected="${staff.employmentStatus == '퇴사'}">퇴사</option>
+                                <option value="재직" th:selected="${staff.employmentStatus == '재직'}">재직</option>
+                                <option value="휴직" th:selected="${staff.employmentStatus == '휴직'}">휴무</option>
+                                <option value="퇴사" th:selected="${staff.employmentStatus == '퇴사'}">퇴사</option>
                             </select>
                         </td>
                     </tr>

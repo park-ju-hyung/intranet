@@ -20,7 +20,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class StaffDTO{
-    @Column(name = "bt_idm")
+
     private Long id;
 
     private int orderNumber;

@@ -21,7 +21,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Getter
 @Setter
 public class StaffVO {
-    @Column(name = "bt_idm")
     private Long id;
 
     private int orderNumber;
