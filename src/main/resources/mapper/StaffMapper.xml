@@ -8,7 +8,7 @@
         INSERT INTO member
         (memberid, member_password, confirmPassword, memberName, memberDepartment, memberPosition, member_EmploymentDate, memberBirth, memberEmail, email_verifycode, TermsAgreed, applicationDate, updatedAt, employmentStatus)
         VALUES
-            (#{memberid}, #{member_password}, #{confirmPassword}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{member_EmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW(), #{employmentStatus})
+            (#{memberid}, #{member_password}, #{confirmPassword}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{member_EmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW(), #{employmentStatus}, #{permission})
     </insert>
 
     <!-- list 조회 -->
@@ -19,6 +19,7 @@
         <result column="member_position" property="member_position"/>
         <result column="member_EmploymentDate" property="member_EmploymentDate"/>
         <result column="applicationDate" property="applicationDate"/>
+        <result column="permission" property="permission"/>
         <!-- 기타 필드 매핑 -->
     </resultMap>
 
@@ -32,7 +33,15 @@
         SELECT COUNT(*) FROM member
     </select>
 
-    <!-- list 검색조건 -->
+
+
+
+
+
+
+
+
+    <!-- 관리자 > 회원관리 > 검색조건 -->
     <select id="searchUsers" resultMap="staffResultMap" parameterType="map">
         SELECT * FROM member
         <where>
@@ -49,7 +58,7 @@
         ORDER BY applicationDate DESC LIMIT #{size} OFFSET #{offset}
     </select>
 
-    <!--검색 조건에 따른 사용자의 총 개수를 반환-->
+    <!-- 관리자 > 회원관리 > 검색조건 총 개수를 반환 -->
     <select id="getFilteredUserCount" resultType="int">
         SELECT COUNT(*) FROM member
         <where>
@@ -65,14 +74,14 @@
         </where>
     </select>
 
-    <!-- 상세 조회 쿼리 -->
+    <!-- 관리자 > 회원관리 > view 상세조회 -->
     <select id="UsersDetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
         SELECT id, memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition
         FROM member
         WHERE id = #{id}
     </select>
 
-    <!-- 관리자 > 회원관리 > view 수정 기능 -->
+    <!-- 관리자 > 회원관리 > view 수정기능 -->
     <update id="updateStaff" parameterType="initech.mvc.vo.StaffVO">
         UPDATE member
         SET memberDepartment = #{staff.memberDepartment},
@@ -80,6 +89,61 @@
             employmentStatus = #{staff.employmentStatus}
         WHERE id = #{staff.id}
     </update>
+
+
+
+
+
+
+
+
+
+
+    <!-- 관리자 > 회원가입승인 > 검색조건 -->
+    <select id="searchPermission" resultMap="staffResultMap" parameterType="map">
+        SELECT * FROM member
+        <where>
+            <if test="memberName != null">
+                memberName LIKE CONCAT('%', #{memberName}, '%')
+            </if>
+            <if test="searchStartDate != null">
+                AND DATE(applicationDate) &gt;= #{searchStartDate}
+            </if>
+            <if test="searchEndDate != null">
+                AND DATE(applicationDate) &lt;= #{searchEndDate}
+            </if>
+            <if test="permission != null and permission != ''">
+                AND permission = #{permission}
+            </if>
+        </where>
+        ORDER BY applicationDate DESC LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!-- 관리자 > 회원가입승인 > 검색조건에 따른 사용자의 총 개수를 반환 -->
+    <select id="getFilteredPermissionCount" resultType="int">
+        SELECT COUNT(*) FROM member
+        <where>
+            <if test="memberName != null and memberName != ''">
+                memberName LIKE CONCAT('%', #{memberName}, '%')
+            </if>
+            <if test="searchStartDate != null">
+                AND DATE(applicationDate) &gt;= #{searchStartDate}
+            </if>
+            <if test="searchEndDate != null">
+                AND DATE(applicationDate) &lt;= #{searchEndDate}
+            </if>
+            <if test="permission != null and permission != ''">
+                AND permission = #{permission}
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+
+
 
 
 

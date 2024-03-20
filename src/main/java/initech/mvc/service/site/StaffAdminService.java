@@ -20,11 +20,36 @@ public class StaffAdminService {
         this.staffMapper = staffMapper;
     }
 
-    // list
+    // 관리자 > 회원관리 > 검색조건
     public List<StaffVO> searchUsers(int page, int size, String memberName, LocalDate searchStartDate, LocalDate searchEndDate) {
         int offset = (page - 1) * size;
         return staffMapper.searchUsers(offset, size, memberName, searchStartDate, searchEndDate);
     }
+
+    // 관리자 > 회원관리 > 검색조건 > 검색된 사용자의 총 개수를 반환하는 메서드
+    public int getFilteredUserCount(String memberName, LocalDate searchStartDate, LocalDate searchEndDate) {
+        return staffMapper.getFilteredUserCount(memberName, searchStartDate, searchEndDate);
+    }
+
+
+
+
+    // 관리자 > 회원가입승인 > 검색조건
+    public List<StaffVO> searchPermission(int page, int size, String memberName, String permission, LocalDate searchStartDate, LocalDate searchEndDate) {
+        int offset = (page - 1) * size;
+        return staffMapper.searchPermission(offset, size, memberName, permission, searchStartDate, searchEndDate);
+    }
+
+    // 관리자 > 회원관리 > 검색조건 > 검색된 사용자의 총 개수를 반환하는 메서드
+    public int getFilteredPermissionCount(String memberName, String permission, LocalDate searchStartDate, LocalDate searchEndDate) {
+        return staffMapper.getFilteredPermissionCount(memberName, permission, searchStartDate, searchEndDate);
+    }
+
+
+
+
+
+
 
     // 페이징 처리를 위한 메서드
     public List<StaffVO> getUsersByPage(int page, int size) {
@@ -41,10 +66,7 @@ public class StaffAdminService {
         return staffMapper.UsersDetail(id);
     }
 
-    // 검색된 사용자의 총 개수를 반환하는 메서드
-    public int getFilteredUserCount(String memberName, LocalDate searchStartDate, LocalDate searchEndDate) {
-        return staffMapper.getFilteredUserCount(memberName, searchStartDate, searchEndDate);
-    }
+
 
     // 관리자 > 회원관리 > view 수정 기능
     public int updateStaff(StaffVO staff) {

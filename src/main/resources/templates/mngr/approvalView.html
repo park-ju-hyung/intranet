@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin-bootstrap.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/boot.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/common.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/source.css">
-    <script defer src="../../../static/res/mngr/js/main.js"> </script>
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin-bootstrap.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+    <script type="text/javascript" th:src="@{/res/mngr/js/main.js}"></script>
 
-    <title>관리자 - 회원가입신청 view</title>
+    <title>관리자 - 회원가입승인 view</title>
 </head>
 
 <body>
@@ -49,12 +49,13 @@
         <!--content-->
         <div class="content">
             <p>회원가입승인</p>
-            <table class="view">
-                <colgroup>
-                    <col width="20%">
-                    <col width="80%">
-                </colgroup>
-                <tbody>
+            <form>
+                <table class="view">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="80%">
+                    </colgroup>
+                    <tbody>
                     <tr>
                         <td>이름</td>
                         <td>
@@ -91,16 +92,18 @@
                             사원
                         </td>
                     </tr>
-                </tbody>
-            </table>
-            <div class="register-button-form">
-                <button class="deepblue-button" id="toggleFadeButton">
-                    거부
-                </button>
-                <button class="register-button">
-                    승인
-                </button>
-            </div>
+                    </tbody>
+                </table>
+                <div class="register-button-form">
+                    <button class="deepblue-button" id="toggleFadeButton">
+                        거부
+                    </button>
+                    <button class="register-button">
+                        승인
+                    </button>
+                </div>
+            </form>
+
             <div class="pop-up" id="hz" style="display: none;">
                 <p style="text-align: center;">거부사유</p>
                 <textarea name="" id="" cols="30" rows="10"></textarea>

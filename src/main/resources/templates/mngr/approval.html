@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin-bootstrap.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/boot.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/common.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/source.css">
-    <title>관리자 - 회원가입신청</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin-bootstrap.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+
+    <title>관리자 - 회원가입승인</title>
 </head>
 
 <body>
@@ -52,21 +53,19 @@
                 <span>회원가입승인</span>
             </h3>
             <div class="search-content">
-                <form action="" method="" class="form-horizontal">
+                <form th:action="@{/admin/approval}" method="get" class="form-horizontal">
                     <div class="search-content">
                         <div class="row">
                             <div class="card-body">
-                                <!-- 제목 검색 -->
+                                <!-- 이름 검색 -->
                                 <div class="col-xs-4">
                                     <div class="form-group">
-                                        <label for="searchTitle" class="col-xs-3 control-label">제목</label>
+                                        <label for="memberName" class="col-xs-3 control-label">이름</label>
                                         <div class="col-xs-9">
-                                            <input type="text" class="form-control" id="searchTitle" name="noticeTitle"
-                                                value="">
+                                            <input type="text" class="form-control" id="memberName" name="memberName" th:value="${memberName}">
                                         </div>
                                     </div>
                                 </div>
-                                <!-- 작성자 검색  -->
 
                                 <!-- 날짜 검색 -->
                                 <div class="col-xs-4">
@@ -74,16 +73,36 @@
                                         <label class="col-xs-3 control-label">등록일</label>
                                         <div class="col-lg-9">
                                             <div class="input-group date w45-inline" id="datapickerBoxStart">
-                                                <input type="text" name="searchStartDate" class="form-control">
+                                                <input type="text" name="searchStartDate" class="form-control" th:value="${searchStartDate}">
                                             </div>
                                             <div class="tiled1">~</div>
                                             <div class="input-group date w45-inline" id="datapickerBoxEnd">
-                                                <input type="text" name="searchEndDate" class="form-control">
+                                                <input type="text" name="searchEndDate" class="form-control" th:value="${searchEndDate}">
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- 권한 -->
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3 control-label">상태</label>
+                                        <div class="col-lg-9">
+                                            <select name="permission" id="permission" class="form-control w100">
+                                                <option value="">권한</option>
+                                                <option value="신청" >신청</option>
+                                                <option value="승인" >승인</option>
+                                                <option value="반려" >반려</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
                             </div>
                             <div class="col-xs-12">
                                 <button class="register">검색</button>
@@ -113,99 +132,28 @@
                         <td>직급</td>
                         <td>입사일자</td>
                         <td>신청일자</td>
-                        <td>상태</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>신청</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>승인</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>거부</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>신청</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>신청</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>신청</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>신청</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>신청</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>신청</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>홍길동</td>
-                        <td>인사과</td>
-                        <td>사원</td>
-                        <td>2024-01-03</td>
-                        <td>2024-12-31</td>
-                        <td>신청</td>
+                        <td>권한</td>
                     </tr>
 
+                    <tr th:each="staff, iterStat : ${staffList}">
+                        <td>
+                            <p th:text="${staff.orderNumber}"></p>
+                        </td>
+                        <td >
+                            <!--
+                            <a th:href="@{/admin/managementView/{bt_idm}(bt_idm=${staff.bt_idm})}" th:text="${staff.member_name}">이름</a>
+                            -->
+                            <a th:href="@{/admin/approvalView/{id}(id=${staff.id})}" th:text="${staff.memberName}">Default Name</a>
+                        </td>
+                        <td th:text="${staff.memberDepartment}">부서</td>
+                        <td th:text="${staff.getMemberPosition()}">직급</td>
+                        <td th:text="${staff.member_EmploymentDate}">입사일자</td>
+                        <td th:text="${#temporals.format(staff.applicationDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text="${staff.permission}"></td>
+                    </tr>
+                    <tr th:if="${staffList.empty}">
+                        <td colspan="7">조회된 데이터가 없습니다.</td>
+                    </tr>
                 </tbody>
             </table>
             <div class="col-xs-12 mgt-50">
@@ -226,26 +174,53 @@
                     </div>
                 </div>
                 <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var size = urlParams.get('size') || '10'; // 기본값은 10으로 설정
+                        var selectBox = document.getElementById('regOldDiv1');
+
+                        // select 박스에서 해당하는 값이 선택되도록 함
+                        for (var i = 0; i < selectBox.options.length; i++) {
+                            if (selectBox.options[i].value === size) {
+                                selectBox.selectedIndex = i;
+                                break;
+                            }
+                        }
+                    });
+
                     function changePageSize() {
                         var selectBox = document.getElementById("regOldDiv1");
                         var selectedValue = selectBox.options[selectBox.selectedIndex].value;
 
-                        // 현재 URL에서 기존의 size 파라미터 제거
-                        var url = window.location.href.replace(/([?&])size=[^&]+(&|$)/, '$1').replace(/(&)$/, '');
+                        // 현재 URL 파싱
+                        var url = new URL(window.location.href);
+                        var searchParams = url.searchParams;
 
-                        // 새로운 size 파라미터 추가
-                        url += (url.indexOf('?') === -1 ? '?' : '&') + 'size=' + encodeURIComponent(selectedValue);
+                        // size 파라미터 업데이트
+                        searchParams.set('size', selectedValue);
+
+                        // 페이지 리로드 전에 page 파라미터를 1로 설정
+                        searchParams.set('page', 1);
+
+                        // 변경된 searchParams를 이용하여 URL의 search 부분 업데이트
+                        url.search = searchParams.toString();
 
                         // 페이지 리로딩
-                        window.location.href = url;
+                        window.location.href = url.toString();
                     }
                 </script>
                 <!--paging-->
+
                 <div class="col-xs-8">
-                    <div class="pagination paging">
-                        <a class="prev" href="" alt="이전페이지">이전</a>
-                        <a>1</a>
-                        <a class="next" href="" alt="다음페이지"></a>
+                    <div class="pagination paging" th:if="${totalPages > 1}">
+                        <a th:if="${currentPage > 1}" th:href="@{/admin/approval(page=${currentPage - 1}, size=${size}, memberName=${param.memberName}, searchStartDate=${param.searchStartDate}, searchEndDate=${param.searchEndDate} , permission=${param.permission})}">이전</a>
+
+                        <th:block th:each="pageNum : ${#numbers.sequence(1, totalPages)}">
+                            <a th:if="${pageNum != currentPage}" th:href="@{/admin/approval(page=${pageNum}, size=${size}, memberName=${param.memberName}, searchStartDate=${param.searchStartDate}, searchEndDate=${param.searchEndDate} , permission=${param.permission})}" th:text="${pageNum}"></a>
+                            <a th:if="${pageNum == currentPage}" th:text="${pageNum}" style="color: red;"></a>
+                        </th:block>
+
+                        <a th:if="${currentPage < totalPages}" th:href="@{/admin/approval(page=${currentPage + 1}, size=${size}, memberName=${param.memberName}, searchStartDate=${param.searchStartDate}, searchEndDate=${param.searchEndDate} , permission=${param.permission})}">다음</a>
                     </div>
                 </div>
             </div>

@@ -67,7 +67,9 @@ public class StaffVO {
     // 게시물 검색조건 끝날짜
     private LocalDateTime searchEndDate;
 
-
-    // 상태
+    // 근무 상태
     private String employmentStatus = "재직";
+
+    // 권한승인여부
+    private String permission = "신청";
 }
