@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+    <script type="text/javascript" th:src="@{/res/mngr/js/main.js}"></script>
     <title>관리자 - 회원관리 view</title>
 </head>
 
@@ -121,23 +122,24 @@
                     </tbody>
                 </table>
                 <div class="register-button-form">
-                    <button type="submit" class="deepblue-button" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+                    <button type="submit" class="deepblue-button" id="deleteButton">
+                        삭제
+                    </button>
                     <button type="submit" class="register-button">
                         수정
                     </button>
                 </div>
             </form>
 
-
-
-
             <div class="pop-up" id="hz" style="display: none;">
                 <p style="text-align: center;">삭제사유</p>
                 <textarea name="" id="" cols="30" rows="10"></textarea>
                 <button>입력</button>
                 <button id="toggleFadeButton2" class="scClose">닫기</button>
-
             </div>
+
+
+
 
 
         </div>
@@ -152,6 +154,26 @@
 
 
     <!--content-->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 팝업을 표시하는 요소를 찾습니다.
+        const searchBox = document.getElementById("hz");
+        // 팝업을 토글하는 버튼
+        const toggleFadeButton = document.getElementById("toggleFadeButton");
+        // 닫기 버튼
+        const closeButton = document.getElementById("toggleFadeButton2");
+
+        // 'toggleFadeButton' 클릭 시 팝업 표시
+        toggleFadeButton.addEventListener("click", function() {
+            searchBox.style.display = "block"; // 팝업을 보여줍니다.
+        });
+
+        // 'closeButton' 클릭 시 팝업 숨김
+        closeButton.addEventListener("click", function() {
+            searchBox.style.display = "none"; // 팝업을 숨깁니다.
+        });
+    });
+</script>
 </body>
 
 </html>
