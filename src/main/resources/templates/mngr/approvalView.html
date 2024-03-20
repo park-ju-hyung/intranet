@@ -59,37 +59,37 @@
                     <tr>
                         <td>이름</td>
                         <td>
-                            홍길동
+                            <p th:text="${staff.memberName}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>생년월일</td>
                         <td>
-                            240101
+                            <p th:text="${staff.memberBirth}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>신청일자</td>
                         <td>
-                            2024-01-01
+                            <p th:text="${#temporals.format(staff.applicationDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>입사일자</td>
                         <td>
-                            2024-01-02
+                            <p th:text="${#temporals.format(staff.memberEmploymentDate, 'yyyy-MM-dd')}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>신청자 부서</td>
                         <td>
-                            인사과
+                            <p th:text="${staff.memberDepartment}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>직급</td>
                         <td>
-                            사원
+                            <p th:text="${staff.memberPosition}"></p>
                         </td>
                     </tr>
                     </tbody>

@@ -6,9 +6,9 @@
     <!-- register 등록 -->
     <insert id="insertStaff" parameterType="initech.mvc.vo.StaffVO">
         INSERT INTO member
-        (memberid, member_password, confirmPassword, memberName, memberDepartment, memberPosition, member_EmploymentDate, memberBirth, memberEmail, email_verifycode, TermsAgreed, applicationDate, updatedAt, employmentStatus)
+        (memberid, member_password, confirmPassword, memberName, memberDepartment, memberPosition, memberEmploymentDate, memberBirth, memberEmail, email_verifycode, TermsAgreed, applicationDate, updatedAt, employmentStatus)
         VALUES
-            (#{memberid}, #{member_password}, #{confirmPassword}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{member_EmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW(), #{employmentStatus}, #{permission})
+            (#{memberid}, #{member_password}, #{confirmPassword}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{memberEmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW(), #{employmentStatus}, #{permission})
     </insert>
 
     <!-- list 조회 -->
@@ -17,7 +17,7 @@
         <result column="memberName" property="memberName"/>
         <result column="member_department" property="member_department"/>
         <result column="member_position" property="member_position"/>
-        <result column="member_EmploymentDate" property="member_EmploymentDate"/>
+        <result column="memberEmploymentDate" property="memberEmploymentDate"/>
         <result column="applicationDate" property="applicationDate"/>
         <result column="permission" property="permission"/>
         <!-- 기타 필드 매핑 -->
@@ -76,7 +76,7 @@
 
     <!-- 관리자 > 회원관리 > view 상세조회 -->
     <select id="UsersDetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
-        SELECT id, memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition
+        SELECT id, memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition, applicationDate, memberEmploymentDate
         FROM member
         WHERE id = #{id}
     </select>

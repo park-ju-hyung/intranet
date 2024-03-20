@@ -125,7 +125,7 @@
                         </td>
                         <td th:text="${staff.memberDepartment}">부서</td>
                         <td th:text="${staff.getMemberPosition()}">직급</td>
-                        <td th:text="${staff.member_EmploymentDate}">입사일자</td>
+                        <td th:text="${#temporals.format(staff.memberEmploymentDate, 'yyyy-MM-dd')}">입사일자</td>
                         <td th:text="${#temporals.format(staff.applicationDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                         <td th:text="${staff.employmentStatus}"></td>
                     </tr>

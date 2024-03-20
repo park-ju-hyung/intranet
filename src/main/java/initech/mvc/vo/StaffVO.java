@@ -42,7 +42,7 @@ public class StaffVO {
     private String memberPosition;
     @NotBlank(message = "입사일자는 필수 입력 항목입니다.")
     @Pattern(regexp = "^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$", message = "올바른 형식이 아닙니다.")
-    private String member_EmploymentDate;
+    private LocalDateTime memberEmploymentDate;
     @Column(name = "member_birth")
     @NotBlank(message = "생년월일은 필수 입력 항목입니다.")
     @Pattern(regexp = "^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$", message = "올바른 형식이 아닙니다.")
