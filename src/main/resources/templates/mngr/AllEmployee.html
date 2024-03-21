@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin-bootstrap.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/boot.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/common.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/source.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin-bootstrap.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
     <title>관리자 - 연차신청</title>
 </head>
 
@@ -26,17 +26,17 @@
                     <a href="">내정보 수정</a>
                 </li>
                 <li class="active">
-                    <a href="">
+                    <a href="/admin/AllEmployee">
                         연차신청
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/admin/approval">
                         회원가입 승인
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="/admin/management">
                         회원관리
                     </a>
                 </li>
@@ -236,18 +236,39 @@
                     </div>
                 </div>
                 <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var size = urlParams.get('size') || '10'; // 기본값은 10으로 설정
+                        var selectBox = document.getElementById('regOldDiv1');
+
+                        // select 박스에서 해당하는 값이 선택되도록 함
+                        for (var i = 0; i < selectBox.options.length; i++) {
+                            if (selectBox.options[i].value === size) {
+                                selectBox.selectedIndex = i;
+                                break;
+                            }
+                        }
+                    });
+
                     function changePageSize() {
                         var selectBox = document.getElementById("regOldDiv1");
                         var selectedValue = selectBox.options[selectBox.selectedIndex].value;
 
-                        // 현재 URL에서 기존의 size 파라미터 제거
-                        var url = window.location.href.replace(/([?&])size=[^&]+(&|$)/, '$1').replace(/(&)$/, '');
+                        // 현재 URL 파싱
+                        var url = new URL(window.location.href);
+                        var searchParams = url.searchParams;
 
-                        // 새로운 size 파라미터 추가
-                        url += (url.indexOf('?') === -1 ? '?' : '&') + 'size=' + encodeURIComponent(selectedValue);
+                        // size 파라미터 업데이트
+                        searchParams.set('size', selectedValue);
+
+                        // 페이지 리로드 전에 page 파라미터를 1로 설정
+                        searchParams.set('page', 1);
+
+                        // 변경된 searchParams를 이용하여 URL의 search 부분 업데이트
+                        url.search = searchParams.toString();
 
                         // 페이지 리로딩
-                        window.location.href = url;
+                        window.location.href = url.toString();
                     }
                 </script>
                 <!--paging-->

@@ -27,6 +27,24 @@ public class StaffAdminController {
         this.staffAdminService = staffAdminService;
     }
 
+
+    // 관리자 > 연차신청 > list
+    @GetMapping("/admin/AllEmployee")
+    public String vacationPage(){
+        return "/mngr/AllEmployee";
+    }
+
+    // 관리자 > 연차신청 > view
+    @GetMapping("/admin/AllEmployeeView")
+    public String vacationViewPage(){
+        return "/mngr/AllEmployeeView";
+    }
+
+
+
+
+
+
     // 관리자 > 회원가입승인 > list
     @GetMapping("/admin/approval")
     public String approvalPage(Model model,

@@ -29,7 +29,7 @@
                     <a href="javascript void(0)">내정보 수정</a>
                 </li>
                 <li>
-                    <a href="/admin/All_employee">
+                    <a href="/admin/AllEmployee">
                         연차신청
                     </a>
                 </li>
@@ -127,64 +127,12 @@
                 </div>
             </form>
 
-            <div class="pop-up" id="hz" style="display: none;">
-                <p style="text-align: center;">거부사유</p>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-                <button>입력</button>
-                <button id="toggleFadeButton2" class="scClose">닫기</button>
-                <!--
-                                        <div class="inner pc">
-                                            <label for="">키워드검색</label>
-                                            <div>
-                                                <input type="text" />
-                                                <button class="btnSearch"></button>
-                                            </div>
-                                        </div>
-                        
-                                        <div class="inner mb">
-                                            <div class="searcharea">
-                                                <input type="text" placeholder="검색어를 입력하세요." />
-                                                <button class="btnSearch">검색</button>
-                                            </div>
-                                            <button id="toggleFadeButton2" class="scClose">닫기</button>
-                                        </div>
-                                        -->
-            </div>
 
         </div>
 
         <!--content-->
     </div>
-    <script>
-        window.onload = function() {
-            // 권한 승인 상태를 가져옵니다.
-            var permissionSelect = document.getElementById('permission');
-            var permission = permissionSelect.value;
 
-            // 사유 등록 폼의 행을 가져옵니다.
-            var rejectionReasonRow = document.getElementById('rejectionReasonRow');
-
-            // '삭제'나 '반려'가 선택된 경우, 사유 등록폼을 표시합니다.
-            if (permission === '삭제' || permission === '반려') {
-                rejectionReasonRow.style.display = '';
-            }
-        };
-
-        // select 박스의 변경을 감지하여 사유 등록폼을 표시하거나 숨기는 함수
-        function toggleReasonForm() {
-            var permission = document.getElementById('permission').value;
-            var rejectionReasonRow = document.getElementById('rejectionReasonRow');
-
-            if (permission === '삭제' || permission === '반려') {
-                rejectionReasonRow.style.display = '';
-            } else {
-                rejectionReasonRow.style.display = 'none';
-            }
-        }
-
-        // select 박스에 이벤트 리스너를 추가합니다.
-        document.getElementById('permission').addEventListener('change', toggleReasonForm);
-    </script>
 
 
 
