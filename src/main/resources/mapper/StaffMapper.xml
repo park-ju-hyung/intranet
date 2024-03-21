@@ -6,9 +6,9 @@
     <!-- register 등록 -->
     <insert id="insertStaff" parameterType="initech.mvc.vo.StaffVO">
         INSERT INTO member
-        (memberid, member_password, confirmPassword, memberName, memberDepartment, memberPosition, memberEmploymentDate, memberBirth, memberEmail, email_verifycode, TermsAgreed, applicationDate, updatedAt, employmentStatus)
+        (memberid, member_password, memberName, memberDepartment, memberPosition, memberEmploymentDate, memberBirth, memberEmail, email_verifycode, TermsAgreed, applicationDate, updatedAt, employmentStatus, permission)
         VALUES
-            (#{memberid}, #{member_password}, #{confirmPassword}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{memberEmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW(), #{employmentStatus}, #{permission})
+            (#{memberid}, #{member_password}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{memberEmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW(), #{employmentStatus}, #{permission})
     </insert>
 
     <!-- list 조회 -->

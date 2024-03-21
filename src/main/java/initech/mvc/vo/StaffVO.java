@@ -1,13 +1,9 @@
 package initech.mvc.vo;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.*;
 
 import javax.persistence.Column;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
@@ -42,7 +38,7 @@ public class StaffVO {
     private String memberPosition;
     @NotBlank(message = "입사일자는 필수 입력 항목입니다.")
     @Pattern(regexp = "^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$", message = "올바른 형식이 아닙니다.")
-    private LocalDateTime memberEmploymentDate;
+    private String memberEmploymentDate;
     @Column(name = "member_birth")
     @NotBlank(message = "생년월일은 필수 입력 항목입니다.")
     @Pattern(regexp = "^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$", message = "올바른 형식이 아닙니다.")

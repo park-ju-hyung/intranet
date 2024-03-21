@@ -88,7 +88,7 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>입사일자</label>
-                <input id="member_EmploymentDate" th:field="*{member_EmploymentDate}" type="text" placeholder="입사 일자" class="form-control2">
+                <input id="memberEmploymentDate" th:field="*{memberEmploymentDate}" type="text" placeholder="YYYY/MM/DD" class="form-control2">
                 <div th:if="${memberEmployError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberEmployError}"></span>
                 </div>
@@ -96,7 +96,7 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>생년월일</label>
-                <input id="memberBirth" th:field="*{memberBirth}" type="text" placeholder="YYYYMMDD" class="form-control2">
+                <input id="memberBirth" th:field="*{memberBirth}" type="text" placeholder="YYYY/MM/DD" class="form-control2">
                 <div th:if="${memberBirthError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberBirthError}"></span>
                 </div>

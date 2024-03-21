@@ -113,7 +113,7 @@ public class StaffController {
         String memberEmployErrorMessage = null;
 
         for (FieldError error : memberEmployErrors) {
-            if ("NotBlank".equals(error.getCode())) {
+            if ("NotNull".equals(error.getCode())) {
                 memberEmployErrorMessage = "입사일자는 필수입니다.";
                 break; // NotBlank 오류가 가장 높은 우선순위
             } else if ("Pattern".equals(error.getCode())) {
@@ -170,9 +170,9 @@ public class StaffController {
         }
 
         model.addAttribute("message", "회원가입이 정상적으로 완료되었습니다.");
-        model.addAttribute("searchUrl", "/member/register");
+        model.addAttribute("searchUrl", "/index");
         staffService.register(staff);
-        return "/site/index";
+        return "/common/message";
     }
 
 
