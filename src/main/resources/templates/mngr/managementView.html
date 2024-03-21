@@ -27,17 +27,17 @@
                     <a href="javascript void(0)">내정보 수정</a>
                 </li>
                 <li>
-                    <a href="../admin/All_employee.html">
+                    <a href="/admin/All_employee">
                         연차신청
                     </a>
                 </li>
-                <li>
-                    <a href="../admin/approval.html">
+                <li >
+                    <a href="/admin/approval">
                         회원가입 승인
                     </a>
                 </li>
                 <li class="active">
-                    <a href="../admin/management.html">
+                    <a href="/admin/management">
                         회원관리
                     </a>
                 </li>
@@ -114,7 +114,7 @@
                         <td>
                             <select name="employmentStatus" id="employmentStatus" class="form-control w100">
                                 <option value="재직" th:selected="${staff.employmentStatus == '재직'}">재직</option>
-                                <option value="휴직" th:selected="${staff.employmentStatus == '휴직'}">휴무</option>
+                                <option value="휴직" th:selected="${staff.employmentStatus == '휴직'}">휴직</option>
                                 <option value="퇴사" th:selected="${staff.employmentStatus == '퇴사'}">퇴사</option>
                             </select>
                         </td>

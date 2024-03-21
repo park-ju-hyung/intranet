@@ -26,17 +26,17 @@
                     <a href="javascript void(0)">내정보 수정</a>
                 </li>
                 <li>
-                    <a href="../admin/All_employee.html">
+                    <a href="/admin/All_employee">
                         연차신청
                     </a>
                 </li>
                 <li>
-                    <a href="../admin/approval.html">
+                    <a href="/admin/approval">
                         회원가입 승인
                     </a>
                 </li>
                 <li class="active">
-                    <a href="../admin/management.html">
+                    <a href="/admin/management">
                         회원관리
                     </a>
                 </li>
@@ -121,7 +121,7 @@
                             <!--
                             <a th:href="@{/admin/managementView/{bt_idm}(bt_idm=${staff.bt_idm})}" th:text="${staff.member_name}">이름</a>
                             -->
-                            <a th:href="@{/admin/approvalView/{id}(id=${staff.id})}" th:text="${staff.memberName}">Default Name</a>
+                            <a th:href="@{/admin/managementView/{id}(id=${staff.id})}" th:text="${staff.memberName}">Default Name</a>
                         </td>
                         <td th:text="${staff.memberDepartment}">부서</td>
                         <td th:text="${staff.getMemberPosition()}">직급</td>

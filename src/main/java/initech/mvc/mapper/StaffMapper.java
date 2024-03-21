@@ -28,6 +28,9 @@ public interface StaffMapper {
     // 상세조회
     StaffVO UsersDetail(Long id);
 
+    // 관리자 > 회원관리 > view 수정 기능
+    int updateStaff(@Param("staff") StaffVO staff);
+
 
 
 
@@ -40,8 +43,10 @@ public interface StaffMapper {
                              @Param("searchStartDate") LocalDate searchStartDate,
                              @Param("searchEndDate") LocalDate searchEndDate);
 
-    // 관리자 > 회원관리 > view 수정 기능
-    int updateStaff(@Param("staff") StaffVO staff);
+    // 관리자 > 회원가입승인 > view 수정 기능
+    int updatePermissionStaff(@Param("staff") StaffVO staff);
+
+
 
 
 
@@ -57,6 +62,7 @@ public interface StaffMapper {
                                    @Param("permission") String permission,
                                    @Param("searchStartDate") LocalDate searchStartDate,
                                    @Param("searchEndDate") LocalDate searchEndDate);
+
 
 
 

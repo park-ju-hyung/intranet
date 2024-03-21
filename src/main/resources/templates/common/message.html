@@ -7,9 +7,10 @@
 <body>
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var message = /*[[${message}]]*/ '';
+    var message = /*[[${message}]]*/ '기본 메시지';
+    var searchUrl = /*[[${searchUrl}]]*/ '/defaultUrl'; // 이 부분을 추가합니다.
     alert(message);
-    location.replace('/admin/management'); // 여기를 수정함
+    location.replace(searchUrl); // 이제 searchUrl 변수가 선언되었습니다.
     /*]]>*/
 </script>
 </body>

@@ -31,6 +31,11 @@ public class StaffAdminService {
         return staffMapper.getFilteredUserCount(memberName, searchStartDate, searchEndDate);
     }
 
+    // 관리자 > 회원관리 > view 수정 기능
+    public int updateStaff(StaffVO staff) {
+        return staffMapper.updateStaff(staff);
+    }
+
 
 
 
@@ -43,6 +48,11 @@ public class StaffAdminService {
     // 관리자 > 회원관리 > 검색조건 > 검색된 사용자의 총 개수를 반환하는 메서드
     public int getFilteredPermissionCount(String memberName, String permission, LocalDate searchStartDate, LocalDate searchEndDate) {
         return staffMapper.getFilteredPermissionCount(memberName, permission, searchStartDate, searchEndDate);
+    }
+
+    // 관리자 > 회원가입승인 > view 수정 기능
+    public int updatePermissionStaff(StaffVO staff) {
+        return staffMapper.updatePermissionStaff(staff);
     }
 
 
@@ -68,10 +78,7 @@ public class StaffAdminService {
 
 
 
-    // 관리자 > 회원관리 > view 수정 기능
-    public int updateStaff(StaffVO staff) {
-        return staffMapper.updateStaff(staff);
-    }
+
 
 
 

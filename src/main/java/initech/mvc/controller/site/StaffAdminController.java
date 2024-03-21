@@ -73,6 +73,16 @@ public class StaffAdminController {
         return "/mngr/approvalView";
     }
 
+    // 관리자 > 회원가입승인 > view 수정 기능
+    @PostMapping("/PermissionUpdate/{id}")
+    public String updatePermissionStaff(@PathVariable("id") Long id, StaffVO staff, Model model) {
+        staffAdminService.updatePermissionStaff(staff);
+        model.addAttribute("message", "수정이 되었습니다.");
+        model.addAttribute("searchUrl", "/admin/approval");
+        return "/common/message";
+    }
+
+
 
 
 
@@ -129,7 +139,7 @@ public class StaffAdminController {
     public String updateStaff(@PathVariable("id") Long id, StaffVO staff, Model model) {
         staffAdminService.updateStaff(staff);
         model.addAttribute("message", "수정이 되었습니다.");
-        model.addAttribute("searchUrl", "/management");
+        model.addAttribute("searchUrl", "/admin/management");
         return "/common/message";
     }
 
