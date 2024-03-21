@@ -72,4 +72,7 @@ public class StaffVO {
 
     // 권한승인여부
     private String permission = "신청";
+
+    // 사유
+    private String reason;
 }

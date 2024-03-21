@@ -141,7 +141,8 @@
     <!-- 관리자 > 회원가입승인> view 수정기능 -->
     <update id="updatePermissionStaff" parameterType="initech.mvc.vo.StaffVO">
         UPDATE member
-        SET permission = #{staff.permission}
+        SET permission = #{staff.permission},
+            reason = #{staff.reason}
         WHERE id = #{staff.id}
     </update>
 

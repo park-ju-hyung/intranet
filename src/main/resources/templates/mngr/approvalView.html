@@ -9,8 +9,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+    <!--
     <script type="text/javascript" th:src="@{/res/mngr/js/main.js}"></script>
-
+-->
     <title>관리자 - 회원가입승인 view</title>
 </head>
 
@@ -92,25 +93,37 @@
                             <p th:text="${staff.memberPosition}"></p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="border-bottom: 1px solid #cacaca">
                         <td>권한승인</td>
                         <td>
                             <select name="permission" id="permission" class="form-control w100">
                                 <option value="신청" th:selected="${staff.permission == '신청'}">신청</option>
                                 <option value="승인" th:selected="${staff.permission == '승인'}">승인</option>
                                 <option value="반려" th:selected="${staff.permission == '반려'}">반려</option>
-
+                                <option value="삭제" th:selected="${staff.permission == '삭제'}">삭제</option>
                             </select>
+                        </td>
+                    </tr>
+                    <tr id="rejectionReasonRow" style="display:none;">
+                        <td>사유</td>
+                        <td>
+                            <textarea name="rejectionReason reason" th:field="*{reason}" class="form-control" id="reason">
+
+                            </textarea>
+
                         </td>
                     </tr>
                     </tbody>
                 </table>
+
                 <div class="register-button-form">
+                    <!--
                     <button class="deepblue-button" id="toggleFadeButton">
                         거부
                     </button>
+                    -->
                     <button class="register-button">
-                        승인
+                        수정
                     </button>
                 </div>
             </form>
@@ -143,7 +156,23 @@
 
         <!--content-->
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var permissionSelect = document.getElementById('permission');
+            var rejectionReasonRow = document.getElementById('rejectionReasonRow');
 
+            // 'select' 상자의 값이 변경될 때 이벤트 리스너
+            permissionSelect.addEventListener('change', function() {
+                // '반려', '삭제' 가 선택되면 '사유' 행을 표시
+                if (this.value === '반려' || this.value === '삭제' ) {
+                    rejectionReasonRow.style.display = '';
+                } else {
+                    // 그렇지 않으면 숨김
+                    rejectionReasonRow.style.display = 'none';
+                }
+            });
+        });
+    </script>
 
 
 
