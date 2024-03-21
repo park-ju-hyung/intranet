@@ -70,5 +70,6 @@ public class StaffVO {
     private String permission = "신청";
 
     // 사유
+    @NotBlank(message = "사유는 필수 항목입니다.")
     private String reason;
 }

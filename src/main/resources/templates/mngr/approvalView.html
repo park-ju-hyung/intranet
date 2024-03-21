@@ -107,10 +107,9 @@
                     <tr id="rejectionReasonRow" style="display:none;">
                         <td>사유</td>
                         <td>
-                            <textarea name="rejectionReason reason" th:field="*{reason}" class="form-control" id="reason">
+                            <textarea name="rejectionReason reason" th:field="*{reason}" class="form-control" id="reason" th:text="${staff.reason}">
 
                             </textarea>
-
                         </td>
                     </tr>
                     </tbody>
@@ -157,21 +156,34 @@
         <!--content-->
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        window.onload = function() {
+            // 권한 승인 상태를 가져옵니다.
             var permissionSelect = document.getElementById('permission');
+            var permission = permissionSelect.value;
+
+            // 사유 등록 폼의 행을 가져옵니다.
             var rejectionReasonRow = document.getElementById('rejectionReasonRow');
 
-            // 'select' 상자의 값이 변경될 때 이벤트 리스너
-            permissionSelect.addEventListener('change', function() {
-                // '반려', '삭제' 가 선택되면 '사유' 행을 표시
-                if (this.value === '반려' || this.value === '삭제' ) {
-                    rejectionReasonRow.style.display = '';
-                } else {
-                    // 그렇지 않으면 숨김
-                    rejectionReasonRow.style.display = 'none';
-                }
-            });
-        });
+            // '삭제'나 '반려'가 선택된 경우, 사유 등록폼을 표시합니다.
+            if (permission === '삭제' || permission === '반려') {
+                rejectionReasonRow.style.display = '';
+            }
+        };
+
+        // select 박스의 변경을 감지하여 사유 등록폼을 표시하거나 숨기는 함수
+        function toggleReasonForm() {
+            var permission = document.getElementById('permission').value;
+            var rejectionReasonRow = document.getElementById('rejectionReasonRow');
+
+            if (permission === '삭제' || permission === '반려') {
+                rejectionReasonRow.style.display = '';
+            } else {
+                rejectionReasonRow.style.display = 'none';
+            }
+        }
+
+        // select 박스에 이벤트 리스너를 추가합니다.
+        document.getElementById('permission').addEventListener('change', toggleReasonForm);
     </script>
 
 

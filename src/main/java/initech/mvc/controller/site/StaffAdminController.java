@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+import javax.validation.Valid;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -75,7 +77,14 @@ public class StaffAdminController {
 
     // 관리자 > 회원가입승인 > view 수정 기능
     @PostMapping("/PermissionUpdate/{id}")
-    public String updatePermissionStaff(@PathVariable("id") Long id, StaffVO staff, Model model) {
+    public String updatePermissionStaff(@PathVariable("id") Long id,
+                                        StaffVO staff,
+                                        Model model) {
+
+
+
+
+
         staffAdminService.updatePermissionStaff(staff);
         model.addAttribute("message", "수정이 되었습니다.");
         model.addAttribute("searchUrl", "/admin/approval");

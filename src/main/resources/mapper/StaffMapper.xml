@@ -35,7 +35,7 @@
 
     <!-- view 상세조회 -->
     <select id="UsersDetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
-        SELECT id, memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition, applicationDate, memberEmploymentDate
+        SELECT id, memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition, applicationDate, memberEmploymentDate, permission, reason
         FROM member
         WHERE id = #{id}
     </select>
