@@ -119,7 +119,7 @@
                                 url: '/sendVerificationCode',
                                 type: 'POST',
                                 contentType: 'application/json',
-                                data: JSON.stringify({ "memberEmail": email }), // 객체 형태로 전송
+                                data: JSON.stringify({ "memberEmail": email }),
                                 success: function(response) {
                                     console.log('Success response:', response);
                                     alert(response);

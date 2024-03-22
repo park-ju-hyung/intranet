@@ -184,17 +184,15 @@ public class StaffController {
     // 이메일
     @PostMapping("/sendVerificationCode")
     public ResponseEntity<?> sendVerificationCode(@RequestBody Map<String, String> payload) {
-        String email = payload.get("memberEmail");
-        StaffVO staffVO = new StaffVO();
-        staffVO.setMemberEmail(email); // 이메일 설정
-
         try {
-            staffEmailService.sendSimpleEmail(staffVO); // HTML 이메일 전송
-            return ResponseEntity.ok().body("인증번호가 발송되었습니다.");
-        } catch (MessagingException e) {
+            String email = payload.get("memberEmail");
+            StaffVO staffVO = new StaffVO();
+            staffVO.setMemberEmail(email); // 사용자의 이메일 주소를 StaffVO에 설정
+            staffEmailService.sendSimpleEmail(staffVO); // 인증번호 발송
+            return ResponseEntity.ok("인증번호가 이메일로 발송되었습니다.");
+        } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("이메일 전송 중 오류가 발생했습니다.");
+            return ResponseEntity.badRequest().body("인증번호 발송에 실패하였습니다.");
         }
     }
 
