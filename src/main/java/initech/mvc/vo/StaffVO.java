@@ -47,7 +47,7 @@ public class StaffVO {
     @Email
     private String memberEmail;
     @NotBlank(message = "인증코드는 필수 입력 항목입니다.")
-    private String email_verifycode;
+    private String verifyCode;
     private boolean TermsAgreed;
 
     // 신청일자 (게시물 신청일자)

@@ -146,8 +146,12 @@
         WHERE id = #{staff.id}
     </update>
 
-
-
+    <!--이메일-->
+    <select id="findEmailContentById" resultType="initech.mvc.vo.StaffVO">
+        SELECT memberEmail, memberId, memberName
+        FROM member
+        WHERE id = #{id}
+    </select>
 
 
 

@@ -7,8 +7,10 @@
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/site/css/user.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>회원가입</title>
 </head>
+
 
 <body>
     <div class="register-form">
@@ -106,9 +108,30 @@
                 <label>이메일</label>
                 <div>
                     <input id="memberEmail" th:field="*{memberEmail}" type="text" placeholder="이메일" class="w269 form-control2">
-                    <button class="confirm-code">
+                    <button class="confirm-code" onclick="sendVerificationCode()">
                         <span>인증번호발송</span>
                     </button>
+                    <script>
+                        function sendVerificationCode() {
+                            var email = $("#memberEmail").val();
+
+                            $.ajax({
+                                url: '/sendVerificationCode',
+                                type: 'POST',
+                                contentType: 'application/json',
+                                data: JSON.stringify({ "memberEmail": email }), // 객체 형태로 전송
+                                success: function(response) {
+                                    console.log('Success response:', response);
+                                    alert(response);
+                                },
+                                error: function(xhr, status, error) {
+                                    console.log('Error status:', status);
+                                    console.log('Error response:', xhr.responseText);
+                                    alert(xhr.responseText);
+                                }
+                            });
+                        }
+                    </script>
                 </div>
 
                 <div th:if="${memberEmailError}" class="error-message" style="margin-top:6px; color:red">
@@ -117,7 +140,7 @@
 
                 <span class="essential-style">*</span>
                 <label style="margin-top: 20px;">인증코드</label>
-                <input id="email_verifycode" th:field="*{email_verifycode}" type="text" placeholder="인증코드 입력" class="form-control2">
+                <input id="verifyCode" th:field="*{verifyCode}" type="text" placeholder="인증코드 입력" class="form-control2">
                 <div th:if="${emailVericodefyError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${emailVericodefyError}"></span>
                 </div>
