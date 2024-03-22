@@ -22,15 +22,15 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class StaffEmailService {
 
-    private final JavaMailSender mailSender;
+    private final JavaMailSender StaffmailSender;
     private final SpringTemplateEngine templateEngine;
     private final ConcurrentHashMap<String, String> verifyCodes = new ConcurrentHashMap<>();
 
 
 
     @Autowired
-    public StaffEmailService(JavaMailSender mailSender, SpringTemplateEngine templateEngine) {
-        this.mailSender = mailSender;
+    public StaffEmailService(JavaMailSender StaffmailSender, SpringTemplateEngine templateEngine) {
+        this.StaffmailSender = StaffmailSender;
         this.templateEngine = templateEngine;
     }
 
@@ -40,7 +40,7 @@ public class StaffEmailService {
         // 생성된 코드를 이메일 주소와 매핑하여 저장합니다.
         verifyCodes.put(staff.getMemberEmail(), verificationCode);
 
-        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessage message = StaffmailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
 
         Context context = new Context();
@@ -55,7 +55,7 @@ public class StaffEmailService {
         helper.setSubject("[ini]회원가입용 인증번호입니다.");
         helper.setText(htmlContent, true); // true를 설정하여 HTML 콘텐츠를 사용합니다.
 
-        mailSender.send(message);
+        StaffmailSender.send(message);
     }
     public boolean validateVerificationCode(String email, String code) {
         String validCode = verifyCodes.get(email);
