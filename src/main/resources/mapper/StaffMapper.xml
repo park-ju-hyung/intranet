@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="initech.mvc.mapper.StaffMapper">
     <!-- register 등록 -->
     <insert id="insertStaff" parameterType="initech.mvc.vo.StaffVO">
@@ -40,12 +40,6 @@
         WHERE id = #{id}
     </select>
 
-
-
-
-
-
-
     <!-- 관리자 > 회원관리 > 검색조건 -->
     <select id="searchUsers" resultMap="staffResultMap" parameterType="map">
         SELECT * FROM member
@@ -79,8 +73,6 @@
         </where>
     </select>
 
-
-
     <!-- 관리자 > 회원관리 > view 수정기능 -->
     <update id="updateStaff" parameterType="initech.mvc.vo.StaffVO">
         UPDATE member
@@ -89,15 +81,6 @@
             employmentStatus = #{staff.employmentStatus}
         WHERE id = #{staff.id}
     </update>
-
-
-
-
-
-
-
-
-
 
     <!-- 관리자 > 회원가입승인 > 검색조건 -->
     <select id="searchPermission" resultMap="staffResultMap" parameterType="map">
@@ -152,20 +135,5 @@
         FROM member
         WHERE id = #{id}
     </select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </mapper>
