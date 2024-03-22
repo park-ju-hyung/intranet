@@ -4,6 +4,7 @@ import initech.mvc.service.site.StaffEmailService;
 import initech.mvc.service.site.StaffService;
 import initech.mvc.vo.StaffVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -182,18 +184,17 @@ public class StaffController {
     // 이메일
     @PostMapping("/sendVerificationCode")
     public ResponseEntity<?> sendVerificationCode(@RequestBody Map<String, String> payload) {
+        String email = payload.get("memberEmail");
+        StaffVO staffVO = new StaffVO();
+        staffVO.setMemberEmail(email); // 이메일 설정
+
         try {
-            String email = payload.get("memberEmail");
-            if(email == null || email.trim().isEmpty()) {
-                throw new IllegalArgumentException("이메일 주소가 제공되지 않았습니다.");
-            }
-            StaffVO staffVO = new StaffVO();
-            staffVO.setMemberEmail(email); // 여기에서 email 값을 StaffVO에 설정
-            staffEmailService.sendSimpleEmail(staffVO); // 이메일 발송
+            staffEmailService.sendSimpleEmail(staffVO); // HTML 이메일 전송
             return ResponseEntity.ok().body("인증번호가 발송되었습니다.");
-        } catch (Exception e) {
-            e.printStackTrace(); // 로깅을 위한 에러 출력
-            return ResponseEntity.badRequest().body("인증번호 발송에 실패하였습니다: " + e.getMessage());
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("이메일 전송 중 오류가 발생했습니다.");
         }
     }
 
