@@ -46,7 +46,7 @@ public class StaffEmailService {
         context.setVariable("name", staff.getMember_name());
         context.setVariable("verify_code", verify_code);
 
-        String htmlContent = templateEngine.process("verificationEmail", context);
+        String htmlContent = templateEngine.process("emailTemplate", context);
 
         helper.setFrom("noreply@example.com");
         helper.setTo(staff.getMember_email());

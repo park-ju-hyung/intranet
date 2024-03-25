@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/site/css/user.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>회원가입</title>
 </head>
 
@@ -107,7 +108,7 @@
                 <label>이메일</label>
                 <div>
                     <input id="member_email" th:field="*{member_email}" type="text" placeholder="이메일" class="w269 form-control2">
-                    <button class="confirm-code" onclick="sendVerificationCode()">
+                    <button type="button" class="confirm-code" onclick="sendVerificationCode()">
                         <span>인증번호발송</span>
                     </button>
                     <script>
@@ -118,7 +119,7 @@
                                 url: '/sendVerificationCode',
                                 type: 'POST',
                                 contentType: 'application/json',
-                                data: JSON.stringify({ "member_email": email }), // "membermail" -> "member_email"로 수정
+                                data: JSON.stringify({ "member_email": email }),
                                 success: function(response) {
                                     console.log('Success response:', response);
                                     alert(response);
