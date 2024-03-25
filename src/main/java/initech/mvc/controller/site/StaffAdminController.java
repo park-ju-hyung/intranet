@@ -50,17 +50,17 @@ public class StaffAdminController {
     public String approvalPage(Model model,
                                @RequestParam(value = "page", defaultValue = "1") int page,
                                @RequestParam(value = "size", defaultValue = "10") int size,
-                               @RequestParam(value = "memberName", required = false) String memberName,
-                               @RequestParam(value = "permission", required = false) String permission,
-                               @RequestParam(value = "searchStartDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchStartDate,
-                               @RequestParam(value = "searchEndDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchEndDate) {
+                               @RequestParam(value = "member_name", required = false) String member_name,
+                               @RequestParam(value = "member_permission", required = false) String member_permission,
+                               @RequestParam(value = "search_startdate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate search_startdate,
+                               @RequestParam(value = "search_endate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate search_endate) {
 
         // 검색조건에 따른 사용자 리스트 조회
         List<StaffVO> staffList;
-        boolean isSearchConditionValid = memberName != null && !memberName.trim().isEmpty() || searchStartDate != null || searchEndDate != null || permission != null;
+        boolean isSearchConditionValid = member_name != null && !member_name.trim().isEmpty() || search_startdate != null || search_endate != null || member_permission != null;
 
         if (isSearchConditionValid) {
-            staffList = staffAdminService.searchPermission(page, size, memberName, permission, searchStartDate, searchEndDate);
+            staffList = staffAdminService.searchPermission(page, size, member_name, member_permission, search_startdate, search_endate);
         } else {
             staffList = staffAdminService.getUsersByPage(page, size);
         }
@@ -68,11 +68,11 @@ public class StaffAdminController {
         // 데이터 순번 처리
         for (int i = 0; i < staffList.size(); i++) {
             int orderNumber = (page - 1) * size + i + 1;
-            staffList.get(i).setOrderNumber(orderNumber);
+            staffList.get(i).setOrder_number(orderNumber);
         }
 
         // 페이징 처리
-        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredPermissionCount(memberName, permission, searchStartDate, searchEndDate)
+        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredPermissionCount(member_name, member_permission, search_startdate, search_endate)
                 : staffAdminService.getTotalUserCount();
         int totalPages = (int) Math.ceil((double) totalUsers / size);
 
@@ -118,16 +118,16 @@ public class StaffAdminController {
     public String managementPage(Model model,
                                  @RequestParam(value = "page", defaultValue = "1") int page,
                                  @RequestParam(value = "size", defaultValue = "10") int size,
-                                 @RequestParam(value = "memberName", required = false) String memberName,
-                                 @RequestParam(value = "searchStartDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchStartDate,
-                                 @RequestParam(value = "searchEndDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchEndDate) {
+                                 @RequestParam(value = "member_name", required = false) String member_name,
+                                 @RequestParam(value = "search_startdate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate search_startdate,
+                                 @RequestParam(value = "search_endate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate search_endate) {
 
         // 검색조건에 따른 사용자 리스트 조회
         List<StaffVO> staffList;
-        boolean isSearchConditionValid = memberName != null && !memberName.trim().isEmpty() || searchStartDate != null || searchEndDate != null;
+        boolean isSearchConditionValid = member_name != null && !member_name.trim().isEmpty() || search_startdate != null || search_endate != null;
 
         if (isSearchConditionValid) {
-            staffList = staffAdminService.searchUsers(page, size, memberName, searchStartDate, searchEndDate);
+            staffList = staffAdminService.searchUsers(page, size, member_name, search_startdate, search_endate);
         } else {
             staffList = staffAdminService.getUsersByPage(page, size);
         }
@@ -135,11 +135,11 @@ public class StaffAdminController {
         // 데이터 순번 처리
         for (int i = 0; i < staffList.size(); i++) {
             int orderNumber = (page - 1) * size + i + 1;
-            staffList.get(i).setOrderNumber(orderNumber);
+            staffList.get(i).setOrder_number(orderNumber);
         }
 
         // 페이징 처리
-        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredUserCount(memberName, searchStartDate, searchEndDate)
+        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredUserCount(member_name, search_startdate, search_endate)
                 : staffAdminService.getTotalUserCount();
         int totalPages = (int) Math.ceil((double) totalUsers / size);
 

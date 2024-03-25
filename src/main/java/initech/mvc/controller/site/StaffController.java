@@ -46,9 +46,9 @@ public class StaffController {
                                 Model model, AbstractBindingResult result) throws Exception {
 
 
-
+        /**
         // 아이디 유효성 검사
-        List<FieldError> memberidErrors = bindingResult.getFieldErrors("memberid");
+        List<FieldError> memberidErrors = bindingResult.getFieldErrors("member_id");
         String memberidErrorMessage = null;
 
         for (FieldError error : memberidErrors) {
@@ -84,11 +84,11 @@ public class StaffController {
         }
 
         // 비밀번호 확인 유효성 검사
-        String confirmPassword = staff.getConfirmPassword();
-        if (confirmPassword == null || confirmPassword.isEmpty()) {
-            bindingResult.rejectValue("confirmPassword", "NotBlank", "");
-        } else if (!staff.getConfirmPassword().equals(staff.getMember_password())) {
-            result.rejectValue("confirmPassword", "Match", "비밀번호가 일치하지 않습니다.");
+        String confirm_password = staff.getConfirm_password();
+        if (confirm_password == null || confirm_password.isEmpty()) {
+            bindingResult.rejectValue("confirm_password", "NotBlank", "");
+        } else if (!staff.getConfirm_password().equals(staff.getMember_password())) {
+            result.rejectValue("confirm_password", "Match", "비밀번호가 일치하지 않습니다.");
         }
 
 
@@ -96,30 +96,30 @@ public class StaffController {
 
 
         // 이름 유효성 검사
-        String memberNameErrorMessage = bindingResult.getFieldError("memberName") != null ?
-                bindingResult.getFieldError("memberName").getDefaultMessage() : null;
+        String memberNameErrorMessage = bindingResult.getFieldError("member_name") != null ?
+                bindingResult.getFieldError("member_name").getDefaultMessage() : null;
 
 
         // 부서 유효성 검사
-        if (staff.getMemberDepartment() == null || staff.getMemberDepartment().isEmpty()) {
-            bindingResult.rejectValue("memberDepartment", "error.member_department", "부서를 선택해야 합니다.");
+        if (staff.getMember_department() == null || staff.getMember_department().isEmpty()) {
+            bindingResult.rejectValue("member_department", "error.member_department", "부서를 선택해야 합니다.");
         }
-        String memberDepartmentErrorMessage = bindingResult.getFieldError("memberDepartment") != null ?
-                bindingResult.getFieldError("memberDepartment").getDefaultMessage() : null;
+        String memberDepartmentErrorMessage = bindingResult.getFieldError("member_department") != null ?
+                bindingResult.getFieldError("member_department").getDefaultMessage() : null;
 
         // 직급 유효성 검사
-        if (staff.getMemberPosition() == null || staff.getMemberPosition().isEmpty()) {
-            bindingResult.rejectValue("memberPosition", "error.memberPosition", "직급을 선택해야 합니다.");
+        if (staff.getMember_position() == null || staff.getMember_position().isEmpty()) {
+            bindingResult.rejectValue("member_position", "error.member_position", "직급을 선택해야 합니다.");
         }
-        String memberPostionErrorMessage = bindingResult.getFieldError("memberPosition") != null ?
-                bindingResult.getFieldError("memberPosition").getDefaultMessage() : null;
+        String memberPostionErrorMessage = bindingResult.getFieldError("member_position") != null ?
+                bindingResult.getFieldError("member_position").getDefaultMessage() : null;
 
         // 입사일자 유효성 검사
-        List<FieldError> memberEmployErrors = bindingResult.getFieldErrors("member_EmploymentDate");
+        List<FieldError> memberEmployErrors = bindingResult.getFieldErrors("member_employmentdate");
         String memberEmployErrorMessage = null;
 
         for (FieldError error : memberEmployErrors) {
-            if ("NotNull".equals(error.getCode())) {
+            if ("NotBlank".equals(error.getCode())) {
                 memberEmployErrorMessage = "입사일자는 필수입니다.";
                 break; // NotBlank 오류가 가장 높은 우선순위
             } else if ("Pattern".equals(error.getCode())) {
@@ -129,7 +129,7 @@ public class StaffController {
         }
 
         // 생년월일 유효성 검사
-        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("memberBirth");
+        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("member_birth");
         String memberBirthErrorMessage = null;
 
         for (FieldError error : memberBirthErrors) {
@@ -143,7 +143,7 @@ public class StaffController {
         }
 
         // 이메일 유효성 검사
-        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("memberEmail");
+        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("member_email");
         String memberEmailErrorMessage = null;
 
         for (FieldError error : memberEmailErrors) {
@@ -157,8 +157,8 @@ public class StaffController {
         }
 
         // 인증코드 유효성 검사
-        String emailVerifycodeErrorMessage = bindingResult.getFieldError("email_verifycode") != null ?
-                bindingResult.getFieldError("email_verifycode").getDefaultMessage() : null;
+        String emailVerifycodeErrorMessage = bindingResult.getFieldError("verify_code") != null ?
+                bindingResult.getFieldError("verify_code").getDefaultMessage() : null;
 
 
 
@@ -174,6 +174,7 @@ public class StaffController {
             model.addAttribute("emailVericodefyError", emailVerifycodeErrorMessage);
             return "site/member/register";
         }
+         **/
 
         model.addAttribute("message", "회원가입이 정상적으로 완료되었습니다.");
         model.addAttribute("searchUrl", "/index");
@@ -185,9 +186,9 @@ public class StaffController {
     @PostMapping("/sendVerificationCode")
     public ResponseEntity<?> sendVerificationCode(@RequestBody Map<String, String> payload) {
         try {
-            String email = payload.get("memberEmail");
+            String email = payload.get("member_email");
             StaffVO staffVO = new StaffVO();
-            staffVO.setMemberEmail(email); // 사용자의 이메일 주소를 StaffVO에 설정
+            staffVO.setMember_email(email); // 사용자의 이메일 주소를 StaffVO에 설정
             staffEmailService.sendSimpleEmail(staffVO); // 인증번호 발송
             return ResponseEntity.ok("인증번호가 이메일로 발송되었습니다.");
         } catch (Exception e) {

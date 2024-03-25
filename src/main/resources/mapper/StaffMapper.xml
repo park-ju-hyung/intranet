@@ -6,9 +6,9 @@
     <!-- register 등록 -->
     <insert id="insertStaff" parameterType="initech.mvc.vo.StaffVO">
         INSERT INTO member
-        (memberid, member_password, memberName, memberDepartment, memberPosition, memberEmploymentDate, memberBirth, memberEmail, email_verifycode, TermsAgreed, applicationDate, updatedAt, employmentStatus, permission)
+        (member_id, member_password, member_name, member_department, member_position, member_employmentdate, member_birth, member_email, verify_code, application_date, updated_at, employment_status, member_permission)
         VALUES
-            (#{memberid}, #{member_password}, #{memberName}, #{memberDepartment}, #{memberPosition}, #{memberEmploymentDate}, #{memberBirth}, #{memberEmail}, #{email_verifycode}, #{TermsAgreed}, NOW(), NOW(), #{employmentStatus}, #{permission})
+            (#{member_id}, #{member_password}, #{member_name}, #{member_department}, #{member_position}, #{member_employmentdate}, #{member_birth}, #{member_email}, #{verify_code}, NOW(), NOW(), #{employment_status}, #{member_permission})
     </insert>
 
     <!-- list 조회 -->
@@ -17,15 +17,15 @@
         <result column="memberName" property="memberName"/>
         <result column="member_department" property="member_department"/>
         <result column="member_position" property="member_position"/>
-        <result column="memberEmploymentDate" property="memberEmploymentDate"/>
-        <result column="applicationDate" property="applicationDate"/>
-        <result column="permission" property="permission"/>
+        <result column="member_employmentdate" property="member_employmentdate"/>
+        <result column="application_date" property="application_date"/>
+        <result column="member_permission" property="member_permission"/>
         <!-- 기타 필드 매핑 -->
     </resultMap>
 
     <!--list 페이징 조회 -->
     <select id="selectAllUsers" resultMap="staffResultMap" parameterType="map">
-        SELECT * FROM member ORDER BY applicationDate DESC LIMIT #{size} OFFSET #{offset}
+        SELECT * FROM member ORDER BY application_date DESC LIMIT #{size} OFFSET #{offset}
     </select>
 
     <!-- list 전체 데이터의 수를 조회하는 쿼리 -->
@@ -35,7 +35,7 @@
 
     <!-- view 상세조회 -->
     <select id="UsersDetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
-        SELECT id, memberName, memberBirth, memberid, memberEmail, memberDepartment, memberPosition, applicationDate, memberEmploymentDate, permission, reason
+        SELECT id, member_name, member_birth, member_id, member_email, member_department, member_position, application_date, member_employmentdate, member_permission, member_reason
         FROM member
         WHERE id = #{id}
     </select>
@@ -44,31 +44,31 @@
     <select id="searchUsers" resultMap="staffResultMap" parameterType="map">
         SELECT * FROM member
         <where>
-            <if test="memberName != null">
-                memberName LIKE CONCAT('%', #{memberName}, '%')
+            <if test="member_name != null">
+                member_name LIKE CONCAT('%', #{member_name}, '%')
             </if>
-            <if test="searchStartDate != null">
-                AND DATE(applicationDate) &gt;= #{searchStartDate}
+            <if test="search_startdate != null">
+                AND DATE(application_date) &gt;= #{search_startdate}
             </if>
-            <if test="searchEndDate != null">
-                AND DATE(applicationDate) &lt;= #{searchEndDate}
+            <if test="search_endate != null">
+                AND DATE(application_date) &lt;= #{search_endate}
             </if>
         </where>
-        ORDER BY applicationDate DESC LIMIT #{size} OFFSET #{offset}
+        ORDER BY application_date DESC LIMIT #{size} OFFSET #{offset}
     </select>
 
     <!-- 관리자 > 회원관리 > 검색조건 총 개수를 반환 -->
     <select id="getFilteredUserCount" resultType="int">
         SELECT COUNT(*) FROM member
         <where>
-            <if test="memberName != null and memberName != ''">
-                memberName LIKE CONCAT('%', #{memberName}, '%')
+            <if test="member_name != null and member_name != ''">
+                member_name LIKE CONCAT('%', #{member_name}, '%')
             </if>
-            <if test="searchStartDate != null">
-                AND DATE(applicationDate) &gt;= #{searchStartDate}
+            <if test="search_startdate != null">
+                AND DATE(application_date) &gt;= #{search_startdate}
             </if>
-            <if test="searchEndDate != null">
-                AND DATE(applicationDate) &lt;= #{searchEndDate}
+            <if test="search_endate != null">
+                AND DATE(application_date) &lt;= #{search_endate}
             </if>
         </where>
     </select>
@@ -76,9 +76,9 @@
     <!-- 관리자 > 회원관리 > view 수정기능 -->
     <update id="updateStaff" parameterType="initech.mvc.vo.StaffVO">
         UPDATE member
-        SET memberDepartment = #{staff.memberDepartment},
-            memberPosition = #{staff.memberPosition},
-            employmentStatus = #{staff.employmentStatus}
+        SET member_department = #{staff.member_department},
+            member_position = #{staff.member_position},
+            employment_status = #{staff.employment_status}
         WHERE id = #{staff.id}
     </update>
 
@@ -86,37 +86,37 @@
     <select id="searchPermission" resultMap="staffResultMap" parameterType="map">
         SELECT * FROM member
         <where>
-            <if test="memberName != null">
-                memberName LIKE CONCAT('%', #{memberName}, '%')
+            <if test="member_name != null">
+                member_name LIKE CONCAT('%', #{member_name}, '%')
             </if>
-            <if test="searchStartDate != null">
-                AND DATE(applicationDate) &gt;= #{searchStartDate}
+            <if test="search_startdate != null">
+                AND DATE(application_date) &gt;= #{search_startdate}
             </if>
-            <if test="searchEndDate != null">
-                AND DATE(applicationDate) &lt;= #{searchEndDate}
+            <if test="search_endate != null">
+                AND DATE(application_date) &lt;= #{search_endate}
             </if>
-            <if test="permission != null and permission != ''">
-                AND permission = #{permission}
+            <if test="member_permission != null and member_permission != ''">
+                AND member_permission = #{member_permission}
             </if>
         </where>
-        ORDER BY applicationDate DESC LIMIT #{size} OFFSET #{offset}
+        ORDER BY application_date DESC LIMIT #{size} OFFSET #{offset}
     </select>
 
     <!-- 관리자 > 회원가입승인 > 검색조건에 따른 사용자의 총 개수를 반환 -->
     <select id="getFilteredPermissionCount" resultType="int">
         SELECT COUNT(*) FROM member
         <where>
-            <if test="memberName != null and memberName != ''">
-                memberName LIKE CONCAT('%', #{memberName}, '%')
+            <if test="member_name != null and member_name != ''">
+                member_name LIKE CONCAT('%', #{member_name}, '%')
             </if>
-            <if test="searchStartDate != null">
-                AND DATE(applicationDate) &gt;= #{searchStartDate}
+            <if test="search_startdate != null">
+                AND DATE(application_date) &gt;= #{search_startdate}
             </if>
-            <if test="searchEndDate != null">
-                AND DATE(applicationDate) &lt;= #{searchEndDate}
+            <if test="search_endate != null">
+                AND DATE(application_date) &lt;= #{search_endate}
             </if>
-            <if test="permission != null and permission != ''">
-                AND permission = #{permission}
+            <if test="member_permission != null and member_permission != ''">
+                AND member_permission = #{member_permission}
             </if>
         </where>
     </select>
@@ -124,14 +124,14 @@
     <!-- 관리자 > 회원가입승인> view 수정기능 -->
     <update id="updatePermissionStaff" parameterType="initech.mvc.vo.StaffVO">
         UPDATE member
-        SET permission = #{staff.permission},
-            reason = #{staff.reason}
+        SET member_permission = #{staff.member_permission},
+            member_reason = #{staff.member_reason}
         WHERE id = #{staff.id}
     </update>
 
     <!--이메일-->
     <select id="findEmailContentById" resultType="initech.mvc.vo.StaffVO">
-        SELECT memberEmail, memberId, memberName
+        SELECT member_email, member_id, member_name
         FROM member
         WHERE id = #{id}
     </select>

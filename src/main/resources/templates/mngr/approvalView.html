@@ -60,37 +60,37 @@
                     <tr>
                         <td>이름</td>
                         <td>
-                            <p th:text="${staff.memberName}"></p>
+                            <p th:text="${staff.member_name}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>생년월일</td>
                         <td>
-                            <p th:text="${staff.memberBirth}"></p>
+                            <p th:text="${staff.member_birth}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>신청일자</td>
                         <td>
-                            <p th:text="${#temporals.format(staff.applicationDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
+                            <p th:text="${#temporals.format(staff.application_date, 'yyyy-MM-dd HH:mm:ss')}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>입사일자</td>
                         <td>
-                            <p th:text="${staff.memberEmploymentDate}"></p>
+                            <p th:text="${staff.member_employmentdate}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>신청자 부서</td>
                         <td>
-                            <p th:text="${staff.memberDepartment}"></p>
+                            <p th:text="${staff.member_department}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>직급</td>
                         <td>
-                            <p th:text="${staff.memberPosition}"></p>
+                            <p th:text="${staff.member_position}"></p>
                         </td>
                     </tr>
                     <tr style="border-bottom: 1px solid #cacaca">

@@ -17,59 +17,83 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Getter
 @Setter
 public class StaffVO {
+    // id
+    @Column(name="reg_id")
     private Long id;
 
-    private int orderNumber;
+    // 데이터 순번
+    private int order_number;
+
+    // 아이디
     @NotBlank(message = "아이디는 필수 항목입니다.")
     @Size(min=4, max=20, message = "아이디는 최소 4~20자리여야 합니다.")
     @Pattern(regexp = "^[a-zA-Z0-9_]+$", message = "특수문자는 _만 가능합니다.")
-    private String memberid;
+    private String member_id;
+
+    // 비밀번호
     @NotBlank(message = "비밀번호는 필수 입력 항목입니다.")
     @Size(min=8, max=16, message = "비밀번호는 최소 8~16자리여야 합니다.")
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,16}$", message = "비밀번호는 영문 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.")
     private String member_password;
+
+    // 비밀번호 재확인
     @NotBlank(message = "비밀번호 확인은 필수 입력 항목입니다.")
-    private String confirmPassword;
+    private String confirm_password;
+
+    // 이름
     @NotBlank(message = "이름은 필수 입력 항목입니다.")
-    private String memberName;
+    private String member_name;
+
+    // 부서
     @NotBlank(message = "부서는 필수 입력 항목입니다.")
-    private String memberDepartment;
+    private String member_department;
+
+    // 직급
     @NotBlank(message = "직급은 필수 입력 항목입니다.")
-    private String memberPosition;
+    private String member_position;
+
+    // 입사일자
     @NotBlank(message = "입사일자는 필수 입력 항목입니다.")
     @Pattern(regexp = "^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$", message = "올바른 형식이 아닙니다.")
-    private String memberEmploymentDate;
+    private String member_employmentdate;
+
+    // 생년월일
     @Column(name = "member_birth")
     @NotBlank(message = "생년월일은 필수 입력 항목입니다.")
     @Pattern(regexp = "^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$", message = "올바른 형식이 아닙니다.")
-    private String memberBirth;
+    private String member_birth;
+
+    // 이메일
     @NotBlank(message = "이메일은 필수 입력 항목입니다.")
     @Email
-    private String memberEmail;
+    private String member_email;
+
+    // 인증코드
     @NotBlank(message = "인증코드는 필수 입력 항목입니다.")
-    private String verifyCode;
-    private boolean TermsAgreed;
+    private String verify_code;
+
 
     // 신청일자 (게시물 신청일자)
     @CreationTimestamp // 엔티티를 저장될때 현재 일시를 자동으로 설정
-    private LocalDateTime applicationDate;
+    private LocalDateTime application_date;
+
     // 업데이트 일자
     @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    private LocalDateTime updated_at;
 
     // 게시물 검색조건 시작날짜
-    private LocalDateTime searchStartDate;
+    private LocalDateTime search_startdate;
 
     // 게시물 검색조건 끝날짜
-    private LocalDateTime searchEndDate;
+    private LocalDateTime search_endate;
 
     // 근무 상태
-    private String employmentStatus = "재직";
+    private String employment_status = "재직";
 
     // 권한승인여부
-    private String permission = "신청";
+    private String member_permission = "신청";
 
     // 사유
     @NotBlank(message = "사유는 필수 항목입니다.")
-    private String reason;
+    private String member_reason;
 }

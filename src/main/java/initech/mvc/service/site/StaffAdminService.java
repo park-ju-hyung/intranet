@@ -21,14 +21,14 @@ public class StaffAdminService {
     }
 
     // 관리자 > 회원관리 > 검색조건
-    public List<StaffVO> searchUsers(int page, int size, String memberName, LocalDate searchStartDate, LocalDate searchEndDate) {
+    public List<StaffVO> searchUsers(int page, int size, String member_name, LocalDate search_startdate, LocalDate search_endate) {
         int offset = (page - 1) * size;
-        return staffMapper.searchUsers(offset, size, memberName, searchStartDate, searchEndDate);
+        return staffMapper.searchUsers(offset, size, member_name, search_startdate, search_endate);
     }
 
     // 관리자 > 회원관리 > 검색조건 > 검색된 사용자의 총 개수를 반환하는 메서드
-    public int getFilteredUserCount(String memberName, LocalDate searchStartDate, LocalDate searchEndDate) {
-        return staffMapper.getFilteredUserCount(memberName, searchStartDate, searchEndDate);
+    public int getFilteredUserCount(String member_name, LocalDate search_startdate, LocalDate search_endate) {
+        return staffMapper.getFilteredUserCount(member_name, search_startdate, search_endate);
     }
 
     // 관리자 > 회원관리 > view 수정 기능
@@ -40,14 +40,14 @@ public class StaffAdminService {
 
 
     // 관리자 > 회원가입승인 > 검색조건
-    public List<StaffVO> searchPermission(int page, int size, String memberName, String permission, LocalDate searchStartDate, LocalDate searchEndDate) {
+    public List<StaffVO> searchPermission(int page, int size, String member_name, String member_permission, LocalDate search_startdate, LocalDate search_endate) {
         int offset = (page - 1) * size;
-        return staffMapper.searchPermission(offset, size, memberName, permission, searchStartDate, searchEndDate);
+        return staffMapper.searchPermission(offset, size, member_name, member_permission, search_startdate, search_endate);
     }
 
     // 관리자 > 회원관리 > 검색조건 > 검색된 사용자의 총 개수를 반환하는 메서드
-    public int getFilteredPermissionCount(String memberName, String permission, LocalDate searchStartDate, LocalDate searchEndDate) {
-        return staffMapper.getFilteredPermissionCount(memberName, permission, searchStartDate, searchEndDate);
+    public int getFilteredPermissionCount(String member_name, String member_permission, LocalDate search_startdate, LocalDate search_endate) {
+        return staffMapper.getFilteredPermissionCount(member_name, member_permission, search_startdate, search_endate);
     }
 
     // 관리자 > 회원가입승인 > view 수정 기능

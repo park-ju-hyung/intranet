@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
-    <script type="text/javascript" th:src="@{/res/mngr/js/main.js}"></script>
+
     <title>관리자 - 회원관리 view</title>
 </head>
 
@@ -61,7 +61,7 @@
                         <td>이름</td>
                         <td>
 
-                            <p th:text="${staff.memberName}"></p>
+                            <p th:text="${staff.member_name}"></p>
                        <!--
                             <p th:text="${staff.id}"></p>
                         -->
@@ -70,52 +70,52 @@
                     <tr>
                         <td>생년월일</td>
                         <td>
-                            <p th:text="${staff.memberBirth}"></p>
+                            <p th:text="${staff.member_birth}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>아이디</td>
                         <td>
-                            <p th:text="${staff.memberid}"></p>
+                            <p th:text="${staff.member_id}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>이메일</td>
                         <td>
-                            <p th:text="${staff.memberEmail}"></p>
+                            <p th:text="${staff.member_email}"></p>
                         </td>
                     </tr>
 
                     <tr>
                         <td>부서</td>
                         <td>
-                            <select name="memberDepartment" id="memberDepartment" class="form-control w100">
+                            <select name="member_department" id="member_department" class="form-control w100">
                                 <option value="">부서를 선택하세요</option>
-                                <option value="it" th:selected="${staff.memberDepartment == 'it'}">IT</option>
-                                <option value="인사" th:selected="${staff.memberDepartment == '인사'}">인사</option>
-                                <option value="마케팅" th:selected="${staff.memberDepartment == '마케팅'}">마케팅</option>
-                                <option value="재무" th:selected="${staff.memberDepartment == '재무'}">재무</option>
+                                <option value="it" th:selected="${staff.member_department == 'it'}">IT</option>
+                                <option value="인사" th:selected="${staff.member_department == '인사'}">인사</option>
+                                <option value="마케팅" th:selected="${staff.member_department == '마케팅'}">마케팅</option>
+                                <option value="재무" th:selected="${staff.member_department == '재무'}">재무</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>직급</td>
                         <td>
-                            <select name="memberPosition" id="memberPosition" class="form-control w100">
-                                <option value="사원" th:selected="${staff.memberPosition == '사원'}">사원</option>
-                                <option value="대리" th:selected="${staff.memberPosition == '대리'}">대리</option>
-                                <option value="과장" th:selected="${staff.memberPosition == '과장'}">과장</option>
-                                <option value="부장" th:selected="${staff.memberPosition == '부장'}">부장</option>
+                            <select name="member_position" id="member_position" class="form-control w100">
+                                <option value="사원" th:selected="${staff.member_position == '사원'}">사원</option>
+                                <option value="대리" th:selected="${staff.member_position == '대리'}">대리</option>
+                                <option value="과장" th:selected="${staff.member_position == '과장'}">과장</option>
+                                <option value="부장" th:selected="${staff.member_position == '부장'}">부장</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>상태</td>
                         <td>
-                            <select name="employmentStatus" id="employmentStatus" class="form-control w100">
-                                <option value="재직" th:selected="${staff.employmentStatus == '재직'}">재직</option>
-                                <option value="휴직" th:selected="${staff.employmentStatus == '휴직'}">휴직</option>
-                                <option value="퇴사" th:selected="${staff.employmentStatus == '퇴사'}">퇴사</option>
+                            <select name="employment_status" id="employment_status" class="form-control w100">
+                                <option value="재직" th:selected="${staff.employment_status == '재직'}">재직</option>
+                                <option value="휴직" th:selected="${staff.employment_status == '휴직'}">휴직</option>
+                                <option value="퇴사" th:selected="${staff.employment_status == '퇴사'}">퇴사</option>
                             </select>
                         </td>
                     </tr>
