@@ -49,8 +49,8 @@
         <div class="content">
             <p>회원정보수정</p>
 
-            <form th:action="@{/update/{id}(id=${staff.id})}" th:object="${staff}" method="post">
-                <input type="hidden" th:field="*{id}" />
+            <form th:action="@{/update/{reg_id}(id=${staff.reg_id})}" th:object="${staff}" method="post">
+                <input type="hidden" th:field="*{reg_id}" />
                 <table class="view">
                     <colgroup>
                         <col width="20%">

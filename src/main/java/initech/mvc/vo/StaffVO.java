@@ -18,8 +18,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Setter
 public class StaffVO {
     // id
-    @Column(name="reg_id")
-    private Long id;
+    private Long reg_id;
 
     // 데이터 순번
     private int order_number;

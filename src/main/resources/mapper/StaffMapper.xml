@@ -13,7 +13,7 @@
 
     <!-- list 조회 -->
     <resultMap id="staffResultMap" type="initech.mvc.vo.StaffVO">
-        <result column="id" property="id"/>
+        <result column="reg_id" property="reg_id"/>
         <result column="member_name" property="member_name"/>
         <result column="member_department" property="member_department"/>
         <result column="member_position" property="member_position"/>
@@ -35,9 +35,9 @@
 
     <!-- view 상세조회 -->
     <select id="UsersDetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
-        SELECT id, member_name, member_birth, member_id, member_email, member_department, member_position, application_date, member_employmentdate, member_permission, member_reason
+        SELECT reg_id, member_name, member_birth, member_id, member_email, member_department, member_position, application_date, member_employmentdate, member_permission, member_reason
         FROM member
-        WHERE id = #{id}
+        WHERE reg_id = #{reg_id}
     </select>
 
     <!-- 관리자 > 회원관리 > 검색조건 -->
@@ -79,7 +79,7 @@
         SET member_department = #{staff.member_department},
             member_position = #{staff.member_position},
             employment_status = #{staff.employment_status}
-        WHERE id = #{staff.id}
+        WHERE reg_id = #{staff.reg_id}
     </update>
 
     <!-- 관리자 > 회원가입승인 > 검색조건 -->

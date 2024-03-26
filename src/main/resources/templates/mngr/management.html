@@ -121,7 +121,7 @@
                             <!--
                             <a th:href="@{/admin/managementView/{bt_idm}(bt_idm=${staff.bt_idm})}" th:text="${staff.member_name}">이름</a>
                             -->
-                            <a th:href="@{/admin/managementView/{id}(id=${staff.id})}" th:text="${staff.member_name}">Default Name</a>
+                            <a th:href="@{/admin/managementView/{reg_id}(reg_id=${staff.reg_id})}" th:text="${staff.member_name}">Default Name</a>
                         </td>
                         <td th:text="${staff.member_department}">부서</td>
                         <td th:text="${staff.member_position}">직급</td>

@@ -154,16 +154,16 @@ public class StaffAdminController {
 
 
     // 관리자 > 회원관리 > view
-    @GetMapping("/admin/managementView/{id}")
-    public String showUsersDetail(@PathVariable("id") Long id, Model model) {
-        StaffVO staffDetail = staffAdminService.UsersDetail(id);
+    @GetMapping("/admin/managementView/{reg_id}")
+    public String showUsersDetail(@PathVariable("reg_id") Long regId, Model model) {
+        StaffVO staffDetail = staffAdminService.UsersDetail(regId);
         model.addAttribute("staff", staffDetail);
         return "/mngr/managementView";
     }
 
     // 관리자 > 회원관리 > view 수정 기능
-    @PostMapping("/update/{id}")
-    public String updateStaff(@PathVariable("id") Long id, StaffVO staff, Model model) {
+    @PostMapping("/update/{reg_id}")
+    public String updateStaff(@PathVariable("reg_id") Long regId, StaffVO staff, Model model) {
         staffAdminService.updateStaff(staff);
         model.addAttribute("message", "수정이 되었습니다.");
         model.addAttribute("searchUrl", "/admin/management");

@@ -72,8 +72,8 @@ public class StaffAdminService {
     }
 
     // 상세조회
-    public StaffVO UsersDetail(Long id) {
-        return staffMapper.UsersDetail(id);
+    public StaffVO UsersDetail(Long reg_id) {
+        return staffMapper.UsersDetail(reg_id);
     }
 
 
