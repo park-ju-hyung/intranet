@@ -14,7 +14,7 @@
     <!-- list 조회 -->
     <resultMap id="staffResultMap" type="initech.mvc.vo.StaffVO">
         <result column="id" property="id"/>
-        <result column="memberName" property="memberName"/>
+        <result column="member_name" property="member_name"/>
         <result column="member_department" property="member_department"/>
         <result column="member_position" property="member_position"/>
         <result column="member_employmentdate" property="member_employmentdate"/>
