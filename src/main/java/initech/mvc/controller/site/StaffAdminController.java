@@ -50,17 +50,17 @@ public class StaffAdminController {
     public String approvalPage(Model model,
                                @RequestParam(value = "page", defaultValue = "1") int page,
                                @RequestParam(value = "size", defaultValue = "10") int size,
-                               @RequestParam(value = "member_name", required = false) String member_name,
-                               @RequestParam(value = "member_permission", required = false) String member_permission,
-                               @RequestParam(value = "search_startdate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate search_startdate,
-                               @RequestParam(value = "search_endate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate search_endate) {
+                               @RequestParam(value = "memberName", required = false) String memberName,
+                               @RequestParam(value = "memberPermission", required = false) String memberPermission,
+                               @RequestParam(value = "searchStartDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchStartDate,
+                               @RequestParam(value = "searchEndDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchEndDate) {
 
         // 검색조건에 따른 사용자 리스트 조회
         List<StaffVO> staffList;
-        boolean isSearchConditionValid = member_name != null && !member_name.trim().isEmpty() || search_startdate != null || search_endate != null || member_permission != null;
+        boolean isSearchConditionValid = memberName != null && !memberName.trim().isEmpty() || searchStartDate != null || searchEndDate != null || memberPermission != null;
 
         if (isSearchConditionValid) {
-            staffList = staffAdminService.searchPermission(page, size, member_name, member_permission, search_startdate, search_endate);
+            staffList = staffAdminService.searchPermission(page, size, memberName, memberPermission, searchStartDate, searchEndDate);
         } else {
             staffList = staffAdminService.getUsersByPage(page, size);
         }
@@ -68,11 +68,11 @@ public class StaffAdminController {
         // 데이터 순번 처리
         for (int i = 0; i < staffList.size(); i++) {
             int orderNumber = (page - 1) * size + i + 1;
-            staffList.get(i).setOrder_number(orderNumber);
+            staffList.get(i).setOrderNumber(orderNumber);
         }
 
         // 페이징 처리
-        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredPermissionCount(member_name, member_permission, search_startdate, search_endate)
+        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredPermissionCount(memberName, memberPermission, searchStartDate, searchEndDate)
                 : staffAdminService.getTotalUserCount();
         int totalPages = (int) Math.ceil((double) totalUsers / size);
 
@@ -98,11 +98,6 @@ public class StaffAdminController {
     public String updatePermissionStaff(@PathVariable("id") Long id,
                                         StaffVO staff,
                                         Model model) {
-
-
-
-
-
         staffAdminService.updatePermissionStaff(staff);
         model.addAttribute("message", "수정이 되었습니다.");
         model.addAttribute("searchUrl", "/admin/approval");
@@ -118,16 +113,16 @@ public class StaffAdminController {
     public String managementPage(Model model,
                                  @RequestParam(value = "page", defaultValue = "1") int page,
                                  @RequestParam(value = "size", defaultValue = "10") int size,
-                                 @RequestParam(value = "member_name", required = false) String member_name,
-                                 @RequestParam(value = "search_startdate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate search_startdate,
-                                 @RequestParam(value = "search_endate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate search_endate) {
+                                 @RequestParam(value = "memberName", required = false) String memberName,
+                                 @RequestParam(value = "searchStartDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchStartDate,
+                                 @RequestParam(value = "searchEndDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate searchEndDate) {
 
         // 검색조건에 따른 사용자 리스트 조회
         List<StaffVO> staffList;
-        boolean isSearchConditionValid = member_name != null && !member_name.trim().isEmpty() || search_startdate != null || search_endate != null;
+        boolean isSearchConditionValid = memberName != null && !memberName.trim().isEmpty() || searchStartDate != null || searchEndDate != null;
 
         if (isSearchConditionValid) {
-            staffList = staffAdminService.searchUsers(page, size, member_name, search_startdate, search_endate);
+            staffList = staffAdminService.searchUsers(page, size, memberName, searchStartDate, searchEndDate);
         } else {
             staffList = staffAdminService.getUsersByPage(page, size);
         }
@@ -135,11 +130,11 @@ public class StaffAdminController {
         // 데이터 순번 처리
         for (int i = 0; i < staffList.size(); i++) {
             int orderNumber = (page - 1) * size + i + 1;
-            staffList.get(i).setOrder_number(orderNumber);
+            staffList.get(i).setOrderNumber(orderNumber);
         }
 
         // 페이징 처리
-        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredUserCount(member_name, search_startdate, search_endate)
+        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredUserCount(memberName, searchStartDate, searchEndDate)
                 : staffAdminService.getTotalUserCount();
         int totalPages = (int) Math.ceil((double) totalUsers / size);
 
@@ -154,8 +149,8 @@ public class StaffAdminController {
 
 
     // 관리자 > 회원관리 > view
-    @GetMapping("/admin/managementView/{reg_id}")
-    public String showUsersDetail(@PathVariable("reg_id") Long regId, Model model) {
+    @GetMapping("/admin/managementView/{regId}")
+    public String showUsersDetail(@PathVariable("regId") Long regId, Model model) {
         StaffVO staffDetail = staffAdminService.UsersDetail(regId);
         model.addAttribute("staff", staffDetail);
         return "/mngr/managementView";

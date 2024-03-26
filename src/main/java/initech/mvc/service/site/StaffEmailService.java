@@ -37,19 +37,19 @@ public class StaffEmailService {
         // 6자리 숫자 인증 코드를 생성합니다.
         String verify_code = RandomStringUtils.randomNumeric(6);
         // 생성된 코드를 이메일 주소와 매핑하여 저장합니다.
-        verifyCodes.put(staff.getMember_email(), verify_code);
+        verifyCodes.put(staff.getMemberEmail(), verify_code);
 
         MimeMessage message = StaffmailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
 
         Context context = new Context();
-        context.setVariable("name", staff.getMember_name());
+        context.setVariable("name", staff.getMemberName());
         context.setVariable("verify_code", verify_code);
 
         String htmlContent = templateEngine.process("emailTemplate", context);
 
         helper.setFrom("noreply@example.com");
-        helper.setTo(staff.getMember_email());
+        helper.setTo(staff.getMemberEmail());
         helper.setSubject("[ini]회원가입용 인증번호입니다.");
         helper.setText(htmlContent, true);
 

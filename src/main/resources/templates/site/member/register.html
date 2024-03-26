@@ -20,10 +20,11 @@
                 <span class="essential-style">*</span>
                 필수입력사항
             </p>
+
             <div>
                 <span class="essential-style">*</span>
-                <label for="member_id">아이디</label>
-                <input id="member_id" th:field="*{member_id}" type="text" placeholder="4~20자리 / 영문, 숫자, 특수문자 '_'사용가능" class="form-control2">
+                <label for="memberId">아이디</label>
+                <input id="memberId" th:field="*{memberId}" type="text" placeholder="4~20자리 / 영문, 숫자, 특수문자 '_'사용가능" class="form-control2">
                 <div th:if="${memberidError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberidError}"></span>
                 </div>
@@ -32,23 +33,23 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>비밀번호</label>
-                <input id="member_password" th:field="*{member_password}" type="text" placeholder="8~16자리/영문 대소문자, 숫자, 특수문자 조합" class="form-control2">
+                <input id="memberPassword" th:field="*{memberPassword}" type="text" placeholder="8~16자리/영문 대소문자, 숫자, 특수문자 조합" class="form-control2">
                 <div th:if="${memberPasswordError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberPasswordError}"></span>
                 </div>
             </div>
             <div>
                 <span class="essential-style">*</span>
-                <label for="confirm_password">비밀번호 확인</label>
-                <input id="confirm_password" th:field="*{confirm_password}" type="text" placeholder="비밀번호 확인" class="form-control2">
-                <div th:if="${#fields.hasErrors('confirm_password')}" class="error-message" style="margin-top:6px; color:red">
-                    <span th:each="err : ${#fields.errors('confirm_password')}" th:text="${err}"></span>
+                <label for="confirmPassword">비밀번호 확인</label>
+                <input id="confirmPassword" th:field="*{confirmPassword}" type="text" placeholder="비밀번호 확인" class="form-control2">
+                <div th:if="${#fields.hasErrors('confirmPassword')}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></span>
                 </div>
             </div>
             <div>
                 <span class="essential-style">*</span>
                 <label>이름</label>
-                <input id="member_name" th:field="*{member_name}" type="text" placeholder="이름 입력" class="form-control2">
+                <input id="memberName" th:field="*{memberName}" type="text" placeholder="이름 입력" class="form-control2">
                 <div th:if="${memberNameError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberNameError}"></span>
                 </div>
@@ -56,12 +57,12 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>부서</label>
-                <select id="member_department" name="member_department" class="form-control2">
+                <select id="memberDepartment" name="memberDepartment" class="form-control2">
                     <option value="">부서를 선택하세요</option>
-                    <option value="it" th:selected="${staff.member_department == 'it'}">IT</option>
-                    <option value="인사" th:selected="${staff.member_department == '인사'}">인사</option>
-                    <option value="마케팅" th:selected="${staff.member_department == '마케팅'}">마케팅</option>
-                    <option value="재무" th:selected="${staff.member_department == '재무'}">재무</option>
+                    <option value="it" th:selected="${staff.memberDepartment == 'it'}">IT</option>
+                    <option value="인사" th:selected="${staff.memberDepartment == '인사'}">인사</option>
+                    <option value="마케팅" th:selected="${staff.memberDepartment == '마케팅'}">마케팅</option>
+                    <option value="재무" th:selected="${staff.memberDepartment == '재무'}">재무</option>
                 </select>
                 <div th:if="${memberDepartmentError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberDepartmentError}"></span>
@@ -76,12 +77,12 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>직급</label>
-                <select id="member_position" name="member_position" class="form-control2">
+                <select id="memberPosition" name="memberPosition" class="form-control2">
                     <option value="">직급을 선택하세요</option>
-                    <option value="사원" th:selected="${staff.member_position == '사원'}">사원</option>
-                    <option value="대리" th:selected="${staff.member_position == '대리'}">대리</option>
-                    <option value="과장" th:selected="${staff.member_position == '과장'}">과장</option>
-                    <option value="부장" th:selected="${staff.member_position == '부장'}">부장</option>
+                    <option value="사원" th:selected="${staff.memberPosition == '사원'}">사원</option>
+                    <option value="대리" th:selected="${staff.memberPosition == '대리'}">대리</option>
+                    <option value="과장" th:selected="${staff.memberPosition == '과장'}">과장</option>
+                    <option value="부장" th:selected="${staff.memberPosition == '부장'}">부장</option>
                 </select>
                 <div th:if="${memberPostionError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberPostionError}"></span>
@@ -90,7 +91,7 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>입사일자</label>
-                <input id="member_employmentdate" th:field="*{member_employmentdate}" type="text" placeholder="YYYY/MM/DD" class="form-control2">
+                <input id="memberEmploymentDate" th:field="*{memberEmploymentDate}" type="text" placeholder="YYYY/MM/DD" class="form-control2">
                 <div th:if="${memberEmployError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberEmployError}"></span>
                 </div>
@@ -98,7 +99,7 @@
             <div>
                 <span class="essential-style">*</span>
                 <label>생년월일</label>
-                <input id="member_birth" th:field="*{member_birth}" type="text" placeholder="YYYY/MM/DD" class="form-control2">
+                <input id="memberBirth" th:field="*{memberBirth}" type="text" placeholder="YYYY/MM/DD" class="form-control2">
                 <div th:if="${memberBirthError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberBirthError}"></span>
                 </div>
@@ -107,19 +108,19 @@
                 <span class="essential-style">*</span>
                 <label>이메일</label>
                 <div>
-                    <input id="member_email" th:field="*{member_email}" type="text" placeholder="이메일" class="w269 form-control2">
+                    <input id="memberEmail" th:field="*{memberEmail}" type="text" placeholder="이메일" class="w269 form-control2">
                     <button type="button" class="confirm-code" onclick="sendVerificationCode()">
                         <span>인증번호발송</span>
                     </button>
                     <script>
                         function sendVerificationCode() {
-                            var email = $("#member_email").val();
+                            var email = $("#memberEmail").val();
 
                             $.ajax({
                                 url: '/sendVerificationCode',
                                 type: 'POST',
                                 contentType: 'application/json',
-                                data: JSON.stringify({ "member_email": email }),
+                                data: JSON.stringify({ "memberEmail": email }),
                                 success: function(response) {
                                     console.log('Success response:', response);
                                     alert(response);
@@ -140,7 +141,7 @@
 
                 <span class="essential-style">*</span>
                 <label style="margin-top: 20px;">인증코드</label>
-                <input id="verify_code" th:field="*{verify_code}" type="text" placeholder="인증코드 입력" class="form-control2">
+                <input id="verifyCode" th:field="*{verifyCode}" type="text" placeholder="인증코드 입력" class="form-control2">
                 <div th:if="${emailVericodefyError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${emailVericodefyError}"></span>
                 </div>

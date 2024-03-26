@@ -186,9 +186,9 @@ public class StaffController {
     @PostMapping("/sendVerificationCode")
     public ResponseEntity<?> sendVerificationCode(@RequestBody Map<String, String> payload) {
         try {
-            String email = payload.get("member_email");
+            String email = payload.get("memberEmail");
             StaffVO staffVO = new StaffVO();
-            staffVO.setMember_email(email); // 사용자의 이메일 주소를 StaffVO에 설정
+            staffVO.setMemberEmail(email); // 사용자의 이메일 주소를 StaffVO에 설정
             staffEmailService.sendSimpleEmail(staffVO); // 인증번호 발송
             return ResponseEntity.ok("인증번호가 이메일로 발송되었습니다.");
         } catch (Exception e) {

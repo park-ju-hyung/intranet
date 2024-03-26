@@ -60,54 +60,54 @@
                     <tr>
                         <td>이름</td>
                         <td>
-                            <p th:text="${staff.member_name}"></p>
+                            <p th:text="${staff.memberName}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>생년월일</td>
                         <td>
-                            <p th:text="${staff.member_birth}"></p>
+                            <p th:text="${staff.memberBirth}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>신청일자</td>
                         <td>
-                            <p th:text="${#temporals.format(staff.application_date, 'yyyy-MM-dd HH:mm:ss')}"></p>
+                            <p th:text="${#temporals.format(staff.applicationDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>입사일자</td>
                         <td>
-                            <p th:text="${staff.member_employmentdate}"></p>
+                            <p th:text="${staff.memberEmploymentDate}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>신청자 부서</td>
                         <td>
-                            <p th:text="${staff.member_department}"></p>
+                            <p th:text="${staff.memberDepartment}"></p>
                         </td>
                     </tr>
                     <tr>
                         <td>직급</td>
                         <td>
-                            <p th:text="${staff.member_position}"></p>
+                            <p th:text="${staff.memberPosition}"></p>
                         </td>
                     </tr>
                     <tr style="border-bottom: 1px solid #cacaca">
                         <td>권한승인</td>
                         <td>
-                            <select name="permission" id="permission" class="form-control w100">
-                                <option value="신청" th:selected="${staff.permission == '신청'}">신청</option>
-                                <option value="승인" th:selected="${staff.permission == '승인'}">승인</option>
-                                <option value="반려" th:selected="${staff.permission == '반려'}">반려</option>
-                                <option value="삭제" th:selected="${staff.permission == '삭제'}">삭제</option>
+                            <select name="memberPermission" id="memberPermission" class="form-control w100">
+                                <option value="신청" th:selected="${staff.memberPermission == '신청'}">신청</option>
+                                <option value="승인" th:selected="${staff.memberPermission == '승인'}">승인</option>
+                                <option value="반려" th:selected="${staff.memberPermission == '반려'}">반려</option>
+                                <option value="삭제" th:selected="${staff.memberPermission == '삭제'}">삭제</option>
                             </select>
                         </td>
                     </tr>
                     <tr id="rejectionReasonRow" style="display:none;">
                         <td>사유</td>
                         <td>
-                            <textarea name="rejectionReason reason" th:field="*{reason}" class="form-control" id="reason" th:text="${staff.reason}">
+                            <textarea name="rejectionReason memberReason" th:field="*{memberReason}" class="form-control" id="reason" th:text="${staff.memberReason}">
 
                             </textarea>
                         </td>

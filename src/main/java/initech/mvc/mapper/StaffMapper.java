@@ -26,7 +26,7 @@ public interface StaffMapper {
     int countAllUsers();
 
     // 상세조회
-    StaffVO UsersDetail(Long reg_id);
+    StaffVO UsersDetail(Long regId);
 
     // 관리자 > 회원관리 > view 수정 기능
     int updateStaff(@Param("staff") StaffVO staff);
@@ -36,12 +36,12 @@ public interface StaffMapper {
 
 
     // 관리자 > 회원관리 > 검색조건
-    List<StaffVO> searchUsers(@Param("offset") int offset, @Param("size") int size, @Param("member_name") String member_name, @Param("search_startdate") LocalDate search_startdate, @Param("search_endate") LocalDate search_endate);
+    List<StaffVO> searchUsers(@Param("offset") int offset, @Param("size") int size, @Param("memberName") String memberName, @Param("searchStartDate") LocalDate searchStartDate, @Param("searchEndDate") LocalDate searchEndDate);
 
     // 관리자 > 회원관리 > 검색 조건에 따른 사용자의 총 개수를 반환
-    int getFilteredUserCount(@Param("member_name") String member_name,
-                             @Param("search_startdate") LocalDate search_startdate,
-                             @Param("search_endate") LocalDate search_endate);
+    int getFilteredUserCount(@Param("memberName") String memberName,
+                             @Param("searchStartDate") LocalDate searchStartDate,
+                             @Param("searchEndDate") LocalDate searchEndDate);
 
     // 관리자 > 회원가입승인 > view 수정 기능
     int updatePermissionStaff(@Param("staff") StaffVO staff);
@@ -55,13 +55,13 @@ public interface StaffMapper {
 
 
     // 관리자 > 회원가입승인 > 검색조건
-    List<StaffVO> searchPermission(@Param("offset") int offset, @Param("size") int size, @Param("member_name") String member_name, @Param("member_permission") String member_permission, @Param("search_startdate") LocalDate search_startdate, @Param("search_endate") LocalDate search_endate);
+    List<StaffVO> searchPermission(@Param("offset") int offset, @Param("size") int size, @Param("memberName") String memberName, @Param("memberPermission") String memberPermission, @Param("searchStartDate") LocalDate searchStartDate, @Param("searchEndDate") LocalDate searchEndDate);
 
     // 관리자 > 회원가입승인 > 검색 조건에 따른 사용자의 총 개수를 반환
-    int getFilteredPermissionCount(@Param("member_name") String member_name,
-                                   @Param("memeber_permission") String memeber_permission,
-                                   @Param("search_startdate") LocalDate search_startdate,
-                                   @Param("search_endate") LocalDate search_endate);
+    int getFilteredPermissionCount(@Param("memberName") String memberName,
+                                   @Param("memberPermission") String memberPermission,
+                                   @Param("searchStartDate") LocalDate searchStartDate,
+                                   @Param("searchEndDate") LocalDate searchEndDate);
 
 
 
