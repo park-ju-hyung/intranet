@@ -19,7 +19,7 @@ public class StaffService {
 
     @Transactional
     public void register(StaffVO staff) {
-        staffMapper.insertStaff(staff);
+        staffMapper.insertstaff(staff);
     }
 
 

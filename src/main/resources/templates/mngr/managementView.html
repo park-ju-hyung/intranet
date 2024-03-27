@@ -48,8 +48,7 @@
         <!--content-->
         <div class="content">
             <p>회원정보수정</p>
-
-
+            <form th:action="@{/update/{regId}(regId=${staff.regId})}" th:object="${staff}" method="post">
                 <table class="view">
                     <colgroup>
                         <col width="20%">
@@ -116,21 +115,16 @@
                     </tbody>
                 </table>
                 <div class="register-button-form">
+                    <!--
                     <button type="submit" class="deepblue-button" id="deleteButton">
                         삭제
                     </button>
+                    -->
                     <button type="submit" class="register-button">
                         수정
                     </button>
                 </div>
-
-
-
-
-
-
-
-
+            </form>
         </div>
 
         <!--content-->

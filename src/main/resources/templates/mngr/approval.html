@@ -94,6 +94,7 @@
                                                 <option value="신청" >신청</option>
                                                 <option value="승인" >승인</option>
                                                 <option value="반려" >반려</option>
+                                                <option value="삭제" >삭제</option>
                                             </select>
                                         </div>
                                     </div>
@@ -143,11 +144,11 @@
                             <!--
                             <a th:href="@{/admin/managementView/{bt_idm}(bt_idm=${staff.bt_idm})}" th:text="${staff.member_name}">이름</a>
                             -->
-                            <a th:href="@{/admin/approvalView/{id}(id=${staff.id})}" th:text="${staff.memberName}">Default Name</a>
+                            <a th:href="@{/admin/approvalView/{regId}(regId=${staff.regId})}" th:text="${staff.memberName}">Default Name</a>
                         </td>
                         <td th:text="${staff.memberDepartment}">부서</td>
                         <td th:text="${staff.memberPosition}">직급</td>
-                        <td th:text="${staff.memberEmploymentdate}">입사일자</td>
+                        <td th:text="${staff.memberEmploymentDate}">입사일자</td>
                         <td th:text="${#temporals.format(staff.applicationDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                         <td th:text="${staff.memberPermission}"></td>
                     </tr>

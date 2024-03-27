@@ -60,7 +60,7 @@ public class StaffAdminController {
         boolean isSearchConditionValid = memberName != null && !memberName.trim().isEmpty() || searchStartDate != null || searchEndDate != null || memberPermission != null;
 
         if (isSearchConditionValid) {
-            staffList = staffAdminService.searchPermission(page, size, memberName, memberPermission, searchStartDate, searchEndDate);
+            staffList = staffAdminService.searchpermission(page, size, memberName, memberPermission, searchStartDate, searchEndDate);
         } else {
             staffList = staffAdminService.getUsersByPage(page, size);
         }
@@ -72,7 +72,7 @@ public class StaffAdminController {
         }
 
         // 페이징 처리
-        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredPermissionCount(memberName, memberPermission, searchStartDate, searchEndDate)
+        int totalUsers = isSearchConditionValid ? staffAdminService.getfilteredpermissioncount(memberName, memberPermission, searchStartDate, searchEndDate)
                 : staffAdminService.getTotalUserCount();
         int totalPages = (int) Math.ceil((double) totalUsers / size);
 
@@ -86,19 +86,19 @@ public class StaffAdminController {
     }
 
     // 관리자 > 회원가입승인 > view
-    @GetMapping("/admin/approvalView/{id}")
-    public String approvalViewPage(@PathVariable("id") Long id, Model model){
-        StaffVO staffDetail = staffAdminService.UsersDetail(id);
+    @GetMapping("/admin/approvalView/{regId}")
+    public String approvalViewPage(@PathVariable("regId") Long regId, Model model){
+        StaffVO staffDetail = staffAdminService.UsersDetail(regId);
         model.addAttribute("staff", staffDetail);
         return "/mngr/approvalView";
     }
 
     // 관리자 > 회원가입승인 > view 수정 기능
-    @PostMapping("/PermissionUpdate/{id}")
-    public String updatePermissionStaff(@PathVariable("id") Long id,
+    @PostMapping("/PermissionUpdate/{regId}")
+    public String updatepermissionstaff(@PathVariable("regId") Long regId,
                                         StaffVO staff,
                                         Model model) {
-        staffAdminService.updatePermissionStaff(staff);
+        staffAdminService.updatepermissionstaff(regId, staff);
         model.addAttribute("message", "수정이 되었습니다.");
         model.addAttribute("searchUrl", "/admin/approval");
         return "/common/message";
@@ -122,7 +122,7 @@ public class StaffAdminController {
         boolean isSearchConditionValid = memberName != null && !memberName.trim().isEmpty() || searchStartDate != null || searchEndDate != null;
 
         if (isSearchConditionValid) {
-            staffList = staffAdminService.searchUsers(page, size, memberName, searchStartDate, searchEndDate);
+            staffList = staffAdminService.searchusers(page, size, memberName, searchStartDate, searchEndDate);
         } else {
             staffList = staffAdminService.getUsersByPage(page, size);
         }
@@ -134,7 +134,7 @@ public class StaffAdminController {
         }
 
         // 페이징 처리
-        int totalUsers = isSearchConditionValid ? staffAdminService.getFilteredUserCount(memberName, searchStartDate, searchEndDate)
+        int totalUsers = isSearchConditionValid ? staffAdminService.getfilteredusercount(memberName, searchStartDate, searchEndDate)
                 : staffAdminService.getTotalUserCount();
         int totalPages = (int) Math.ceil((double) totalUsers / size);
 
@@ -157,9 +157,9 @@ public class StaffAdminController {
     }
 
     // 관리자 > 회원관리 > view 수정 기능
-    @PostMapping("/update/{reg_id}")
-    public String updateStaff(@PathVariable("reg_id") Long regId, StaffVO staff, Model model) {
-        staffAdminService.updateStaff(staff);
+    @PostMapping("/update/{regId}")
+    public String updateStaff(@PathVariable("regId") Long regId, @ModelAttribute("staff") StaffVO staff, Model model) {
+        staffAdminService.updateStaff(regId, staff);
         model.addAttribute("message", "수정이 되었습니다.");
         model.addAttribute("searchUrl", "/admin/management");
         return "/common/message";

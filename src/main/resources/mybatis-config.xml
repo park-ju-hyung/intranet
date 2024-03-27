@@ -7,4 +7,9 @@
     <setting name="mapUnderscoreToCamelCase" value="true" />
     <setting name="jdbcTypeForNull" value="NULL"/>
   </settings>
+  <typeAliases>
+    <typeAlias type="initech.mvc.vo.StaffVO" alias="staffVO"></typeAlias>
+  </typeAliases>
+  
+  
 </configuration>

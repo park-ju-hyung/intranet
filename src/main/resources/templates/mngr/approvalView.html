@@ -9,9 +9,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
     <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
-    <!--
-    <script type="text/javascript" th:src="@{/res/mngr/js/main.js}"></script>
--->
+
     <title>관리자 - 회원가입승인 view</title>
 </head>
 
@@ -50,7 +48,8 @@
         <!--content-->
         <div class="content">
             <p>회원가입승인</p>
-            <form th:action="@{/PermissionUpdate/{id}(id=${staff.id})}" th:object="${staff}" method="post">
+
+            <form th:action="@{/PermissionUpdate/{regId}(regId=${staff.regId})}" th:object="${staff}" method="post">
                 <table class="view">
                     <colgroup>
                         <col width="20%">
@@ -107,11 +106,13 @@
                     <tr id="rejectionReasonRow" style="display:none;">
                         <td>사유</td>
                         <td>
-                            <textarea name="rejectionReason memberReason" th:field="*{memberReason}" class="form-control" id="reason" th:text="${staff.memberReason}">
+                             <textarea name="rejectionReason memberReason" th:field="*{memberReason}" class="form-control" id="reason" th:text="${staff.memberReason}">
 
                             </textarea>
                         </td>
+
                     </tr>
+
                     </tbody>
                 </table>
 
@@ -126,19 +127,39 @@
                     </button>
                 </div>
             </form>
-
-
         </div>
-
         <!--content-->
     </div>
+    <script>
+        window.onload = function() {
+            // 권한 승인 상태를 가져옵니다.
+            var permissionSelect = document.getElementById('memberPermission');
+            var permission = permissionSelect.value;
 
+            // 사유 등록 폼의 행을 가져옵니다.
+            var rejectionReasonRow = document.getElementById('rejectionReasonRow');
 
+            // '삭제'나 '반려'가 선택된 경우, 사유 등록폼을 표시합니다.
+            if (permission === '삭제' || permission === '반려') {
+                rejectionReasonRow.style.display = '';
+            }
+        };
 
+        // select 박스의 변경을 감지하여 사유 등록폼을 표시하거나 숨기는 함수
+        function toggleReasonForm() {
+            var permission = document.getElementById('memberPermission').value;
+            var rejectionReasonRow = document.getElementById('rejectionReasonRow');
 
+            if (permission === '삭제' || permission === '반려') {
+                rejectionReasonRow.style.display = '';
+            } else {
+                rejectionReasonRow.style.display = 'none';
+            }
+        }
 
-
-
+        // select 박스에 이벤트 리스너를 추가합니다.
+        document.getElementById('memberPermission').addEventListener('change', toggleReasonForm);
+    </script>
     <!--content-->
 </body>
 
