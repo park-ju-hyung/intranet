@@ -195,6 +195,17 @@
         SELECT COUNT(*) FROM verifycode WHERE verify_email = #{verifyEmail}
     </select>
 
+    <!-- 기존 인증코드 삭제 -->
+    <delete id="deleteverificationcodesbyemail" parameterType="String">
+        DELETE FROM verifycode WHERE verify_email = #{verifyEmail}
+    </delete>
+
+    <!-- 새 인증코드 삽입 -->
+    <insert id="insertverificationcode" parameterType="EmailVO">
+        INSERT INTO verifycode (verify_email, verify_code, sent_time)
+        VALUES (#{verifyEmail}, #{verifyCode}, NOW())
+    </insert>
+
 
 
 

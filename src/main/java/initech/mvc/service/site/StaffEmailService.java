@@ -43,6 +43,32 @@ public class StaffEmailService {
         staffMapper.insertemail(email);
     }
 
+    // 이메일 중복 체크
+    public boolean checkEmailExists(EmailVO email) {
+        return staffMapper.existsemail(email) > 0;
+    }
+
+    // 기존 인증코드 삭제, 새 인증코드 삽입
+    public void updateVerificationCode(EmailVO emailVO) throws MessagingException{
+        // 기존 인증코드 삭제
+        staffMapper.deleteverificationcodesbyemail(emailVO.getVerifyEmail());
+
+        // 새 인증코드를 생성
+        String newCode = RandomStringUtils.randomNumeric(6);
+        emailVO.setVerifyCode(newCode);
+
+        // 새 인증코드를 데이터베이스에 삽입합니다.
+        staffMapper.insertverificationcode(emailVO);
+
+        // 새 인증코드를 이메일로 발송합니다.
+        sendSimpleEmail(emailVO);
+
+    }
+
+    public void deleteverificationcodesbyemail(String email) {
+        staffMapper.deleteverificationcodesbyemail(email);
+    }
+
     // 이메일 발송
     public void sendSimpleEmail(EmailVO email) throws MessagingException {
         // 6자리 숫자 인증 코드를 생성합니다.
@@ -70,10 +96,8 @@ public class StaffEmailService {
     }
 
 
-    // 이메일 중복 체크
-    public boolean checkEmailExists(EmailVO email) {
-        return staffMapper.existsemail(email) > 0;
-    }
+
+
 
 
 

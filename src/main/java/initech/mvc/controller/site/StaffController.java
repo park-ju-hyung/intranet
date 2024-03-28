@@ -190,23 +190,34 @@ public class StaffController {
 
     @PostMapping("/sendVerificationCode")
     public ResponseEntity<?> sendVerificationCode(@RequestBody Map<String, String> payload) {
-        try {
-            String email = payload.get("memberEmail");
-            EmailVO emailVO = new EmailVO();
-            emailVO.setVerifyEmail(email);
+        String email = payload.get("memberEmail");
+        EmailVO emailVO = new EmailVO();
+        emailVO.setVerifyEmail(email);
 
-            if(staffEmailService.checkEmailExists(emailVO)) {
-                return ResponseEntity.badRequest().body("이미 등록된 이메일입니다.");
+        // 이미 등록된 이메일인지 확인
+        if(staffEmailService.checkEmailExists(emailVO)) {
+            return ResponseEntity.badRequest().body("이미 등록된 이메일입니다.");
+        } else {
+            try {
+                // 기존 데이터 삭제
+                staffEmailService.deleteverificationcodesbyemail(email);
+
+                // 새 인증번호 발송
+                staffEmailService.sendSimpleEmail(emailVO);
+
+                // 새 인증번호 데이터베이스에 저장
+
+                staffEmailService.insertemail(emailVO);
+                return ResponseEntity.ok("인증번호가 이메일로 발송되었습니다.");
+
+            } catch (MessagingException e) {
+                // MessagingException 처리
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("인증번호 발송에 실패하였습니다.");
             }
-            staffEmailService.sendSimpleEmail(emailVO);
-            staffEmailService.insertemail(emailVO);
-            return ResponseEntity.ok("인증번호가 이메일로 발송되었습니다.");
-
-        } catch (MessagingException e) {
-
-            return ResponseEntity.badRequest().body("인증번호 발송에 실패하였습니다.");
         }
     }
+
+
 
 
 

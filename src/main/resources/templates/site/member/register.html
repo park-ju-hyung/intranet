@@ -145,25 +145,6 @@
                             }
                         });
                     }
-                    /**
-                    function verifyCode() {
-                        var email = $("#memberEmail").val();
-                        var verificationCode = $("#verifyCode").val();
-                        $.ajax({
-                            url: '/verifyCode',
-                            type: 'POST',
-                            contentType: 'application/json',
-                            data: JSON.stringify({ "memberEmail": email, "verificationCode": verificationCode }),
-                            success: function(response) {
-                                alert("인증이 완료되었습니다. 계속해서 진행해주세요.");
-                                $("#verificationError").text("");
-                            },
-                            error: function(xhr) {
-                                $("#verificationError").text(xhr.responseText);
-                            }
-                        });
-                    }
-                     **/
                 </script>
             </div>
             <div>

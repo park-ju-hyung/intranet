@@ -74,6 +74,12 @@ public interface StaffMapper {
     // 이메일 중복 체크
     int existsemail(EmailVO email);
 
+    // 인증코드 삭제
+    void deleteverificationcodesbyemail(String email);
+
+    // 새 인증코드 삽입
+    void insertverificationcode(EmailVO emailVO);
+
 
 
 
