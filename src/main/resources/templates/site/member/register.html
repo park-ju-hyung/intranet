@@ -112,27 +112,7 @@
                     <button type="button" class="confirm-code" onclick="sendVerificationCode()">
                         <span>인증번호발송</span>
                     </button>
-                    <script>
-                        function sendVerificationCode() {
-                            var email = $("#memberEmail").val();
 
-                            $.ajax({
-                                url: '/sendVerificationCode',
-                                type: 'POST',
-                                contentType: 'application/json',
-                                data: JSON.stringify({ "memberEmail": email }),
-                                success: function(response) {
-                                    console.log('Success response:', response);
-                                    alert(response);
-                                },
-                                error: function(xhr, status, error) {
-                                    console.log('Error status:', status);
-                                    console.log('Error response:', xhr.responseText);
-                                    alert(xhr.responseText);
-                                }
-                            });
-                        }
-                    </script>
                 </div>
 
                 <div th:if="${memberEmailError}" class="error-message" style="margin-top:6px; color:red">
@@ -141,10 +121,50 @@
 
                 <span class="essential-style">*</span>
                 <label style="margin-top: 20px;">인증코드</label>
-                <input id="verifyCode" th:field="*{verifyCode}" type="text" placeholder="인증코드 입력" class="form-control2">
+                <input id="verifyCode" name="verifyCode" type="text" placeholder="인증코드 입력" class="form-control2">
                 <div th:if="${emailVericodefyError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${emailVericodefyError}"></span>
                 </div>
+                <script>
+                    function sendVerificationCode() {
+                        var email = $("#memberEmail").val();
+
+                        $.ajax({
+                            url: '/sendVerificationCode',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({ "memberEmail": email }),
+                            success: function(response) {
+                                console.log('Success response:', response);
+                                alert(response);
+                            },
+                            error: function(xhr, status, error) {
+                                console.log('Error status:', status);
+                                console.log('Error response:', xhr.responseText);
+                                alert(xhr.responseText);
+                            }
+                        });
+                    }
+                    /**
+                    function verifyCode() {
+                        var email = $("#memberEmail").val();
+                        var verificationCode = $("#verifyCode").val();
+                        $.ajax({
+                            url: '/verifyCode',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({ "memberEmail": email, "verificationCode": verificationCode }),
+                            success: function(response) {
+                                alert("인증이 완료되었습니다. 계속해서 진행해주세요.");
+                                $("#verificationError").text("");
+                            },
+                            error: function(xhr) {
+                                $("#verificationError").text(xhr.responseText);
+                            }
+                        });
+                    }
+                     **/
+                </script>
             </div>
             <div>
                 <p style="text-align: left;">약관</p>

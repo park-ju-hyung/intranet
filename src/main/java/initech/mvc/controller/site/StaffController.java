@@ -2,6 +2,7 @@ package initech.mvc.controller.site;
 
 import initech.mvc.service.site.StaffEmailService;
 import initech.mvc.service.site.StaffService;
+import initech.mvc.vo.EmailVO;
 import initech.mvc.vo.StaffVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -182,17 +183,27 @@ public class StaffController {
         return "/common/message";
     }
 
-    // 이메일
+
+
+
+
+
     @PostMapping("/sendVerificationCode")
     public ResponseEntity<?> sendVerificationCode(@RequestBody Map<String, String> payload) {
         try {
             String email = payload.get("memberEmail");
-            StaffVO staffVO = new StaffVO();
-            staffVO.setMemberEmail(email); // 사용자의 이메일 주소를 StaffVO에 설정
-            staffEmailService.sendSimpleEmail(staffVO); // 인증번호 발송
+            EmailVO emailVO = new EmailVO();
+            emailVO.setVerifyEmail(email);
+
+            if(staffEmailService.checkEmailExists(emailVO)) {
+                return ResponseEntity.badRequest().body("이미 등록된 이메일입니다.");
+            }
+            staffEmailService.sendSimpleEmail(emailVO);
+            staffEmailService.insertemail(emailVO);
             return ResponseEntity.ok("인증번호가 이메일로 발송되었습니다.");
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        } catch (MessagingException e) {
+
             return ResponseEntity.badRequest().body("인증번호 발송에 실패하였습니다.");
         }
     }

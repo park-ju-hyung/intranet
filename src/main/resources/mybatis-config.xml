@@ -9,7 +9,7 @@
   </settings>
   <typeAliases>
     <typeAlias type="initech.mvc.vo.StaffVO" alias="staffVO"></typeAlias>
+    <typeAlias type="initech.mvc.vo.EmailVO" alias="EmailVO"></typeAlias>
   </typeAliases>
-  
   
 </configuration>

@@ -14,7 +14,6 @@
          member_employmentDate,
          member_birth,
          member_email,
-         verify_code,
          application_date,
          updated_at,
          employment_status,
@@ -28,7 +27,6 @@
              #{memberEmploymentDate},
              #{memberBirth},
              #{memberEmail},
-             #{verifyCode},
              NOW(),
              NOW(),
              #{employmentStatus},
@@ -182,13 +180,28 @@
         WHERE reg_id = #{regId}
     </update>
 
-    <!--이메일-->
-    <select id="findemailcontentbyid" resultType="StaffVO">
-        SELECT member_email,
-               member_id,
-               member_name
-        FROM member
-        WHERE reg_id = #{regId}
+    <!--이메일 데이터 저장-->
+    <insert id="insertemail" parameterType="EmailVO">
+        INSERT INTO verifycode
+        (verify_email,
+         verify_code)
+        VALUES (
+                #{verifyEmail},
+                #{verifyCode})
+    </insert>
+
+    <!--이메일 중복 체크-->
+    <select id="existsemail" resultType="int" parameterType="EmailVO">
+        SELECT COUNT(*) FROM verifycode WHERE verify_email = #{verifyEmail}
     </select>
+
+
+
+
+
+
+
+
+
 
 </mapper>
