@@ -71,22 +71,24 @@ public class StaffEmailService {
 
     // 이메일 발송
     public void sendSimpleEmail(EmailVO email) throws MessagingException {
-        // 6자리 숫자 인증 코드를 생성합니다.
-        String verifycode = RandomStringUtils.randomNumeric(6);
-        // 생성된 코드를 이메일 주소와 매핑하여 저장합니다.
-        verifyCodes.put(email.getVerifyEmail(), verifycode);
 
-        // 여기에 추가: EmailVO 객체에 인증번호를 설정합니다.
+        // 인증코드 생성 및 매핑
+        String verifycode = RandomStringUtils.randomNumeric(6);
+        verifyCodes.put(email.getVerifyEmail(), verifycode);
         email.setVerifyCode(verifycode);
 
+        // 이메일 생성 및 설정
         MimeMessage message = StaffmailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
 
+        // 이메일 안에 변수를 담게 해주는 역할
         Context context = new Context();
         context.setVariable("verifyCode", email.getVerifyCode());
 
+        // 최종적으로 context 객체에 담긴 변수들을 emailTemplate 안에 넣어 최종적인 이메일 컨텐츠를 생성
         String htmlContent = templateEngine.process("emailTemplate", context);
 
+        // 이메일 메세지의 세부 사항들을 설정하는 과정
         helper.setFrom("noreply@example.com");
         helper.setTo(email.getVerifyEmail());
         helper.setSubject("[ini]회원가입용 인증번호입니다.");
