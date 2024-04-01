@@ -75,7 +75,7 @@ public interface StaffMapper {
     int existsemail(EmailVO email);
 
     // 인증코드 삭제
-    void deleteverificationcodesbyemail(String email);
+    void deleteallverificationcodes(EmailVO emailVO);
 
     // 새 인증코드 삽입
     void insertverificationcode(EmailVO emailVO);

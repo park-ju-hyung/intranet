@@ -196,8 +196,8 @@
     </select>
 
     <!-- 기존 인증코드 삭제 -->
-    <delete id="deleteverificationcodesbyemail" parameterType="String">
-        DELETE FROM verifycode WHERE verify_email = #{verifyEmail}
+    <delete id="deleteallverificationcodes" >
+        DELETE FROM verifycode
     </delete>
 
     <!-- 새 인증코드 삽입 -->

@@ -51,7 +51,7 @@ public class StaffEmailService {
     // 기존 인증코드 삭제, 새 인증코드 삽입
     public void updateVerificationCode(EmailVO emailVO) throws MessagingException{
         // 기존 인증코드 삭제
-        staffMapper.deleteverificationcodesbyemail(emailVO.getVerifyEmail());
+        staffMapper.deleteallverificationcodes(emailVO);
 
         // 새 인증코드를 생성
         String newCode = RandomStringUtils.randomNumeric(6);
@@ -65,9 +65,7 @@ public class StaffEmailService {
 
     }
 
-    public void deleteverificationcodesbyemail(String email) {
-        staffMapper.deleteverificationcodesbyemail(email);
-    }
+
 
     // 이메일 발송
     public void sendSimpleEmail(EmailVO email) throws MessagingException {
