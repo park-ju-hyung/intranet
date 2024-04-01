@@ -214,6 +214,18 @@ public class StaffController {
     }
 
 
+    @PostMapping("/verify-code")
+    public ResponseEntity<String> verifyCode(@RequestBody EmailVO emailVO) {
+        String email = emailVO.getVerifyEmail();
+        String code = emailVO.getVerifyCode();
+        boolean isValid = staffEmailService.verifyCode(email, code);
+        if (isValid) {
+            return ResponseEntity.ok("올바른 인증코드입니다.");
+        } else {
+            return ResponseEntity.badRequest().body("올바르지 않은 인증코드입니다.");
+        }
+    }
+
 
 
 

@@ -121,10 +121,52 @@
 
                 <span class="essential-style">*</span>
                 <label style="margin-top: 20px;">인증코드</label>
-                <input id="verifyCode" name="verifyCode" type="text" placeholder="인증코드 입력" class="form-control2">
+                <input id="verifyCode" name="verifyCode" type="text" placeholder="인증코드 입력" class="form-control2" onchange="checkCode()">
                 <div th:if="${emailVericodefyError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${emailVericodefyError}"></span>
                 </div>
+                <!-- 여기에 검증 메시지가 표시됩니다. -->
+                <div id="verificationMessage"></div>
+
+                <script>
+                    function checkCode() {
+                        var email = document.getElementById('memberEmail').value;
+                        var code = document.getElementById('verifyCode').value;
+                        var messageDiv = document.getElementById('verificationMessage');
+
+                        // 인증 코드의 길이 확인
+                        if (code.length === 6) {
+                            fetch('/verify-code', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json', // JSON 형식의 데이터임을 명시
+                                },
+                                body: JSON.stringify({ verifyEmail: email, verifyCode: code }) // EmailVO 객체의 필드와 일치하도록 키 이름을 지정
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('올바르지않은 인증코드입니다.');
+                                    }
+                                    return response.text();
+                                })
+                                .then(text => {
+                                    messageDiv.innerText = text;
+                                    messageDiv.style.color = 'green'; // 성공 메시지는 녹색으로 표시
+                                })
+                                .catch(error => {
+                                    messageDiv.innerText = error.message;
+                                    messageDiv.style.color = 'red'; // 오류 메시지는 빨간색으로 표시
+                                });
+                        } else {
+                            messageDiv.innerText = '올바른 인증코드 형식이 아닙니다.';
+                            messageDiv.style.color = 'red'; // 형식이 맞지 않을 때의 메시지도 빨간색으로 표시
+                        }
+                    }
+                </script>
+
+
+
+
                 <script>
                     function sendVerificationCode() {
                         var email = $("#memberEmail").val();
@@ -145,6 +187,7 @@
                             }
                         });
                     }
+
                 </script>
             </div>
             <div>

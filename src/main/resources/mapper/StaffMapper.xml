@@ -206,6 +206,15 @@
         VALUES (#{verifyEmail}, #{verifyCode}, NOW())
     </insert>
 
+    <!-- 이메일로 최신 인증코드 조회 , 유효성 검사-->
+    <select id="findAuthCodeByEmail" parameterType="String" resultType="String">
+        SELECT verify_code
+        FROM verifycode
+        WHERE verify_email = #{verifyEmail}
+        ORDER BY sent_time DESC
+            LIMIT 1
+    </select>
+
 
 
 

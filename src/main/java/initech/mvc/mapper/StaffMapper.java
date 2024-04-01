@@ -80,6 +80,9 @@ public interface StaffMapper {
     // 새 인증코드 삽입
     void insertverificationcode(EmailVO emailVO);
 
+    // 유효성 검사
+    String findAuthCodeByEmail(String verifyEmail);
+
 
 
 

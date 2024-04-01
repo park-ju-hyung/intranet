@@ -95,6 +95,12 @@ public class StaffEmailService {
         StaffmailSender.send(message);
     }
 
+    // 유효성 검사
+    public boolean verifyCode(String email, String inputCode) {
+        String savedCode = staffMapper.findAuthCodeByEmail(email);
+        return savedCode != null && savedCode.equals(inputCode);
+    }
+
 
 
 
