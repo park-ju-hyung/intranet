@@ -70,18 +70,13 @@ public class StaffEmailService {
     // 이메일 발송
     public void sendSimpleEmail(EmailVO email) throws MessagingException {
 
-        // 인증코드 생성 및 매핑
-        String verifycode = RandomStringUtils.randomNumeric(6);
-        verifyCodes.put(email.getVerifyEmail(), verifycode);
-        email.setVerifyCode(verifycode);
-
         // 이메일 생성 및 설정
         MimeMessage message = StaffmailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
 
         // 이메일 안에 변수를 담게 해주는 역할
         Context context = new Context();
-        context.setVariable("verifyCode", email.getVerifyCode());
+        context.setVariable("verifyCode", email.getVerifyCode()); // 변경 없음
 
         // 최종적으로 context 객체에 담긴 변수들을 emailTemplate 안에 넣어 최종적인 이메일 컨텐츠를 생성
         String htmlContent = templateEngine.process("emailTemplate", context);
@@ -97,7 +92,7 @@ public class StaffEmailService {
 
     // 유효성 검사
     public boolean verifyCode(String email, String inputCode) {
-        String savedCode = staffMapper.findAuthCodeByEmail(email);
+        String savedCode = staffMapper.findauthcodebyemail(email);
         return savedCode != null && savedCode.equals(inputCode);
     }
 

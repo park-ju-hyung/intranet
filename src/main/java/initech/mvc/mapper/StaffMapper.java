@@ -81,7 +81,7 @@ public interface StaffMapper {
     void insertverificationcode(EmailVO emailVO);
 
     // 유효성 검사
-    String findAuthCodeByEmail(String verifyEmail);
+    String findauthcodebyemail(String verifyEmail);
 
 
 
