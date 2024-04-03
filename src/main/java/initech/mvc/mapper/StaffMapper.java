@@ -80,8 +80,11 @@ public interface StaffMapper {
     // 새 인증코드 삽입
     void insertverificationcode(EmailVO emailVO);
 
+    // 만료된 인증코드 삭제
+    void deleteExpiredVerificationCodes();
+
     // 유효성 검사
-    String findauthcodebyemail(String verifyEmail);
+    EmailVO findauthcodebyemail(@Param("verifyEmail") String verifyEmail);
 
 
 

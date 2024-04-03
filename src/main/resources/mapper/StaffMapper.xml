@@ -184,10 +184,14 @@
     <insert id="insertemail" parameterType="EmailVO">
         INSERT INTO verifycode
         (verify_email,
-         verify_code)
+         verify_code,
+         sent_time,
+         expire_titme)
         VALUES (
                 #{verifyEmail},
-                #{verifyCode})
+                #{verifyCode},
+                NOW(),
+                DATE_ADD(NOW(), INTERVAL 3 MINUTE))
     </insert>
 
     <!--이메일 중복 체크-->
@@ -202,18 +206,27 @@
 
     <!-- 새 인증코드 삽입 -->
     <insert id="insertverificationcode" parameterType="EmailVO">
-        INSERT INTO verifycode (verify_email, verify_code, sent_time)
-        VALUES (#{verifyEmail}, #{verifyCode}, NOW())
+        INSERT INTO verifycode (verify_email, verify_code, sent_time, expire_time)
+        VALUES (#{verifyEmail}, #{verifyCode}, NOW(), #{expireTime})
     </insert>
 
     <!-- 이메일로 최신 인증코드 조회 , 유효성 검사-->
-    <select id="findauthcodebyemail" parameterType="String" resultType="String">
-        SELECT verify_code
-        FROM verifycode
+    <select id="findauthcodebyemail" parameterType="String" resultType="EmailVO">
+        SELECT * FROM verifycode
         WHERE verify_email = #{verifyEmail}
+          AND expire_time > NOW()
         ORDER BY sent_time DESC
             LIMIT 1
     </select>
+
+
+    <!-- 만료된 인증 코드 삭제 -->
+    <delete id="deleteExpiredVerificationCodes">
+        <![CDATA[
+        DELETE FROM verifycode WHERE expire_time < NOW()
+        ]]>
+    </delete>
+
 
 
 

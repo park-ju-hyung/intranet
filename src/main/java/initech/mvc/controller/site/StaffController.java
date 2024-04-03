@@ -193,17 +193,12 @@ public class StaffController {
         String email = payload.get("memberEmail");
         EmailVO emailVO = new EmailVO();
         emailVO.setVerifyEmail(email);
-
         try {
-
-            // 이미 등록된 이메일인 경우 기존 인증코드를 삭제하고 새 인증코드를 발송합니다.
-
             if(staffEmailService.checkEmailExists(emailVO)) {
-                // staffEmailService.updateVerificationCode(emailVO);
+                // 이미 등록된 이메일이면 오류 응답 반환
                 return ResponseEntity.badRequest().body("이미 등록된 이메일입니다. 새 인증코드를 요청할 수 없습니다.");
-            }
-            else {
-                // 새 이메일인 경우 새 인증코드를 생성하여 발송합니다.
+            } else {
+                // 새 이메일인 경우 새 인증코드를 생성하여 발송
                 staffEmailService.updateVerificationCode(emailVO);
                 return ResponseEntity.ok("인증번호가 이메일로 발송되었습니다.");
             }

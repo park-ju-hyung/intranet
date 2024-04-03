@@ -17,6 +17,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -57,12 +58,15 @@ public class StaffEmailService {
         String newCode = RandomStringUtils.randomNumeric(6);
         emailVO.setVerifyCode(newCode);
 
-        // 새 인증코드를 데이터베이스에 삽입합니다.
+        // 인증코드 만료 시간을 현재 시간으로부터 30분 후로 설정
+        LocalDateTime expireTime = LocalDateTime.now().plusMinutes(3);
+        emailVO.setExpireTime(expireTime);
+
+        // 새 인증코드 및 만료 시간을 데이터베이스에 삽입
         staffMapper.insertverificationcode(emailVO);
 
-        // 새 인증코드를 이메일로 발송합니다.
+        // 새 인증코드를 이메일로 발송
         sendSimpleEmail(emailVO);
-
     }
 
 
@@ -92,8 +96,9 @@ public class StaffEmailService {
 
     // 유효성 검사
     public boolean verifyCode(String email, String inputCode) {
-        String savedCode = staffMapper.findauthcodebyemail(email);
-        return savedCode != null && savedCode.equals(inputCode);
+        staffMapper.deleteExpiredVerificationCodes();
+        EmailVO savedCodeInfo = staffMapper.findauthcodebyemail(email);
+        return savedCodeInfo != null && savedCodeInfo.getVerifyCode().equals(inputCode);
     }
 
 

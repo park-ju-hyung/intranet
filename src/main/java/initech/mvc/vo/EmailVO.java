@@ -3,6 +3,7 @@ package initech.mvc.vo;
 import lombok.*;
 
 import javax.persistence.Column;
+import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -24,6 +25,10 @@ public class EmailVO {
     // 유효화 검사
     @Column(name = "is_valid")
     private boolean isValid;
+    // 만료시간
+    @Column(name = "expire_time")
+    private LocalDateTime expireTime;
+
 
 
 }
