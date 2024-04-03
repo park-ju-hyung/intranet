@@ -79,7 +79,7 @@ public class StaffVO {
     // 인증코드
     @NotBlank(message = "인증코드는 필수 입력 항목입니다.")
     @Column(name = "verify_code")
-    private String verifyCode1;
+    private String verifyCode;
 
 
     // 신청일자 (게시물 신청일자)
@@ -109,7 +109,5 @@ public class StaffVO {
     private String memberPermission = "신청";
 
     // 사유
-    @Column(name="member_reason")
-    @NotBlank(message = "사유는 필수 항목입니다.")
     private String memberReason;
 }

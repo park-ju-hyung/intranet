@@ -112,7 +112,5 @@ public class StaffDTO{
     private String memberPermission = "신청";
 
     // 사유
-    @Column(name="member_reason")
-    @NotBlank(message = "사유는 필수 항목입니다.")
     private String memberReason;
 }

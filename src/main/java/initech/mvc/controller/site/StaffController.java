@@ -9,11 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.AbstractBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
@@ -44,30 +42,29 @@ public class StaffController {
     @PostMapping("/register")
     public String registerStaff(@Valid @ModelAttribute("staff") StaffVO staff,
                                 BindingResult bindingResult,
-                                Model model, AbstractBindingResult result) throws Exception {
+                                Model model,
+                                @RequestParam("verifyCode") String verifyCode) throws Exception {
 
-
-        /**
         // 아이디 유효성 검사
-        List<FieldError> memberidErrors = bindingResult.getFieldErrors("member_id");
-        String memberidErrorMessage = null;
+        List<FieldError> memberIdErrors = bindingResult.getFieldErrors("memberId");
+        String memberIdErrorMessage = null;
 
-        for (FieldError error : memberidErrors) {
+        for (FieldError error : memberIdErrors) {
             if ("NotBlank".equals(error.getCode())) {
-                memberidErrorMessage = "아이디는 필수 항목입니다.";
+                memberIdErrorMessage = "아이디는 필수 항목입니다.";
                 break; // NotBlank 오류가 가장 높은 우선순위
             } else if ("Size".equals(error.getCode())) {
-                memberidErrorMessage = "아이디는 최소 4~20자리여야 합니다.";
+                memberIdErrorMessage = "아이디는 최소 4~20자리여야 합니다.";
                 // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
             } else if ("Pattern".equals(error.getCode())) {
-                if (memberidErrorMessage == null) { // 이전에 다른 메시지가 설정되지 않았다면
-                    memberidErrorMessage = "특수문자는 _만 가능합니다.";
+                if (memberIdErrorMessage == null) { // 이전에 다른 메시지가 설정되지 않았다면
+                    memberIdErrorMessage = "특수문자는 _만 가능합니다.";
                 }
             }
         }
 
         // 비밀번호 유효성 검사
-        List<FieldError> memberPasswordErrors = bindingResult.getFieldErrors("member_password");
+        List<FieldError> memberPasswordErrors = bindingResult.getFieldErrors("memberPassword");
         String memberPasswordErrorMessage = null;
 
         for (FieldError error : memberPasswordErrors) {
@@ -85,38 +82,35 @@ public class StaffController {
         }
 
         // 비밀번호 확인 유효성 검사
-        String confirm_password = staff.getConfirm_password();
-        if (confirm_password == null || confirm_password.isEmpty()) {
-            bindingResult.rejectValue("confirm_password", "NotBlank", "");
-        } else if (!staff.getConfirm_password().equals(staff.getMember_password())) {
-            result.rejectValue("confirm_password", "Match", "비밀번호가 일치하지 않습니다.");
+
+        String confirmPassword = staff.getConfirmPassword();
+        if (confirmPassword == null || confirmPassword.isEmpty()) {
+            bindingResult.rejectValue("confirmPassword", "NotBlank", "비밀번호 확인은 필수 항목입니다.");
+        } else if (!confirmPassword.equals(staff.getMemberPassword())) {
+            bindingResult.rejectValue("confirmPassword", "Match", "비밀번호가 일치하지 않습니다.");
         }
 
-
-
-
-
         // 이름 유효성 검사
-        String memberNameErrorMessage = bindingResult.getFieldError("member_name") != null ?
-                bindingResult.getFieldError("member_name").getDefaultMessage() : null;
+        String memberNameErrorMessage = bindingResult.getFieldError("memberName") != null ?
+                bindingResult.getFieldError("memberName").getDefaultMessage() : null;
 
 
         // 부서 유효성 검사
-        if (staff.getMember_department() == null || staff.getMember_department().isEmpty()) {
-            bindingResult.rejectValue("member_department", "error.member_department", "부서를 선택해야 합니다.");
+        if (staff.getMemberDepartment() == null || staff.getMemberDepartment().isEmpty()) {
+            bindingResult.rejectValue("memberDepartment", "error.memberDepartment", "부서를 선택해야 합니다.");
         }
-        String memberDepartmentErrorMessage = bindingResult.getFieldError("member_department") != null ?
-                bindingResult.getFieldError("member_department").getDefaultMessage() : null;
+        String memberDepartmentErrorMessage = bindingResult.getFieldError("memberDepartment") != null ?
+                bindingResult.getFieldError("memberDepartment").getDefaultMessage() : null;
 
         // 직급 유효성 검사
-        if (staff.getMember_position() == null || staff.getMember_position().isEmpty()) {
-            bindingResult.rejectValue("member_position", "error.member_position", "직급을 선택해야 합니다.");
+        if (staff.getMemberPosition() == null || staff.getMemberPosition().isEmpty()) {
+            bindingResult.rejectValue("memberPosition", "error.memberPosition", "직급을 선택해야 합니다.");
         }
-        String memberPostionErrorMessage = bindingResult.getFieldError("member_position") != null ?
-                bindingResult.getFieldError("member_position").getDefaultMessage() : null;
+        String memberPositionErrorMessage = bindingResult.getFieldError("memberPosition") != null ?
+                bindingResult.getFieldError("memberPosition").getDefaultMessage() : null;
 
         // 입사일자 유효성 검사
-        List<FieldError> memberEmployErrors = bindingResult.getFieldErrors("member_employmentdate");
+        List<FieldError> memberEmployErrors = bindingResult.getFieldErrors("memberEmploymentDate");
         String memberEmployErrorMessage = null;
 
         for (FieldError error : memberEmployErrors) {
@@ -130,7 +124,7 @@ public class StaffController {
         }
 
         // 생년월일 유효성 검사
-        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("member_birth");
+        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("memberBirth");
         String memberBirthErrorMessage = null;
 
         for (FieldError error : memberBirthErrors) {
@@ -144,7 +138,7 @@ public class StaffController {
         }
 
         // 이메일 유효성 검사
-        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("member_email");
+        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("memberEmail");
         String memberEmailErrorMessage = null;
 
         for (FieldError error : memberEmailErrors) {
@@ -158,29 +152,40 @@ public class StaffController {
         }
 
         // 인증코드 유효성 검사
-        String emailVerifycodeErrorMessage = bindingResult.getFieldError("verify_code") != null ?
-                bindingResult.getFieldError("verify_code").getDefaultMessage() : null;
+        String emailVerifyCodeErrorMessage = bindingResult.getFieldError("verifyCode") != null ?
+                bindingResult.getFieldError("verifyCode").getDefaultMessage() : null;
 
 
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("memberidError", memberidErrorMessage);
+            model.addAttribute("memberIdError", memberIdErrorMessage);
             model.addAttribute("memberPasswordError", memberPasswordErrorMessage);
             model.addAttribute("memberNameError", memberNameErrorMessage);
             model.addAttribute("memberDepartmentError", memberDepartmentErrorMessage);
-            model.addAttribute("memberPostionError", memberPostionErrorMessage);
+            model.addAttribute("memberPositionError", memberPositionErrorMessage);
             model.addAttribute("memberEmployError", memberEmployErrorMessage);
             model.addAttribute("memberBirthError", memberBirthErrorMessage);
             model.addAttribute("memberEmailError", memberEmailErrorMessage);
-            model.addAttribute("emailVericodefyError", emailVerifycodeErrorMessage);
+            model.addAttribute("emailVerifyCodeError", emailVerifyCodeErrorMessage);
             return "site/member/register";
         }
-         **/
 
-        model.addAttribute("message", "회원가입이 정상적으로 완료되었습니다.");
-        model.addAttribute("searchUrl", "/index");
-        staffService.register(staff);
-        return "/common/message";
+        // 인증 코드 검증
+        boolean isCodeValid = staffEmailService.verifyCode(staff.getMemberEmail(), verifyCode);
+
+        if (isCodeValid) {
+            staffService.register(staff);
+            model.addAttribute("message", "회원가입이 정상적으로 완료되었습니다.");
+            model.addAttribute("searchUrl", "/index");
+            return "/common/message";
+        } else {
+            // 인증 코드가 올바르지 않은 경우, 에러 메시지를 모델에 추가하고 회원가입 폼으로 리다이렉션
+            model.addAttribute("emailCodeError", "인증 코드가 유효하지 않습니다.");
+            return "site/member/register"; // 회원가입 폼으로 리다이렉션
+        }
+
+
+
     }
 
 
