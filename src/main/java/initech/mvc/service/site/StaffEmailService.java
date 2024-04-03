@@ -58,10 +58,6 @@ public class StaffEmailService {
         String newCode = RandomStringUtils.randomNumeric(6);
         emailVO.setVerifyCode(newCode);
 
-        // 인증코드 만료 시간을 현재 시간으로부터 30분 후로 설정
-        LocalDateTime expireTime = LocalDateTime.now().plusMinutes(3);
-        emailVO.setExpireTime(expireTime);
-
         // 새 인증코드 및 만료 시간을 데이터베이스에 삽입
         staffMapper.insertverificationcode(emailVO);
 
@@ -96,7 +92,7 @@ public class StaffEmailService {
 
     // 유효성 검사
     public boolean verifyCode(String email, String inputCode) {
-        staffMapper.deleteExpiredVerificationCodes();
+        staffMapper.deleteexpiredverificationcodes();
         EmailVO savedCodeInfo = staffMapper.findauthcodebyemail(email);
         return savedCodeInfo != null && savedCodeInfo.getVerifyCode().equals(inputCode);
     }
