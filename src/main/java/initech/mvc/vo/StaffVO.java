@@ -40,7 +40,7 @@ public class StaffVO {
     private String memberPassword;
 
     // 비밀번호 재확인
-    @NotBlank(message = "비밀번호 확인은 필수 입력 항목입니다.")
+    @NotBlank(message = "")
     private String confirmPassword;
 
     // 이름
