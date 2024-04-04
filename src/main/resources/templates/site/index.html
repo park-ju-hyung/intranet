@@ -17,7 +17,14 @@
                 <p>Check your vacation</p>
                 <p>Sign in to start your session</p>
                 <input type="email" id="memberEmail" name="memberEmail" placeholder="E-mail" class="form-control2">
+                <div th:if="${memberEmailError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberEmailError}"></span>
+                </div>
+
                 <input type="password" id="memberPassword" name="memberPassword" placeholder="Password" class="form-control2">
+                <div th:if="${memberPasswordError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberPasswordError}"></span>
+                </div>
                 <div class="mgt-15">
                     <input type="checkbox" id="autoid">
                     <label for="autoid">자동저장</label>

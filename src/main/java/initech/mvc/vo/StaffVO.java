@@ -72,7 +72,7 @@ public class StaffVO {
 
     // 이메일
     @NotBlank(message = "이메일은 필수 입력 항목입니다.")
-    @Email
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     @Column(name = "member_email")
     private String memberEmail;
 

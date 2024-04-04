@@ -145,7 +145,7 @@ public class StaffController {
             if ("NotBlank".equals(error.getCode())) {
                 memberEmailErrorMessage = "이메일은 필수입니다.";
                 break; // NotBlank 오류가 가장 높은 우선순위
-            } else if ("Email".equals(error.getCode())) {
+            } else if ("Pattern".equals(error.getCode())) {
                 memberEmailErrorMessage = "올바른 형식이 아닙니다.";
                 // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
             }
@@ -236,11 +236,56 @@ public class StaffController {
     @GetMapping("/site/login")
     public String loginForm(Model model) {
         model.addAttribute("staff", new StaffVO());
-        return "/site/login";
+        return "/site/member/login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("staff") StaffVO staff, Model model) {
+    public String login(@Valid @ModelAttribute("staff") StaffVO staff,
+                        BindingResult bindingResult,
+                        Model model) {
+
+
+        // 이메일 유효성 검사
+        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("memberEmail");
+        String memberEmailErrorMessage = null;
+
+        for (FieldError error : memberEmailErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberEmailErrorMessage = "이메일은 필수입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Pattern".equals(error.getCode())) {
+                memberEmailErrorMessage = "올바른 형식이 아닙니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            }
+        }
+
+
+
+        // 비밀번호 유효성 검사
+        List<FieldError> memberPasswordErrors = bindingResult.getFieldErrors("memberPassword");
+        String memberPasswordErrorMessage = null;
+
+        for (FieldError error : memberPasswordErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberPasswordErrorMessage = "비밀번호는 필수 항목입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Size".equals(error.getCode())) {
+                memberPasswordErrorMessage = "비밀번호는 최소 8~16자리여야 합니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            } else if ("Pattern".equals(error.getCode())) {
+                if (memberPasswordErrorMessage == null) { // 이전에 다른 메시지가 설정되지 않았다면
+                    memberPasswordErrorMessage = "비밀번호는 영문 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.";
+                }
+            }
+        }
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("memberPasswordError", memberPasswordErrorMessage);
+            model.addAttribute("memberEmailError", memberEmailErrorMessage);
+            return "site/member/login";
+        }
+
+
         StaffVO authenticatedStaff = staffService.login(staff.getMemberEmail() , staff.getMemberPassword());
         if (authenticatedStaff != null) {
             model.addAttribute("message", "로그인 정상");
@@ -253,7 +298,7 @@ public class StaffController {
         }
     }
 
-    // 전직연차현황
+    // 전 직연차현황
     @GetMapping("/consumer/AllEmployee")
     public String AllEmployee(Model model) {
         model.addAttribute("staff", new StaffVO());
