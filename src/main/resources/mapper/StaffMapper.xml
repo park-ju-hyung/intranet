@@ -238,7 +238,10 @@
 
     <!-- 로그인 , 사용자 정보 조회 -->
     <select id="findbyemailandpassword" resultType="StaffVO">
-        SELECT * FROM member
+        SELECT
+            member_email,
+            member_Password
+            FROM member
         WHERE member_Email = #{memberEmail} AND member_Password = #{memberPassword}
     </select>
 
