@@ -227,6 +227,49 @@ public class StaffController {
     }
 
 
+    @GetMapping("/index")
+    public String index(Model model) {
+        model.addAttribute("staff", new StaffVO());
+        return "index";
+    }
+
+    @GetMapping("/site/login")
+    public String loginForm(Model model) {
+        model.addAttribute("staff", new StaffVO());
+        return "/site/login";
+    }
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute("staff") StaffVO staff, Model model) {
+        StaffVO authenticatedStaff = staffService.login(staff.getMemberEmail() , staff.getMemberPassword());
+        if (authenticatedStaff != null) {
+            model.addAttribute("message", "로그인 정상");
+            model.addAttribute("searchUrl", "/consumer/AllEmployee");
+            return "/common/message";
+        } else {
+            model.addAttribute("message", "로그인 실패");
+            model.addAttribute("searchUrl", "/site/login");
+            return "/common/message";
+        }
+    }
+
+    // 전직연차현황
+    @GetMapping("/consumer/AllEmployee")
+    public String AllEmployee(Model model) {
+        model.addAttribute("staff", new StaffVO());
+        return "/site/consumer/AllEmployee";
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

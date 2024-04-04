@@ -81,26 +81,12 @@ public interface StaffMapper {
     void insertverificationcode(EmailVO emailVO);
 
     // 만료된 인증코드 삭제
-    void deleteExpiredVerificationCodes();
+    void deleteexpiredverificationcodes();
 
     // 유효성 검사
-    EmailVO findauthcodebyemail(@Param("verifyEmail") String verifyEmail);
+    EmailVO findauthcodebyemail(String verifyEmail);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // 로그인
+    StaffVO findbyemailandpassword(@Param("memberEmail") String email, @Param("memberPassword") String password);
 
 }

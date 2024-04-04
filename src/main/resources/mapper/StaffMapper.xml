@@ -47,7 +47,16 @@
 
     <!--list 페이징 조회 -->
     <select id="selectallusers" resultMap="staffresultmap" parameterType="map">
-        SELECT * FROM member ORDER BY application_date DESC LIMIT #{size} OFFSET #{offset}
+        SELECT
+            reg_id,
+            order_number,
+            member_name,
+            member_department,
+            member_position,
+            member_employmentdate,
+            application_date,
+            employment_status
+            FROM member ORDER BY application_date DESC LIMIT #{size} OFFSET #{offset}
     </select>
 
     <!-- list 전체 데이터의 수를 조회하는 쿼리 -->
@@ -206,7 +215,13 @@
 
     <!-- 이메일로 최신 인증코드 조회 , 유효성 검사-->
     <select id="findauthcodebyemail" parameterType="String" resultType="EmailVO">
-        SELECT * FROM verifycode
+        SELECT
+            id_v,
+            verify_email,
+            verify_code,
+            sent_time,
+            expire_time
+            FROM verifycode
         WHERE verify_email = #{verifyEmail}
           AND expire_time > NOW()
         ORDER BY sent_time DESC
@@ -221,11 +236,11 @@
         ]]>
     </delete>
 
-    <!-- 이메일을 통해 회원 정보를 조회하는 쿼리입니다. -->
-    <select id="findmemberbyemail" resultType="staffVO">
-        SELECT * FROM member WHERE member_email = #{memberEmail}
+    <!-- 로그인 , 사용자 정보 조회 -->
+    <select id="findbyemailandpassword" resultType="StaffVO">
+        SELECT * FROM member
+        WHERE member_Email = #{memberEmail} AND member_Password = #{memberPassword}
     </select>
-
 
 
 

@@ -22,9 +22,6 @@ public class EmailVO {
     // 인증코드
     @Column(name = "verify_code")
     private String verifyCode;
-    // 유효화 검사
-    @Column(name = "is_valid")
-    private boolean isValid;
     // 만료시간
     @Column(name = "expire_time")
     private LocalDateTime expireTime;

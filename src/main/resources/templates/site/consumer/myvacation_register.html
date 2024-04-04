@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../../../static/res/common/css/boot.css">
     <link rel="stylesheet" href="../../../static/res/common/css/common.css">
     <link rel="stylesheet" href="../../../static/res/common/css/source.css">
-    <title>내 정보 수정</title>
+
+    <title>연차신청</title>
 </head>
 
 <body>
@@ -18,69 +19,77 @@
         <div class="left-menu">
             <ul>
                 <li>
-                    <a href="../user/edit_profile.html">홍길동</a>
+                    <a href="/edit_profile.html">홍길동</a>
                     <span>님</span>
                     <button class="logout-button">
                         로그아웃
                     </button>
-                    <a href="../user/edit_profile.html">내정보 수정</a>
+                    <a href="/edit_profile.html">내정보 수정</a>
                 </li>
                 <li>
-                    <a href="../user/All_employee.html">
+                    <a href="AllEmployee.html">
                         임직원 연차현황
                     </a>
                 </li>
-                <li>
-                    <a href="../user/myvaction_list.html">
+                <li class="active">
+                    <a href="/myvaction_list.html">
                         내 연차현황
                     </a>
                 </li>
                 <li>
-                    <a href="../user/myvacation_register.html">
+                    <a href="/myvacation_register.html">
                         연차신청
                     </a>
                 </li>
             </ul>
         </div>
+
         <!--left-menu-->
         <!--content-->
         <div class="content">
-            <p>내 정보 수정</p>
+            <p>연차신청</p>
             <table class="view">
+                <colgroup>
+                    <col width="20%">
+                    <col width="80%">
+                </colgroup>
                 <tbody>
                     <tr>
-                        <td>이름</td>
-                        <td>홍길동</td>
+                        <td>신청일자</td>
+                        <td>
+                            오늘일자
+                        </td>
                     </tr>
                     <tr>
-                        <td>생년월일</td>
-                        <td>19970131</td>
+                        <td>시작일자</td>
+                        <td>
+                            <input type="text" placeholder="시작일자" class="form-control">
+                        </td>
                     </tr>
                     <tr>
-                        <td>부서</td>
-                        <td>인사과</td>
+                        <td>종료일자</td>
+                        <td>
+                            <input type="text" placeholder="종료일자" class="form-control">
+                        </td>
                     </tr>
                     <tr>
-                        <td>직급</td>
-                        <td>사원</td>
+                        <td>총 일수</td>
+                        <td>
+                            자동계산
+                        </td>
                     </tr>
                     <tr>
-                        <td>아이디</td>
-                        <td>ptg0131</td>
-                    </tr>
-                    <tr>
-                        <td>이메일</td>
-                        <td>ptg0131@gmail.com</td>
+                        <td>사유</td>
+                        <td>
+                            <input type="text" placeholder="사유" class="form-control">
+                        </td>
                     </tr>
                 </tbody>
             </table>
             <div class="register-button-form">
-                <a href="../user/edit_password.html" class="deepblue-button">
-                    비밀번호 변경
-                </a>
-                <a href="../user/edit_basic_info.html" class="register-button">
-                    기본정보 변경
-                </a>
+                <button class="register-button">
+                    연차 신청
+                </button>
             </div>
 
         </div>

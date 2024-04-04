@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
-
+/**
 	@RequestMapping(value="/user/login", method={RequestMethod.GET, RequestMethod.POST})
 	public String userLogin(@ModelAttribute("userDTO") UserDTO userDTO, 
 			HttpServletRequest request, ModelMap modelMap) throws Exception {
@@ -24,11 +24,12 @@ public class LoginController {
 		String referrer = request.getHeader("Referer");
 		request.getSession().setAttribute("prevPage", referrer);
 		
-		return "site/user/login";
+		return "";
 	}
 	
 	@GetMapping("/siteLoginRedirect")
 	public String siteLoginRedirect() throws Exception {
 		return "redirect:/user/login";
 	}
+	**/
 }

@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin-bootstrap.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/admin.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/boot.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/common.css">
-    <link rel="stylesheet" href="../../../static/res/common/css/source.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin-bootstrap.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/admin.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/boot.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+
     <title>임직원 연차현황</title>
 </head>
 
@@ -18,25 +19,25 @@
         <div class="left-menu">
             <ul>
                 <li>
-                    <a href="../user/edit_profile.html">홍길동</a>
+                    <a href="/edit_profile.html">홍길동</a>
                     <span>님</span>
                     <button class="logout-button">
                         로그아웃
                     </button>
-                    <a href="../user/edit_profile.html">내정보 수정</a>
+                    <a href="/edit_profile.html">내정보 수정</a>
                 </li>
                 <li class="active">
-                    <a href="../user/All_employee.html">
+                    <a href="/AllEmployee.html">
                         임직원 연차현황
                     </a>
                 </li>
                 <li>
-                    <a href="../user/myvaction_list.html">
+                    <a href="/myvaction_list.html">
                         내 연차현황
                     </a>
                 </li>
                 <li>
-                    <a href="../user/myvacation_register.html">
+                    <a href="/myvacation_register.html">
                         연차신청
                     </a>
                 </li>

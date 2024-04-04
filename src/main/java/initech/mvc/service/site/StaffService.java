@@ -22,6 +22,11 @@ public class StaffService {
         staffMapper.insertstaff(staff);
     }
 
+    public StaffVO login(String email, String password) {
+        return staffMapper.findbyemailandpassword(email, password);
+    }
+
+
 
 
 

@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="../../../static/res/common/css/boot.css">
     <link rel="stylesheet" href="../../../static/res/common/css/common.css">
     <link rel="stylesheet" href="../../../static/res/common/css/source.css">
-
-    <title>연차신청</title>
+    <title>반려사유</title>
 </head>
 
 <body>
@@ -19,78 +18,64 @@
         <div class="left-menu">
             <ul>
                 <li>
-                    <a href="../user/edit_profile.html">홍길동</a>
+                    <a href="/edit_profile.html">홍길동</a>
                     <span>님</span>
                     <button class="logout-button">
                         로그아웃
                     </button>
-                    <a href="../user/edit_profile.html">내정보 수정</a>
+                    <a href="/edit_profile.html">내정보 수정</a>
                 </li>
                 <li>
-                    <a href="../user/All_employee.html">
+                    <a href="AllEmployee.html">
                         임직원 연차현황
                     </a>
                 </li>
-                <li class="active">
-                    <a href="../user/myvaction_list.html">
+                <li>
+                    <a href="/myvaction_list.html">
                         내 연차현황
                     </a>
                 </li>
-                <li>
-                    <a href="../user/myvacation_register.html">
+                <li class="active">
+                    <a href="/myvacation_register.html">
                         연차신청
                     </a>
                 </li>
             </ul>
         </div>
-
+        <!--left-menu-->
         <!--left-menu-->
         <!--content-->
         <div class="content">
-            <p>연차신청</p>
+            <p>반려사유</p>
             <table class="view">
-                <colgroup>
-                    <col width="20%">
-                    <col width="80%">
-                </colgroup>
                 <tbody>
                     <tr>
-                        <td>신청일자</td>
-                        <td>
-                            오늘일자
-                        </td>
+                        <td>이름</td>
+                        <td>홍길동</td>
+                    </tr>
+                    <tr>
+                        <td>신청날짜</td>
+                        <td>2024-12-31</td>
                     </tr>
                     <tr>
                         <td>시작일자</td>
-                        <td>
-                            <input type="text" placeholder="시작일자" class="form-control">
-                        </td>
+                        <td>2024-01-02</td>
                     </tr>
                     <tr>
                         <td>종료일자</td>
-                        <td>
-                            <input type="text" placeholder="종료일자" class="form-control">
-                        </td>
+                        <td>2024-01-01</td>
                     </tr>
                     <tr>
                         <td>총 일수</td>
-                        <td>
-                            자동계산
-                        </td>
+                        <td>3일</td>
                     </tr>
                     <tr>
-                        <td>사유</td>
-                        <td>
-                            <input type="text" placeholder="사유" class="form-control">
-                        </td>
+                        <td>반려사유</td>
+                        <td>인원부족</td>
                     </tr>
                 </tbody>
             </table>
-            <div class="register-button-form">
-                <button class="register-button">
-                    연차 신청
-                </button>
-            </div>
+
 
         </div>
 
