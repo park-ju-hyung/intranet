@@ -288,13 +288,25 @@ public class StaffController {
             return "site/member/login";
         }
 
+        // 등록된 이메일이 없을시
+        StaffVO findbyemail = staffService.findbyemail(loginDTO.getMemberEmail());
+        if(findbyemail == null){
+            model.addAttribute("message", "등록된 이메일이 없습니다.");
+            model.addAttribute("searchUrl", "/site/login");
+            return "/common/message";
+        }
+
+
         StaffVO authenticatedStaff = staffService.login(loginDTO.getMemberEmail() , loginDTO.getMemberPassword());
+        // 이메일과 비밀번호 일치
         if (authenticatedStaff != null) {
             model.addAttribute("message", "로그인 정상");
             model.addAttribute("searchUrl", "/consumer/AllEmployee");
             return "/common/message";
+
+        // 이메일과 비밀번호 불일치
         } else {
-            model.addAttribute("message", "로그인 실패");
+            model.addAttribute("message", "이메일과 비밀번호가 일치하지않습니다. ");
             model.addAttribute("searchUrl", "/site/login");
             return "/common/message";
         }
@@ -308,6 +320,24 @@ public class StaffController {
         model.addAttribute("staff", new StaffVO());
         return "/site/consumer/AllEmployee";
     }
+
+    // 아이디 찾기
+    @GetMapping("/account/find_username")
+    public String findUserForm(Model model) {
+        model.addAttribute("staff", new StaffVO());
+        return "/site/account/find_username";
+    }
+
+
+
+
+    // 비밀번호 찾기
+    @GetMapping("/account/find_userpassword")
+    public String findPasswordForm(Model model) {
+        model.addAttribute("staff", new StaffVO());
+        return "/site/account/find_userpassword";
+    }
+
 
 
 

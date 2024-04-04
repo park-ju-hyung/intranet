@@ -22,9 +22,20 @@ public class StaffService {
         staffMapper.insertstaff(staff);
     }
 
+    // login
     public StaffVO login(String email, String password) {
         return staffMapper.findbyemailandpassword(email, password);
     }
+
+    // 이메일 중복 확인 메서드
+    public StaffVO findbyemail(String email) {
+        return staffMapper.findbyemail(email);
+    }
+
+
+
+
+
 
 
 

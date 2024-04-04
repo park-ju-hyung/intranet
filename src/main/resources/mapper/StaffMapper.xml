@@ -245,6 +245,13 @@
         WHERE member_Email = #{memberEmail} AND member_Password = #{memberPassword}
     </select>
 
+    <!--이메일 정보 조회-->
+    <select id="findbyemail" resultType="StaffVO">
+        SELECT
+            member_email
+        FROM member
+        WHERE member_Email = #{memberEmail}
+    </select>
 
 
 

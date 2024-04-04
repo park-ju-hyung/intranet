@@ -86,7 +86,15 @@ public interface StaffMapper {
     // 유효성 검사
     EmailVO findauthcodebyemail(String verifyEmail);
 
+
+
+
+
     // 로그인
     StaffVO findbyemailandpassword(@Param("memberEmail") String email, @Param("memberPassword") String password);
+
+    // 이메일 중복 확인
+    StaffVO findbyemail(@Param("memberEmail") String email);
+
 
 }
