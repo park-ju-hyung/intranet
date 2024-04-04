@@ -16,7 +16,7 @@
             <div class="login-content">
                 <p>Check your vacation</p>
                 <p>Sign in to start your session</p>
-                <input type="email" id="memberEmail" name="memberEmail" placeholder="E-mail" class="form-control2">
+                <input type="text" id="memberEmail" name="memberEmail" placeholder="E-mail" class="form-control2">
                 <div th:if="${memberEmailError}" class="error-message" style="margin-top:6px; color:red">
                     <span th:text="${memberEmailError}"></span>
                 </div>

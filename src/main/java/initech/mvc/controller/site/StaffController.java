@@ -1,5 +1,6 @@
 package initech.mvc.controller.site;
 
+import initech.mvc.dto.LoginDTO;
 import initech.mvc.service.site.StaffEmailService;
 import initech.mvc.service.site.StaffService;
 import initech.mvc.vo.EmailVO;
@@ -240,9 +241,11 @@ public class StaffController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("staff") StaffVO staff,
+    public String login(@Valid @ModelAttribute("loginDTO") LoginDTO loginDTO,
                         BindingResult bindingResult,
                         Model model) {
+
+
 
 
         // 이메일 유효성 검사
@@ -285,8 +288,7 @@ public class StaffController {
             return "site/member/login";
         }
 
-
-        StaffVO authenticatedStaff = staffService.login(staff.getMemberEmail() , staff.getMemberPassword());
+        StaffVO authenticatedStaff = staffService.login(loginDTO.getMemberEmail() , loginDTO.getMemberPassword());
         if (authenticatedStaff != null) {
             model.addAttribute("message", "로그인 정상");
             model.addAttribute("searchUrl", "/consumer/AllEmployee");
@@ -296,6 +298,8 @@ public class StaffController {
             model.addAttribute("searchUrl", "/site/login");
             return "/common/message";
         }
+
+
     }
 
     // 전 직연차현황
