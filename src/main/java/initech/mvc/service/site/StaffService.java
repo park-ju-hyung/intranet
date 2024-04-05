@@ -32,6 +32,10 @@ public class StaffService {
         return staffMapper.findbyemail(email);
     }
 
+    // 아이디찾기
+    public StaffVO findbyid(String name, String birth) {
+        return staffMapper.findbyid(name, birth);
+    }
 
 
 

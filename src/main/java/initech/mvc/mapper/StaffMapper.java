@@ -100,4 +100,14 @@ public interface StaffMapper {
     StaffVO findbyemail(@Param("memberEmail") String email);
 
 
+
+
+
+    // 아이디 찾기
+    StaffVO findbyid(@Param("memberName") String name,
+                     @Param("memberBirth") String birth);
+
+
+
+
 }

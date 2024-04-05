@@ -255,7 +255,19 @@
         SELECT
             member_email
         FROM member
-        WHERE member_Email = #{memberEmail}
+        WHERE
+            member_Email = #{memberEmail}
+    </select>
+
+
+
+    <!-- 아이디 찾기 -->
+    <select id="findbyid" resultType="StaffVO">
+        SELECT
+            member_email
+        FROM member
+        WHERE member_name = #{memberName} and
+            member_birth = #{memberBirth}
     </select>
 
 

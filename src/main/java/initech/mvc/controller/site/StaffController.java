@@ -1,5 +1,6 @@
 package initech.mvc.controller.site;
 
+import initech.mvc.dto.FindEmailDTO;
 import initech.mvc.dto.LoginDTO;
 import initech.mvc.service.site.StaffEmailService;
 import initech.mvc.service.site.StaffService;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
@@ -305,7 +307,6 @@ public class StaffController {
             model.addAttribute("message", "로그인 정상");
             model.addAttribute("searchUrl", "/consumer/AllEmployee");
             return "/common/message";
-
         // 이메일과 비밀번호 불일치
         } else {
             model.addAttribute("message", "이메일과 비밀번호가 일치하지않습니다. ");
@@ -324,20 +325,81 @@ public class StaffController {
     }
 
     // 아이디 찾기
-    @GetMapping("/account/find_username")
+    @GetMapping("/account/finduseremail")
     public String findUserForm(Model model) {
         model.addAttribute("staff", new StaffVO());
-        return "/site/account/find_username";
+        return "/site/account/finduseremail";
+    }
+
+    // 아이디 찾기 기능
+    @PostMapping("/findUsername")
+    public String findUser(@Valid @ModelAttribute("FindEmailDTO") FindEmailDTO findEmailDTO,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes,
+                           Model model) {
+
+        // 이름 유효성 검사
+        String memberNameErrorMessage = bindingResult.getFieldError("memberName") != null ?
+                bindingResult.getFieldError("memberName").getDefaultMessage() : null;
+
+        // 생년월일 유효성 검사
+        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("memberBirth");
+        String memberBirthErrorMessage = null;
+
+        for (FieldError error : memberBirthErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberBirthErrorMessage = "생년월일은 필수입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Pattern".equals(error.getCode())) {
+                memberBirthErrorMessage = "올바른 형식이 아닙니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            }
+        }
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("memberNameError", memberNameErrorMessage);
+            model.addAttribute("memberBirthError", memberBirthErrorMessage);
+            return "/site/account/finduseremail";
+        }
+
+
+
+
+
+        StaffVO result = staffService.findbyid(findEmailDTO.getMemberName(), findEmailDTO.getMemberBirth());
+
+        if (result != null && result.getMemberEmail() != null) {
+            // 성공 메시지와 이메일을 RedirectAttributes에 추가
+            redirectAttributes.addFlashAttribute("email", result.getMemberEmail());
+            redirectAttributes.addFlashAttribute("message", "회원님의 이메일을 찾았습니다.");
+            return "redirect:/account/finduseremail_success";
+        } else {
+            // 실패 메시지를 RedirectAttributes에 추가
+            redirectAttributes.addFlashAttribute("message", "입력하신 정보와 일치하는 회원 정보가 없습니다.");
+            return "redirect:/account/finduseremail_fail";
+        }
+
+
+    }
+
+    // 이메일 찾기 성공
+    @GetMapping("/account/finduseremail_success")
+    public String findUsernameSuccess() {
+        return "/site/account/finduseremail_success";
     }
 
 
-
+    // 이메일 찾기 실패
+    @GetMapping("/account/finduseremail_fail")
+    public String findUsernameFail() {
+        return "/site/account/finduseremail_fail";
+    }
 
     // 비밀번호 찾기
-    @GetMapping("/account/find_userpassword")
+    @GetMapping("/account/finduserpassword")
     public String findPasswordForm(Model model) {
         model.addAttribute("staff", new StaffVO());
-        return "/site/account/find_userpassword";
+        return "/site/account/finduserpassword";
     }
 
 

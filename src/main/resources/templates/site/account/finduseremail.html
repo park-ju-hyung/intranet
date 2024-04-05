@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/site/css/user.css}" />
+    <title>아이디 찾기</title>
+</head>
+
+<body>
+    <div class="register-form">
+        <form th:action="@{/findUsername}" method="post">
+            <p>이메일 찾기</p>
+            <p class="essential">
+                <span class="essential-style">*</span>
+                필수입력사항
+            </p>
+            <div>
+                <span class="essential-style">*</span>
+                <label for="memberName">이름</label>
+                <input type="text" id="memberName" name="memberName" placeholder="이름 입력" class="form-control2">
+                <div th:if="${memberNameError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberNameError}"></span>
+                </div>
+            </div>
+            <div>
+                <span class="essential-style">*</span>
+                <label for="memberBirth">생년월일</label>
+                <input type="text" id="memberBirth" name="memberBirth" placeholder="YYYYMMDD" class="form-control2">
+                <div th:if="${memberBirthError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberBirthError}"></span>
+                </div>
+
+            </div>
+            <!--
+            <div>
+                <span class="essential-style">*</span>
+                <label for="memberEmail">이메일</label>
+                <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일" class="form-control2">
+            </div>
+            -->
+            <button class="register-button">
+                <span>아이디 찾기</span>
+            </button>
+        </form>
+
+    </div>
+</body>
+
+</html>
