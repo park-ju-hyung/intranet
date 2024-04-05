@@ -177,7 +177,7 @@ public class StaffController {
         if (isCodeValid) {
             staffService.register(staff);
             model.addAttribute("message", "회원가입이 정상적으로 완료되었습니다.");
-            model.addAttribute("searchUrl", "/index");
+            model.addAttribute("searchUrl", "/site/login");
             return "/common/message";
         } else {
             // 인증 코드가 올바르지 않은 경우, 에러 메시지를 모델에 추가하고 회원가입 폼으로 리다이렉션
@@ -199,8 +199,10 @@ public class StaffController {
         String email = payload.get("memberEmail");
         EmailVO emailVO = new EmailVO();
         emailVO.setVerifyEmail(email);
+        StaffVO staffVO = new StaffVO();
+        staffVO.setMemberEmail(email);
         try {
-            if(staffEmailService.checkEmailExists(emailVO)) {
+            if(staffEmailService.checkEmailExists(emailVO) || staffEmailService.existsmemberemail(staffVO)) {
                 // 이미 등록된 이메일이면 오류 응답 반환
                 return ResponseEntity.badRequest().body("이미 등록된 이메일입니다. 새 인증코드를 요청할 수 없습니다.");
             } else {

@@ -49,6 +49,10 @@ public class StaffEmailService {
         return staffMapper.existsemail(email) > 0;
     }
 
+    public boolean existsmemberemail(StaffVO email) {
+        return staffMapper.existsmemberemail(email) > 0;
+    }
+
     // 기존 인증코드 삭제, 새 인증코드 삽입
     public void updateVerificationCode(EmailVO emailVO) throws MessagingException{
         // 기존 인증코드 삭제

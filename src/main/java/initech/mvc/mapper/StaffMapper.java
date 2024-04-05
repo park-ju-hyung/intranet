@@ -71,8 +71,11 @@ public interface StaffMapper {
     // 이메일 등록 기능
     void insertemail(EmailVO email);
 
-    // 이메일 중복 체크
+    // 이메일 중복 체크1
     int existsemail(EmailVO email);
+
+    // 이메일 중복 체크2
+    int existsmemberemail(StaffVO email);
 
     // 인증코드 삭제
     void deleteallverificationcodes(EmailVO emailVO);

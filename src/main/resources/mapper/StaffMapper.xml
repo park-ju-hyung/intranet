@@ -189,9 +189,14 @@
         WHERE reg_id = #{regId}
     </update>
 
-    <!--이메일 중복 체크-->
+    <!--이메일 중복 체크1-->
     <select id="existsemail" resultType="int" parameterType="EmailVO">
         SELECT COUNT(*) FROM verifycode WHERE verify_email = #{verifyEmail}
+    </select>
+
+    <!--이메일 중복 체크2-->
+    <select id="existsmemberemail" resultType="int" parameterType="StaffVO">
+        SELECT COUNT(*) FROM member WHERE member_email = #{memberEmail}
     </select>
 
     <!-- 기존 인증코드 삭제 -->
