@@ -1,6 +1,7 @@
 package initech.mvc.controller.site;
 
 import initech.mvc.dto.FindEmailDTO;
+import initech.mvc.dto.FindPasswordDTO;
 import initech.mvc.dto.LoginDTO;
 import initech.mvc.service.site.StaffEmailService;
 import initech.mvc.service.site.StaffService;
@@ -397,9 +398,107 @@ public class StaffController {
 
     // 비밀번호 찾기
     @GetMapping("/account/finduserpassword")
-    public String findPasswordForm(Model model) {
-        model.addAttribute("staff", new StaffVO());
+    public String findPasswordForm() {
         return "/site/account/finduserpassword";
+    }
+
+    @PostMapping("/finduserpassword")
+    public String finduserpassword(@Valid @ModelAttribute("FindPasswordDTO") FindPasswordDTO findPasswordDTO,
+                                   BindingResult bindingResult,
+                                   Model model,
+                                   @RequestParam("verifyCode") String verifyCode){
+
+        // 이름 유효성 검사
+        String memberNameErrorMessage = bindingResult.getFieldError("memberName") != null ?
+                bindingResult.getFieldError("memberName").getDefaultMessage() : null;
+
+        // 생년월일 유효성 검사
+        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("memberBirth");
+        String memberBirthErrorMessage = null;
+
+        for (FieldError error : memberBirthErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberBirthErrorMessage = "생년월일은 필수입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Pattern".equals(error.getCode())) {
+                memberBirthErrorMessage = "올바른 형식이 아닙니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            }
+        }
+
+        // 이메일 유효성 검사
+        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("memberEmail");
+        String memberEmailErrorMessage = null;
+
+        for (FieldError error : memberEmailErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberEmailErrorMessage = "이메일은 필수입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Pattern".equals(error.getCode())) {
+                memberEmailErrorMessage = "올바른 형식이 아닙니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            }
+        }
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("memberNameError", memberNameErrorMessage);
+            model.addAttribute("memberBirthError", memberBirthErrorMessage);
+            model.addAttribute("memberEmailError", memberEmailErrorMessage);
+            return "/site/account/finduserpassword";
+        }
+
+        // 인증 코드 검증
+        boolean isCodeValid = staffEmailService.verifyCode(findPasswordDTO.getMemberEmail(), verifyCode);
+
+        if (isCodeValid) {
+            model.addAttribute("message", "본인인증이 완료되었습니다.");
+            model.addAttribute("searchUrl", "/account/find_usernewpassword");
+            return "/common/message";
+        } else {
+            // 인증 코드가 올바르지 않은 경우, 에러 메시지를 모델에 추가하고 회원가입 폼으로 리다이렉션
+            model.addAttribute("emailCodeError", "인증 코드가 유효하지 않습니다.");
+            return "/site/account/finduserpassword"; // 회원가입 폼으로 리다이렉션
+        }
+    }
+
+    @PostMapping("/finduserpasswordEmail")
+    public ResponseEntity<?> finduserpasswordEmail(@RequestBody Map<String, String> payload) {
+        String email = payload.get("memberEmail");
+        String name = payload.get("memberName");
+        String birthdate = payload.get("memberBirth");
+
+        StaffVO staffVO = new StaffVO();
+        staffVO.setMemberEmail(email);
+        staffVO.setMemberName(name);
+        staffVO.setMemberBirth(birthdate);
+
+        // 일치하는 사용자 정보를 데이터베이스에서 검색
+        StaffVO result = staffService.findbypassword(staffVO.getMemberEmail(), staffVO.getMemberName(), staffVO.getMemberBirth());
+
+        try {
+            if (result == null) {
+                // 일치하는 사용자 정보가 없으면 오류 응답 반환
+                return ResponseEntity.badRequest().body("제공된 정보와 일치하는 사용자가 없습니다.");
+            } else {
+                // 일치하는 사용자가 있는 경우 새 인증코드를 생성하여 발송
+                EmailVO emailVO = new EmailVO();
+                emailVO.setVerifyEmail(email);
+                staffEmailService.updateVerificationCode(emailVO);
+                return ResponseEntity.ok("인증번호가 이메일로 발송되었습니다.");
+            }
+        } catch (MessagingException e) {
+            // MessagingException 처리
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("인증번호 발송에 실패하였습니다.");
+        }
+
+
+    }
+
+
+    // 비밀번호 재설정
+    @GetMapping("/account/find_usernewpassword")
+    public String findPasswordSuccessForm(){
+        return "/site/account/find_usernewpassword";
     }
 
 

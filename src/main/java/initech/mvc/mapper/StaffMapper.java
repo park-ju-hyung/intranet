@@ -107,7 +107,8 @@ public interface StaffMapper {
     StaffVO findbyid(@Param("memberName") String name,
                      @Param("memberBirth") String birth);
 
-
-
-
+    // 비밀번호 찾기
+    StaffVO findbypassword(@Param("memberEmail") String email,
+                           @Param("memberName") String name,
+                           @Param("memberBirth") String birth );
 }

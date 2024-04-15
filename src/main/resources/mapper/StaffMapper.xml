@@ -271,6 +271,19 @@
     </select>
 
 
+    <!-- 비밀번호 찾기 -->
+    <select id="findbypassword" resultType="StaffVO">
+        SELECT
+            member_email,
+            member_name,
+            member_birth
+        FROM member
+        WHERE member_email = #{memberEmail} and
+              member_name = #{memberName} and
+              member_birth = #{memberBirth}
+    </select>
+
+
 
 
 

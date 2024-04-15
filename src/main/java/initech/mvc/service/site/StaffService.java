@@ -37,6 +37,11 @@ public class StaffService {
         return staffMapper.findbyid(name, birth);
     }
 
+    // 비밀번호찾기
+    public StaffVO findbypassword(String email, String name, String birth) {
+        return staffMapper.findbypassword(email, name, birth);
+    }
+
 
 
 
