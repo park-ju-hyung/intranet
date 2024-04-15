@@ -274,6 +274,7 @@
     <!-- 비밀번호 찾기 -->
     <select id="findbypassword" resultType="StaffVO">
         SELECT
+            reg_id,
             member_email,
             member_name,
             member_birth
@@ -284,9 +285,20 @@
     </select>
 
 
+    <!-- 비밀번호 재설정, 상세조회 -->
+    <select id="usernewpassword" parameterType="long" resultType="StaffVO">
+        SELECT reg_id,
+               member_Password
+        FROM member
+        WHERE reg_id = #{regId}
+    </select>
 
-
-
+    <!-- 비밀번호 재설정 기능 -->
+    <update id="reginewpassword">
+        UPDATE member
+        SET member_password = #{staff.memberPassword}
+        WHERE reg_id = #{regId}
+    </update>
 
 
 

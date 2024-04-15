@@ -111,4 +111,12 @@ public interface StaffMapper {
     StaffVO findbypassword(@Param("memberEmail") String email,
                            @Param("memberName") String name,
                            @Param("memberBirth") String birth );
+
+    // 비밀번호 재설정 - 경로 id 추가
+    StaffVO usernewpassword(Long regId);
+
+    // 비밀번호 재설정 - 새로운 비밀번호 저장
+    void reginewpassword(Long regId, StaffVO staff);
+
+
 }

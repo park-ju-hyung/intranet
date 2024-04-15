@@ -37,9 +37,19 @@ public class StaffService {
         return staffMapper.findbyid(name, birth);
     }
 
-    // 비밀번호찾기
+    // 비밀번호 찾기
     public StaffVO findbypassword(String email, String name, String birth) {
         return staffMapper.findbypassword(email, name, birth);
+    }
+
+    // 비밀번호 재설정 - 경로에 id 추가
+    public StaffVO usernewpassword(Long regId) {
+        return staffMapper.usernewpassword(regId);
+    }
+
+    // 비밀번호 재설정 - 기능
+    public void reginewpassword(Long regId, StaffVO staff) {
+        staffMapper.reginewpassword(regId, staff);
     }
 
 

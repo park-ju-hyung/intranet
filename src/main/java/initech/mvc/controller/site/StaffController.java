@@ -406,6 +406,7 @@ public class StaffController {
     public String finduserpassword(@Valid @ModelAttribute("FindPasswordDTO") FindPasswordDTO findPasswordDTO,
                                    BindingResult bindingResult,
                                    Model model,
+                                   RedirectAttributes redirectAttributes,
                                    @RequestParam("verifyCode") String verifyCode){
 
         // 이름 유효성 검사
@@ -449,16 +450,17 @@ public class StaffController {
 
         // 인증 코드 검증
         boolean isCodeValid = staffEmailService.verifyCode(findPasswordDTO.getMemberEmail(), verifyCode);
-
+        StaffVO result = staffService.findbypassword(findPasswordDTO.getMemberEmail(), findPasswordDTO.getMemberName(), findPasswordDTO.getMemberBirth());
         if (isCodeValid) {
             model.addAttribute("message", "본인인증이 완료되었습니다.");
-            model.addAttribute("searchUrl", "/account/find_usernewpassword");
+            model.addAttribute("searchUrl", "/account/find_usernewpassword/" + result.getRegId());
             return "/common/message";
         } else {
             // 인증 코드가 올바르지 않은 경우, 에러 메시지를 모델에 추가하고 회원가입 폼으로 리다이렉션
             model.addAttribute("emailCodeError", "인증 코드가 유효하지 않습니다.");
             return "/site/account/finduserpassword"; // 회원가입 폼으로 리다이렉션
         }
+
     }
 
     @PostMapping("/finduserpasswordEmail")
@@ -496,9 +498,19 @@ public class StaffController {
 
 
     // 비밀번호 재설정
-    @GetMapping("/account/find_usernewpassword")
-    public String findPasswordSuccessForm(){
-        return "/site/account/find_usernewpassword";
+    @GetMapping("/account/find_usernewpassword/{regId}")
+    public String findPasswordSuccessForm(@PathVariable("regId") Long regId, Model model){
+        StaffVO usernewpassword = staffService.usernewpassword(regId);
+        model.addAttribute("staff", usernewpassword);
+        return "site/account/find_usernewpassword";
+    }
+
+    @PostMapping("/account/reginewpassword/{regId}")
+    public String reginewpassword(@PathVariable("regId") Long regId, @ModelAttribute("staff") StaffVO staff, Model model) {
+        staffService.reginewpassword(regId, staff);
+        model.addAttribute("message", "수정이 되었습니다.");
+        model.addAttribute("searchUrl", "/site/login");
+        return "/common/message";
     }
 
 

@@ -33,7 +33,7 @@ public class StaffAdminService {
 
     // 관리자 > 회원관리 > view 수정 기능
     public void updateStaff(Long regId, StaffVO staff) {
-        staffMapper.updatestaff(regId, staff); // MyBatis 매퍼 메서드도 이에 맞춰 수정되어야 함
+        staffMapper.updatestaff(regId, staff);
     }
 
 
