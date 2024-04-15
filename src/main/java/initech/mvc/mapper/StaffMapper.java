@@ -1,6 +1,7 @@
 package initech.mvc.mapper;
 
 import initech.common.config.DBMapper;
+import initech.mvc.dto.RegiPasswordDTO;
 import initech.mvc.vo.EmailVO;
 import initech.mvc.vo.StaffVO;
 import org.apache.ibatis.annotations.Param;
@@ -116,7 +117,7 @@ public interface StaffMapper {
     StaffVO usernewpassword(Long regId);
 
     // 비밀번호 재설정 - 새로운 비밀번호 저장
-    void reginewpassword(Long regId, StaffVO staff);
+    void reginewpassword(Long regId, RegiPasswordDTO regiPasswordDTO);
 
 
 }

@@ -3,6 +3,7 @@ package initech.mvc.controller.site;
 import initech.mvc.dto.FindEmailDTO;
 import initech.mvc.dto.FindPasswordDTO;
 import initech.mvc.dto.LoginDTO;
+import initech.mvc.dto.RegiPasswordDTO;
 import initech.mvc.service.site.StaffEmailService;
 import initech.mvc.service.site.StaffService;
 import initech.mvc.vo.EmailVO;
@@ -501,14 +502,49 @@ public class StaffController {
     @GetMapping("/account/find_usernewpassword/{regId}")
     public String findPasswordSuccessForm(@PathVariable("regId") Long regId, Model model){
         StaffVO usernewpassword = staffService.usernewpassword(regId);
-        model.addAttribute("staff", usernewpassword);
+        model.addAttribute("regiPasswordDTO", usernewpassword);
         return "site/account/find_usernewpassword";
     }
 
     @PostMapping("/account/reginewpassword/{regId}")
-    public String reginewpassword(@PathVariable("regId") Long regId, @ModelAttribute("staff") StaffVO staff, Model model) {
-        staffService.reginewpassword(regId, staff);
-        model.addAttribute("message", "수정이 되었습니다.");
+    public String reginewpassword(@PathVariable("regId") Long regId,
+                                  @Valid @ModelAttribute("regiPasswordDTO") RegiPasswordDTO regiPasswordDTO,
+                                  BindingResult bindingResult,
+                                  Model model) {
+        // 비밀번호 유효성 검사
+        List<FieldError> memberPasswordErrors = bindingResult.getFieldErrors("memberPassword");
+        String memberPasswordErrorMessage = null;
+
+        for (FieldError error : memberPasswordErrors) {
+            if ("NotBlank".equals(error.getCode())) {
+                memberPasswordErrorMessage = "비밀번호는 필수 항목입니다.";
+                break; // NotBlank 오류가 가장 높은 우선순위
+            } else if ("Size".equals(error.getCode())) {
+                memberPasswordErrorMessage = "비밀번호는 최소 8~16자리여야 합니다.";
+                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
+            } else if ("Pattern".equals(error.getCode())) {
+                if (memberPasswordErrorMessage == null) { // 이전에 다른 메시지가 설정되지 않았다면
+                    memberPasswordErrorMessage = "비밀번호는 영문 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.";
+                }
+            }
+        }
+
+        // 비밀번호 확인 유효성 검사
+
+        String confirmPassword = regiPasswordDTO.getConfirmPassword();
+        if (confirmPassword == null || confirmPassword.isEmpty()) {
+            bindingResult.rejectValue("confirmPassword", "NotBlank", "비밀번호 확인은 필수 항목입니다.");
+        } else if (!confirmPassword.equals(regiPasswordDTO.getMemberPassword())) {
+            bindingResult.rejectValue("confirmPassword", "Match", "비밀번호가 일치하지 않습니다.");
+        }
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("memberPasswordError", memberPasswordErrorMessage);
+            return "site/account/find_usernewpassword";
+        }
+
+        // 서비스 메소드를 통해 비밀번호 업데이트 수행
+        staffService.reginewpassword(regId, regiPasswordDTO);
+        model.addAttribute("message", "비밀번호가 성공적으로 변경되었습니다.");
         model.addAttribute("searchUrl", "/site/login");
         return "/common/message";
     }

@@ -1,6 +1,7 @@
 package initech.mvc.service.site;
 
 
+import initech.mvc.dto.RegiPasswordDTO;
 import initech.mvc.mapper.StaffMapper;
 import initech.mvc.vo.StaffVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,8 @@ public class StaffService {
     }
 
     // 비밀번호 재설정 - 기능
-    public void reginewpassword(Long regId, StaffVO staff) {
-        staffMapper.reginewpassword(regId, staff);
+    public void reginewpassword(Long regId, RegiPasswordDTO regiPasswordDTO) {
+        staffMapper.reginewpassword(regId, regiPasswordDTO);
     }
 
 

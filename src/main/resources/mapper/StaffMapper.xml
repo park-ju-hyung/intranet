@@ -296,7 +296,7 @@
     <!-- 비밀번호 재설정 기능 -->
     <update id="reginewpassword">
         UPDATE member
-        SET member_password = #{staff.memberPassword}
+        SET member_password = #{regiPasswordDTO.memberPassword}
         WHERE reg_id = #{regId}
     </update>
 
