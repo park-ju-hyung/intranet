@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/site/css/user.css}" />
+    <title>로그인</title>
+</head>
+
+<body class="login-body">
+<div class="bg-white">
+    <form th:action="@{/login}"  method="post">
+        <div class="login-content">
+            <p>Check your vacation</p>
+            <p>Sign in to start your session</p>
+            <input type="text" id="memberEmail" name="memberEmail" placeholder="E-mail" class="form-control2">
+            <div th:if="${memberEmailError}" class="error-message" style="margin-top:6px; color:red">
+                <span th:text="${memberEmailError}"></span>
+            </div>
+
+            <input type="password" id="memberPassword" name="memberPassword" placeholder="Password" class="form-control2">
+            <div th:if="${memberPasswordError}" class="error-message" style="margin-top:6px; color:red">
+                <span th:text="${memberPasswordError}"></span>
+            </div>
+            <div class="mgt-15">
+                <input type="checkbox" id="autoSave"> <!-- 체크박스 ID 수정 -->
+                <label for="autoSave">자동저장</label>
+                <div href="javscript void(0)" class="find_link ">
+                    <a href="/account/finduseremail">
+                        이메일 찾기
+                    </a>
+                    <span>|</span>
+                    <a href="/account/finduserpassword">
+                        비밀번호 찾기
+                    </a>
+                </div>
+            </div>
+            <button class="deepblue-button" id="loginButton"> <!-- 버튼 ID 추가 -->
+                <span>로그인</span>
+            </button>
+            <a href="/register" class="gray-button">
+                회원가입
+            </a>
+        </div>
+
+
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var savedEmail = localStorage.getItem('memberEmail');
+            var autoSaveChecked = localStorage.getItem('autoSaveChecked') === 'true'; // 문자열 'true'로 저장되어 있을 것입니다.
+
+            if (savedEmail) {
+                document.getElementById('memberEmail').value = savedEmail;
+            }
+
+            // 체크박스 상태를 불러와서 적용합니다.
+            document.getElementById('autoSave').checked = autoSaveChecked;
+
+            // '로그인' 버튼에 이벤트 리스너 추가
+            document.getElementById('loginButton').addEventListener('click', function() {
+                var email = document.getElementById('memberEmail').value;
+                var autoSave = document.getElementById('autoSave').checked;
+
+                // 자동저장 체크박스의 상태에 따라 로컬 스토리지에 이메일 저장
+                if (autoSave) {
+                    localStorage.setItem('memberEmail', email);
+                    localStorage.setItem('autoSaveChecked', 'true'); // 체크박스 상태 저장
+                } else {
+                    localStorage.removeItem('memberEmail');
+                    localStorage.setItem('autoSaveChecked', 'false'); // 체크박스 상태 저장
+                }
+            });
+        });
+    </script>
+</div>
+
+</body>
+
+</html>

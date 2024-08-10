@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.MessagingException;
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -45,135 +44,10 @@ public class StaffController {
 
     // 회원가입 기능
     @PostMapping("/register")
-    public String registerStaff(@Valid @ModelAttribute("staff") StaffVO staff,
+    public String registerStaff(@ModelAttribute("staff") StaffVO staff,
                                 BindingResult bindingResult,
                                 Model model,
                                 @RequestParam("verifyCode") String verifyCode) throws Exception {
-
-        // 아이디 유효성 검사
-        List<FieldError> memberIdErrors = bindingResult.getFieldErrors("memberId");
-        String memberIdErrorMessage = null;
-
-        for (FieldError error : memberIdErrors) {
-            if ("NotBlank".equals(error.getCode())) {
-                memberIdErrorMessage = "아이디는 필수 항목입니다.";
-                break; // NotBlank 오류가 가장 높은 우선순위
-            } else if ("Size".equals(error.getCode())) {
-                memberIdErrorMessage = "아이디는 최소 4~20자리여야 합니다.";
-                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
-            } else if ("Pattern".equals(error.getCode())) {
-                if (memberIdErrorMessage == null) { // 이전에 다른 메시지가 설정되지 않았다면
-                    memberIdErrorMessage = "특수문자는 _만 가능합니다.";
-                }
-            }
-        }
-
-        // 비밀번호 유효성 검사
-        List<FieldError> memberPasswordErrors = bindingResult.getFieldErrors("memberPassword");
-        String memberPasswordErrorMessage = null;
-
-        for (FieldError error : memberPasswordErrors) {
-            if ("NotBlank".equals(error.getCode())) {
-                memberPasswordErrorMessage = "비밀번호는 필수 항목입니다.";
-                break; // NotBlank 오류가 가장 높은 우선순위
-            } else if ("Size".equals(error.getCode())) {
-                memberPasswordErrorMessage = "비밀번호는 최소 8~16자리여야 합니다.";
-                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
-            } else if ("Pattern".equals(error.getCode())) {
-                if (memberPasswordErrorMessage == null) { // 이전에 다른 메시지가 설정되지 않았다면
-                    memberPasswordErrorMessage = "비밀번호는 영문 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.";
-                }
-            }
-        }
-
-        // 비밀번호 확인 유효성 검사
-
-        String confirmPassword = staff.getConfirmPassword();
-        if (confirmPassword == null || confirmPassword.isEmpty()) {
-            bindingResult.rejectValue("confirmPassword", "NotBlank", "비밀번호 확인은 필수 항목입니다.");
-        } else if (!confirmPassword.equals(staff.getMemberPassword())) {
-            bindingResult.rejectValue("confirmPassword", "Match", "비밀번호가 일치하지 않습니다.");
-        }
-
-        // 이름 유효성 검사
-        String memberNameErrorMessage = bindingResult.getFieldError("memberName") != null ?
-                bindingResult.getFieldError("memberName").getDefaultMessage() : null;
-
-
-        // 부서 유효성 검사
-        if (staff.getMemberDepartment() == null || staff.getMemberDepartment().isEmpty()) {
-            bindingResult.rejectValue("memberDepartment", "error.memberDepartment", "부서를 선택해야 합니다.");
-        }
-        String memberDepartmentErrorMessage = bindingResult.getFieldError("memberDepartment") != null ?
-                bindingResult.getFieldError("memberDepartment").getDefaultMessage() : null;
-
-        // 직급 유효성 검사
-        if (staff.getMemberPosition() == null || staff.getMemberPosition().isEmpty()) {
-            bindingResult.rejectValue("memberPosition", "error.memberPosition", "직급을 선택해야 합니다.");
-        }
-        String memberPositionErrorMessage = bindingResult.getFieldError("memberPosition") != null ?
-                bindingResult.getFieldError("memberPosition").getDefaultMessage() : null;
-
-        // 입사일자 유효성 검사
-        List<FieldError> memberEmployErrors = bindingResult.getFieldErrors("memberEmploymentDate");
-        String memberEmployErrorMessage = null;
-
-        for (FieldError error : memberEmployErrors) {
-            if ("NotBlank".equals(error.getCode())) {
-                memberEmployErrorMessage = "입사일자는 필수입니다.";
-                break; // NotBlank 오류가 가장 높은 우선순위
-            } else if ("Pattern".equals(error.getCode())) {
-                memberEmployErrorMessage = "올바른 형식이 아닙니다.";
-                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
-            }
-        }
-
-        // 생년월일 유효성 검사
-        List<FieldError> memberBirthErrors = bindingResult.getFieldErrors("memberBirth");
-        String memberBirthErrorMessage = null;
-
-        for (FieldError error : memberBirthErrors) {
-            if ("NotBlank".equals(error.getCode())) {
-                memberBirthErrorMessage = "생년월일은 필수입니다.";
-                break; // NotBlank 오류가 가장 높은 우선순위
-            } else if ("Pattern".equals(error.getCode())) {
-                memberBirthErrorMessage = "올바른 형식이 아닙니다.";
-                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
-            }
-        }
-
-        // 이메일 유효성 검사
-        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("memberEmail");
-        String memberEmailErrorMessage = null;
-
-        for (FieldError error : memberEmailErrors) {
-            if ("NotBlank".equals(error.getCode())) {
-                memberEmailErrorMessage = "이메일은 필수입니다.";
-                break; // NotBlank 오류가 가장 높은 우선순위
-            } else if ("Pattern".equals(error.getCode())) {
-                memberEmailErrorMessage = "올바른 형식이 아닙니다.";
-                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
-            }
-        }
-
-        // 인증코드 유효성 검사
-        String emailVerifyCodeErrorMessage = bindingResult.getFieldError("verifyCode") != null ?
-                bindingResult.getFieldError("verifyCode").getDefaultMessage() : null;
-
-
-
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("memberIdError", memberIdErrorMessage);
-            model.addAttribute("memberPasswordError", memberPasswordErrorMessage);
-            model.addAttribute("memberNameError", memberNameErrorMessage);
-            model.addAttribute("memberDepartmentError", memberDepartmentErrorMessage);
-            model.addAttribute("memberPositionError", memberPositionErrorMessage);
-            model.addAttribute("memberEmployError", memberEmployErrorMessage);
-            model.addAttribute("memberBirthError", memberBirthErrorMessage);
-            model.addAttribute("memberEmailError", memberEmailErrorMessage);
-            model.addAttribute("emailVerifyCodeError", emailVerifyCodeErrorMessage);
-            return "site/member/register";
-        }
 
         // 인증 코드 검증
         boolean isCodeValid = staffEmailService.verifyCode(staff.getMemberEmail(), verifyCode);
@@ -247,52 +121,9 @@ public class StaffController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("loginDTO") LoginDTO loginDTO,
+    public String login(@ModelAttribute("loginDTO") LoginDTO loginDTO,
                         BindingResult bindingResult,
                         Model model) {
-
-
-
-
-        // 이메일 유효성 검사
-        List<FieldError> memberEmailErrors = bindingResult.getFieldErrors("memberEmail");
-        String memberEmailErrorMessage = null;
-
-        for (FieldError error : memberEmailErrors) {
-            if ("NotBlank".equals(error.getCode())) {
-                memberEmailErrorMessage = "이메일은 필수입니다.";
-                break; // NotBlank 오류가 가장 높은 우선순위
-            } else if ("Pattern".equals(error.getCode())) {
-                memberEmailErrorMessage = "올바른 형식이 아닙니다.";
-                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
-            }
-        }
-
-
-
-        // 비밀번호 유효성 검사
-        List<FieldError> memberPasswordErrors = bindingResult.getFieldErrors("memberPassword");
-        String memberPasswordErrorMessage = null;
-
-        for (FieldError error : memberPasswordErrors) {
-            if ("NotBlank".equals(error.getCode())) {
-                memberPasswordErrorMessage = "비밀번호는 필수 항목입니다.";
-                break; // NotBlank 오류가 가장 높은 우선순위
-            } else if ("Size".equals(error.getCode())) {
-                memberPasswordErrorMessage = "비밀번호는 최소 8~16자리여야 합니다.";
-                // Size 오류 메시지는 Pattern 오류보다 우선순위가 높음
-            } else if ("Pattern".equals(error.getCode())) {
-                if (memberPasswordErrorMessage == null) { // 이전에 다른 메시지가 설정되지 않았다면
-                    memberPasswordErrorMessage = "비밀번호는 영문 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.";
-                }
-            }
-        }
-
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("memberPasswordError", memberPasswordErrorMessage);
-            model.addAttribute("memberEmailError", memberEmailErrorMessage);
-            return "site/member/login";
-        }
 
         // 등록된 이메일이 없을시
         StaffVO findbyemail = staffService.findbyemail(loginDTO.getMemberEmail());
@@ -335,7 +166,7 @@ public class StaffController {
 
     // 아이디 찾기 기능
     @PostMapping("/findUsername")
-    public String findUser(@Valid @ModelAttribute("FindEmailDTO") FindEmailDTO findEmailDTO,
+    public String findUser(@ModelAttribute("FindEmailDTO") FindEmailDTO findEmailDTO,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
                            Model model) {
@@ -404,7 +235,7 @@ public class StaffController {
     }
 
     @PostMapping("/finduserpassword")
-    public String finduserpassword(@Valid @ModelAttribute("FindPasswordDTO") FindPasswordDTO findPasswordDTO,
+    public String finduserpassword(@ModelAttribute("FindPasswordDTO") FindPasswordDTO findPasswordDTO,
                                    BindingResult bindingResult,
                                    Model model,
                                    RedirectAttributes redirectAttributes,
@@ -508,7 +339,7 @@ public class StaffController {
 
     @PostMapping("/account/reginewpassword/{regId}")
     public String reginewpassword(@PathVariable("regId") Long regId,
-                                  @Valid @ModelAttribute("regiPasswordDTO") RegiPasswordDTO regiPasswordDTO,
+                                  @ModelAttribute("regiPasswordDTO") RegiPasswordDTO regiPasswordDTO,
                                   BindingResult bindingResult,
                                   Model model) {
         // 비밀번호 유효성 검사

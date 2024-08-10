@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="initech.mvc.mapper.StaffMapper">
     <!-- register 등록-->
-    <insert id="insertstaff" parameterType="staffVO">
+    <insert id="insertstaff" parameterType="initech.mvc.vo.StaffVO">
         INSERT INTO member
         (member_id,
          member_password,
@@ -34,7 +34,7 @@
     </insert>
 
     <!-- list 조회 -->
-    <resultMap id="staffresultmap" type="StaffVO">
+    <resultMap id="staffresultmap" type="initech.mvc.vo.StaffVO">
         <result column="reg_id" property="regId"/>
         <result column="order_number" property="orderNumber"/>
         <result column="member_name" property="memberName"/>
@@ -65,7 +65,7 @@
     </select>
 
     <!-- view 상세조회 -->
-    <select id="usersdetail" parameterType="long" resultType="StaffVO">
+    <select id="usersdetail" parameterType="long" resultType="initech.mvc.vo.StaffVO">
         SELECT reg_id,
                member_name,
                member_birth,
@@ -182,7 +182,7 @@
     </select>
 
     <!-- 관리자 > 회원가입승인> view 수정기능 -->
-    <update id="updatepermissionstaff" parameterType="StaffVO">
+    <update id="updatepermissionstaff" parameterType="initech.mvc.vo.StaffVO">
         UPDATE member
         SET member_permission = #{staff.memberPermission},
             member_reason = #{staff.memberReason}
@@ -190,12 +190,12 @@
     </update>
 
     <!--이메일 중복 체크1-->
-    <select id="existsemail" resultType="int" parameterType="EmailVO">
+    <select id="existsemail" resultType="int" parameterType="initech.mvc.vo.EmailVO">
         SELECT COUNT(*) FROM verifycode WHERE verify_email = #{verifyEmail}
     </select>
 
     <!--이메일 중복 체크2-->
-    <select id="existsmemberemail" resultType="int" parameterType="StaffVO">
+    <select id="existsmemberemail" resultType="int" parameterType="initech.mvc.vo.StaffVO">
         SELECT COUNT(*) FROM member WHERE member_email = #{memberEmail}
     </select>
 
@@ -205,7 +205,7 @@
     </delete>
 
     <!-- 새 인증코드 삽입 -->
-    <insert id="insertverificationcode" parameterType="EmailVO">
+    <insert id="insertverificationcode" parameterType="initech.mvc.vo.EmailVO">
         INSERT INTO verifycode
             (verify_email,
              verify_code,
@@ -219,7 +219,7 @@
     </insert>
 
     <!-- 이메일로 최신 인증코드 조회 , 유효성 검사-->
-    <select id="findauthcodebyemail" parameterType="String" resultType="EmailVO">
+    <select id="findauthcodebyemail" parameterType="String" resultType="initech.mvc.vo.EmailVO">
         SELECT
             id_v,
             verify_email,
@@ -242,7 +242,7 @@
     </delete>
 
     <!-- 로그인 , 사용자 정보 조회 -->
-    <select id="findbyemailandpassword" resultType="StaffVO">
+    <select id="findbyemailandpassword" resultType="initech.mvc.vo.StaffVO">
         SELECT
             member_email,
             member_Password
@@ -251,7 +251,7 @@
     </select>
 
     <!--이메일 정보 조회-->
-    <select id="findbyemail" resultType="StaffVO">
+    <select id="findbyemail" resultType="initech.mvc.vo.StaffVO">
         SELECT
             member_email
         FROM member
@@ -262,7 +262,7 @@
 
 
     <!-- 아이디 찾기 -->
-    <select id="findbyid" resultType="StaffVO">
+    <select id="findbyid" resultType="initech.mvc.vo.StaffVO">
         SELECT
             member_email
         FROM member
@@ -272,7 +272,7 @@
 
 
     <!-- 비밀번호 찾기 -->
-    <select id="findbypassword" resultType="StaffVO">
+    <select id="findbypassword" resultType="initech.mvc.vo.StaffVO">
         SELECT
             reg_id,
             member_email,
@@ -286,7 +286,7 @@
 
 
     <!-- 비밀번호 재설정, 상세조회 -->
-    <select id="usernewpassword" parameterType="long" resultType="StaffVO">
+    <select id="usernewpassword" parameterType="long" resultType="initech.mvc.vo.StaffVO">
         SELECT reg_id,
                member_Password
         FROM member
