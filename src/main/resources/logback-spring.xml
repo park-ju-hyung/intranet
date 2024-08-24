@@ -48,7 +48,7 @@
 		</rollingPolicy>
 	</appender>
 
-	<springProfile name="localhost, localhost-mac">
+	<springProfile name="localhost, localhost-d">
 		<logger name="pcs" level="INFO"/>
 		<logger name="jdbc" level="OFF"/>
 		<logger name="jdbc.connection" level="OFF"/>

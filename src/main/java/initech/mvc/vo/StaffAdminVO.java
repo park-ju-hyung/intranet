@@ -1,13 +1,14 @@
 package initech.mvc.vo;
 
 import lombok.*;
-
-import javax.persistence.Column;
-import javax.validation.constraints.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.Column;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -16,7 +17,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Builder
 @Getter
 @Setter
-public class StaffVO {
+public class StaffAdminVO {
     // id
     @Column(name = "reg_id")
     private Long regId;
@@ -106,7 +107,7 @@ public class StaffVO {
 
     // 권한승인여부
     @Column(name="member_permission")
-    private String memberPermission = "신청";
+    private String memberPermission = "master";
 
     // 사유
     private String memberReason;

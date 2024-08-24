@@ -1,7 +1,9 @@
 package initech.mvc.dto;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,16 +12,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
 @Builder
-public class StaffDTO{
+public class StaffAdminDTO {
     // id
     @Column(name = "reg_id")
     private Long regId;
@@ -109,7 +108,9 @@ public class StaffDTO{
 
     // 권한승인여부
     @Column(name="member_permission")
-    private String memberPermission = "신청";
+    private String memberPermission = "master";
+
+
 
     // 사유
     private String memberReason;

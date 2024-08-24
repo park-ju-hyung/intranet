@@ -1,12 +1,11 @@
 package initech.mvc.service.site;
 
 
-import initech.mvc.mapper.StaffMapper;
+import initech.mvc.mapper.StaffAdminMapper;
 import initech.mvc.vo.EmailVO;
-import initech.mvc.vo.StaffVO;
+import initech.mvc.vo.StaffAdminVO;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -25,14 +23,14 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class StaffEmailService {
 
-    private final StaffMapper staffMapper;
+    private final StaffAdminMapper staffAdminMapper;
     private final JavaMailSender StaffmailSender;
     private final SpringTemplateEngine templateEngine;
     private Map<String, String> verifyCodes = new ConcurrentHashMap<>();
 
     @Autowired
-    public StaffEmailService(StaffMapper staffMapper, JavaMailSender StaffmailSender, SpringTemplateEngine templateEngine) {
-        this.staffMapper = staffMapper;
+    public StaffEmailService(StaffAdminMapper staffAdminMapper, JavaMailSender StaffmailSender, SpringTemplateEngine templateEngine) {
+        this.staffAdminMapper = staffAdminMapper;
         this.StaffmailSender = StaffmailSender;
         this.templateEngine = templateEngine;
     }
@@ -41,29 +39,29 @@ public class StaffEmailService {
     // 이메일 저장
     @Transactional
     public void insertemail(EmailVO email) {
-        staffMapper.insertemail(email);
+        staffAdminMapper.insertemail(email);
     }
 
     // 이메일 중복 체크
     public boolean checkEmailExists(EmailVO email) {
-        return staffMapper.existsemail(email) > 0;
+        return staffAdminMapper.existsemail(email) > 0;
     }
 
-    public boolean existsmemberemail(StaffVO email) {
-        return staffMapper.existsmemberemail(email) > 0;
+    public boolean existsmemberemail(StaffAdminVO email) {
+        return staffAdminMapper.existsmemberemail(email) > 0;
     }
 
     // 기존 인증코드 삭제, 새 인증코드 삽입
     public void updateVerificationCode(EmailVO emailVO) throws MessagingException{
         // 기존 인증코드 삭제
-        staffMapper.deleteallverificationcodes(emailVO);
+        staffAdminMapper.deleteallverificationcodes(emailVO);
 
         // 새 인증코드를 생성
         String newCode = RandomStringUtils.randomNumeric(6);
         emailVO.setVerifyCode(newCode);
 
         // 새 인증코드 및 만료 시간을 데이터베이스에 삽입
-        staffMapper.insertverificationcode(emailVO);
+        staffAdminMapper.insertverificationcode(emailVO);
 
         // 새 인증코드를 이메일로 발송
         sendSimpleEmail(emailVO);
@@ -96,8 +94,8 @@ public class StaffEmailService {
 
     // 유효성 검사
     public boolean verifyCode(String email, String inputCode) {
-        staffMapper.deleteexpiredverificationcodes();
-        EmailVO savedCodeInfo = staffMapper.findauthcodebyemail(email);
+        staffAdminMapper.deleteexpiredverificationcodes();
+        EmailVO savedCodeInfo = staffAdminMapper.findauthcodebyemail(email);
         return savedCodeInfo != null && savedCodeInfo.getVerifyCode().equals(inputCode);
     }
 

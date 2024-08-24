@@ -62,7 +62,7 @@
                     <option value="">부서를 선택하세요</option>
                     <option value="it" th:selected="${staffAdmin.memberDepartment == 'it'}">IT</option>
                     <option value="인사" th:selected="${staffAdmin.memberDepartment == '인사'}">인사</option>
-                    <option value="마케팅" th:selected="${staffAdmintaff.memberDepartment == '마케팅'}">마케팅</option>
+                    <option value="마케팅" th:selected="${staffAdmin.memberDepartment == '마케팅'}">마케팅</option>
                     <option value="재무" th:selected="${staffAdmin.memberDepartment == '재무'}">재무</option>
                 </select>
                 <div th:if="${memberDepartmentError}" class="error-message" style="margin-top:6px; color:red">

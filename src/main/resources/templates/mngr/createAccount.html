@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/common/css/source.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/res/site/css/user.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>관리자 - 회원생성</title>
+</head>
+
+
+<body>
+<div class="container">
+    <!--left-menu-->
+    <div class="left-menu">
+        <ul>
+            <li>
+                <a href="">홍길동</a>
+                <span>님</span>
+                <button class="logout-button">
+                    로그아웃
+                </button>
+                <a href="">내정보 수정</a>
+            </li>
+            <li>
+                <a href="/admin/AllEmployee">
+                    연차신청
+                </a>
+            </li>
+            <!--
+            <li class="active">
+                <a href="/admin/approval">
+                    회원가입 승인
+                </a>
+            </li>
+            -->
+            <li>
+                <a href="/admin/management">
+                    직원 관리
+                </a>
+            </li>
+            <li class="active">
+                <a href="/admin/createAccount">
+                    관리자 생성
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--content-->
+    <div class="content">
+        <form id="signupForm" th:action="@{/register}" th:object="${staff}" method="post">
+
+            <p>관리자 생성</p>
+            <p class="essential">
+                <span class="essential-style">*</span>
+                필수입력사항
+            </p>
+
+            <div>
+                <span class="essential-style">*</span>
+                <label for="memberId">아이디</label>
+                <input id="memberId" th:field="*{memberId}" type="text" placeholder="4~20자리 / 영문, 숫자, 특수문자 '_'사용가능" class="form-control2">
+                <div th:if="${memberIdError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberIdError}"></span>
+                </div>
+
+            </div>
+            <div>
+                <span class="essential-style">*</span>
+                <label>비밀번호</label>
+                <input id="memberPassword" th:field="*{memberPassword}" type="text" placeholder="8~16자리/영문 대소문자, 숫자, 특수문자 조합" class="form-control2">
+                <div th:if="${memberPasswordError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberPasswordError}"></span>
+                </div>
+            </div>
+            <div>
+                <span class="essential-style">*</span>
+                <label for="confirmPassword">비밀번호 확인</label>
+                <input id="confirmPassword" th:field="*{confirmPassword}" type="text" placeholder="비밀번호 확인" class="form-control2">
+                <div th:if="${#fields.hasErrors('confirmPassword')}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></span>
+                </div>
+            </div>
+            <div>
+                <span class="essential-style">*</span>
+                <label>이름</label>
+                <input id="memberName" th:field="*{memberName}" type="text" placeholder="이름 입력" class="form-control2">
+                <div th:if="${memberNameError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberNameError}"></span>
+                </div>
+            </div>
+            <div>
+                <span class="essential-style">*</span>
+                <label>부서</label>
+                <select id="memberDepartment" name="memberDepartment" class="form-control2">
+                    <option value="">부서를 선택하세요</option>
+                    <option value="it" th:selected="${staff.memberDepartment == 'it'}">IT</option>
+                    <option value="인사" th:selected="${staff.memberDepartment == '인사'}">인사</option>
+                    <option value="마케팅" th:selected="${staff.memberDepartment == '마케팅'}">마케팅</option>
+                    <option value="재무" th:selected="${staff.memberDepartment == '재무'}">재무</option>
+                </select>
+                <div th:if="${memberDepartmentError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberDepartmentError}"></span>
+                </div>
+                <!--
+                <input id="member_department" th:field="*{member_department}" type="text" placeholder="부서 입력" class="form-control2">
+                <div th:if="${memberDepartmentError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberDepartmentError}"></span>
+                </div>
+                -->
+            </div>
+            <div>
+                <span class="essential-style">*</span>
+                <label>직급</label>
+                <select id="memberPosition" name="memberPosition" class="form-control2">
+                    <option value="">직급을 선택하세요</option>
+                    <option value="사원" th:selected="${staff.memberPosition == '사원'}">사원</option>
+                    <option value="대리" th:selected="${staff.memberPosition == '대리'}">대리</option>
+                    <option value="과장" th:selected="${staff.memberPosition == '과장'}">과장</option>
+                    <option value="부장" th:selected="${staff.memberPosition == '부장'}">부장</option>
+                </select>
+                <div th:if="${memberPositionError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberPositionError}"></span>
+                </div>
+            </div>
+            <div>
+                <span class="essential-style">*</span>
+                <label>입사일자</label>
+                <input id="memberEmploymentDate" th:field="*{memberEmploymentDate}" type="text" placeholder="YYYY/MM/DD" class="form-control2">
+                <div th:if="${memberEmployError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberEmployError}"></span>
+                </div>
+            </div>
+            <div>
+                <span class="essential-style">*</span>
+                <label>생년월일</label>
+                <input id="memberBirth" th:field="*{memberBirth}" type="text" placeholder="YYYY/MM/DD" class="form-control2">
+                <div th:if="${memberBirthError}" class="error-message" style="margin-top:6px; color:red">
+                    <span th:text="${memberBirthError}"></span>
+                </div>
+            </div>
+
+
+            <button class="register-button">
+                <span>등록</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+
+</html>
