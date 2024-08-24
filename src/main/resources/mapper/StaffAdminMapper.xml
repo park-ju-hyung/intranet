@@ -2,8 +2,304 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="initech.mvc.mapper.StaffMapper">
+
+<mapper namespace="initech.mvc.mapper.StaffAdminMapper">
+    <!-- register 등록-->
+    <insert id="insertstaff" parameterType="initech.mvc.vo.StaffAdminVO">
+        INSERT INTO admin
+        (member_id,
+         member_password,
+         member_name,
+         member_department,
+         member_position,
+         member_employmentDate,
+         member_birth,
+         member_email,
+         application_date,
+         updated_at,
+         employment_status,
+         member_permission)
+        VALUES
+            (#{memberId},
+             #{memberPassword},
+             #{memberName},
+             #{memberDepartment},
+             #{memberPosition},
+             #{memberEmploymentDate},
+             #{memberBirth},
+             #{memberEmail},
+             NOW(),
+             NOW(),
+             #{employmentStatus},
+             #{memberPermission})
+    </insert>
+
+    <!-- list 조회 -->
+    <resultMap id="staffresultmap" type="initech.mvc.vo.StaffAdminVO">
+        <result column="reg_id" property="regId"/>
+        <result column="order_number" property="orderNumber"/>
+        <result column="member_name" property="memberName"/>
+        <result column="member_department" property="memberDepartment"/>
+        <result column="member_position" property="memberPosition"/>
+        <result column="member_employmentdate" property="memberEmploymentDate"/>
+        <result column="application_date" property="applicationDate"/>
+        <result column="member_permission" property="memberPermission"/>
+    </resultMap>
+
+    <!--list 페이징 조회 -->
+    <select id="selectallusers" resultMap="staffresultmap" parameterType="map">
+        SELECT
+            reg_id,
+            order_number,
+            member_name,
+            member_department,
+            member_position,
+            member_employmentdate,
+            application_date,
+            member_permission,
+            employment_status
+            FROM admin ORDER BY application_date DESC LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!-- list 전체 데이터의 수를 조회하는 쿼리 -->
+    <select id="countallusers" resultType="int">
+        SELECT COUNT(*) FROM admin
+    </select>
+
+    <!-- view 상세조회 -->
+    <select id="usersdetail" parameterType="long" resultType="initech.mvc.vo.StaffAdminVO">
+        SELECT reg_id,
+               member_name,
+               member_birth,
+               member_id,
+               member_email,
+               member_department,
+               member_position,
+               application_date,
+               member_employmentdate,
+               member_permission,
+               member_reason
+        FROM admin
+        WHERE reg_id = #{regId}
+    </select>
+
+
+    <!-- 관리자 > 회원관리 > 검색조건 -->
+    <select id="searchusers" resultMap="staffresultmap" parameterType="map">
+        SELECT
+        member_name,
+        member_department,
+        member_position,
+        member_employmentdate,
+        application_date,
+        employment_status
+        FROM admin
+        <where>
+            <if test="memberName != null">
+                member_name LIKE CONCAT('%', #{memberName}, '%')
+            </if>
+            <if test="searchStartDate != null">
+                AND DATE(application_date) &gt;= #{searchStartDate}
+            </if>
+            <if test="searchEndDate != null">
+                AND DATE(application_date) &lt;= #{searchEndDate}
+            </if>
+        </where>
+        ORDER BY application_date DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!-- 관리자 > 회원관리 > 검색조건 총 개수를 반환 -->
+    <select id="getfilteredusercount" resultType="int">
+        SELECT COUNT(*) FROM admin
+        <where>
+            <if test="memberName != null and memberName != ''">
+                member_name LIKE CONCAT('%', #{memberName}, '%')
+            </if>
+            <if test="searchStartDate != null">
+                AND DATE(application_date) &gt;= #{searchStartDate}
+            </if>
+            <if test="searchEndDate != null">
+                AND DATE(application_date) &lt;= #{searchEndDate}
+            </if>
+        </where>
+    </select>
+
+    <!-- 관리자 > 회원관리 > view 수정기능 -->
+    <update id="updatestaff">
+        UPDATE admin
+        SET member_department = #{staff.memberDepartment},
+            member_position = #{staff.memberPosition},
+            employment_Status = #{staff.employmentStatus}
+        WHERE reg_id = #{regId}
+    </update>
 
 
 
+
+    <!-- 관리자 > 회원가입승인 > 검색조건 -->
+    <select id="searchpermission" resultMap="staffresultmap" parameterType="map">
+        SELECT
+        member_name,
+        member_department,
+        member_position,
+        member_employmentdate,
+        application_date,
+        member_permission
+        FROM admin
+        <where>
+            <if test="memberName != null">
+                member_name LIKE CONCAT('%', #{memberName}, '%')
+            </if>
+            <if test="searchStartDate != null">
+                AND DATE(application_date) &gt;= #{searchStartDate}
+            </if>
+            <if test="searchEndDate != null">
+                AND DATE(application_date) &lt;= #{searchEndDate}
+            </if>
+            <if test="memberPermission != null and memberPermission != ''">
+                AND member_permission = #{memberPermission}
+            </if>
+        </where>
+        ORDER BY application_date DESC LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!-- 관리자 > 회원가입승인 > 검색조건에 따른 사용자의 총 개수를 반환 -->
+    <select id="getfilteredpermissioncount" resultType="int">
+        SELECT COUNT(*) FROM admin
+        <where>
+            <if test="memberName != null and memberName != ''">
+                member_name LIKE CONCAT('%', #{memberName}, '%')
+            </if>
+            <if test="searchStartDate != null">
+                AND DATE(application_date) &gt;= #{searchStartDate}
+            </if>
+            <if test="searchEndDate != null">
+                AND DATE(application_date) &lt;= #{searchEndDate}
+            </if>
+            <if test="memberPermission != null and memberPermission != ''">
+                AND member_permission = #{memberPermission}
+            </if>
+        </where>
+    </select>
+
+    <!-- 관리자 > 회원가입승인> view 수정기능 -->
+    <update id="updatepermissionstaff" parameterType="initech.mvc.vo.StaffAdminVO">
+        UPDATE admin
+        SET member_permission = #{staff.memberPermission},
+            member_reason = #{staff.memberReason}
+        WHERE reg_id = #{regId}
+    </update>
+
+    <!--이메일 중복 체크1-->
+    <select id="existsemail" resultType="int" parameterType="initech.mvc.vo.EmailVO">
+        SELECT COUNT(*) FROM verifycode WHERE verify_email = #{verifyEmail}
+    </select>
+
+    <!--이메일 중복 체크2-->
+    <select id="existsmemberemail" resultType="int" parameterType="initech.mvc.vo.StaffAdminVO">
+        SELECT COUNT(*) FROM admin WHERE member_email = #{memberEmail}
+    </select>
+
+    <!-- 기존 인증코드 삭제 -->
+    <delete id="deleteallverificationcodes" >
+        DELETE FROM verifycode
+    </delete>
+
+    <!-- 새 인증코드 삽입 -->
+    <insert id="insertverificationcode" parameterType="initech.mvc.vo.EmailVO">
+        INSERT INTO verifycode
+            (verify_email,
+             verify_code,
+             sent_time,
+             expire_time)
+        VALUES (
+                #{verifyEmail},
+                #{verifyCode},
+                NOW(),
+                DATE_ADD(NOW(), INTERVAL 3 MINUTE))
+    </insert>
+
+    <!-- 이메일로 최신 인증코드 조회 , 유효성 검사-->
+    <select id="findauthcodebyemail" parameterType="String" resultType="initech.mvc.vo.EmailVO">
+        SELECT
+            id_v,
+            verify_email,
+            verify_code,
+            sent_time,
+            expire_time
+            FROM verifycode
+        WHERE verify_email = #{verifyEmail}
+          AND expire_time > NOW()
+        ORDER BY sent_time DESC
+            LIMIT 1
+    </select>
+
+
+    <!-- 만료된 인증 코드 삭제 -->
+    <delete id="deleteexpiredverificationcodes">
+        <![CDATA[
+        DELETE FROM verifycode WHERE expire_time < NOW()
+        ]]>
+    </delete>
+
+    <!-- 로그인 , 사용자 정보 조회 -->
+    <select id="findbyemailandpassword" resultType="initech.mvc.vo.StaffAdminVO">
+        SELECT
+            member_email,
+            member_Password,
+            member_permission
+            FROM admin
+        WHERE member_Email = #{memberEmail} AND member_Password = #{memberPassword} AND member_permission = 'master'
+    </select>
+
+    <!--이메일 정보 조회-->
+    <select id="findbyemail" resultType="initech.mvc.vo.StaffAdminVO">
+        SELECT
+            member_email
+        FROM admin
+        WHERE
+            member_Email = #{memberEmail}
+    </select>
+
+
+
+    <!-- 아이디 찾기 -->
+    <select id="findbyid" resultType="initech.mvc.vo.StaffAdminVO">
+        SELECT
+            member_email
+        FROM admin
+        WHERE member_name = #{memberName} and
+            member_birth = #{memberBirth}
+    </select>
+
+
+    <!-- 비밀번호 찾기 -->
+    <select id="findbypassword" resultType="initech.mvc.vo.StaffAdminVO">
+        SELECT
+            reg_id,
+            member_email,
+            member_name,
+            member_birth
+        FROM admin
+        WHERE member_email = #{memberEmail} and
+              member_name = #{memberName} and
+              member_birth = #{memberBirth}
+    </select>
+
+
+    <!-- 비밀번호 재설정, 상세조회 -->
+    <select id="usernewpassword" parameterType="long" resultType="initech.mvc.vo.StaffAdminVO">
+        SELECT reg_id,
+               member_Password
+        FROM admin
+        WHERE reg_id = #{regId}
+    </select>
+
+    <!-- 비밀번호 재설정 기능 -->
+    <update id="reginewpassword">
+        UPDATE admin
+        SET member_password = #{regiPasswordDTO.memberPassword}
+        WHERE reg_id = #{regId}
+    </update>
 </mapper>

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Setter
-public class StaffVO {
+public class StaffAdminVO {
     // id
     private Long regId;
 
